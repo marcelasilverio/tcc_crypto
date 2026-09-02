@@ -1,6 +1,7 @@
 .DS_Store
 .spyproject/
 .ipynb_checkpoints/
+~$*.xlsx
 __pycache__/
 *.py[cod]
 .pytest_cache/
