@@ -9,6 +9,18 @@ Markowitz mean-variance optimization.
 The repository is developed incrementally under direct human review. It is
 not an autonomous product-development project.
 
+## Research source context
+
+Before making methodological or experimental changes, read
+`docs/tcc/README.md` and the topic-specific documents it links. They provide an
+English synopsis of the TCC I manuscript that defines the research motivation,
+theoretical basis, and proposed experiment.
+
+The TCC I documents are research context, not automatic approval for proposed
+parameters. This file and explicitly recorded methodology decisions take
+precedence whenever the source manuscript is ambiguous, incomplete, or
+inconsistent.
+
 ## Language
 
 All repository content must be written in English, including:
