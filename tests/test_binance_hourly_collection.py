@@ -37,6 +37,7 @@ def make_kline(
     high: str = "12.00000000",
     low: str = "9.00000000",
     close: str = "11.00000000",
+    duration_ms: int = 3_600_000,
 ) -> list[object]:
     """Build a minimal valid Binance 1h kline response row."""
     return [
@@ -46,7 +47,7 @@ def make_kline(
         low,
         close,
         "100.0",
-        open_time_ms + 3_599_999,
+        open_time_ms + duration_ms - 1,
         "1050.0",
         25,
         "40.0",
@@ -213,7 +214,13 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             workbook = openpyxl.load_workbook(output_path, read_only=True)
             self.assertEqual(
                 workbook.sheetnames,
-                ["Klines", "Metadata", "Validation", "Missing Intervals"],
+                [
+                    "Klines",
+                    "Metadata",
+                    "Validation",
+                    "Missing Intervals",
+                    "Nonstandard Durations",
+                ],
             )
             workbook.close()
             with self.assertRaises(FileExistsError):
@@ -328,6 +335,52 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             self.assertEqual(reused["Missing Hours"], 0)
             self.assertIsNotNone(reused["Raw CSV SHA-256"])
             self.assertIsNotNone(reused["Workbook SHA-256"])
+
+    def test_shortened_candle_is_preserved_for_review(self) -> None:
+        start = self.config.start_time_ms
+        rows = [make_kline(start, duration_ms=1_753_420)]
+
+        def requester(parameters: dict[str, object]) -> object:
+            del parameters
+            return rows
+
+        frame = collect_hourly_klines(
+            "BTCUSDT",
+            self.config,
+            page_requester=requester,
+        )
+        validation = validate_hourly_klines(frame, self.config)
+        duration_check = validation.loc[
+            validation["Check"] == "Shortened candle durations"
+        ].iloc[0]
+        window_check = validation.loc[
+            validation["Check"] == "Close times outside the nominal candle window"
+        ].iloc[0]
+
+        self.assertEqual(duration_check["Actual"], 1)
+        self.assertEqual(duration_check["Status"], "REVIEW")
+        self.assertEqual(window_check["Status"], "OK")
+        self.assertNotIn("FAIL", validation["Status"].tolist())
+
+    def test_close_outside_nominal_hour_remains_fatal(self) -> None:
+        start = self.config.start_time_ms
+        rows = [make_kline(start, duration_ms=3_600_001)]
+
+        def requester(parameters: dict[str, object]) -> object:
+            del parameters
+            return rows
+
+        frame = collect_hourly_klines(
+            "BTCUSDT",
+            self.config,
+            page_requester=requester,
+        )
+        validation = validate_hourly_klines(frame, self.config)
+        window_check = validation.loc[
+            validation["Check"] == "Close times outside the nominal candle window"
+        ].iloc[0]
+        self.assertEqual(window_check["Actual"], 1)
+        self.assertEqual(window_check["Status"], "FAIL")
 
 
 if __name__ == "__main__":

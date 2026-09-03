@@ -568,6 +568,22 @@ def missing_hourly_intervals(frame: pd.DataFrame) -> pd.DatetimeIndex:
     return expected.difference(observed)
 
 
+def nonstandard_candle_durations(frame: pd.DataFrame) -> pd.DataFrame:
+    """Return shortened candles whose close remains inside the nominal hour."""
+    open_times = pd.to_numeric(frame["open_time_ms"], errors="raise")
+    close_times = pd.to_numeric(frame["close_time_ms"], errors="raise")
+    duration_ms = close_times - open_times + 1
+    shortened = (duration_ms > 0) & (duration_ms < HOUR_MS)
+    diagnostics = frame.loc[
+        shortened,
+        ["open_time_utc", "close_time_utc", "open_time_ms", "close_time_ms"],
+    ].copy()
+    diagnostics["duration_ms"] = duration_ms.loc[shortened].astype("int64")
+    diagnostics["nominal_duration_ms"] = HOUR_MS
+    diagnostics["shortfall_ms"] = HOUR_MS - diagnostics["duration_ms"]
+    return diagnostics.reset_index(drop=True)
+
+
 def validate_hourly_klines(
     frame: pd.DataFrame,
     config: CollectionConfig,
@@ -601,7 +617,9 @@ def validate_hourly_klines(
     non_positive_ohlc = (decimals[["open", "high", "low", "close"]] <= 0).any(
         axis=1
     )
-    unexpected_durations = (close_times - open_times) != HOUR_MS - 1
+    duration_ms = close_times - open_times + 1
+    close_outside_nominal_window = (duration_ms <= 0) | (duration_ms > HOUR_MS)
+    shortened_durations = (duration_ms > 0) & (duration_ms < HOUR_MS)
 
     checks = [
         ("Rows returned", len(frame), ">= 1", "OK" if len(frame) else "FAIL"),
@@ -624,10 +642,16 @@ def validate_hourly_klines(
             "OK" if not (open_times % HOUR_MS != 0).any() else "FAIL",
         ),
         (
-            "Unexpected candle durations",
-            int(unexpected_durations.sum()),
+            "Close times outside the nominal candle window",
+            int(close_outside_nominal_window.sum()),
             0,
-            "OK" if not unexpected_durations.any() else "FAIL",
+            "OK" if not close_outside_nominal_window.any() else "FAIL",
+        ),
+        (
+            "Shortened candle durations",
+            int(shortened_durations.sum()),
+            0,
+            "OK" if not shortened_durations.any() else "REVIEW",
         ),
         (
             "Rows before requested start",
@@ -733,6 +757,7 @@ def build_metadata(
 ) -> pd.DataFrame:
     """Build auditable collection metadata for a pair workbook."""
     missing = missing_hourly_intervals(frame)
+    shortened = nonstandard_candle_durations(frame)
     first_open = frame["open_time_utc"].min()
     last_close = frame["close_time_utc"].max()
     records = [
@@ -753,6 +778,7 @@ def build_metadata(
         ("Last observed close (UTC)", last_close.isoformat()),
         ("Observed hourly klines", len(frame)),
         ("Missing hours within observed span", len(missing)),
+        ("Shortened candle durations", len(shortened)),
         ("Selection source", config.selection_source),
         (
             "Selection source SHA-256",
@@ -815,6 +841,13 @@ def write_pair_workbook(
     missing_frame = pd.DataFrame(
         {"Missing Open Time (UTC)": pd.DatetimeIndex(missing).tz_localize(None)}
     )
+    duration_frame = nonstandard_candle_durations(frame)
+    duration_frame["open_time_utc"] = duration_frame[
+        "open_time_utc"
+    ].dt.tz_localize(None)
+    duration_frame["close_time_utc"] = duration_frame[
+        "close_time_utc"
+    ].dt.tz_localize(None)
 
     try:
         with pd.ExcelWriter(temporary_path, engine="openpyxl") as writer:
@@ -822,6 +855,11 @@ def write_pair_workbook(
             metadata.to_excel(writer, sheet_name="Metadata", index=False)
             validation.to_excel(writer, sheet_name="Validation", index=False)
             missing_frame.to_excel(writer, sheet_name="Missing Intervals", index=False)
+            duration_frame.to_excel(
+                writer,
+                sheet_name="Nonstandard Durations",
+                index=False,
+            )
             for worksheet in writer.book.worksheets:
                 _format_worksheet(worksheet)
 
@@ -861,6 +899,9 @@ def write_pair_workbook(
             writer.book["Validation"].column_dimensions["C"].width = 18
             writer.book["Validation"].column_dimensions["D"].width = 12
             writer.book["Missing Intervals"].column_dimensions["A"].width = 26
+            duration_sheet = writer.book["Nonstandard Durations"]
+            duration_sheet.column_dimensions["A"].width = 22
+            duration_sheet.column_dimensions["B"].width = 22
 
         if output_path.exists():
             raise FileExistsError(f"Refusing to overwrite workbook: {output_path}")
@@ -904,7 +945,13 @@ def _validate_workbook(
     except Exception as error:
         raise ValueError(f"Existing workbook cannot be opened: {path}") from error
     try:
-        required_sheets = {"Klines", "Metadata", "Validation", "Missing Intervals"}
+        required_sheets = {
+            "Klines",
+            "Metadata",
+            "Validation",
+            "Missing Intervals",
+            "Nonstandard Durations",
+        }
         if not required_sheets.issubset(workbook.sheetnames):
             raise ValueError(f"Existing workbook is missing required sheets: {path}")
         if workbook["Klines"].max_row - 1 != expected_rows:
@@ -990,12 +1037,14 @@ def _pair_result(
     paths: PairOutputPaths,
 ) -> dict[str, object]:
     missing = missing_hourly_intervals(frame)
+    shortened = nonstandard_candle_durations(frame)
     return {
         "Selection Rank": selection_rank,
         "Trading Pair": symbol,
         "Status": status,
         "Rows": len(frame),
         "Missing Hours": len(missing),
+        "Shortened Candles": len(shortened),
         "First Open (UTC)": frame["open_time_utc"].min().isoformat(),
         "Last Close (UTC)": frame["close_time_utc"].max().isoformat(),
         "Raw CSV": str(paths.raw_csv_gz),
@@ -1170,6 +1219,7 @@ def run_collection(
                     "Status": "FAILED",
                     "Rows": None,
                     "Missing Hours": None,
+                    "Shortened Candles": None,
                     "First Open (UTC)": None,
                     "Last Close (UTC)": None,
                     "Raw CSV": None,

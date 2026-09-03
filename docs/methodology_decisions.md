@@ -59,6 +59,18 @@ Approved on 2026-09-02 as the initial data-collection universe:
   workbook structure, row counts, and checksums before treating a pair as
   complete; never infer canonical raw data from an Excel workbook.
 
+Historical candle-duration treatment approved on 2026-09-02:
+
+- preserve a candle when its close timestamp is earlier than the final
+  millisecond of its nominal hour but remains at or after its open timestamp;
+- classify these shortened candles as `REVIEW`, not `FAIL`;
+- record every shortened candle in the workbook's `Nonstandard Durations`
+  sheet and summarize its count in metadata and the collection manifest;
+- keep a close timestamp earlier than the open timestamp or beyond the nominal
+  hourly window as a fatal validation failure;
+- do not alter, extend, discard, or synthesize the raw candle during
+  collection; any modeling-stage treatment remains a separate decision.
+
 The approved initial selection, in descending ranking order, is:
 
 1. `BTCUSDT`
