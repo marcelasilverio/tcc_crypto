@@ -120,3 +120,57 @@ the experiment as an ex-post fixed-universe analysis.
 The `LUNAUSDT` daily coverage used for selection contains 17 missing days and
 spans the Terra ecosystem migration. Symbol and price-series continuity must
 be validated before the pair is used in modeling or backtesting.
+
+## Exploratory hourly open-price correlation
+
+Approved on 2026-09-05 for the exploratory notebook
+`notebooks/06_binance_hourly_open_price_correlation.ipynb`:
+
+- candidate universe: the 30 USDT-quoted pairs in the approved initial hourly
+  collection;
+- analysis eligibility: include only pairs whose first observed Binance hourly
+  candle occurred in or before calendar year 2021 UTC;
+- input field: the hourly Binance kline `open` price, quoted in USDT;
+- observation period: each pair's full observed span through
+  2026-09-01 23:00 UTC;
+- correlation method: Pearson product-moment correlation on price levels;
+- temporal alignment: exact hourly opening timestamps in UTC;
+- missing-data and listing treatment: calculate every pairwise coefficient
+  from timestamps observed for both assets; do not interpolate, forward-fill,
+  backfill, or synthesize observations;
+- supporting diagnostic: report the number of paired observations used for
+  every coefficient.
+
+Because pairwise alignment gives different comparison periods to pairs listed
+at different dates, coefficients are not strictly based on a common sample.
+The analysis is descriptive and exploratory. Correlation between non-stationary
+price levels may reflect common trends and must not be interpreted as evidence
+of causality, direct price dependence, or predictive power. Analysis of returns
+would require a separate approved methodology decision.
+
+## Exploratory hourly high-to-open return correlation
+
+Approved on 2026-09-05 for the exploratory notebook
+`notebooks/07_binance_hourly_high_open_return_correlation.ipynb`:
+
+- candidate universe: the 30 USDT-quoted pairs in the approved initial hourly
+  collection;
+- analysis eligibility: include only pairs whose first observed Binance hourly
+  candle occurred in or before calendar year 2021 UTC;
+- return definition: `(high - open) / open` for each hourly candle, where
+  `high` and `open` are the Binance kline fields quoted in USDT;
+- correlation method: Pearson product-moment correlation between the defined
+  hourly return series;
+- temporal alignment: exact hourly opening timestamps in UTC;
+- missing-data and listing treatment: calculate every pairwise coefficient
+  from timestamps observed for both assets; do not interpolate, forward-fill,
+  backfill, or synthesize observations;
+- supporting diagnostic: report the number of paired observations used for
+  every coefficient.
+
+This return definition measures the maximum observed intrahour appreciation
+relative to the candle opening price. It is not a close-to-close holding-period
+return, and it does not represent a realizable return unless a trading rule and
+execution assumptions are separately defined. Pearson correlation is also
+sensitive to extreme observations. The analysis is descriptive and does not
+establish causality or predictive power.

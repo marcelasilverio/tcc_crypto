@@ -20,8 +20,9 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from http.client import IncompleteRead, RemoteDisconnected
 from pathlib import Path
-from typing import Callable, Mapping
+from typing import Callable, Mapping, Sequence
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -213,6 +214,13 @@ def request_json(
                 continue
             raise RuntimeError(
                 f"Could not reach Binance at {url}: {error.reason}"
+            ) from error
+        except (IncompleteRead, RemoteDisconnected) as error:
+            if attempt < max_retries:
+                time.sleep(min(2**attempt, 30))
+                continue
+            raise RuntimeError(
+                f"Binance connection was interrupted for {url}: {error}"
             ) from error
 
     raise RuntimeError(f"Request retry loop ended unexpectedly for {url}.")
@@ -1146,6 +1154,7 @@ def _write_manifest(
     config: CollectionConfig,
     repository_root: Path,
     execution_time: datetime,
+    execution_symbols: tuple[str, ...],
 ) -> Path:
     output_directory = repository_root / config.output_directory
     output_directory.mkdir(parents=True, exist_ok=True)
@@ -1159,6 +1168,8 @@ def _write_manifest(
             ("Requested end (UTC)", config.end_time_utc.isoformat()),
             ("Interval", config.interval),
             ("Selected pairs", len(config.symbols)),
+            ("Execution pair count", len(execution_symbols)),
+            ("Execution pairs", ", ".join(execution_symbols)),
             ("Selection source", config.selection_source),
             (
                 "Selection source SHA-256",
@@ -1190,23 +1201,43 @@ def run_collection(
     config: CollectionConfig,
     repository_root: Path,
     *,
+    symbols: Sequence[str] | None = None,
     progress_callback: Callable[[str], None] | None = None,
 ) -> tuple[pd.DataFrame, Path]:
-    """Run the configured collection and always write a complete manifest."""
+    """Run the full collection or an approved subset and write a manifest."""
+    execution_symbols = (
+        config.symbols if symbols is None else tuple(str(symbol) for symbol in symbols)
+    )
+    if not execution_symbols:
+        raise ValueError("At least one collection symbol is required.")
+    if len(set(execution_symbols)) != len(execution_symbols):
+        raise ValueError("The execution symbol list contains duplicates.")
+    unknown_symbols = [
+        symbol for symbol in execution_symbols if symbol not in config.symbols
+    ]
+    if unknown_symbols:
+        raise ValueError(
+            "Execution symbols are not in the approved configuration: "
+            + ", ".join(unknown_symbols)
+        )
+
+    selection_ranks = {
+        symbol: rank for rank, symbol in enumerate(config.symbols, start=1)
+    }
     execution_time = datetime.now(timezone.utc)
     results: list[dict[str, object]] = []
-    workers = max(1, min(config.max_workers, len(config.symbols)))
+    workers = max(1, min(config.max_workers, len(execution_symbols)))
 
     with ThreadPoolExecutor(max_workers=workers) as executor:
         futures = {
             executor.submit(
                 collect_symbol_outputs,
                 symbol,
-                rank,
+                selection_ranks[symbol],
                 config,
                 repository_root,
-            ): (rank, symbol)
-            for rank, symbol in enumerate(config.symbols, start=1)
+            ): (selection_ranks[symbol], symbol)
+            for symbol in execution_symbols
         }
         for completed, future in enumerate(as_completed(futures), start=1):
             rank, symbol = futures[future]
@@ -1232,7 +1263,7 @@ def run_collection(
             results.append(result)
             if progress_callback is not None:
                 progress_callback(
-                    f"Completed {completed}/{len(config.symbols)}: "
+                    f"Completed {completed}/{len(execution_symbols)}: "
                     f"{symbol} ({result['Status']})"
                 )
 
@@ -1244,6 +1275,7 @@ def run_collection(
         config,
         repository_root,
         execution_time,
+        execution_symbols,
     )
     return results_frame, manifest_path
 

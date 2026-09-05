@@ -7,7 +7,10 @@ import sys
 import tempfile
 import unittest
 from dataclasses import replace
+from http.client import IncompleteRead, RemoteDisconnected
+from io import BytesIO
 from pathlib import Path
+from unittest.mock import patch
 
 import openpyxl
 import pandas as pd
@@ -25,6 +28,8 @@ from tcc_crypto.binance_hourly_collection import (  # noqa: E402
     load_raw_csv_gz,
     missing_hourly_intervals,
     pair_output_paths,
+    request_json,
+    run_collection,
     validate_hourly_klines,
     write_pair_workbook,
 )
@@ -283,6 +288,74 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             partial = pd.read_csv(paths.partial_csv, dtype=str)
             self.assertEqual(len(partial), 4)
             self.assertEqual(partial["open"].tolist(), ["10.00000000"] * 4)
+
+    def test_request_retries_interrupted_http_connections(self) -> None:
+        for error in (
+            IncompleteRead(b"partial", 10),
+            RemoteDisconnected("connection closed"),
+        ):
+            with self.subTest(error=type(error).__name__):
+                with (
+                    patch(
+                        "tcc_crypto.binance_hourly_collection.urlopen",
+                        side_effect=[error, BytesIO(b"[]")],
+                    ) as mocked_urlopen,
+                    patch("tcc_crypto.binance_hourly_collection.time.sleep"),
+                ):
+                    result = request_json(
+                        "https://example.invalid/klines",
+                        {"symbol": "BTCUSDT"},
+                        timeout_seconds=1,
+                        max_retries=1,
+                    )
+
+                self.assertEqual(result, [])
+                self.assertEqual(mocked_urlopen.call_count, 2)
+
+    def test_collection_subset_preserves_original_selection_ranks(self) -> None:
+        requested_symbols = ("SOLUSDT", "ADAUSDT")
+
+        def fake_collect(
+            symbol: str,
+            selection_rank: int,
+            config: object,
+            repository_root: Path,
+        ) -> dict[str, object]:
+            del config, repository_root
+            return {
+                "Selection Rank": selection_rank,
+                "Trading Pair": symbol,
+                "Status": "COLLECTED",
+            }
+
+        with (
+            tempfile.TemporaryDirectory() as directory,
+            patch(
+                "tcc_crypto.binance_hourly_collection.collect_symbol_outputs",
+                side_effect=fake_collect,
+            ),
+            patch(
+                "tcc_crypto.binance_hourly_collection._write_manifest",
+                return_value=Path(directory) / "manifest.xlsx",
+            ) as mocked_manifest,
+        ):
+            results, _ = run_collection(
+                self.config,
+                Path(directory),
+                symbols=requested_symbols,
+            )
+
+        self.assertEqual(results["Trading Pair"].tolist(), list(requested_symbols))
+        self.assertEqual(results["Selection Rank"].tolist(), [5, 10])
+        self.assertEqual(mocked_manifest.call_args.args[-1], requested_symbols)
+
+    def test_collection_subset_rejects_unknown_symbols(self) -> None:
+        with self.assertRaisesRegex(ValueError, "not in the approved configuration"):
+            run_collection(
+                self.config,
+                REPOSITORY_ROOT,
+                symbols=("UNKNOWNUSDT",),
+            )
 
     def test_complete_outputs_are_validated_and_reused_without_network(self) -> None:
         start = pd.Timestamp("2026-09-01T00:00:00Z")
