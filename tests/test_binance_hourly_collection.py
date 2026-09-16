@@ -105,6 +105,16 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             "UNIUSDT",
             "GALAUSDT",
             "FETUSDT",
+            "HBARUSDT",
+            "VETUSDT",
+            "ETCUSDT",
+            "ATOMUSDT",
+            "SANDUSDT",
+            "ENAUSDT",
+            "ICPUSDT",
+            "CRVUSDT",
+            "MANAUSDT",
+            "CHZUSDT",
         )
         self.assertEqual(self.config.symbols, expected)
         self.assertEqual(self.config.interval, "1h")
@@ -313,7 +323,7 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
                 self.assertEqual(mocked_urlopen.call_count, 2)
 
     def test_collection_subset_preserves_original_selection_ranks(self) -> None:
-        requested_symbols = ("SOLUSDT", "ADAUSDT")
+        requested_symbols = ("HBARUSDT", "CHZUSDT")
 
         def fake_collect(
             symbol: str,
@@ -346,7 +356,7 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             )
 
         self.assertEqual(results["Trading Pair"].tolist(), list(requested_symbols))
-        self.assertEqual(results["Selection Rank"].tolist(), [5, 10])
+        self.assertEqual(results["Selection Rank"].tolist(), [31, 40])
         self.assertEqual(mocked_manifest.call_args.args[-1], requested_symbols)
 
     def test_collection_subset_rejects_unknown_symbols(self) -> None:

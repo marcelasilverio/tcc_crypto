@@ -5,7 +5,7 @@
   "selection_source": "data/exploration/binance_spot_usdt_quote_pair_trade_counts.xlsx",
   "selection_snapshot_end_utc": "2026-09-01T23:59:59.999Z",
   "selection_measure": "Total Binance number_of_trades over available daily klines",
-  "selection_rule": "Top 30 pairs with current status TRADING after excluding stablecoin base assets",
+  "selection_rule": "Top 40 pairs with current status TRADING after excluding stablecoin base assets",
   "symbols": [
     "BTCUSDT",
     "FLOKIUSDT",
@@ -36,7 +36,17 @@
     "LUNAUSDT",
     "UNIUSDT",
     "GALAUSDT",
-    "FETUSDT"
+    "FETUSDT",
+    "HBARUSDT",
+    "VETUSDT",
+    "ETCUSDT",
+    "ATOMUSDT",
+    "SANDUSDT",
+    "ENAUSDT",
+    "ICPUSDT",
+    "CRVUSDT",
+    "MANAUSDT",
+    "CHZUSDT"
   ],
   "interval": "1h",
   "start_time_utc": "2017-01-01T00:00:00Z",

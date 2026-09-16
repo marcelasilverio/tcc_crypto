@@ -1,0 +1,22 @@
+{
+  "analysis_id": "binance_hourly_price_descriptive_analysis_2026-09-01",
+  "collection_config": "configs/binance_selected_usdt_hourly_collection.json",
+  "price_fields": [
+    "open",
+    "high",
+    "low",
+    "close"
+  ],
+  "chart_fields": [
+    "open",
+    "close"
+  ],
+  "quantiles": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "standard_deviation_ddof": 1,
+  "kurtosis_definition": "Fisher excess kurtosis with unbiased normalization",
+  "output_directory": "outputs/binance_hourly_price_descriptive_analysis"
+}

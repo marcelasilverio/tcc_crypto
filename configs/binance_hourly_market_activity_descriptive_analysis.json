@@ -1,0 +1,19 @@
+{
+  "analysis_id": "binance_hourly_market_activity_descriptive_analysis_2026-09-01",
+  "collection_config": "configs/binance_selected_usdt_hourly_collection.json",
+  "activity_fields": [
+    "base_asset_volume",
+    "quote_asset_volume",
+    "number_of_trades",
+    "taker_buy_base_asset_volume",
+    "taker_buy_quote_asset_volume"
+  ],
+  "quantiles": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "standard_deviation_ddof": 1,
+  "kurtosis_definition": "Fisher excess kurtosis with unbiased normalization",
+  "output_directory": "outputs/binance_hourly_market_activity_descriptive_analysis"
+}

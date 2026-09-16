@@ -121,8 +121,8 @@ def load_collection_config(path: Path) -> CollectionConfig:
         payload = json.load(config_file)
 
     symbols = tuple(str(symbol) for symbol in payload["symbols"])
-    if len(symbols) != 30:
-        raise ValueError(f"Expected exactly 30 symbols, received {len(symbols)}.")
+    if len(symbols) != 40:
+        raise ValueError(f"Expected exactly 40 symbols, received {len(symbols)}.")
     if len(set(symbols)) != len(symbols):
         raise ValueError("The configured symbol list contains duplicates.")
 

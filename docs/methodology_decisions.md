@@ -121,6 +121,43 @@ The `LUNAUSDT` daily coverage used for selection contains 17 missing days and
 spans the Terra ecosystem migration. Symbol and price-series continuity must
 be validated before the pair is used in modeling or backtesting.
 
+### Expansion to 40 pairs
+
+Approved on 2026-09-05 for hourly data collection:
+
+- retain the initial 30 pairs and their ranking order;
+- add the next 10 highest-ranked eligible pairs from the same selection
+  workbook and snapshot;
+- keep the ranking measure, eligibility rules, collection interval, requested
+  date range, listing treatment, output formats, validation rules, and
+  immutability rules unchanged;
+- interpret "volume" in this expansion request as the already approved
+  activity measure, total Binance `number_of_trades`, rather than base-asset or
+  quote-asset volume.
+
+The added pairs, continuing the approved ranking order, are:
+
+31. `HBARUSDT` — 277,362,059 trades
+32. `VETUSDT` — 274,259,884 trades
+33. `ETCUSDT` — 263,371,631 trades
+34. `ATOMUSDT` — 262,860,917 trades
+35. `SANDUSDT` — 257,547,013 trades
+36. `ENAUSDT` — 256,503,604 trades
+37. `ICPUSDT` — 240,635,578 trades
+38. `CRVUSDT` — 232,297,531 trades
+39. `MANAUSDT` — 230,327,720 trades
+40. `CHZUSDT` — 229,916,648 trades
+
+`EOSUSDT` ranks between `HBARUSDT` and `VETUSDT` in the unfiltered workbook,
+but it is excluded because its current status in the selection snapshot is
+`BREAK`. No additional stablecoin pair occurs between ranks 31 and 40 after
+the existing eligibility filters are applied.
+
+This expansion changes only the collection universe. It does not retroactively
+change the explicitly approved 30-pair candidate universes used by the
+exploratory correlation notebooks. Including the new pairs in those analyses
+requires a separate methodology decision and regenerated outputs.
+
 ## Exploratory hourly open-price correlation
 
 Approved on 2026-09-05 for the exploratory notebook
@@ -174,3 +211,64 @@ return, and it does not represent a realizable return unless a trading rule and
 execution assumptions are separately defined. Pearson correlation is also
 sensitive to extreme observations. The analysis is descriptive and does not
 establish causality or predictive power.
+
+## Exploratory hourly price descriptive analysis
+
+Approved on 2026-09-16 for the descriptive-analysis stage:
+
+- universe: all 40 USDT-quoted pairs in the approved expanded hourly
+  collection;
+- source: each pair's immutable canonical gzip-compressed CSV;
+- observation period: each pair's full observed span through
+  2026-09-01 23:00 UTC;
+- analyzed price fields: hourly Binance `open`, `high`, `low`, and `close`,
+  quoted in USDT per unit of the base asset;
+- reported statistics: observation and missing-value counts, arithmetic mean,
+  median, sample standard deviation and variance (`ddof=1`), minimum, first and
+  third quartiles, maximum, range, interquartile range, coefficient of
+  variation, sample skewness, and Fisher excess kurtosis;
+- quartile calculation: linear interpolation at 25%, 50%, and 75%;
+- missing-data and listing treatment: do not interpolate, forward-fill,
+  backfill, or synthesize observations, and analyze each asset only over its
+  own observed span;
+- visualization: one full-span hourly line chart per asset and one small-
+  multiple overview, each comparing `open` and `close` prices on an individual
+  USDT scale.
+
+The statistics describe non-stationary price levels and different assets have
+different listing dates and observed spans. Therefore, the results must not be
+interpreted as directly comparable return or risk estimates. The charts can
+support a qualitative discussion of high- and low-price periods, but a formal
+classification of bull and bear regimes requires a separately approved rule.
+
+## Exploratory hourly market-activity descriptive analysis
+
+Approved on 2026-09-16 as an extension of the descriptive-analysis stage:
+
+- universe and source: all 40 pairs and each immutable canonical CSV from the
+  approved expanded hourly collection;
+- observation period: each pair's full observed span through
+  2026-09-01 23:00 UTC;
+- analyzed fields: `base_asset_volume`, `quote_asset_volume`,
+  `number_of_trades`, `taker_buy_base_asset_volume`, and
+  `taker_buy_quote_asset_volume` from each Binance hourly kline;
+- units: base-asset quantities remain in the corresponding base asset,
+  quote-asset quantities remain in USDT, and `number_of_trades` remains a
+  count; values with different units are not combined;
+- reported statistics: observation, missing-value, and zero counts; zero
+  share; total; arithmetic mean; median; sample standard deviation and
+  variance (`ddof=1`); minimum; first and third quartiles; maximum; range;
+  interquartile range; coefficient of variation; sample skewness; and Fisher
+  excess kurtosis;
+- quartile and missing-data treatment: use linear interpolation at 25%, 50%,
+  and 75%, with no interpolation, forward fill, backfill, or synthesis of
+  source observations;
+- visualization: one three-panel hourly activity figure per asset, separating
+  base-asset volume, USDT quote volume, and number of trades, plus overview
+  panels for USDT quote volume and trade count.
+
+These measures describe exchange-reported activity aggregated inside each
+hourly kline. They are not transaction-level records. Totals across assets are
+not combined because base-asset quantities use different units, and comparing
+full-sample totals requires caution because listing dates and observed spans
+differ.
