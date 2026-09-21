@@ -1,4 +1,4 @@
-"""Collect, checkpoint, validate, and export Binance Spot hourly klines.
+"""Collect, checkpoint, validate, and export Binance Spot klines.
 
 The canonical raw artifact is a gzip-compressed CSV that preserves the textual
 decimal fields returned by Binance. Excel workbooks are derived review copies.
@@ -58,7 +58,30 @@ DECIMAL_TEXT_COLUMNS = [
     "taker_buy_quote_asset_volume",
 ]
 
-HOUR_MS = 60 * 60 * 1000
+INTERVAL_SPECS = {
+    "1h": {
+        "duration_ms": 60 * 60 * 1000,
+        "frequency": "1h",
+        "singular": "hour",
+        "plural": "hours",
+    },
+    "1d": {
+        "duration_ms": 24 * 60 * 60 * 1000,
+        "frequency": "1D",
+        "singular": "day",
+        "plural": "days",
+    },
+}
+HOUR_MS = int(INTERVAL_SPECS["1h"]["duration_ms"])
+
+
+def _interval_spec(interval: str) -> Mapping[str, object]:
+    """Return the validated temporal specification for a Binance interval."""
+    try:
+        return INTERVAL_SPECS[interval]
+    except KeyError as error:
+        supported = ", ".join(sorted(INTERVAL_SPECS))
+        raise ValueError(f"Supported collection intervals are: {supported}.") from error
 
 
 @dataclass(frozen=True)
@@ -131,8 +154,7 @@ def load_collection_config(path: Path) -> CollectionConfig:
         raise ValueError(f"Every symbol must be quoted in {quote_asset}.")
 
     interval = str(payload["interval"])
-    if interval != "1h":
-        raise ValueError("This collector currently validates only the 1h interval.")
+    _interval_spec(interval)
 
     start_time = _parse_utc_timestamp(payload["start_time_utc"], "start_time_utc")
     end_time = _parse_utc_timestamp(payload["end_time_utc"], "end_time_utc")
@@ -140,8 +162,10 @@ def load_collection_config(path: Path) -> CollectionConfig:
         raise ValueError("start_time_utc must be earlier than end_time_utc.")
     if start_time.minute or start_time.second or start_time.microsecond:
         raise ValueError("start_time_utc must be aligned to an hourly boundary.")
-    expected_end = end_time.normalize() + pd.Timedelta(days=1) - pd.Timedelta(
-        milliseconds=1
+    if interval == "1d" and start_time.hour:
+        raise ValueError("start_time_utc must be aligned to a UTC day boundary.")
+    expected_end = (
+        end_time.normalize() + pd.Timedelta(days=1) - pd.Timedelta(milliseconds=1)
     )
     if end_time != expected_end:
         raise ValueError("end_time_utc must be the final millisecond of a UTC day.")
@@ -262,8 +286,7 @@ def _validate_page(
     if open_times[0] < next_start_ms:
         raise ValueError(f"Kline pagination moved backwards for {symbol}.")
     if any(
-        current <= previous
-        for previous, current in zip(open_times, open_times[1:])
+        current <= previous for previous, current in zip(open_times, open_times[1:])
     ):
         raise ValueError(f"Kline page is not strictly chronological for {symbol}.")
     return rows
@@ -305,7 +328,7 @@ def _add_utc_columns(frame: pd.DataFrame) -> pd.DataFrame:
     return result
 
 
-def collect_hourly_klines(
+def collect_klines(
     symbol: str,
     config: CollectionConfig,
     *,
@@ -334,7 +357,7 @@ def collect_hourly_klines(
             break
 
     if not rows:
-        raise ValueError(f"No hourly klines were returned for {symbol}.")
+        raise ValueError(f"No {config.interval} klines were returned for {symbol}.")
     frame = _raw_frame_from_rows(rows)
     return (
         frame.loc[
@@ -344,6 +367,16 @@ def collect_hourly_klines(
         .sort_values("open_time_ms", kind="stable")
         .reset_index(drop=True)
     )
+
+
+def collect_hourly_klines(
+    symbol: str,
+    config: CollectionConfig,
+    *,
+    page_requester: PageRequester | None = None,
+) -> pd.DataFrame:
+    """Backward-compatible alias for :func:`collect_klines`."""
+    return collect_klines(symbol, config, page_requester=page_requester)
 
 
 def pair_output_paths(
@@ -477,8 +510,7 @@ def _append_checkpoint_page(
     filtered_rows = [
         row
         for row in rows
-        if int(row[0]) >= config.start_time_ms
-        and int(row[6]) <= config.end_time_ms
+        if int(row[0]) >= config.start_time_ms and int(row[6]) <= config.end_time_ms
     ]
     if filtered_rows:
         with paths.partial_csv.open("a", encoding="utf-8", newline="") as output_file:
@@ -540,7 +572,7 @@ def collect_to_checkpoint(
             break
 
     if row_count == 0:
-        raise ValueError(f"No hourly klines were returned for {symbol}.")
+        raise ValueError(f"No {config.interval} klines were returned for {symbol}.")
     return paths.partial_csv
 
 
@@ -556,9 +588,7 @@ def _load_raw_csv(path: Path, *, compressed: bool) -> pd.DataFrame:
         raise ValueError(f"Unexpected raw CSV schema: {path}")
     frame["open_time_ms"] = pd.to_numeric(frame["open_time_ms"], errors="raise")
     frame["close_time_ms"] = pd.to_numeric(frame["close_time_ms"], errors="raise")
-    frame["number_of_trades"] = pd.to_numeric(
-        frame["number_of_trades"], errors="raise"
-    )
+    frame["number_of_trades"] = pd.to_numeric(frame["number_of_trades"], errors="raise")
     return _add_utc_columns(frame)
 
 
@@ -567,8 +597,24 @@ def load_raw_csv_gz(path: Path) -> pd.DataFrame:
     return _load_raw_csv(path, compressed=True)
 
 
+def missing_kline_intervals(
+    frame: pd.DataFrame,
+    config: CollectionConfig,
+) -> pd.DatetimeIndex:
+    """Return missing kline openings inside the observed interval-specific span."""
+    if frame.empty:
+        return pd.DatetimeIndex([], tz="UTC")
+    observed = pd.DatetimeIndex(frame["open_time_utc"])
+    expected = pd.date_range(
+        observed.min(),
+        observed.max(),
+        freq=str(_interval_spec(config.interval)["frequency"]),
+    )
+    return expected.difference(observed)
+
+
 def missing_hourly_intervals(frame: pd.DataFrame) -> pd.DatetimeIndex:
-    """Return missing hourly openings inside the observed span."""
+    """Return missing hourly openings for backward-compatible callers."""
     if frame.empty:
         return pd.DatetimeIndex([], tz="UTC")
     observed = pd.DatetimeIndex(frame["open_time_utc"])
@@ -576,28 +622,37 @@ def missing_hourly_intervals(frame: pd.DataFrame) -> pd.DatetimeIndex:
     return expected.difference(observed)
 
 
-def nonstandard_candle_durations(frame: pd.DataFrame) -> pd.DataFrame:
-    """Return shortened candles whose close remains inside the nominal hour."""
+def nonstandard_candle_durations(
+    frame: pd.DataFrame,
+    config: CollectionConfig | None = None,
+) -> pd.DataFrame:
+    """Return shortened candles whose close remains in the nominal window."""
+    interval = "1h" if config is None else config.interval
+    nominal_duration_ms = int(_interval_spec(interval)["duration_ms"])
     open_times = pd.to_numeric(frame["open_time_ms"], errors="raise")
     close_times = pd.to_numeric(frame["close_time_ms"], errors="raise")
     duration_ms = close_times - open_times + 1
-    shortened = (duration_ms > 0) & (duration_ms < HOUR_MS)
+    shortened = (duration_ms > 0) & (duration_ms < nominal_duration_ms)
     diagnostics = frame.loc[
         shortened,
         ["open_time_utc", "close_time_utc", "open_time_ms", "close_time_ms"],
     ].copy()
     diagnostics["duration_ms"] = duration_ms.loc[shortened].astype("int64")
-    diagnostics["nominal_duration_ms"] = HOUR_MS
-    diagnostics["shortfall_ms"] = HOUR_MS - diagnostics["duration_ms"]
+    diagnostics["nominal_duration_ms"] = nominal_duration_ms
+    diagnostics["shortfall_ms"] = nominal_duration_ms - diagnostics["duration_ms"]
     return diagnostics.reset_index(drop=True)
 
 
-def validate_hourly_klines(
+def validate_klines(
     frame: pd.DataFrame,
     config: CollectionConfig,
 ) -> pd.DataFrame:
     """Validate temporal boundaries, schema values, and OHLC consistency."""
-    missing = missing_hourly_intervals(frame)
+    interval_spec = _interval_spec(config.interval)
+    nominal_duration_ms = int(interval_spec["duration_ms"])
+    interval_singular = str(interval_spec["singular"])
+    interval_plural = str(interval_spec["plural"])
+    missing = missing_kline_intervals(frame, config)
     open_times = pd.to_numeric(frame["open_time_ms"], errors="raise")
     close_times = pd.to_numeric(frame["close_time_ms"], errors="raise")
     number_of_trades = pd.to_numeric(frame["number_of_trades"], errors="raise")
@@ -622,12 +677,12 @@ def validate_hourly_klines(
         "taker_buy_quote_asset_volume",
     ]
     negative_volume = (decimals[volume_columns] < 0).any(axis=1)
-    non_positive_ohlc = (decimals[["open", "high", "low", "close"]] <= 0).any(
-        axis=1
-    )
+    non_positive_ohlc = (decimals[["open", "high", "low", "close"]] <= 0).any(axis=1)
     duration_ms = close_times - open_times + 1
-    close_outside_nominal_window = (duration_ms <= 0) | (duration_ms > HOUR_MS)
-    shortened_durations = (duration_ms > 0) & (duration_ms < HOUR_MS)
+    close_outside_nominal_window = (duration_ms <= 0) | (
+        duration_ms > nominal_duration_ms
+    )
+    shortened_durations = (duration_ms > 0) & (duration_ms < nominal_duration_ms)
 
     checks = [
         ("Rows returned", len(frame), ">= 1", "OK" if len(frame) else "FAIL"),
@@ -644,10 +699,10 @@ def validate_hourly_klines(
             "OK" if not (time_differences <= 0).any() else "FAIL",
         ),
         (
-            "Open timestamps off the UTC hour",
-            int((open_times % HOUR_MS != 0).sum()),
+            f"Open timestamps off the UTC {interval_singular}",
+            int((open_times % nominal_duration_ms != 0).sum()),
             0,
-            "OK" if not (open_times % HOUR_MS != 0).any() else "FAIL",
+            "OK" if not (open_times % nominal_duration_ms != 0).any() else "FAIL",
         ),
         (
             "Close times outside the nominal candle window",
@@ -698,13 +753,21 @@ def validate_hourly_klines(
             "OK" if not (number_of_trades < 0).any() else "FAIL",
         ),
         (
-            "Missing hours within observed span",
+            f"Missing {interval_plural} within observed span",
             len(missing),
             0,
             "OK" if not len(missing) else "REVIEW",
         ),
     ]
     return pd.DataFrame(checks, columns=["Check", "Actual", "Expected", "Status"])
+
+
+def validate_hourly_klines(
+    frame: pd.DataFrame,
+    config: CollectionConfig,
+) -> pd.DataFrame:
+    """Backward-compatible alias for :func:`validate_klines`."""
+    return validate_klines(frame, config)
 
 
 def _assert_collection_complete(
@@ -764,8 +827,9 @@ def build_metadata(
     raw_csv_sha256: str,
 ) -> pd.DataFrame:
     """Build auditable collection metadata for a pair workbook."""
-    missing = missing_hourly_intervals(frame)
-    shortened = nonstandard_candle_durations(frame)
+    interval_plural = str(_interval_spec(config.interval)["plural"])
+    missing = missing_kline_intervals(frame, config)
+    shortened = nonstandard_candle_durations(frame, config)
     first_open = frame["open_time_utc"].min()
     last_close = frame["close_time_utc"].max()
     records = [
@@ -784,8 +848,8 @@ def build_metadata(
         ("Requested end (UTC)", config.end_time_utc.isoformat()),
         ("First observed open (UTC)", first_open.isoformat()),
         ("Last observed close (UTC)", last_close.isoformat()),
-        ("Observed hourly klines", len(frame)),
-        ("Missing hours within observed span", len(missing)),
+        (f"Observed {config.interval} klines", len(frame)),
+        (f"Missing {interval_plural} within observed span", len(missing)),
         ("Shortened candle durations", len(shortened)),
         ("Selection source", config.selection_source),
         (
@@ -826,6 +890,7 @@ def write_pair_workbook(
     metadata: pd.DataFrame,
     validation: pd.DataFrame,
     missing: pd.DatetimeIndex,
+    config: CollectionConfig | None = None,
 ) -> None:
     """Write a derived review workbook without replacing an existing file."""
     if output_path.exists():
@@ -849,13 +914,13 @@ def write_pair_workbook(
     missing_frame = pd.DataFrame(
         {"Missing Open Time (UTC)": pd.DatetimeIndex(missing).tz_localize(None)}
     )
-    duration_frame = nonstandard_candle_durations(frame)
-    duration_frame["open_time_utc"] = duration_frame[
-        "open_time_utc"
-    ].dt.tz_localize(None)
-    duration_frame["close_time_utc"] = duration_frame[
-        "close_time_utc"
-    ].dt.tz_localize(None)
+    duration_frame = nonstandard_candle_durations(frame, config)
+    duration_frame["open_time_utc"] = duration_frame["open_time_utc"].dt.tz_localize(
+        None
+    )
+    duration_frame["close_time_utc"] = duration_frame["close_time_utc"].dt.tz_localize(
+        None
+    )
 
     try:
         with pd.ExcelWriter(temporary_path, engine="openpyxl") as writer:
@@ -963,7 +1028,9 @@ def _validate_workbook(
         if not required_sheets.issubset(workbook.sheetnames):
             raise ValueError(f"Existing workbook is missing required sheets: {path}")
         if workbook["Klines"].max_row - 1 != expected_rows:
-            raise ValueError(f"Existing workbook row count differs from raw CSV: {path}")
+            raise ValueError(
+                f"Existing workbook row count differs from raw CSV: {path}"
+            )
         metadata_values = {
             row[0]: row[1]
             for row in workbook["Metadata"].iter_rows(
@@ -973,7 +1040,10 @@ def _validate_workbook(
             )
             if row[0] is not None
         }
-        if metadata_values.get("Requested end (UTC)") != config.end_time_utc.isoformat():
+        if (
+            metadata_values.get("Requested end (UTC)")
+            != config.end_time_utc.isoformat()
+        ):
             raise ValueError(f"Existing workbook has a different requested end: {path}")
     finally:
         workbook.close()
@@ -1010,9 +1080,7 @@ def _write_pair_metadata_json(
             )
         return
 
-    metadata_map = {
-        str(row["Field"]): row["Value"] for _, row in metadata.iterrows()
-    }
+    metadata_map = {str(row["Field"]): row["Value"] for _, row in metadata.iterrows()}
     payload = {
         "metadata": metadata_map,
         "validation": validation.to_dict(orient="records"),
@@ -1043,15 +1111,17 @@ def _pair_result(
     status: str,
     frame: pd.DataFrame,
     paths: PairOutputPaths,
+    config: CollectionConfig,
 ) -> dict[str, object]:
-    missing = missing_hourly_intervals(frame)
-    shortened = nonstandard_candle_durations(frame)
+    interval_plural = str(_interval_spec(config.interval)["plural"]).title()
+    missing = missing_kline_intervals(frame, config)
+    shortened = nonstandard_candle_durations(frame, config)
     return {
         "Selection Rank": selection_rank,
         "Trading Pair": symbol,
         "Status": status,
         "Rows": len(frame),
-        "Missing Hours": len(missing),
+        f"Missing {interval_plural}": len(missing),
         "Shortened Candles": len(shortened),
         "First Open (UTC)": frame["open_time_utc"].min().isoformat(),
         "Last Close (UTC)": frame["close_time_utc"].max().isoformat(),
@@ -1079,7 +1149,7 @@ def collect_symbol_outputs(
 
     if paths.raw_csv_gz.exists():
         frame = load_raw_csv_gz(paths.raw_csv_gz)
-        validation = validate_hourly_klines(frame, config)
+        validation = validate_klines(frame, config)
         _assert_collection_complete(symbol, frame, validation, config)
         raw_hash = _sha256_file(paths.raw_csv_gz)
         metadata = build_metadata(
@@ -1090,11 +1160,18 @@ def collect_symbol_outputs(
             collected_at,
             raw_hash,
         )
-        missing = missing_hourly_intervals(frame)
+        missing = missing_kline_intervals(frame, config)
         if paths.workbook.exists():
             _validate_workbook(paths.workbook, len(frame), config)
         else:
-            write_pair_workbook(paths.workbook, frame, metadata, validation, missing)
+            write_pair_workbook(
+                paths.workbook,
+                frame,
+                metadata,
+                validation,
+                missing,
+                config,
+            )
         _write_pair_metadata_json(paths, metadata, validation)
         paths.partial_csv.unlink(missing_ok=True)
         paths.checkpoint_json.unlink(missing_ok=True)
@@ -1104,6 +1181,7 @@ def collect_symbol_outputs(
             "VALIDATED_EXISTING",
             frame,
             paths,
+            config,
         )
 
     if paths.workbook.exists():
@@ -1119,7 +1197,7 @@ def collect_symbol_outputs(
         page_requester=page_requester,
     )
     frame = _load_raw_csv(paths.partial_csv, compressed=False)
-    validation = validate_hourly_klines(frame, config)
+    validation = validate_klines(frame, config)
     _assert_collection_complete(symbol, frame, validation, config)
     _compress_partial_csv(paths)
     raw_hash = _sha256_file(paths.raw_csv_gz)
@@ -1131,12 +1209,19 @@ def collect_symbol_outputs(
         collected_at,
         raw_hash,
     )
-    missing = missing_hourly_intervals(frame)
-    write_pair_workbook(paths.workbook, frame, metadata, validation, missing)
+    missing = missing_kline_intervals(frame, config)
+    write_pair_workbook(
+        paths.workbook,
+        frame,
+        metadata,
+        validation,
+        missing,
+        config,
+    )
     _write_pair_metadata_json(paths, metadata, validation)
     paths.partial_csv.unlink(missing_ok=True)
     paths.checkpoint_json.unlink(missing_ok=True)
-    return _pair_result(symbol, selection_rank, "COLLECTED", frame, paths)
+    return _pair_result(symbol, selection_rank, "COLLECTED", frame, paths, config)
 
 
 def collect_symbol_to_workbook(
@@ -1227,6 +1312,7 @@ def run_collection(
     execution_time = datetime.now(timezone.utc)
     results: list[dict[str, object]] = []
     workers = max(1, min(config.max_workers, len(execution_symbols)))
+    missing_column = f"Missing {str(_interval_spec(config.interval)['plural']).title()}"
 
     with ThreadPoolExecutor(max_workers=workers) as executor:
         futures = {
@@ -1249,7 +1335,7 @@ def run_collection(
                     "Trading Pair": symbol,
                     "Status": "FAILED",
                     "Rows": None,
-                    "Missing Hours": None,
+                    missing_column: None,
                     "Shortened Candles": None,
                     "First Open (UTC)": None,
                     "Last Close (UTC)": None,
@@ -1267,8 +1353,8 @@ def run_collection(
                     f"{symbol} ({result['Status']})"
                 )
 
-    results_frame = pd.DataFrame(results).sort_values("Selection Rank").reset_index(
-        drop=True
+    results_frame = (
+        pd.DataFrame(results).sort_values("Selection Rank").reset_index(drop=True)
     )
     manifest_path = _write_manifest(
         results_frame,

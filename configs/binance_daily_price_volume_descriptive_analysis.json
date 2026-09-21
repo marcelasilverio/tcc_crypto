@@ -1,0 +1,22 @@
+{
+  "analysis_id": "binance_daily_price_volume_descriptive_analysis_2019H2_2026-09-01",
+  "collection_config": "configs/binance_selected_usdt_daily_collection.json",
+  "analysis_start_utc": "2019-07-01T00:00:00Z",
+  "analysis_end_utc": "2026-09-01T00:00:00Z",
+  "price_fields": [
+    "open",
+    "high",
+    "low",
+    "close"
+  ],
+  "volume_field": "quote_asset_volume",
+  "quantiles": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "standard_deviation_ddof": 1,
+  "kurtosis_definition": "Fisher excess kurtosis with unbiased normalization",
+  "semester_time_zone": "UTC",
+  "output_directory": "outputs/01a0c054-31e7-71c1-9ce9-1017d0823230/binance_daily_price_volume_descriptive_analysis"
+}

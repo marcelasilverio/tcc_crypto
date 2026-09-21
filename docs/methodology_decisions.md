@@ -158,6 +158,30 @@ change the explicitly approved 30-pair candidate universes used by the
 exploratory correlation notebooks. Including the new pairs in those analyses
 requires a separate methodology decision and regenerated outputs.
 
+## Daily collection for the expanded 40-pair universe
+
+Approved on 2026-09-20 for subsequent data collection:
+
+- replace the hourly candle interval with daily (`1d`) candles aligned to UTC;
+- retain the approved expanded universe of 40 pairs and its ranking order;
+- retain the requested range from 2017-01-01 00:00:00 UTC through
+  2026-09-01 23:59:59.999 UTC;
+- retain the Binance Spot endpoint, quote asset, selection source, selection
+  rules, listing treatment, immutable raw format, checkpoint behavior,
+  provenance outputs, and validation principles from the hourly collection;
+- store the daily collection separately under `data/raw/binance/spot/1d/`,
+  without modifying or replacing the existing hourly artifacts;
+- report missing UTC-day openings within each pair's observed span, without
+  synthesizing observations before listing or across gaps;
+- interpret the nominal daily candle duration as 86,400,000 milliseconds;
+  preserve shorter positive-duration candles for review and reject candles
+  whose close precedes the open or exceeds the nominal daily window.
+
+This change approves the collection frequency only. It does not automatically
+approve daily feature definitions, target holding windows, rebalance frequency,
+or modeling and backtesting parameters. Those choices remain separate
+methodological decisions.
+
 ## Exploratory hourly open-price correlation
 
 Approved on 2026-09-05 for the exploratory notebook
@@ -272,3 +296,38 @@ hourly kline. They are not transaction-level records. Totals across assets are
 not combined because base-asset quantities use different units, and comparing
 full-sample totals requires caution because listing dates and observed spans
 differ.
+
+## Daily price and USDT-volume descriptive analysis from 2019-H2
+
+Approved on 2026-09-20 for the descriptive-analysis stage:
+
+- universe and source: all 40 pairs and each immutable canonical daily CSV from
+  the approved expanded daily collection;
+- analysis interval: daily observations from 2019-07-01 00:00 UTC through
+  2026-09-01 00:00 UTC, inclusive;
+- listing treatment: each pair begins on 2019-07-01 UTC or its later first
+  observed Binance daily candle;
+- analyzed fields: daily Binance `open`, `high`, `low`, and `close` prices,
+  quoted in USDT per unit of the base asset, plus `quote_asset_volume` expressed
+  in USDT; base-asset volume and trade count are excluded;
+- reporting periods: the full observed analysis span and UTC calendar
+  semesters, where H1 is January through June and H2 is July through December;
+- partial periods: semesters that do not cover both applicable configured
+  semester boundaries are labeled `Partial`, including 2026-H2 through
+  2026-09-01;
+- reported statistics: observation and missing-value counts, arithmetic mean,
+  median, sample standard deviation and variance (`ddof=1`), minimum, first and
+  third quartiles, maximum, range, interquartile range, coefficient of
+  variation, sample skewness, and Fisher excess kurtosis;
+- volume-only statistics: zero count, zero share, and total USDT quote volume;
+- quartiles: linear interpolation at 25%, 50%, and 75%;
+- missing-data treatment: do not interpolate, forward-fill, backfill, or
+  synthesize observations before listing or across missing daily openings;
+- output: one five-sheet Excel workbook per trading pair, with overall and
+  semester statistics, extrema, chart-support data, definitions, and native
+  charts for opening/closing prices and USDT quote volume.
+
+The results describe non-stationary price levels and exchange-reported activity
+aggregated inside daily klines. They are not return, risk, or transaction-level
+estimates. Cross-pair and cross-period comparisons require caution because
+listing dates, observed spans, missing openings, and partial semesters differ.
