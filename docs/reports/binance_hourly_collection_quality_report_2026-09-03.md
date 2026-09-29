@@ -1,3 +1,22 @@
+---
+type: Data Quality Report
+title: Binance Hourly Collection Quality Report
+description: Point-in-time quality assessment of the initial 30-pair hourly Binance collection.
+tags: [binance, hourly, data-quality, collection-report]
+status: stable
+authority: generated-evidence
+as_of: "2026-09-05T00:00:00Z"
+generated: { by: "process:okf-migration", at: "2026-09-29T10:16:31Z" }
+verified: { by: "human:marcela-prata-silverio", at: "2026-09-29T10:16:31Z" }
+sources:
+  - id: initial-manifest
+    resource: ../../data/raw/binance/spot/1h/collection_manifest_20260903T024652412977Z.xlsx
+    title: Initial hourly collection manifest
+  - id: recovery-manifest
+    resource: ../../data/raw/binance/spot/1h/collection_manifest_20260905T181544320481Z.xlsx
+    title: Hourly collection recovery manifest
+---
+
 # Binance Hourly Collection Quality Report
 
 Updated: 2026-09-05

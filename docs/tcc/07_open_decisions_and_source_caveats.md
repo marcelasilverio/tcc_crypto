@@ -1,10 +1,27 @@
+---
+type: Research Context
+title: Open decisions and source caveats
+description: Unresolved experimental choices and inconsistencies in the TCC I source.
+tags: [tcc-i, open-decisions, source-caveats]
+status: stable
+authority: research-context
+generated: { by: "process:okf-migration", at: "2026-09-29T10:16:31Z" }
+verified: { by: "human:marcela-prata-silverio", at: "2026-09-29T10:16:31Z" }
+sources:
+  - id: tcc-i-manuscript
+    resource: "source-artifact:tcc-corrigido-final.pdf"
+    title: Machine Learning Applied to Cryptocurrency Portfolio Selection
+    author: "human:marcela-prata-silverio"
+    checksum: "sha256:f90b1cc54bc105e4eab96d8aed4ff7f9f16eb9545566ccd820fb7c4144c1da7a"
+---
+
 # Open decisions and source caveats
 
 ## Decision status
 
 TCC I is a proposal and contains candidate choices rather than a fully frozen
 protocol. The following items require explicit researcher approval and must be
-recorded in `docs/methodology_decisions.md` and experiment configuration before
+recorded in `docs/decisions/` and experiment configuration before
 implementation.
 
 | Topic | TCC I evidence | Required treatment |

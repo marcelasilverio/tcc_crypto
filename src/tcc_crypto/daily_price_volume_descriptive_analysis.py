@@ -10,6 +10,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Sequence
 
+import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
 import numpy as np
 import pandas as pd
 
@@ -35,6 +38,20 @@ class DailyPriceVolumeAnalysisConfig:
     kurtosis_definition: str
     semester_time_zone: str
     output_directory: Path
+    figure_rows: int
+    figure_columns: int
+    price_figure_transform: str
+    volume_figure_scale: str
+    price_figure_filename: str
+    volume_figure_filename: str
+
+
+@dataclass(frozen=True)
+class DailySmallMultipleArtifacts:
+    """Paths to the two cross-pair daily small-multiple figures."""
+
+    natural_log_open_close_figure: Path
+    quote_volume_figure: Path
 
 
 def load_analysis_config(
@@ -77,6 +94,17 @@ def load_analysis_config(
     if collection_config.quote_asset != "USDT":
         raise ValueError("The referenced collection must contain USDT-quoted pairs.")
 
+    figure_rows = int(payload["figure_rows"])
+    figure_columns = int(payload["figure_columns"])
+    if figure_rows <= 0 or figure_columns <= 0:
+        raise ValueError("Figure rows and columns must be positive integers.")
+    if figure_rows * figure_columns != len(collection_config.symbols):
+        raise ValueError("The figure grid must contain exactly one panel per symbol.")
+    if str(payload["price_figure_transform"]) != "natural_log":
+        raise ValueError("The price figure must use the natural-log transformation.")
+    if str(payload["volume_figure_scale"]) != "linear":
+        raise ValueError("The quote-volume figure must use a linear scale.")
+
     config = DailyPriceVolumeAnalysisConfig(
         analysis_id=str(payload["analysis_id"]),
         collection_config_path=collection_path,
@@ -89,6 +117,12 @@ def load_analysis_config(
         kurtosis_definition=str(payload["kurtosis_definition"]),
         semester_time_zone="UTC",
         output_directory=repository_root / str(payload["output_directory"]),
+        figure_rows=figure_rows,
+        figure_columns=figure_columns,
+        price_figure_transform="natural_log",
+        volume_figure_scale="linear",
+        price_figure_filename=str(payload["price_figure_filename"]),
+        volume_figure_filename=str(payload["volume_figure_filename"]),
     )
     return config, collection_config
 
@@ -168,6 +202,193 @@ def filter_analysis_window(
     if filtered.empty:
         raise ValueError("No observations fall inside the configured analysis window.")
     return filtered
+
+
+def natural_log_open_close(values: pd.DataFrame) -> pd.DataFrame:
+    """Return daily open and close natural logs with real date gaps explicit."""
+    prices = values.loc[:, ["open", "close"]]
+    if (prices <= 0).any().any():
+        raise ValueError("Natural-log price plots require strictly positive prices.")
+    daily_index = pd.date_range(prices.index.min(), prices.index.max(), freq="1D")
+    return np.log(prices.reindex(daily_index))
+
+
+def daily_quote_volume_billions(values: pd.DataFrame) -> pd.Series:
+    """Return daily USDT quote volume in billions with real gaps explicit."""
+    volume = values[VOLUME_FIELD]
+    if (volume < 0).any():
+        raise ValueError("Quote-volume plots require non-negative values.")
+    daily_index = pd.date_range(volume.index.min(), volume.index.max(), freq="1D")
+    return volume.reindex(daily_index) / 1_000_000_000
+
+
+def _configure_small_multiple_axis(
+    axis: plt.Axes,
+    *,
+    symbol: str,
+    start_utc: pd.Timestamp,
+    end_utc: pd.Timestamp,
+) -> None:
+    """Apply consistent, compact styling to one time-series panel."""
+    axis.set_title(symbol, fontsize=9, fontweight="bold", pad=3)
+    axis.set_xlim(start_utc.to_pydatetime(), end_utc.to_pydatetime())
+    axis.xaxis.set_major_locator(mdates.YearLocator(2))
+    axis.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+    axis.yaxis.set_major_locator(MaxNLocator(nbins=3))
+    axis.tick_params(axis="both", labelsize=7)
+    axis.grid(alpha=0.18, linewidth=0.4)
+    axis.spines["top"].set_visible(False)
+    axis.spines["right"].set_visible(False)
+
+
+def create_daily_small_multiple_figures(
+    config_path: Path,
+    *,
+    repository_root: Path,
+) -> DailySmallMultipleArtifacts:
+    """Create 40-panel daily price-log and quote-volume figures."""
+    config, collection_config = load_analysis_config(
+        config_path,
+        repository_root=repository_root,
+    )
+    figure_directory = config.output_directory / "figures"
+    figure_directory.mkdir(parents=True, exist_ok=True)
+
+    price_figure, price_axes = plt.subplots(
+        config.figure_rows,
+        config.figure_columns,
+        figsize=(24, 30),
+        sharex=True,
+    )
+    volume_figure, volume_axes = plt.subplots(
+        config.figure_rows,
+        config.figure_columns,
+        figsize=(24, 30),
+        sharex=True,
+    )
+
+    for price_axis, volume_axis, symbol in zip(
+        price_axes.flat,
+        volume_axes.flat,
+        collection_config.symbols,
+        strict=True,
+    ):
+        source_path = canonical_csv_path(repository_root, collection_config, symbol)
+        source_values = load_daily_price_volume(
+            source_path,
+            config.price_fields,
+            config.volume_field,
+        )
+        values = filter_analysis_window(
+            source_values,
+            config.analysis_start_utc,
+            config.analysis_end_utc,
+        )
+        logged_prices = natural_log_open_close(values)
+        quote_volume_billions = daily_quote_volume_billions(values)
+
+        price_axis.plot(
+            logged_prices.index,
+            logged_prices["open"],
+            color="#1f77b4",
+            linewidth=0.55,
+            label="Open",
+        )
+        price_axis.plot(
+            logged_prices.index,
+            logged_prices["close"],
+            color="#d97706",
+            linewidth=0.45,
+            alpha=0.85,
+            label="Close",
+        )
+        _configure_small_multiple_axis(
+            price_axis,
+            symbol=symbol,
+            start_utc=config.analysis_start_utc,
+            end_utc=config.analysis_end_utc,
+        )
+
+        volume_axis.plot(
+            quote_volume_billions.index,
+            quote_volume_billions,
+            color="#1f77b4",
+            linewidth=0.55,
+        )
+        volume_axis.set_ylim(bottom=0)
+        _configure_small_multiple_axis(
+            volume_axis,
+            symbol=symbol,
+            start_utc=config.analysis_start_utc,
+            end_utc=config.analysis_end_utc,
+        )
+
+    price_figure.legend(
+        *price_axes.flat[0].get_legend_handles_labels(),
+        loc="upper center",
+        bbox_to_anchor=(0.5, 0.972),
+        ncol=2,
+        frameon=False,
+    )
+    price_figure.suptitle(
+        "Binance daily opening and closing prices by trading pair",
+        fontsize=20,
+        y=0.992,
+    )
+    price_figure.text(
+        0.5,
+        0.977,
+        "Natural logarithm applied pointwise; independent y-axis per pair; gaps remain unfilled",
+        ha="center",
+        fontsize=10,
+    )
+    price_figure.supxlabel("Daily candle opening date (UTC)", fontsize=11)
+    price_figure.supylabel(
+        "Natural log price: ln(USDT per base-asset unit)",
+        fontsize=11,
+    )
+    price_figure.subplots_adjust(
+        top=0.955,
+        bottom=0.045,
+        left=0.06,
+        right=0.985,
+        hspace=0.48,
+        wspace=0.24,
+    )
+
+    volume_figure.suptitle(
+        "Binance daily USDT quote volume by trading pair",
+        fontsize=20,
+        y=0.992,
+    )
+    volume_figure.text(
+        0.5,
+        0.977,
+        "Linear scale in billions of USDT; independent y-axis per pair; gaps remain unfilled",
+        ha="center",
+        fontsize=10,
+    )
+    volume_figure.supxlabel("Daily candle opening date (UTC)", fontsize=11)
+    volume_figure.supylabel("Daily quote volume (USDT billions)", fontsize=11)
+    volume_figure.subplots_adjust(
+        top=0.955,
+        bottom=0.045,
+        left=0.06,
+        right=0.985,
+        hspace=0.48,
+        wspace=0.24,
+    )
+
+    price_path = figure_directory / config.price_figure_filename
+    volume_path = figure_directory / config.volume_figure_filename
+    price_figure.savefig(price_path, dpi=180, facecolor="white")
+    volume_figure.savefig(volume_path, dpi=180, facecolor="white")
+    plt.close(price_figure)
+    plt.close(volume_figure)
+    return DailySmallMultipleArtifacts(
+        natural_log_open_close_figure=price_path,
+        quote_volume_figure=volume_path,
+    )
 
 
 def semester_label(timestamp: pd.Timestamp) -> str:

@@ -1,3 +1,20 @@
+---
+type: Research Context
+title: Literature context
+description: Related-work themes and methodological anchors identified in the TCC I review.
+tags: [tcc-i, literature-review, related-work]
+status: stable
+authority: research-context
+generated: { by: "process:okf-migration", at: "2026-09-29T10:16:31Z" }
+verified: { by: "human:marcela-prata-silverio", at: "2026-09-29T10:16:31Z" }
+sources:
+  - id: tcc-i-manuscript
+    resource: "source-artifact:tcc-corrigido-final.pdf"
+    title: Machine Learning Applied to Cryptocurrency Portfolio Selection
+    author: "human:marcela-prata-silverio"
+    checksum: "sha256:f90b1cc54bc105e4eab96d8aed4ff7f9f16eb9545566ccd820fb7c4144c1da7a"
+---
+
 # Literature context
 
 ## Role of the review

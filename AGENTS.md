@@ -12,7 +12,8 @@ not an autonomous product-development project.
 ## Research source context
 
 Before making methodological or experimental changes, read
-`docs/tcc/README.md` and the topic-specific documents it links. They provide an
+`docs/index.md`, `docs/tcc/index.md`, and the topic-specific documents they
+link. They provide the authority map for the documentation bundle and an
 English synopsis of the TCC I manuscript that defines the research motivation,
 theoretical basis, and proposed experiment.
 
@@ -102,8 +103,24 @@ Do not assume values for unresolved experimental choices, including:
 - missing-data and asset-listing treatment;
 - the exact definition of the naive baseline.
 
-Document every approved choice in `docs/methodology_decisions.md` and in the
+Document every approved choice as a `Methodology Decision` concept under
+`docs/decisions/`, add it to `docs/decisions/index.md`, and record it in the
 relevant experiment configuration.
+
+## Open Knowledge Format documentation
+
+The `docs/` directory is an Open Knowledge Format v0.2 bundle. When creating or
+editing documentation:
+
+- follow the local contract described in `docs/index.md`;
+- include parseable YAML frontmatter in every concept document;
+- use `index.md` and `log.md` only for their reserved OKF purposes;
+- select the `authority` value that reflects the document's actual role;
+- do not treat `verified` as methodological approval;
+- do not add or update a human `verified` entry without that person's explicit
+  review and approval;
+- preserve source provenance and update the nearest `index.md`;
+- run `python scripts/validate_okf_docs.py docs` after documentation changes.
 
 ## Prevention of look-ahead bias
 

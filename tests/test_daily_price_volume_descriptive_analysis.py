@@ -7,6 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
@@ -15,11 +16,13 @@ if str(SOURCE_DIRECTORY) not in sys.path:
     sys.path.insert(0, str(SOURCE_DIRECTORY))
 
 from tcc_crypto.daily_price_volume_descriptive_analysis import (  # noqa: E402
+    daily_quote_volume_billions,
     describe_coverage,
     describe_semesters,
     describe_statistics,
     filter_analysis_window,
     load_daily_price_volume,
+    natural_log_open_close,
     semester_label,
 )
 
@@ -142,6 +145,18 @@ class DailyPriceVolumeDescriptiveAnalysisTests(unittest.TestCase):
             frame.to_csv(path, index=False, compression="gzip")
             with self.assertRaisesRegex(ValueError, "negative quote-asset volume"):
                 load_daily_price_volume(path)
+
+    def test_plot_transformations_use_natural_log_and_preserve_gaps(self) -> None:
+        values = self.values.drop(self.values.index[2])
+
+        logged_prices = natural_log_open_close(values)
+        volume_billions = daily_quote_volume_billions(values)
+
+        self.assertAlmostEqual(logged_prices.iloc[0]["open"], 0.0)
+        self.assertAlmostEqual(logged_prices.iloc[1]["close"], float(np.log(2.5)))
+        self.assertTrue(logged_prices.iloc[2].isna().all())
+        self.assertTrue(pd.isna(volume_billions.iloc[2]))
+        self.assertAlmostEqual(volume_billions.iloc[-1], 40.0 / 1_000_000_000)
 
 
 if __name__ == "__main__":

@@ -1,3 +1,19 @@
+---
+type: Data Quality Report
+title: Binance Hourly Collection Quality Report for Expansion Pairs
+description: Point-in-time quality assessment of the 10 pairs added to the hourly collection.
+tags: [binance, hourly, data-quality, collection-report, universe-expansion]
+status: stable
+authority: generated-evidence
+as_of: "2026-09-05T21:07:02Z"
+generated: { by: "process:okf-migration", at: "2026-09-29T10:16:31Z" }
+verified: { by: "human:marcela-prata-silverio", at: "2026-09-29T10:16:31Z" }
+sources:
+  - id: expansion-manifest
+    resource: ../../data/raw/binance/spot/1h/collection_manifest_20260905T210702563723Z.xlsx
+    title: Expansion-pair hourly collection manifest
+---
+
 # Binance Hourly Collection Quality Report for Expansion Pairs
 
 Created: 2026-09-05
