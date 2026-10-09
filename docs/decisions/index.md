@@ -8,6 +8,8 @@
 - [Hourly price descriptive analysis](hourly-price-descriptive-analysis.md) - Approved parameters for descriptive analysis of hourly Binance price fields.
 - [Hourly market-activity descriptive analysis](hourly-market-activity-descriptive-analysis.md) - Approved parameters for descriptive analysis of hourly Binance market activity.
 - [Daily price and volume descriptive analysis](daily-price-volume-descriptive-analysis.md) - Approved parameters for descriptive analysis of daily Binance prices and USDT volume.
+- [Daily Silva-derived feature set](daily-silva-feature-set.md) - Approved initial daily feature construction adapted from Silva 2026, with Parabolic SAR parameter verification pending.
+- [Daily rolling feature selection](daily-feature-selection.md) - Approved variance and correlation filters refitted within every daily rolling training window.
 - [Daily experiment period and internal-gap treatment](daily-sample-and-missing-data.md) - Approved experiment start, feature warm-up period, and forward-fill rule for internal daily gaps.
 - [Daily binary targets and holding period](daily-binary-targets-and-holding-period.md) - Approved target thresholds, daily high-to-open outcome source, and Silva-based holding period, with final temporal alignment pending.
 - [SVM pilot and hyperparameter-search plan](svm-pilot-and-hyperparameter-search.md) - Approved staged SVM experiment using a small default pilot before temporally valid hyperparameter search and full expansion.

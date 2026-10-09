@@ -18,6 +18,17 @@
   provisional grid-search design. Exact pilot bounds, search space, metric,
   and temporal validation boundaries remain pending.
 
+## 2026-10-03
+
+- **External reference**: Documented the researcher-supplied Silva 2026 Python
+  excerpt for feature engineering and feature selection as inspiration and
+  formula-level implementation evidence.
+- **Authority**: Classified the new concept as an `external-reference` in
+  draft status; no parameters or procedures from the excerpt were recorded as
+  approved methodology.
+- **Provenance**: Recorded the two readable source filenames and their SHA-256
+  checksums. Compiled Python cache files were excluded from the review scope.
+
 ## 2026-09-29
 
 - **Migration**: Converted `docs/` into an Open Knowledge Format v0.2 bundle.

@@ -1,0 +1,12 @@
+{
+  "analysis_id": "binance_daily_future_high_returns_2019H2_2026-09-01",
+  "collection_config": "configs/binance_selected_usdt_daily_collection.json",
+  "analysis_start_utc": "2019-07-01T00:00:00Z",
+  "analysis_end_utc": "2026-09-01T00:00:00Z",
+  "required_symbol": "BTCUSDT",
+  "additional_symbol_count": 4,
+  "random_seed": 20261002,
+  "eligibility_rule": "observed_on_analysis_start",
+  "horizons_days": [0, 1, 2, 3],
+  "output_directory": "outputs/binance_daily_future_high_returns_2019H2_2026-09-01"
+}
