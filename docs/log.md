@@ -1,5 +1,23 @@
 # Documentation update log
 
+## 2026-10-09
+
+- **Experiment period**: Recorded `2019-07-01` as the effective start and June
+  2019 as feature-only warm-up history.
+- **Missing data**: Approved forward filling from the immediately preceding
+  daily observation for gaps strictly inside an asset's observed span, while
+  preserving raw data and leaving leading and terminal gaps unresolved.
+- **Targets**: Recorded binary thresholds of 2%, 3%, and 4%, use of the existing
+  daily `D0` high-to-open outcome, and the four-observation Silva holding
+  period.
+- **Pending target decision**: Documented the unresolved alignment between
+  day-1 features, a day-2 target, `D0`, and the four-observation holding period
+  without selecting an interpretation.
+- **SVM experiment**: Recorded the default-parameter single-asset pilot,
+  subsequent full expansion, in-sample and out-of-sample evaluation, and the
+  provisional grid-search design. Exact pilot bounds, search space, metric,
+  and temporal validation boundaries remain pending.
+
 ## 2026-09-29
 
 - **Migration**: Converted `docs/` into an Open Knowledge Format v0.2 bundle.
