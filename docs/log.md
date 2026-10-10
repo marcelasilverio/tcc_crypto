@@ -17,6 +17,12 @@
   subsequent full expansion, in-sample and out-of-sample evaluation, and the
   provisional grid-search design. Exact pilot bounds, search space, metric,
   and temporal validation boundaries remain pending.
+- **Pilot scope**: Approved `BTCUSDT` from 2019-07-01 through 2019-12-31, with
+  June 2019 used only as feature warm-up history.
+- **Pilot dataset implementation**: Added the configured preparation pipeline
+  for audited internal-gap filling, daily features, and next-day D0 targets at
+  2%, 3%, and 4%. Model training remains pending approval of scaling and
+  reporting conventions.
 
 ## 2026-10-03
 

@@ -12,4 +12,4 @@
 - [Daily rolling feature selection](daily-feature-selection.md) - Approved variance and correlation filters refitted within every daily rolling training window.
 - [Daily experiment period and internal-gap treatment](daily-sample-and-missing-data.md) - Approved experiment start, feature warm-up period, and forward-fill rule for internal daily gaps.
 - [Daily next-day binary targets and same-day exit](daily-binary-targets-and-holding-period.md) - Approved target thresholds and alignment from day-t inputs to the next day's D0 high-to-open outcome and same-day exit.
-- [SVM pilot and hyperparameter-search plan](svm-pilot-and-hyperparameter-search.md) - Approved staged SVM experiment using a small default pilot before temporally valid hyperparameter search and full expansion.
+- [SVM pilot and hyperparameter-search plan](svm-pilot-and-hyperparameter-search.md) - Approved staged SVM experiment using a BTCUSDT 2019H2 default pilot before temporally valid hyperparameter search and full expansion.

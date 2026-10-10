@@ -33,13 +33,16 @@ Approved on 2026-10-06 as the first algorithm-development increment:
   unchanged for long intervals and may not represent the intended settings;
 - preserve indicator warm-up values as missing rather than removing a fixed
   number of rows; and
-- reject missing UTC days during feature construction until cross-gap behavior
-  receives explicit approval.
+- forward-fill missing UTC days strictly inside an asset's observed span in a
+  derived dataset, retain an `is_imputed` audit marker, and never modify raw
+  files or fill leading or trailing history.
 
 The unusual Silva definitions of `r6` through `r8`, which divide the current
 high by lagged opening prices, are preserved. Feature construction may use only
 the current and earlier observations at each timestamp.
 
-This decision does not approve feature-selection thresholds or refresh
-frequency, normalization, temporal window sizes, SVM hyperparameters, target
-holding windows, or portfolio rules.
+The missing-data rule was approved separately on 2026-10-09 and supersedes the
+earlier temporary rejection of cross-gap feature construction. This decision
+does not approve feature-selection thresholds or refresh frequency,
+normalization, temporal window sizes, SVM hyperparameters, target holding
+windows, or portfolio rules.

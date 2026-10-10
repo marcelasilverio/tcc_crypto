@@ -66,6 +66,8 @@ class DailyFeatureConfig:
     collection_config: Path
     interval: str
     time_zone: str
+    missing_data_policy: str
+    imputation_marker: str
     price_fields: tuple[str, ...]
     volume_field: str
     momentum_period: int
@@ -90,6 +92,17 @@ def load_daily_feature_config(path: Path) -> DailyFeatureConfig:
         raise ValueError("Daily features require the 1d interval.")
     if payload["time_zone"] != "UTC":
         raise ValueError("Daily features require UTC timestamps.")
+    missing_data = payload["missing_data"]
+    if missing_data["policy"] != "forward_fill_internal":
+        raise ValueError("Daily features require forward_fill_internal.")
+    if missing_data["imputation_marker"] != "is_imputed":
+        raise ValueError("Daily features require the is_imputed audit marker.")
+    if missing_data["raw_data_mutation"] is not False:
+        raise ValueError("Raw daily data must remain immutable.")
+    if missing_data["leading_fill"] is not False:
+        raise ValueError("Leading daily gaps must not be filled.")
+    if missing_data["trailing_fill"] is not False:
+        raise ValueError("Trailing daily gaps must not be filled.")
     if tuple(payload["price_fields"]) != PRICE_FIELDS:
         raise ValueError(f"price_fields must be exactly {PRICE_FIELDS}.")
     if payload["volume_field"] != "quote_asset_volume":
@@ -138,6 +151,8 @@ def load_daily_feature_config(path: Path) -> DailyFeatureConfig:
         collection_config=Path(payload["collection_config"]),
         interval="1d",
         time_zone="UTC",
+        missing_data_policy="forward_fill_internal",
+        imputation_marker="is_imputed",
         price_fields=PRICE_FIELDS,
         volume_field="quote_asset_volume",
         momentum_period=10,
@@ -163,7 +178,9 @@ def load_daily_feature_config(path: Path) -> DailyFeatureConfig:
     )
 
 
-def _validate_daily_values(values: pd.DataFrame) -> None:
+def _validate_daily_values(
+    values: pd.DataFrame, *, require_complete_calendar: bool = True
+) -> None:
     required = {*PRICE_FIELDS, "quote_asset_volume"}
     missing = required.difference(values.columns)
     if missing:
@@ -182,10 +199,14 @@ def _validate_daily_values(values: pd.DataFrame) -> None:
         raise ValueError("Daily feature input must be chronologically ordered.")
     if (values.index != values.index.normalize()).any():
         raise ValueError("Daily feature timestamps must be aligned to UTC midnight.")
-    if len(values.index) > 1 and not (values.index.to_series().diff().iloc[1:] == DAY).all():
+    if (
+        require_complete_calendar
+        and len(values.index) > 1
+        and not (values.index.to_series().diff().iloc[1:] == DAY).all()
+    ):
         raise ValueError(
-            "Daily feature input contains missing UTC days; cross-gap feature "
-            "behavior has not been approved."
+            "Daily feature input contains missing UTC days; align internal gaps "
+            "before feature construction."
         )
 
     numeric = values.loc[:, [*PRICE_FIELDS, "quote_asset_volume"]]
@@ -207,13 +228,47 @@ def _validate_daily_values(values: pd.DataFrame) -> None:
         raise ValueError("Daily feature input contains OHLC consistency violations.")
 
 
-def load_daily_feature_input(path: Path) -> pd.DataFrame:
-    """Load validated OHLC and USDT quote volume from one immutable raw CSV."""
+def fill_internal_daily_gaps(values: pd.DataFrame) -> pd.DataFrame:
+    """Forward-fill missing UTC days bounded by observed daily candles.
+
+    The input frame is not mutated. The returned ``is_imputed`` column records
+    which rows were synthesized. Because the calendar spans only the first
+    through last observed timestamps, this function never backfills pre-listing
+    dates or extends an asset beyond its final observation.
+    """
+    _validate_daily_values(values, require_complete_calendar=False)
+    complete_index = pd.date_range(
+        start=values.index[0],
+        end=values.index[-1],
+        freq="D",
+        tz="UTC",
+        name=values.index.name,
+    )
+    imputed = ~complete_index.isin(values.index)
+    aligned = values.reindex(complete_index).copy()
+    aligned.loc[:, [*PRICE_FIELDS, "quote_asset_volume"]] = aligned.loc[
+        :, [*PRICE_FIELDS, "quote_asset_volume"]
+    ].ffill()
+    aligned["is_imputed"] = imputed
+    _validate_daily_values(aligned)
+    return aligned
+
+
+def load_daily_feature_input(
+    path: Path, *, fill_internal_gaps: bool = False
+) -> pd.DataFrame:
+    """Load OHLC and USDT quote volume from one immutable raw CSV.
+
+    When ``fill_internal_gaps`` is true, the returned frame follows the
+    approved forward-fill policy and includes an ``is_imputed`` audit column.
+    """
     columns = ["open_time_ms", *PRICE_FIELDS, "quote_asset_volume"]
     frame = pd.read_csv(path, usecols=columns)
     timestamps = pd.to_datetime(frame.pop("open_time_ms"), unit="ms", utc=True)
     values = frame.apply(pd.to_numeric, errors="raise").astype("float64")
     values.index = pd.DatetimeIndex(timestamps, name="open_time_utc")
+    if fill_internal_gaps:
+        return fill_internal_daily_gaps(values)
     _validate_daily_values(values)
     return values
 

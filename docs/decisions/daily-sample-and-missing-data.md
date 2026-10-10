@@ -11,6 +11,9 @@ sources:
   - id: daily-collection-config
     resource: ../../configs/binance_selected_usdt_daily_collection.json
     title: Binance selected USDT daily collection configuration
+  - id: daily-feature-config
+    resource: ../../configs/binance_daily_features.json
+    title: Binance daily feature configuration
   - id: silva-methodology-reference
     resource: ../references/erci_silva_2026_methodology.md
     title: Methodological reference from Silva 2026

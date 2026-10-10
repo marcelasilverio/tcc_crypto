@@ -3,6 +3,13 @@
   "collection_config": "configs/binance_selected_usdt_daily_collection.json",
   "interval": "1d",
   "time_zone": "UTC",
+  "missing_data": {
+    "policy": "forward_fill_internal",
+    "imputation_marker": "is_imputed",
+    "raw_data_mutation": false,
+    "leading_fill": false,
+    "trailing_fill": false
+  },
   "price_fields": ["open", "high", "low", "close"],
   "volume_field": "quote_asset_volume",
   "momentum_period": 10,

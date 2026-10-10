@@ -1,0 +1,17 @@
+{
+  "dataset_id": "btc_daily_svm_pilot_2019H2",
+  "symbol": "BTCUSDT",
+  "raw_directory": "data/raw/binance/spot/1d",
+  "warmup_start_utc": "2019-06-01T00:00:00Z",
+  "sample_start_utc": "2019-07-01T00:00:00Z",
+  "sample_end_utc": "2019-12-31T00:00:00Z",
+  "target_offset_days": 1,
+  "target_source": "next_day_d0",
+  "target_thresholds": [0.02, 0.03, 0.04],
+  "missing_data_policy": "forward_fill_internal",
+  "training_window_sizes": [60, 75, 90],
+  "estimator": "sklearn.svm.SVC",
+  "estimator_parameters": "defaults",
+  "model_training_status": "pending_scaling_and_metric_approval",
+  "output_directory": "outputs/btc_daily_svm_pilot_2019H2"
+}

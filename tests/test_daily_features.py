@@ -11,6 +11,7 @@ import pytest
 from tcc_crypto.daily_features import (
     ACTIVE_FEATURES,
     calculate_daily_features,
+    fill_internal_daily_gaps,
     load_daily_feature_config,
 )
 
@@ -45,6 +46,8 @@ def test_loads_approved_daily_feature_configuration() -> None:
 
     assert config.interval == "1d"
     assert config.volume_field == "quote_asset_volume"
+    assert config.missing_data_policy == "forward_fill_internal"
+    assert config.imputation_marker == "is_imputed"
     assert config.active_features == ACTIVE_FEATURES
     assert config.parabolic_sar_acceleration == 0.0
     assert config.parabolic_sar_maximum == 0.0
@@ -131,8 +134,14 @@ def test_future_rows_do_not_change_earlier_features() -> None:
 def test_rejects_missing_calendar_days_instead_of_crossing_gap() -> None:
     values = _daily_values().drop(pd.Timestamp("2026-01-05", tz="UTC"))
 
-    with pytest.raises(ValueError, match="missing UTC days"):
+    with pytest.raises(ValueError, match="align internal gaps"):
         calculate_daily_features(values)
+
+    aligned = fill_internal_daily_gaps(values)
+    features = calculate_daily_features(aligned)
+
+    assert aligned.loc["2026-01-05", "is_imputed"]
+    assert len(features) == len(_daily_values())
 
 
 def test_parabolic_sar_reproduces_zero_valued_talib_parameters() -> None:

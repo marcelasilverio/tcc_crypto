@@ -1,13 +1,16 @@
 ---
 type: Methodology Decision
 title: SVM pilot and hyperparameter-search plan
-description: Approved staged SVM experiment using a small default pilot before temporally valid hyperparameter search and full expansion.
+description: Approved staged SVM experiment using a BTCUSDT 2019H2 default pilot before temporally valid hyperparameter search and full expansion.
 tags: [svm, grid-search, pilot, in-sample, out-of-sample, temporal-validation]
 status: draft
 authority: approved-methodology
 decision_status: approved
 generated: { by: "process:codex", at: "2026-10-09T00:00:00Z" }
 sources:
+  - id: pilot-dataset-config
+    resource: ../../configs/binance_daily_svm_pilot_dataset.json
+    title: BTCUSDT daily SVM pilot dataset configuration
   - id: silva-methodology-reference
     resource: ../references/erci_silva_2026_methodology.md
     title: Methodological reference from Silva 2026
@@ -33,10 +36,12 @@ and `90` daily observations. Every preprocessing step, including feature
 selection and scaling, must be fitted with training observations only and
 applied unchanged to later observations.
 
-The exact pilot symbol and pilot date range remain unresolved. The exact
-in-sample/out-of-sample boundaries, validation splitter, purge or embargo at
-the target horizon, optimization metric, and parameter-reuse scope also remain
-unresolved and require approval before the definitive experiment.
+The initial pilot uses `BTCUSDT` from 2019-07-01 through 2019-12-31, with June
+2019 retained as feature warm-up history. The exact in-sample/out-of-sample
+reporting convention, validation splitter, purge or embargo at the target
+horizon, optimization metric, scaling procedure, and parameter-reuse scope
+remain unresolved and require approval before model training or the definitive
+experiment.
 
 ## Provisional grid-search scope
 
