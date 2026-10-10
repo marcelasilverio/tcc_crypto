@@ -7,12 +7,12 @@
 - **Missing data**: Approved forward filling from the immediately preceding
   daily observation for gaps strictly inside an asset's observed span, while
   preserving raw data and leaving leading and terminal gaps unresolved.
-- **Targets**: Recorded binary thresholds of 2%, 3%, and 4%, use of the existing
-  daily `D0` high-to-open outcome, and the four-observation Silva holding
-  period.
-- **Pending target decision**: Documented the unresolved alignment between
-  day-1 features, a day-2 target, `D0`, and the four-observation holding period
-  without selecting an interpretation.
+- **Targets**: Recorded binary thresholds of 2%, 3%, and 4% and use of the
+  existing daily `D0` high-to-open outcome.
+- **Target timing**: Recorded the supervisor's confirmation that features at
+  date `t` map to `D0` at `t + 1`, with purchase and exit both occurring in the
+  `t + 1` candle. This supersedes the earlier four-observation holding-period
+  note for this experiment.
 - **SVM experiment**: Recorded the default-parameter single-asset pilot,
   subsequent full expansion, in-sample and out-of-sample evaluation, and the
   provisional grid-search design. Exact pilot bounds, search space, metric,
