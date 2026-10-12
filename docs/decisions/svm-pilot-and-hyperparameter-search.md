@@ -36,12 +36,20 @@ and `90` daily observations. Every preprocessing step, including feature
 selection and scaling, must be fitted with training observations only and
 applied unchanged to later observations.
 
+The pilot uses scikit-learn `StandardScaler` after feature selection. For every
+one-step prediction, a new scaler is fitted on the selected training-window
+features only and then applied unchanged to the immediately following feature
+row. The prediction row never contributes to the fitted mean or standard
+deviation.
+
 The initial pilot uses `BTCUSDT` from 2019-07-01 through 2019-12-31, with June
-2019 retained as feature warm-up history. The exact in-sample/out-of-sample
-reporting convention, validation splitter, purge or embargo at the target
-horizon, optimization metric, scaling procedure, and parameter-reuse scope
-remain unresolved and require approval before model training or the definitive
-experiment.
+2019 retained as feature warm-up history. It records accuracy, precision,
+recall, and F1 as pilot diagnostics. In-sample metrics describe each fitted
+rolling training window, while out-of-sample metrics aggregate the one-step
+predictions for each target and window size. These diagnostics do not approve
+the later grid-search selection metric. The validation splitter, any additional
+purge or embargo, grid-search metric, and parameter-reuse scope remain
+unresolved for the definitive experiment.
 
 ## Provisional grid-search scope
 

@@ -21,8 +21,11 @@
   June 2019 used only as feature warm-up history.
 - **Pilot dataset implementation**: Added the configured preparation pipeline
   for audited internal-gap filling, daily features, and next-day D0 targets at
-  2%, 3%, and 4%. Model training remains pending approval of scaling and
-  reporting conventions.
+  2%, 3%, and 4%.
+- **Pilot scaling and execution**: Approved `StandardScaler` after feature
+  selection, refitted on each training window only, and enabled the rolling
+  default-SVC pilot with separate in-sample diagnostics and out-of-sample
+  one-step prediction metrics.
 
 ## 2026-10-03
 

@@ -28,6 +28,7 @@ class DailyModelingDatasetConfig:
     """Validated settings for the approved single-asset pilot dataset."""
 
     dataset_id: str
+    feature_config: Path
     symbol: str
     raw_directory: Path
     warmup_start_utc: pd.Timestamp
@@ -40,6 +41,11 @@ class DailyModelingDatasetConfig:
     training_window_sizes: tuple[int, ...]
     estimator: str
     estimator_parameters: str
+    scaler: str
+    scaling_fit_scope: str
+    scaling_refit_frequency: str
+    scaling_pipeline_position: str
+    evaluation_metrics: tuple[str, ...]
     model_training_status: str
     output_directory: Path
 
@@ -85,11 +91,26 @@ def load_daily_modeling_dataset_config(path: Path) -> DailyModelingDatasetConfig
         raise ValueError("The approved pilot estimator is sklearn.svm.SVC.")
     if payload["estimator_parameters"] != "defaults":
         raise ValueError("The initial pilot must use default SVC parameters.")
-    if payload["model_training_status"] != "pending_scaling_and_metric_approval":
-        raise ValueError("Model training must remain pending methodological approval.")
+    scaling = payload["scaling"]
+    if scaling["transformer"] != "sklearn.preprocessing.StandardScaler":
+        raise ValueError("The approved pilot scaler is StandardScaler.")
+    if scaling["fit_scope"] != "training_only":
+        raise ValueError("StandardScaler must be fitted on training data only.")
+    if scaling["refit_frequency"] != "every_prediction":
+        raise ValueError("StandardScaler must be refitted for every prediction.")
+    if scaling["pipeline_position"] != "after_feature_selection":
+        raise ValueError("StandardScaler must run after feature selection.")
+    metrics = tuple(str(value) for value in payload["evaluation_metrics"])
+    if metrics != ("accuracy", "precision", "recall", "f1"):
+        raise ValueError(
+            "Configured pilot metrics are accuracy, precision, recall, and f1."
+        )
+    if payload["model_training_status"] != "approved_default_pilot":
+        raise ValueError("The default SVC pilot must be approved for training.")
 
     return DailyModelingDatasetConfig(
         dataset_id=str(payload["dataset_id"]),
+        feature_config=Path(payload["feature_config"]),
         symbol=str(payload["symbol"]),
         raw_directory=Path(payload["raw_directory"]),
         warmup_start_utc=warmup_start,
@@ -102,7 +123,12 @@ def load_daily_modeling_dataset_config(path: Path) -> DailyModelingDatasetConfig
         training_window_sizes=training_window_sizes,
         estimator="sklearn.svm.SVC",
         estimator_parameters="defaults",
-        model_training_status="pending_scaling_and_metric_approval",
+        scaler="sklearn.preprocessing.StandardScaler",
+        scaling_fit_scope="training_only",
+        scaling_refit_frequency="every_prediction",
+        scaling_pipeline_position="after_feature_selection",
+        evaluation_metrics=metrics,
+        model_training_status="approved_default_pilot",
         output_directory=Path(payload["output_directory"]),
     )
 
@@ -218,6 +244,18 @@ def _git_revision() -> str | None:
     return completed.stdout.strip() or None
 
 
+def _git_working_tree_dirty() -> bool | None:
+    completed = subprocess.run(
+        ["git", "status", "--porcelain"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if completed.returncode != 0:
+        return None
+    return bool(completed.stdout.strip())
+
+
 def write_daily_modeling_dataset(
     config: DailyModelingDatasetConfig,
     dataset: pd.DataFrame,
@@ -244,8 +282,10 @@ def write_daily_modeling_dataset(
     }
     metadata = {
         "dataset_id": config.dataset_id,
+        "feature_config": str(config.feature_config),
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "code_revision": _git_revision(),
+        "working_tree_dirty": _git_working_tree_dirty(),
         "symbol": config.symbol,
         "warmup_start_utc": config.warmup_start_utc.isoformat(),
         "sample_start_utc": config.sample_start_utc.isoformat(),
@@ -257,6 +297,11 @@ def write_daily_modeling_dataset(
         "training_window_sizes": list(config.training_window_sizes),
         "estimator": config.estimator,
         "estimator_parameters": config.estimator_parameters,
+        "scaler": config.scaler,
+        "scaling_fit_scope": config.scaling_fit_scope,
+        "scaling_refit_frequency": config.scaling_refit_frequency,
+        "scaling_pipeline_position": config.scaling_pipeline_position,
+        "evaluation_metrics": list(config.evaluation_metrics),
         "model_training_status": config.model_training_status,
         "row_count": len(dataset),
         "feature_columns": list(modeling_feature_columns()),

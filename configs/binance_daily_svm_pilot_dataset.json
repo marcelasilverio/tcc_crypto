@@ -1,5 +1,6 @@
 {
   "dataset_id": "btc_daily_svm_pilot_2019H2",
+  "feature_config": "configs/binance_daily_features.json",
   "symbol": "BTCUSDT",
   "raw_directory": "data/raw/binance/spot/1d",
   "warmup_start_utc": "2019-06-01T00:00:00Z",
@@ -12,6 +13,13 @@
   "training_window_sizes": [60, 75, 90],
   "estimator": "sklearn.svm.SVC",
   "estimator_parameters": "defaults",
-  "model_training_status": "pending_scaling_and_metric_approval",
+  "scaling": {
+    "transformer": "sklearn.preprocessing.StandardScaler",
+    "fit_scope": "training_only",
+    "refit_frequency": "every_prediction",
+    "pipeline_position": "after_feature_selection"
+  },
+  "evaluation_metrics": ["accuracy", "precision", "recall", "f1"],
+  "model_training_status": "approved_default_pilot",
   "output_directory": "outputs/btc_daily_svm_pilot_2019H2"
 }

@@ -82,6 +82,7 @@ def test_loads_approved_btc_pilot_configuration() -> None:
     )
 
     assert config.symbol == "BTCUSDT"
+    assert config.feature_config == Path("configs/binance_daily_features.json")
     assert config.warmup_start_utc == pd.Timestamp("2019-06-01", tz="UTC")
     assert config.sample_start_utc == pd.Timestamp("2019-07-01", tz="UTC")
     assert config.sample_end_utc == pd.Timestamp("2019-12-31", tz="UTC")
@@ -89,4 +90,9 @@ def test_loads_approved_btc_pilot_configuration() -> None:
     assert config.training_window_sizes == (60, 75, 90)
     assert config.estimator == "sklearn.svm.SVC"
     assert config.estimator_parameters == "defaults"
-    assert config.model_training_status == "pending_scaling_and_metric_approval"
+    assert config.scaler == "sklearn.preprocessing.StandardScaler"
+    assert config.scaling_fit_scope == "training_only"
+    assert config.scaling_refit_frequency == "every_prediction"
+    assert config.scaling_pipeline_position == "after_feature_selection"
+    assert config.evaluation_metrics == ("accuracy", "precision", "recall", "f1")
+    assert config.model_training_status == "approved_default_pilot"
