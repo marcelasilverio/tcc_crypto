@@ -1,5 +1,40 @@
 # Documentation update log
 
+## 2026-10-13
+
+- **Temporal model selection**: Approved a two-level design with an inner
+  three-split temporal grid search and a chronologically later, untouched final
+  test evaluated one step at a time.
+- **Conditional SVC grid**: Approved 186 compatible configurations over
+  `kernel`, `C`, `gamma`, `degree`, `coef0`, and `class_weight`, evaluated
+  independently for every target and 60-, 75-, and 90-day training window.
+- **Preprocessing integrity**: Required feature selection and
+  `StandardScaler` to be fitted inside each temporal training fold and refitted
+  inside each final walk-forward training window.
+- **Model selection and reporting**: Approved mean validation F1 as the primary
+  grid-search criterion and required accuracy, precision, recall, F1, balanced
+  accuracy, ROC-AUC, average precision, ROC curves, precision-recall curves,
+  confusion matrices, dated predictions, and decision scores.
+- **Final evaluation**: Required selected hyperparameters to remain frozen
+  throughout the final test and required comparison with an always-negative
+  classifier, a training-class-frequency baseline, and the default SVC.
+- **Approved temporal boundaries**: Set development feature dates to
+  2019-07-01 through 2024-12-30, reserved 2024-12-31 as a one-observation gap,
+  and set final-test feature dates to 2025-01-01 through 2026-08-31, whose
+  targets extend through 2026-09-01.
+- **Validation blocks and gap**: Set each of the three inner validation blocks
+  to 60 observations, capped inner training by the evaluated 60-, 75-, or
+  90-day window, and applied a one-observation gap before validation and final
+  prediction.
+- **Tie breaking and baselines**: Approved deterministic F1 tie breaking by
+  precision, F1 stability, ROC-AUC, model simplicity, lower `C`, and grid order;
+  fixed the comparison baselines as constant-zero dummy, prior dummy, and
+  default SVC.
+- **Asset eligibility**: Approved separate searches by symbol, target, and
+  window; a common minimum of 271 complete labeled rows; dynamic entry within
+  the fixed ex-post 40-pair pool; an eligibility manifest; and exclusion of
+  LUNAUSDT until economic continuity is resolved.
+
 ## 2026-10-09
 
 - **Experiment period**: Recorded `2019-07-01` as the effective start and June

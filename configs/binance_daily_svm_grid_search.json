@@ -1,0 +1,150 @@
+{
+  "experiment_id": "binance_daily_svm_temporal_grid_search_v1",
+  "base_feature_config": "configs/binance_daily_features.json",
+  "base_pilot_config": "configs/binance_daily_svm_pilot_dataset.json",
+  "estimator": "sklearn.svm.SVC",
+  "targets": ["target_2pct", "target_3pct", "target_4pct"],
+  "training_window_sizes": [60, 75, 90],
+  "search_scope": {
+    "separate_by_symbol": true,
+    "separate_by_target": true,
+    "separate_by_training_window": true,
+    "reuse_across_final_test_dates": true
+  },
+  "development_period": {
+    "feature_start_utc": "2019-07-01T00:00:00Z",
+    "feature_end_utc": "2024-12-30T00:00:00Z",
+    "boundary_status": "approved"
+  },
+  "preprocessing": {
+    "feature_selection": {
+      "source": "configs/binance_daily_features.json",
+      "fit_scope": "inner_training_fold_only"
+    },
+    "scaling": {
+      "transformer": "sklearn.preprocessing.StandardScaler",
+      "fit_scope": "inner_training_fold_only",
+      "pipeline_position": "after_feature_selection"
+    }
+  },
+  "inner_validation": {
+    "splitter": "sklearn.model_selection.TimeSeriesSplit",
+    "n_splits": 3,
+    "shuffle": false,
+    "max_train_size_source": "training_window_size",
+    "test_size": 60,
+    "gap_observations": 1,
+    "boundary_status": "approved"
+  },
+  "parameter_grid": [
+    {
+      "kernel": ["linear"],
+      "C": [0.1, 1.0, 10.0],
+      "class_weight": [null, "balanced"]
+    },
+    {
+      "kernel": ["rbf"],
+      "C": [0.1, 1.0, 10.0],
+      "gamma": ["scale", 0.01, 0.1],
+      "class_weight": [null, "balanced"]
+    },
+    {
+      "kernel": ["poly"],
+      "C": [0.1, 1.0, 10.0],
+      "gamma": ["scale", 0.01, 0.1],
+      "degree": [2, 3, 4],
+      "coef0": [0.0, 0.5, 1.0],
+      "class_weight": [null, "balanced"]
+    }
+  ],
+  "candidate_count_per_target_window": 186,
+  "selection": {
+    "primary_metric": "f1",
+    "floating_point_tolerance": 1e-12,
+    "tie_break_order": [
+      "mean_precision_descending",
+      "f1_standard_deviation_ascending",
+      "mean_roc_auc_descending",
+      "kernel_simplicity_linear_rbf_poly",
+      "C_ascending",
+      "parameter_grid_order"
+    ],
+    "tie_break_status": "approved"
+  },
+  "recorded_validation_metrics": [
+    "accuracy",
+    "precision",
+    "recall",
+    "f1",
+    "balanced_accuracy",
+    "roc_auc",
+    "average_precision"
+  ],
+  "final_test": {
+    "required": true,
+    "chronologically_after_development": true,
+    "feature_start_utc": "2025-01-01T00:00:00Z",
+    "feature_end_utc": "2026-08-31T00:00:00Z",
+    "target_start_utc": "2025-01-02T00:00:00Z",
+    "target_end_utc": "2026-09-01T00:00:00Z",
+    "boundary_gap_date_utc": "2024-12-31T00:00:00Z",
+    "gap_observations": 1,
+    "boundary_status": "approved",
+    "hyperparameters": "frozen_after_inner_validation",
+    "evaluation": "one_step_walk_forward",
+    "prediction_step_observations": 1,
+    "refit_feature_selection_every_prediction": true,
+    "refit_scaler_every_prediction": true,
+    "refit_estimator_every_prediction": true
+  },
+  "final_test_outputs": [
+    "dated_predictions",
+    "decision_scores",
+    "confusion_matrix",
+    "accuracy",
+    "precision",
+    "recall",
+    "f1",
+    "balanced_accuracy",
+    "roc_curve_points",
+    "roc_auc",
+    "precision_recall_curve_points",
+    "average_precision"
+  ],
+  "comparison_baselines": {
+    "always_negative": {
+      "estimator": "sklearn.dummy.DummyClassifier",
+      "parameters": {"strategy": "constant", "constant": 0}
+    },
+    "training_class_frequency": {
+      "estimator": "sklearn.dummy.DummyClassifier",
+      "parameters": {"strategy": "prior"},
+      "roc_score_source": "predict_proba_positive_class"
+    },
+    "default_svc": {
+      "estimator": "sklearn.svm.SVC",
+      "parameters": "defaults",
+      "roc_score_source": "decision_function"
+    },
+    "implementation_status": "approved"
+  },
+  "asset_eligibility": {
+    "candidate_universe_config": "configs/binance_selected_usdt_daily_collection.json",
+    "candidate_universe_size": 40,
+    "interpretation": "ex_post_fixed_2026_snapshot",
+    "dynamic_entry_after_sufficient_history": true,
+    "minimum_complete_labeled_rows_before_search": 271,
+    "minimum_history_basis": "90_training_plus_1_gap_plus_3_times_60_validation",
+    "require_two_training_classes_in_every_inner_fold": true,
+    "require_complete_features_and_targets": true,
+    "allow_prelisting_synthesis": false,
+    "excluded_symbols": ["LUNAUSDT"],
+    "exclusion_reason": "unresolved_economic_continuity_across_terra_migration",
+    "ineligibility_output": "asset_eligibility_manifest"
+  },
+  "probability_estimates": false,
+  "score_source": "decision_function",
+  "random_shuffle": false,
+  "execution_status": "approved_for_implementation",
+  "output_directory": "outputs/binance_daily_svm_temporal_grid_search_v1"
+}

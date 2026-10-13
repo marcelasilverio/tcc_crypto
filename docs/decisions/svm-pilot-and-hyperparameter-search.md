@@ -46,28 +46,16 @@ The initial pilot uses `BTCUSDT` from 2019-07-01 through 2019-12-31, with June
 2019 retained as feature warm-up history. It records accuracy, precision,
 recall, and F1 as pilot diagnostics. In-sample metrics describe each fitted
 rolling training window, while out-of-sample metrics aggregate the one-step
-predictions for each target and window size. These diagnostics do not approve
-the later grid-search selection metric. The validation splitter, any additional
-purge or embargo, grid-search metric, and parameter-reuse scope remain
-unresolved for the definitive experiment.
+predictions for each target and window size. These diagnostics are pilot
+evidence and are not the definitive performance estimate.
 
-## Provisional grid-search scope
+## Definitive grid-search decision
 
-The researcher plans to consult the scikit-learn SVM documentation, propose the
-grid to the supervisor, and vary approximately six hyperparameters, with three
-candidate values per varying dimension where appropriate. This is a planning
-bound, not an approved search space. A full Cartesian grid with six dimensions
-and three values each contains up to `729` configurations before temporal
-validation folds, assets, targets, and training-window lengths are included.
-
-Candidate `SVC` parameters include `C`, `kernel`, `gamma`, `degree`, `coef0`,
-`class_weight`, and `tol`, subject to estimator compatibility and supervisor
-approval. A learning rate is not an `SVC` hyperparameter and must not be added
-to its grid. Conditional parameters such as `degree` and `coef0` should be
-evaluated only for kernels that use them.
-
-Random shuffling and ordinary cross-validation that trains on observations
-later than their validation observations are prohibited. The definitive
-configuration must identify the scikit-learn version, estimator defaults,
-time-aware validation procedure, candidate grid, selection metric, random
-seed where applicable, and persisted per-configuration results.
+The provisional scope in the original meeting note was superseded on
+2026-10-13 by the approved [Temporal SVM grid search and final evaluation](svm-temporal-grid-search-and-final-evaluation.md)
+decision. That decision defines the conditional 186-candidate SVC grid, three
+inner temporal splits, F1 model selection, frozen-parameter final walk-forward
+evaluation, required classifier metrics, exact temporal boundaries, a one-day
+gap, deterministic tie breaking, and exact baselines. Symbol eligibility and
+the LUNAUSDT exclusion are recorded in the related
+[Daily SVM asset eligibility](daily-svm-asset-eligibility.md) decision.

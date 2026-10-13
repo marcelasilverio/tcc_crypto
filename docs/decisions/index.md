@@ -13,3 +13,5 @@
 - [Daily experiment period and internal-gap treatment](daily-sample-and-missing-data.md) - Approved experiment start, feature warm-up period, and forward-fill rule for internal daily gaps.
 - [Daily next-day binary targets and same-day exit](daily-binary-targets-and-holding-period.md) - Approved target thresholds and alignment from day-t inputs to the next day's D0 high-to-open outcome and same-day exit.
 - [SVM pilot and hyperparameter-search plan](svm-pilot-and-hyperparameter-search.md) - Approved staged SVM experiment using a BTCUSDT 2019H2 default pilot before temporally valid hyperparameter search and full expansion.
+- [Temporal SVM grid search and final evaluation](svm-temporal-grid-search-and-final-evaluation.md) - Approved conditional SVC search, nested temporal model-selection structure, frozen-parameter walk-forward test, and classifier performance reporting.
+- [Daily SVM asset eligibility](daily-svm-asset-eligibility.md) - Approved ex-post candidate universe, dynamic history requirement, per-asset model search, and LUNAUSDT exclusion for the daily SVM classification experiment.
