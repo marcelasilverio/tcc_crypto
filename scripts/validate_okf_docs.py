@@ -23,6 +23,7 @@ ALLOWED_AUTHORITIES = {
 ALLOWED_STATUSES = {"draft", "stable", "deprecated"}
 ALLOWED_TYPES = {
     "Data Quality Report",
+    "Experiment Report",
     "External Methodology Reference",
     "Methodology Decision",
     "Redirect",

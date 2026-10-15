@@ -49,6 +49,20 @@ class OkfDocumentationTest(unittest.TestCase):
         self.addCleanup(temporary_directory.cleanup)
         self.assertEqual(VALIDATOR.validate_bundle(root), [])
 
+    def test_experiment_report_is_an_allowed_generated_evidence_type(self) -> None:
+        temporary_directory, root = self._bundle()
+        self.addCleanup(temporary_directory.cleanup)
+        content = VALID_FRONTMATTER.replace("type: Research Context", "type: Experiment Report")
+        content = content.replace("authority: research-context", "authority: generated-evidence")
+        content = content.replace("status: stable", "status: draft")
+        content = content.replace(
+            'verified: { by: "human:reviewer", at: "2026-09-29T10:16:31Z" }\n',
+            "",
+        )
+        (root / "example.md").write_text(content, encoding="utf-8")
+
+        self.assertEqual(VALIDATOR.validate_bundle(root), [])
+
     def test_invalid_yaml_is_rejected(self) -> None:
         temporary_directory, root = self._bundle()
         self.addCleanup(temporary_directory.cleanup)

@@ -34,6 +34,22 @@
   window; a common minimum of 271 complete labeled rows; dynamic entry within
   the fixed ex-post 40-pair pool; an eligibility manifest; and exclusion of
   LUNAUSDT until economic continuity is resolved.
+- **Development grid-search implementation**: Added a development-only temporal
+  SVC search runner with strict configuration validation, per-combination
+  eligibility, leakage-safe fold preprocessing, complete fold and candidate
+  evidence, deterministic tie breaking, and reproducibility metadata.
+- **BTCUSDT operational validation**: Completed all nine eligible searches and
+  5,022 candidate-fold fits without fit errors. The last validation observation
+  was 2024-12-30, and the run did not use final-test feature rows.
+- **Development eligibility manifest**: Evaluated all 360 combinations from 40
+  symbols, three targets, and three windows. Recorded 331 eligible searches, 36
+  fully eligible symbols, seven eligible TRXUSDT searches, and zero eligible
+  searches for NEIROUSDT, excluded LUNAUSDT, and ENAUSDT.
+- **Grid-search walkthrough**: Added and executed a didactic notebook that
+  exposes configuration validation, conditional-grid expansion, development
+  data, eligibility, temporal splits, fold-local preprocessing, candidate
+  metrics, deterministic ranking, selected configurations, and persisted
+  reproducibility evidence for BTCUSDT.
 
 ## 2026-10-09
 

@@ -354,3 +354,35 @@ configuration and methodology documentation are versioned.
 The classifier grid-search protocol is approved for implementation. Later
 portfolio and financial-backtest decisions remain independent and must not be
 inferred from this approval.
+
+## Development-search implementation
+
+The development-only protocol is implemented in
+`src/tcc_crypto/daily_svm_grid_search.py` and exposed through
+`scripts/run_daily_svm_grid_search.py`. The executed educational walkthrough in
+`notebooks/15_binance_daily_svm_grid_search_walkthrough.ipynb` exposes the same
+implementation step by step. The implementation:
+
+- loads and strictly validates the approved JSON configuration;
+- builds features and next-day targets only through the development boundary;
+- loads 2024-12-31 only as the next-day outcome needed by the 2024-12-30
+  feature row;
+- does not retain, calculate, or use feature rows from the reserved final-test
+  period;
+- generates eligibility evidence separately for each symbol-target-window;
+- fits feature selection and `StandardScaler` once inside each temporal
+  training fold before evaluating the compatible SVC candidates;
+- records fold boundaries, class counts, selected features, metrics, fit
+  failures, aggregate candidate results, and deterministic selections; and
+- writes generated evidence beneath the configured output directory, which is
+  excluded from Git.
+
+Running the script without a symbol-expansion flag executes only `BTCUSDT` as
+the approved operational validation. Expansion to the complete configured
+universe requires the explicit `--all-symbols` flag. The script also supports
+`--eligibility-only` so that universe diagnostics can be produced without
+fitting an estimator.
+
+The final frozen-parameter walk-forward evaluator is intentionally not part of
+this development-search implementation. It must be implemented and executed
+only after the development search and its evidence have been reviewed.
