@@ -245,11 +245,18 @@ in `outputs/migrations/exploration-v1.json`. Canonical raw data is not moved.
 ```sh
 PYTHONPATH=src python -m pytest -q
 python scripts/validate_okf_docs.py docs
-python -m ruff check src/tcc_crypto --select F,I
-python -m ruff format --check src/tcc_crypto
+python -m ruff check src/tcc_crypto tests scripts
+python -m ruff format --check src/tcc_crypto tests scripts
 ```
 
 Tests cover formulas, UTC and gap handling, temporal boundaries, saved-stage
 roundtrips, workbook contents, migration, and the package's layer boundaries.
 Notebook cells are exercised with small local inputs and simulated API responses.
 The suite does not require a full collection or full research experiment.
+
+[AGENTS.md](AGENTS.md) defines layer responsibilities, notebook restrictions,
+artifact contracts and the approved-methodology authority. Architecture tests
+guard imports and notebook processing; Ruff settings live in `pyproject.toml`.
+The same four checks run on pushes and pull requests through
+[Repository quality](.github/workflows/quality.yml). CI reports failures; requiring
+the check before merging also requires a GitHub branch-protection setting.

@@ -133,7 +133,8 @@ features. Parabolic SAR remains provisional. Sample estimators, CV units,
 partial-month/year/semester labels and original random selection remain explicit.
 
 Run `PYTHONPATH=src python -m pytest -q`, `python scripts/validate_okf_docs.py docs`,
-and `python -m ruff check src/tcc_crypto tests/test_exploration_refactor.py --select F,I`.
+`python -m ruff check src/tcc_crypto tests scripts`, and
+`python -m ruff format --check src/tcc_crypto tests scripts`.
 The tests execute actual notebook code cells on local synthetic data and mocked
 network responses, compare pre-extraction fixtures, and exercise migration and
 native chart exports. They do not repeat the full API collection or full search.

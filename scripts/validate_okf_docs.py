@@ -3,15 +3,14 @@
 from __future__ import annotations
 
 import argparse
-from datetime import datetime
-from pathlib import Path
 import re
 import sys
+from datetime import datetime
+from pathlib import Path
 from typing import Any
 from urllib.parse import unquote
 
 import yaml
-
 
 ALLOWED_AUTHORITIES = {
     "approved-methodology",
@@ -58,7 +57,11 @@ def _parse_frontmatter(path: Path) -> tuple[dict[str, Any], str]:
         raise ValidationError(f"{path}: missing YAML frontmatter")
 
     closing_index = next(
-        (index for index, line in enumerate(lines[1:], start=1) if line.strip() == "---"),
+        (
+            index
+            for index, line in enumerate(lines[1:], start=1)
+            if line.strip() == "---"
+        ),
         None,
     )
     if closing_index is None:
@@ -175,7 +178,9 @@ def _validate_concept(
                 continue
             resource = source.get("resource")
             if not isinstance(resource, str) or not resource.strip():
-                errors.append(f"{path}: sources[{index}] requires resource as a non-empty string")
+                errors.append(
+                    f"{path}: sources[{index}] requires resource as a non-empty string"
+                )
             source_id = source.get("id")
             if source_id is not None and not isinstance(source_id, str):
                 errors.append(f"{path}: sources[{index}].id must be a string")
@@ -184,7 +189,9 @@ def _validate_concept(
                     errors.append(f"{path}: duplicate source id {source_id!r}")
                 source_ids.add(source_id)
             if source.get("author") is not None:
-                _validate_actor(source["author"], f"{path}: sources[{index}].author", errors)
+                _validate_actor(
+                    source["author"], f"{path}: sources[{index}].author", errors
+                )
             if source.get("last_modified") is not None:
                 _validate_timestamp(
                     source["last_modified"],
@@ -199,9 +206,13 @@ def _validate_concept(
 
     if metadata.get("type") == "Methodology Decision":
         if metadata.get("authority") != "approved-methodology":
-            errors.append(f"{path}: methodology decisions require approved-methodology authority")
+            errors.append(
+                f"{path}: methodology decisions require approved-methodology authority"
+            )
         if metadata.get("decision_status") != "approved":
-            errors.append(f"{path}: methodology decisions require decision_status: approved")
+            errors.append(
+                f"{path}: methodology decisions require decision_status: approved"
+            )
 
     if metadata.get("type") == "Redirect":
         redirect_to = metadata.get("redirect_to")
@@ -233,7 +244,9 @@ def _validate_index(path: Path, bundle_root: Path, errors: list[str]) -> None:
             errors.append(str(error))
             return
         if metadata != {"okf_version": "0.2"}:
-            errors.append(f"{path}: root index frontmatter must contain only okf_version: '0.2'")
+            errors.append(
+                f"{path}: root index frontmatter must contain only okf_version: '0.2'"
+            )
     elif text.startswith("---\n"):
         errors.append(f"{path}: non-root index files must not contain frontmatter")
 
@@ -274,7 +287,9 @@ def _validate_index(path: Path, bundle_root: Path, errors: list[str]) -> None:
                 continue
             title, _, description = matching_entries[0]
             if title != metadata.get("title"):
-                errors.append(f"{path}: index title for {expected.name} does not match frontmatter")
+                errors.append(
+                    f"{path}: index title for {expected.name} does not match frontmatter"
+                )
             if description != metadata.get("description"):
                 errors.append(
                     f"{path}: index description for {expected.name} does not match frontmatter"
@@ -336,7 +351,9 @@ def validate_bundle(bundle_root: Path) -> list[str]:
             metadata_by_path[path.resolve()], bodies_by_path[path.resolve()] = result
 
     deprecated_paths = {
-        path for path, metadata in metadata_by_path.items() if metadata.get("status") == "deprecated"
+        path
+        for path, metadata in metadata_by_path.items()
+        if metadata.get("status") == "deprecated"
     }
     for path, body in bodies_by_path.items():
         if path in deprecated_paths:
@@ -344,7 +361,9 @@ def validate_bundle(bundle_root: Path) -> list[str]:
         for _, target in MARKDOWN_LINK_PATTERN.findall(body):
             destination = _local_link_target(path, target, bundle_root)
             if destination is not None and destination.resolve() in deprecated_paths:
-                errors.append(f"{path}: active document links to deprecated path {target!r}")
+                errors.append(
+                    f"{path}: active document links to deprecated path {target!r}"
+                )
 
     return errors
 

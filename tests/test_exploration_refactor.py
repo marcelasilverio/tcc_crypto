@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import ast
 import json
 import os
 import shutil
@@ -468,51 +467,6 @@ def test_migration_dry_run_collision_resume_and_personal_exclusion(research_root
     assert personal.read_bytes() == b"personal"
     assert apply_migration(research_root) == result
     assert file_sha256(destination) == items[0].sha256
-
-
-def test_notebooks_have_only_configuration_calls_and_display():
-    forbidden = (
-        ast.FunctionDef,
-        ast.AsyncFunctionDef,
-        ast.For,
-        ast.While,
-        ast.ListComp,
-        ast.DictComp,
-        ast.SetComp,
-        ast.GeneratorExp,
-        ast.BinOp,
-        ast.Lambda,
-    )
-    forbidden_methods = {
-        "read_csv",
-        "to_csv",
-        "to_excel",
-        "groupby",
-        "pivot",
-        "corr",
-        "fit",
-        "fit_transform",
-        "plot",
-        "subplots",
-        "mkdir",
-        "savefig",
-        "request_json",
-    }
-    for path in (ROOT / "notebooks").glob("*.ipynb"):
-        notebook = json.loads(path.read_text())
-        for cell in notebook["cells"]:
-            if cell["cell_type"] != "code":
-                continue
-            tree = ast.parse("".join(cell["source"]))
-            assert not any(isinstance(node, forbidden) for node in ast.walk(tree)), (
-                path.name
-            )
-            assert not any(
-                isinstance(node, ast.Call)
-                and isinstance(node.func, ast.Attribute)
-                and node.func.attr in forbidden_methods
-                for node in ast.walk(tree)
-            ), path.name
 
 
 @pytest.mark.parametrize("number", range(1, 16))
