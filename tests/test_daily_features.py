@@ -8,12 +8,10 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from tcc_crypto.daily_features import (
-    ACTIVE_FEATURES,
-    calculate_daily_features,
-    fill_internal_daily_gaps,
-    load_daily_feature_config,
-)
+from tcc_crypto.data.gaps import fill_internal_daily_gaps
+from tcc_crypto.features.catalog import ACTIVE_FEATURES
+from tcc_crypto.features.config import load_daily_feature_config
+from tcc_crypto.features.daily import calculate_daily_features
 
 
 def _daily_values(periods: int = 20) -> pd.DataFrame:

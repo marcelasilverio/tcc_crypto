@@ -7,16 +7,16 @@ from pathlib import Path
 
 import pandas as pd
 
-from tcc_crypto.daily_features import DailyFeatureSelectionConfig
-from tcc_crypto.daily_svm_grid_search import (
-    assess_symbol_eligibility,
-    calculate_classification_metrics,
+from tcc_crypto.modeling.config import (
+    DailyFeatureSelectionConfig,
     expand_parameter_grid,
     load_daily_svm_grid_search_config,
-    run_temporal_grid_search,
-    select_best_candidate,
-    temporal_splits,
 )
+from tcc_crypto.modeling.eligibility import assess_symbol_eligibility
+from tcc_crypto.modeling.grid_search import run_temporal_grid_search
+from tcc_crypto.modeling.metrics import calculate_classification_metrics
+from tcc_crypto.modeling.ranking import select_best_candidate
+from tcc_crypto.modeling.splits import temporal_splits
 
 
 def _approved_config():
@@ -160,9 +160,8 @@ def test_grid_search_runs_each_candidate_on_each_fold_and_records_boundaries() -
     assert result.selected_configurations.iloc[0]["selection_rank"] == 1
     first = result.fold_results.iloc[0]
     assert first["training_end_utc"] < first["validation_start_utc"]
-    assert (
-        first["validation_start_utc"] - first["training_end_utc"]
-        == pd.Timedelta(days=2)
+    assert first["validation_start_utc"] - first["training_end_utc"] == pd.Timedelta(
+        days=2
     )
 
 
@@ -248,9 +247,7 @@ def test_tie_break_prefers_precision_then_simpler_kernel_and_lower_c() -> None:
 
 
 def test_single_class_validation_marks_ranking_metrics_undefined() -> None:
-    metrics = calculate_classification_metrics(
-        [0, 0, 0], [0, 0, 0], [-1.0, -0.5, -0.1]
-    )
+    metrics = calculate_classification_metrics([0, 0, 0], [0, 0, 0], [-1.0, -0.5, -0.1])
 
     assert pd.isna(metrics["roc_auc"])
     assert pd.isna(metrics["average_precision"])

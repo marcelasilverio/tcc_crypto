@@ -32,7 +32,7 @@ conventions.
 The daily workflow is organized into collection, data preparation, features,
 targets, modeling, reporting, and workflow packages. See the
 [implementation and execution guide](src/tcc_crypto/README.md) for the location
-of each formula, independent stage commands, artifact constants, and compatibility.
+of each formula, independent stage commands, artifact constants, and public entrypoints.
 
 ```sh
 python -m pip install -e ".[dev]"

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import pandas as pd
 
-from tcc_crypto.daily_features import DailyFeatureSelectionConfig
-from tcc_crypto.daily_svm_pilot import run_default_svc_rolling_pilot
+from tcc_crypto.modeling.config import DailyFeatureSelectionConfig
+from tcc_crypto.modeling.pilot import run_default_svc_rolling_pilot
 
 
 def _selection_config(window_size: int = 4) -> DailyFeatureSelectionConfig:

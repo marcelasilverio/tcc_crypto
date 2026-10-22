@@ -19,11 +19,9 @@ from tcc_crypto.collection.metadata import (
 )
 from tcc_crypto.collection.schema import _interval_spec
 from tcc_crypto.collection.storage import (
-    PairOutputPaths,
     _compress_partial_csv,
     _load_raw_csv,
     load_raw_csv_gz,
-    pair_output_paths,
 )
 from tcc_crypto.collection.validation import (
     _assert_collection_complete,
@@ -36,6 +34,7 @@ from tcc_crypto.collection.workbooks import (
     _write_manifest,
     write_pair_workbook,
 )
+from tcc_crypto.paths import PairOutputPaths, pair_output_paths
 
 
 def _pair_result(
@@ -155,16 +154,6 @@ def collect_symbol_outputs(
     paths.partial_csv.unlink(missing_ok=True)
     paths.checkpoint_json.unlink(missing_ok=True)
     return _pair_result(symbol, selection_rank, "COLLECTED", frame, paths, config)
-
-
-def collect_symbol_to_workbook(
-    symbol: str,
-    selection_rank: int,
-    config: CollectionConfig,
-    repository_root: Path,
-) -> dict[str, object]:
-    """Compatibility alias for complete per-symbol artifact collection."""
-    return collect_symbol_outputs(symbol, selection_rank, config, repository_root)
 
 
 def run_collection(

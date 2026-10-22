@@ -13,7 +13,8 @@ from tcc_crypto.collection.client import PageRequester, _default_page_requester
 from tcc_crypto.collection.config import CollectionConfig
 from tcc_crypto.collection.pagination import iter_kline_pages
 from tcc_crypto.collection.schema import KLINE_COLUMNS
-from tcc_crypto.collection.storage import PairOutputPaths, _atomic_write_json
+from tcc_crypto.collection.storage import _atomic_write_json
+from tcc_crypto.paths import PairOutputPaths
 
 
 def _checkpoint_fingerprint(symbol: str, config: CollectionConfig) -> str:

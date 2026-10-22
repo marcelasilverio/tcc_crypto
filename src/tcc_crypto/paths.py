@@ -177,15 +177,6 @@ def pair_output_paths(
     )
 
 
-def pair_output_path(
-    symbol: str,
-    config: CollectionConfig,
-    repository_root: Path,
-) -> Path:
-    """Return the derived Excel workbook path for compatibility with callers."""
-    return pair_output_paths(symbol, config, repository_root).workbook
-
-
 # Exploratory artifacts use one explicit UTC execution identifier across stages.
 EXPLORATION_RAW_DIR: Final = Path("data/raw/binance/spot/exploration")
 EXPLORATION_WORKBOOKS_DIR: Final = Path("data/exploration/binance/spot")

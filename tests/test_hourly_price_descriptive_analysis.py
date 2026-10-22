@@ -14,14 +14,13 @@ SOURCE_DIRECTORY = REPOSITORY_ROOT / "src"
 if str(SOURCE_DIRECTORY) not in sys.path:
     sys.path.insert(0, str(SOURCE_DIRECTORY))
 
-from tcc_crypto.hourly_price_descriptive_analysis import (  # noqa: E402
-    DescriptiveAnalysisConfig,
-    _write_workbook,
+from tcc_crypto.analysis.hourly_prices import (
     describe_coverage,
     describe_extremes,
     describe_price_levels,
-    load_hourly_prices,
 )
+from tcc_crypto.data.exploratory import load_hourly_prices
+from tcc_crypto.reporting.workbooks import write_workbook
 
 
 class HourlyPriceDescriptiveAnalysisTests(unittest.TestCase):
@@ -91,24 +90,21 @@ class HourlyPriceDescriptiveAnalysisTests(unittest.TestCase):
         summary = describe_price_levels("TESTUSDT", self.prices)
         coverage = pd.DataFrame([describe_coverage("TESTUSDT", self.prices)])
         extrema = describe_extremes("TESTUSDT", self.prices)
-        config = DescriptiveAnalysisConfig(
-            analysis_id="test",
-            collection_config_path=Path("collection.json"),
-            price_fields=("open", "high", "low", "close"),
-            chart_fields=("open", "close"),
-            quantiles=(0.25, 0.5, 0.75),
-            standard_deviation_ddof=1,
-            kurtosis_definition="Fisher excess kurtosis",
-            output_directory=Path("outputs"),
-        )
         with tempfile.TemporaryDirectory() as directory:
             workbook_path = Path(directory) / "analysis.xlsx"
-            _write_workbook(workbook_path, summary, coverage, extrema, config)
+            write_workbook(
+                workbook_path,
+                {"Price Statistics": summary, "Coverage": coverage, "Extrema": extrema},
+            )
             excel_coverage = pd.read_excel(workbook_path, sheet_name="Coverage")
             excel_extrema = pd.read_excel(workbook_path, sheet_name="Extrema")
 
-        self.assertEqual(excel_coverage.loc[0, "First open (UTC)"], "2026-01-01T00:00:00+00:00")
-        self.assertEqual(excel_extrema.loc[0, "Minimum timestamp (UTC)"], "2026-01-01T00:00:00+00:00")
+        self.assertEqual(
+            excel_coverage.loc[0, "First open (UTC)"], "2026-01-01T00:00:00+00:00"
+        )
+        self.assertEqual(
+            excel_extrema.loc[0, "Minimum timestamp (UTC)"], "2026-01-01T00:00:00+00:00"
+        )
 
 
 if __name__ == "__main__":

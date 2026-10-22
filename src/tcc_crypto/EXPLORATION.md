@@ -91,9 +91,11 @@ invalidates the saved execution.
 
 Operational legacy output keys in exploratory JSONs are rejected with a migration
 message. Daily modeling retains its explicit custom-path compatibility. Standard
-new executions use only the centralized locations. Existing public Python imports
-remain compatibility bridges; historical JSON packet export is available only to
-explicit callers and is not part of the new workflow.
+new executions use only the centralized locations. Import implementations directly
+from their domain packages. Flat compatibility modules, legacy forwarding scripts
+and the old JSON packet export/workflow wrappers have been removed. The supported
+command entrypoints are `python -m tcc_crypto.daily`, `python -m tcc_crypto.explore`
+and `python -m tcc_crypto.migrate`.
 
 ## Historical migration
 

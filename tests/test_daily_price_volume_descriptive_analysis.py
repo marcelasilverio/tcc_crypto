@@ -15,16 +15,16 @@ SOURCE_DIRECTORY = REPOSITORY_ROOT / "src"
 if str(SOURCE_DIRECTORY) not in sys.path:
     sys.path.insert(0, str(SOURCE_DIRECTORY))
 
-from tcc_crypto.daily_price_volume_descriptive_analysis import (  # noqa: E402
+from tcc_crypto.analysis.daily_descriptive import (
     daily_quote_volume_billions,
     describe_coverage,
     describe_semesters,
     describe_statistics,
     filter_analysis_window,
-    load_daily_price_volume,
     natural_log_open_close,
     semester_label,
 )
+from tcc_crypto.data.exploratory import load_daily_price_volume
 
 
 class DailyPriceVolumeDescriptiveAnalysisTests(unittest.TestCase):

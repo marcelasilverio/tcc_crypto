@@ -4,16 +4,18 @@ from __future__ import annotations
 
 import pandas as pd
 
-from tcc_crypto.daily_feature_selection import (
+from tcc_crypto.features.warmup import remove_leading_feature_warmup
+from tcc_crypto.modeling.config import DailyFeatureSelectionConfig
+from tcc_crypto.modeling.selection import (
     DailyFeatureSelector,
     iter_rolling_feature_selection,
-    remove_leading_feature_warmup,
     summarize_rolling_feature_selection,
 )
-from tcc_crypto.daily_features import DailyFeatureSelectionConfig
 
 
-def _selection_config(window_sizes: tuple[int, ...] = (3,)) -> DailyFeatureSelectionConfig:
+def _selection_config(
+    window_sizes: tuple[int, ...] = (3,),
+) -> DailyFeatureSelectionConfig:
     return DailyFeatureSelectionConfig(
         variance_threshold=0.01,
         correlation_threshold=0.8,
@@ -107,9 +109,7 @@ def test_future_change_does_not_affect_earlier_feature_selection() -> None:
     changed = baseline.copy()
     changed.iloc[-1] = [10_000.0, -500.0, 900.0, 70.0]
 
-    baseline_steps = list(
-        iter_rolling_feature_selection(baseline, _selection_config())
-    )
+    baseline_steps = list(iter_rolling_feature_selection(baseline, _selection_config()))
     changed_steps = list(iter_rolling_feature_selection(changed, _selection_config()))
 
     for original, recalculated in zip(baseline_steps[:-1], changed_steps[:-1]):

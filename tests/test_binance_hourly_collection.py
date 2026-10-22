@@ -20,19 +20,15 @@ SOURCE_DIRECTORY = REPOSITORY_ROOT / "src"
 if str(SOURCE_DIRECTORY) not in sys.path:
     sys.path.insert(0, str(SOURCE_DIRECTORY))
 
-from tcc_crypto.binance_hourly_collection import (  # noqa: E402
-    collect_hourly_klines,
-    collect_symbol_outputs,
-    collect_to_checkpoint,
-    load_collection_config,
-    load_raw_csv_gz,
-    missing_hourly_intervals,
-    pair_output_paths,
-    request_json,
-    run_collection,
-    validate_hourly_klines,
-    write_pair_workbook,
-)
+from tcc_crypto.collection.checkpoints import collect_to_checkpoint
+from tcc_crypto.collection.client import request_json
+from tcc_crypto.collection.config import load_collection_config
+from tcc_crypto.collection.pagination import collect_klines
+from tcc_crypto.collection.pipeline import collect_symbol_outputs, run_collection
+from tcc_crypto.collection.storage import load_raw_csv_gz
+from tcc_crypto.collection.validation import missing_kline_intervals, validate_klines
+from tcc_crypto.collection.workbooks import write_pair_workbook
+from tcc_crypto.paths import pair_output_paths
 
 
 def make_kline(
@@ -140,7 +136,7 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             temporary_config_path.write_text(json.dumps(payload), encoding="utf-8")
             config = load_collection_config(temporary_config_path)
 
-        frame = collect_hourly_klines(
+        frame = collect_klines(
             "BTCUSDT",
             config,
             page_requester=requester,
@@ -160,13 +156,13 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             del parameters
             return rows
 
-        frame = collect_hourly_klines(
+        frame = collect_klines(
             "BTCUSDT",
             self.config,
             page_requester=requester,
         )
-        validation = validate_hourly_klines(frame, self.config)
-        missing = missing_hourly_intervals(frame)
+        validation = validate_klines(frame, self.config)
+        missing = missing_kline_intervals(frame, self.config)
         missing_check = validation.loc[
             validation["Check"] == "Missing hours within observed span"
         ].iloc[0]
@@ -184,12 +180,12 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             del parameters
             return rows
 
-        frame = collect_hourly_klines(
+        frame = collect_klines(
             "BTCUSDT",
             self.config,
             page_requester=requester,
         )
-        validation = validate_hourly_klines(frame, self.config)
+        validation = validate_klines(frame, self.config)
         ohlc_check = validation.loc[
             validation["Check"] == "OHLC consistency violations"
         ].iloc[0]
@@ -203,17 +199,17 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             del parameters
             return rows
 
-        frame = collect_hourly_klines(
+        frame = collect_klines(
             "BTCUSDT",
             self.config,
             page_requester=requester,
         )
-        validation = validate_hourly_klines(frame, self.config)
+        validation = validate_klines(frame, self.config)
         metadata = pd.DataFrame(
             [("Trading pair", "BTCUSDT")],
             columns=["Field", "Value"],
         )
-        missing = missing_hourly_intervals(frame)
+        missing = missing_kline_intervals(frame, self.config)
 
         with tempfile.TemporaryDirectory() as directory:
             output_path = Path(directory) / "BTCUSDT.xlsx"
@@ -427,12 +423,12 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             del parameters
             return rows
 
-        frame = collect_hourly_klines(
+        frame = collect_klines(
             "BTCUSDT",
             self.config,
             page_requester=requester,
         )
-        validation = validate_hourly_klines(frame, self.config)
+        validation = validate_klines(frame, self.config)
         duration_check = validation.loc[
             validation["Check"] == "Shortened candle durations"
         ].iloc[0]
@@ -453,12 +449,12 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             del parameters
             return rows
 
-        frame = collect_hourly_klines(
+        frame = collect_klines(
             "BTCUSDT",
             self.config,
             page_requester=requester,
         )
-        validation = validate_hourly_klines(frame, self.config)
+        validation = validate_klines(frame, self.config)
         window_check = validation.loc[
             validation["Check"] == "Close times outside the nominal candle window"
         ].iloc[0]

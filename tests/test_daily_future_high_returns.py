@@ -3,11 +3,9 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from tcc_crypto.daily_future_high_returns import (
-    calculate_future_high_returns,
-    load_future_high_return_config,
-    select_reproducible_symbols,
-)
+from tcc_crypto.analysis.future_high import select_reproducible_symbols
+from tcc_crypto.analysis.future_high_config import load_future_high_return_config
+from tcc_crypto.targets.future_high import calculate_future_high_returns
 
 
 def _prices() -> pd.DataFrame:

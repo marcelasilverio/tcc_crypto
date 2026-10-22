@@ -13,6 +13,7 @@ from uuid import uuid4
 import pandas as pd
 
 from tcc_crypto.collection.schema import KLINE_COLUMNS, _add_utc_columns
+from tcc_crypto.paths import PairOutputPaths
 
 
 def _atomic_write_json(path: Path, payload: Mapping[str, object]) -> None:
@@ -72,8 +73,3 @@ def _compress_partial_csv(paths: PairOutputPaths) -> None:
         temporary_path.rename(paths.raw_csv_gz)
     finally:
         temporary_path.unlink(missing_ok=True)
-
-
-from tcc_crypto.paths import PairOutputPaths as PairOutputPaths
-from tcc_crypto.paths import pair_output_path as pair_output_path
-from tcc_crypto.paths import pair_output_paths as pair_output_paths

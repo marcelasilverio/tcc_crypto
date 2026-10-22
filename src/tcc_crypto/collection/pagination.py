@@ -36,16 +36,6 @@ def collect_klines(
     )
 
 
-def collect_hourly_klines(
-    symbol: str,
-    config: CollectionConfig,
-    *,
-    page_requester: PageRequester | None = None,
-) -> pd.DataFrame:
-    """Backward-compatible alias for :func:`collect_klines`."""
-    return collect_klines(symbol, config, page_requester=page_requester)
-
-
 def iter_kline_pages(
     symbol: str,
     config: CollectionConfig,

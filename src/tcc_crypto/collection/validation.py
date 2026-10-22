@@ -24,15 +24,6 @@ def missing_kline_intervals(
     return expected.difference(observed)
 
 
-def missing_hourly_intervals(frame: pd.DataFrame) -> pd.DatetimeIndex:
-    """Return missing hourly openings for backward-compatible callers."""
-    if frame.empty:
-        return pd.DatetimeIndex([], tz="UTC")
-    observed = pd.DatetimeIndex(frame["open_time_utc"])
-    expected = pd.date_range(observed.min(), observed.max(), freq="1h")
-    return expected.difference(observed)
-
-
 def nonstandard_candle_durations(
     frame: pd.DataFrame,
     config: CollectionConfig | None = None,
@@ -171,14 +162,6 @@ def validate_klines(
         ),
     ]
     return pd.DataFrame(checks, columns=["Check", "Actual", "Expected", "Status"])
-
-
-def validate_hourly_klines(
-    frame: pd.DataFrame,
-    config: CollectionConfig,
-) -> pd.DataFrame:
-    """Backward-compatible alias for :func:`validate_klines`."""
-    return validate_klines(frame, config)
 
 
 def _assert_collection_complete(

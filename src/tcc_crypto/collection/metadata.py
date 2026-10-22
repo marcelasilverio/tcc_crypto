@@ -14,11 +14,11 @@ import pandas as pd
 
 from tcc_crypto.collection.config import CollectionConfig
 from tcc_crypto.collection.schema import _interval_spec
-from tcc_crypto.collection.storage import PairOutputPaths
 from tcc_crypto.collection.validation import (
     missing_kline_intervals,
     nonstandard_candle_durations,
 )
+from tcc_crypto.paths import PairOutputPaths
 from tcc_crypto.reporting.provenance import file_sha256 as _sha256_file
 from tcc_crypto.reporting.provenance import git_value
 

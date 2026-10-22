@@ -14,13 +14,10 @@ SOURCE_DIRECTORY = REPOSITORY_ROOT / "src"
 if str(SOURCE_DIRECTORY) not in sys.path:
     sys.path.insert(0, str(SOURCE_DIRECTORY))
 
-from tcc_crypto.binance_kline_collection import (  # noqa: E402
-    collect_klines,
-    load_collection_config,
-    missing_kline_intervals,
-    pair_output_paths,
-    validate_klines,
-)
+from tcc_crypto.collection.config import load_collection_config
+from tcc_crypto.collection.pagination import collect_klines
+from tcc_crypto.collection.validation import missing_kline_intervals, validate_klines
+from tcc_crypto.paths import pair_output_paths
 
 DAY_MS = 24 * 60 * 60 * 1000
 

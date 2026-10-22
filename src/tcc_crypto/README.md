@@ -66,8 +66,8 @@ outputs; entirely ineligible assets have empty result tables, not invented model
 
 `--overwrite` is required to replace derived artifacts, including workbooks.
 Collection retains its existing checkpoint/reuse behavior and raw immutability.
-The three legacy scripts delegate to the new commands. The pilot and grid scripts
-now require preparation first, making expensive execution boundaries explicit.
+Use the module commands above directly; the three legacy forwarding scripts
+have been removed. Model commands require preparation first.
 
 ## Artifact locations
 
@@ -116,7 +116,7 @@ Dates are ISO UTC text; missing values appear as blank cells. Excel contains cop
 of Python results, not a second implementation of the formulas. Export can be
 repeated independently of calculations and model training.
 
-## Scientific invariants and compatibility
+## Scientific invariants and public imports
 
 Internal gaps are filled before restricting the calculation period, matching the
 original builders. Leading/trailing dates are never synthesized. June 2019 remains
@@ -130,9 +130,20 @@ scaling are fitted inside each training window/fold. The pilot's original rollin
 schedule and the grid's one-observation gap remain distinct. Zero-valued SAR
 parameters remain provisional and explicitly marked for later verification.
 
-The historical flat modules re-export the domain implementations. They retain
-Python import compatibility, including legacy in-memory builders and writers.
-Tests that patch implementation internals now patch the new owning module.
+Import implementations from their owning layer, for example:
+
+```python
+from tcc_crypto.collection.pipeline import run_collection
+from tcc_crypto.features.daily import calculate_daily_features
+from tcc_crypto.targets.daily import build_next_day_d0_targets
+from tcc_crypto.modeling.pilot import run_default_svc_rolling_pilot
+```
+
+The historical flat modules, forwarding scripts, compatibility aliases and
+old descriptive packet/workflow wrappers have been removed. External code that
+used those imports must switch to the corresponding layer. Tests exercise the
+owning modules directly.
+
 Notebooks 14 and 15 call the shared stages and show intermediate results. Their
 outputs are cleared after migration; metadata and user kernel preferences are
 preserved. No expensive experiment was executed to regenerate notebook outputs.

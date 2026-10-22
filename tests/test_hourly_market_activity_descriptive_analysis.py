@@ -14,13 +14,13 @@ SOURCE_DIRECTORY = REPOSITORY_ROOT / "src"
 if str(SOURCE_DIRECTORY) not in sys.path:
     sys.path.insert(0, str(SOURCE_DIRECTORY))
 
-from tcc_crypto.hourly_market_activity_descriptive_analysis import (  # noqa: E402
+from tcc_crypto.analysis.hourly_activity import (
     ACTIVITY_FIELDS,
     activity_unit,
     describe_activity_extremes,
     describe_market_activity,
-    load_hourly_market_activity,
 )
+from tcc_crypto.data.exploratory import load_hourly_market_activity
 
 
 class HourlyMarketActivityDescriptiveAnalysisTests(unittest.TestCase):

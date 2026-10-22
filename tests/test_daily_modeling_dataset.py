@@ -7,11 +7,9 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from tcc_crypto.daily_features import fill_internal_daily_gaps
-from tcc_crypto.daily_modeling_dataset import (
-    build_next_day_d0_targets,
-    load_daily_modeling_dataset_config,
-)
+from tcc_crypto.data.config import load_daily_modeling_dataset_config
+from tcc_crypto.data.gaps import fill_internal_daily_gaps
+from tcc_crypto.targets.daily import build_next_day_d0_targets
 
 
 def _daily_values() -> pd.DataFrame:
@@ -36,9 +34,10 @@ def test_fills_only_internal_days_and_marks_imputed_rows() -> None:
     assert aligned.index[-1] == values.index[-1]
     assert aligned.loc["2019-06-02", "is_imputed"]
     assert aligned.loc["2019-06-02", "open"] == values.loc["2019-06-01", "open"]
-    assert aligned.loc["2019-06-02", "quote_asset_volume"] == values.loc[
-        "2019-06-01", "quote_asset_volume"
-    ]
+    assert (
+        aligned.loc["2019-06-02", "quote_asset_volume"]
+        == values.loc["2019-06-01", "quote_asset_volume"]
+    )
     assert aligned["is_imputed"].sum() == 1
 
 

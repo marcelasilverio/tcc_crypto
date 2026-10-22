@@ -358,8 +358,10 @@ inferred from this approval.
 ## Development-search implementation
 
 The development-only protocol is implemented in
-`src/tcc_crypto/daily_svm_grid_search.py` and exposed through
-`scripts/run_daily_svm_grid_search.py`. The executed educational walkthrough in
+`src/tcc_crypto/modeling/grid_search.py` and coordinated by
+`src/tcc_crypto/workflows/svm.py`. The command entrypoint is
+`python -m tcc_crypto.daily grid-search`; the former flat module and forwarding
+script were removed after migration to the domain layers. The executed educational walkthrough in
 `notebooks/15_binance_daily_svm_grid_search_walkthrough.ipynb` exposes the same
 implementation step by step. The implementation:
 
