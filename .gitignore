@@ -20,6 +20,5 @@ data/raw/*
 outputs/*
 !outputs/.gitkeep
 
-# Temporary workbook packets and rendered QA previews are reproducible.
-tmp/daily_feature_workbook_packets/
-tmp/daily_feature_workbook_qa/
+# Temporary research packets, render previews and local helper files stay local.
+tmp/

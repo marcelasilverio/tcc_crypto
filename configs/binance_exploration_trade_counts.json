@@ -1,0 +1,16 @@
+{
+  "analysis_id": "binance_trade_counts",
+  "base_url": "https://api.binance.com",
+  "quote_asset": "USDT",
+  "symbols": [],
+  "intervals": [
+    "1d"
+  ],
+  "spot_only": false,
+  "timeout_seconds": 30,
+  "max_retries": 6,
+  "max_workers": 8,
+  "limit": 1000,
+  "start_utc": "2017-01-01T00:00:00Z",
+  "end_policy": "previous_utc_day"
+}

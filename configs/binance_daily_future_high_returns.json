@@ -7,6 +7,10 @@
   "additional_symbol_count": 4,
   "random_seed": 20261002,
   "eligibility_rule": "observed_on_analysis_start",
-  "horizons_days": [0, 1, 2, 3],
-  "output_directory": "outputs/binance_daily_future_high_returns_2019H2_2026-09-01"
+  "horizons_days": [
+    0,
+    1,
+    2,
+    3
+  ]
 }

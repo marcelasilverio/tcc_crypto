@@ -14,6 +14,5 @@
     0.75
   ],
   "standard_deviation_ddof": 1,
-  "kurtosis_definition": "Fisher excess kurtosis with unbiased normalization",
-  "output_directory": "outputs/binance_hourly_market_activity_descriptive_analysis"
+  "kurtosis_definition": "Fisher excess kurtosis with unbiased normalization"
 }

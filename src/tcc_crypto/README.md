@@ -95,9 +95,10 @@ For custom legacy configurations, `output_directory` overrides the model-result
 base directory (with a symbol subdirectory), `feature_output_directory` overrides
 the feature base (with context and symbol), and `raw_directory` overrides the pilot
 raw input directory. Development gets its raw location from the collection config.
-Checked-in experiment configs use centralized defaults. Historical files are not
-moved. The historical notebook 13 retains separate `LEGACY_FEATURE_TABLES_DIR`
-outputs and its existing exploratory behavior.
+Checked-in experiment configs use centralized defaults. Recognized historical
+artifacts are relocated by the audited migration described in the
+[exploratory guide](EXPLORATION.md). Notebook 13 retains its full-history
+exploratory behavior through the new analysis workflow, separately from modeling.
 
 Every table has a `.metadata.json` sidecar containing schema, dtypes, UTC index,
 configuration, period, warm-up, raw/upstream checksums, execution time, revision

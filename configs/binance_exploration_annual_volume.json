@@ -1,0 +1,16 @@
+{
+  "analysis_id": "binance_annual_volume",
+  "base_url": "https://api.binance.com",
+  "quote_asset": "BTC",
+  "symbols": [],
+  "intervals": [
+    "1M"
+  ],
+  "spot_only": true,
+  "timeout_seconds": 30,
+  "max_retries": 6,
+  "max_workers": 20,
+  "limit": 1000,
+  "start_utc": "2017-01-01T00:00:00Z",
+  "end_policy": "execution_time"
+}

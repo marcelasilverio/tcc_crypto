@@ -44,3 +44,18 @@ python -m tcc_crypto.daily pilot
 The `paths` command is read-only. Preparation requires collected raw data; model
 commands require a prepared dataset. Use `--overwrite` explicitly to replace
 derived outputs. Historical artifacts remain in their original locations.
+
+## Exploratory analyses and notebooks
+
+All notebooks call reusable package stages and display intermediate results.
+See the [exploratory execution guide](src/tcc_crypto/EXPLORATION.md) for the
+analysis-to-function map, independent commands and historical artifact migration.
+
+```sh
+python -m tcc_crypto.explore hourly-prices paths --run-id example
+python -m tcc_crypto.explore hourly-prices calculate --run-id example
+python -m tcc_crypto.explore hourly-prices export --run-id example
+python -m tcc_crypto.migrate
+```
+
+Excel generation uses openpyxl, including native charts where required.

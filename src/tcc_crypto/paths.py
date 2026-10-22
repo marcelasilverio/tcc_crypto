@@ -186,22 +186,103 @@ def pair_output_path(
     return pair_output_paths(symbol, config, repository_root).workbook
 
 
-# Historical exploratory feature-selection reports remain separate from the
-# pilot/development datasets. These are compatibility locations, not defaults
-# for the independently executable modeling pipeline.
-LEGACY_FEATURE_TABLES_DIR: Final = Path(
-    "data/processed/binance/daily_features_silva_2026_v1"
-)
-FEATURE_ANALYSIS_FILES: Final = {
-    "manifest": "feature_manifest.csv",
-    "history": "selection_history.csv.gz",
-    "frequency": "selection_frequency.csv",
-    "windows": "window_summary.csv",
-    "figure": "mean_feature_selection_rate.png",
-    "workbook_manifest": "workbook_manifest.csv",
-    "metadata": RUN_METADATA_NAME,
-}
-FEATURE_WORKBOOK_PACKETS_DIR: Final = Path("tmp/daily_feature_workbook_packets")
-FEATURE_WORKBOOK_QA_DIR: Final = Path("tmp/daily_feature_workbook_qa")
-FEATURE_WORKBOOK_BUILDER: Final = Path("scripts/build_daily_feature_workbooks.mjs")
-LEGACY_FEATURE_TABLE_TEMPLATE: Final = "{symbol}_daily_features.csv.gz"
+# Exploratory artifacts use one explicit UTC execution identifier across stages.
+EXPLORATION_RAW_DIR: Final = Path("data/raw/binance/spot/exploration")
+EXPLORATION_WORKBOOKS_DIR: Final = Path("data/exploration/binance/spot")
+EXPLORATION_OUTPUTS_DIR: Final = Path("outputs/binance/spot")
+EXPLORATION_PROCESSED_DIR: Final = Path("data/processed/binance/spot")
+MIGRATION_MANIFEST_DIR: Final = Path("outputs/migrations")
+ANALYSIS_TABLE_SUFFIX: Final = ".csv.gz"
+ANALYSIS_INPUTS_NAME: Final = "inputs.json"
+ANALYSIS_RESULTS_NAME: Final = "results.json"
+ANALYSIS_WORKBOOK_NAME: Final = "analysis.xlsx"
+
+
+def reject_legacy_analysis_paths(payload: dict) -> None:
+    """Require migration instead of silently writing to historical directories."""
+    obsolete = {
+        "output_directory",
+        "analysis_output_directory",
+        "packet_directory",
+    } & payload.keys()
+    if obsolete:
+        raise ValueError(
+            f"Legacy analysis path keys {sorted(obsolete)} must be removed. "
+            "Use 'python -m tcc_crypto.migrate' to inventory and migrate historical outputs."
+        )
+
+
+def analysis_output_directory(root: Path, analysis: str, analysis_id: str) -> Path:
+    return root / EXPLORATION_OUTPUTS_DIR / analysis / analysis_id
+
+
+def new_run_id() -> str:
+    from datetime import datetime, timezone
+
+    return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+
+
+@dataclass(frozen=True)
+class ExplorationPaths:
+    """Resolved locations for an exploratory execution; construction does no I/O."""
+
+    root: Path
+    analysis: str
+    analysis_id: str
+    run_id: str
+    interval: str
+
+    def __post_init__(self) -> None:
+        for value in (self.analysis, self.analysis_id, self.run_id, self.interval):
+            if (
+                not value
+                or Path(value).name != value
+                or value in (".", "..")
+                or "\\" in value
+            ):
+                raise ValueError("Analysis identifiers must be single path components.")
+        object.__setattr__(self, "root", self.root.resolve())
+
+    @property
+    def raw(self) -> Path:
+        return self.root / EXPLORATION_RAW_DIR / self.analysis / self.run_id
+
+    @property
+    def tables(self) -> Path:
+        return (
+            self.root
+            / EXPLORATION_PROCESSED_DIR
+            / self.interval
+            / "analyses"
+            / self.analysis
+            / self.analysis_id
+            / self.run_id
+        )
+
+    @property
+    def workbooks(self) -> Path:
+        return (
+            self.root
+            / EXPLORATION_WORKBOOKS_DIR
+            / self.analysis
+            / self.analysis_id
+            / self.run_id
+        )
+
+    @property
+    def outputs(self) -> Path:
+        return (
+            analysis_output_directory(self.root, self.analysis, self.analysis_id)
+            / self.run_id
+        )
+
+    def table(self, name: str) -> Path:
+        if Path(name).name != name or name in (".", ".."):
+            raise ValueError("Table name must be a single path component.")
+        return self.tables / (name + ANALYSIS_TABLE_SUFFIX)
+
+    def inventory(self) -> dict[str, str]:
+        return {
+            name: str(getattr(self, name))
+            for name in ("raw", "tables", "workbooks", "outputs")
+        }

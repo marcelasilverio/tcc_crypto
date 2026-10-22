@@ -2,7 +2,7 @@
   "collection_id": "binance_selected_usdt_hourly_2017_2026-09-01",
   "market": "Binance Spot",
   "quote_asset": "USDT",
-  "selection_source": "data/exploration/binance_spot_usdt_quote_pair_trade_counts.xlsx",
+  "selection_source": "data/exploration/binance/spot/trade-counts/binance_trade_counts/history/legacy/binance_spot_usdt_quote_pair_trade_counts/binance_spot_usdt_quote_pair_trade_counts.xlsx",
   "selection_snapshot_end_utc": "2026-09-01T23:59:59.999Z",
   "selection_measure": "Total Binance number_of_trades over available daily klines",
   "selection_rule": "Top 40 pairs with current status TRADING after excluding stablecoin base assets",

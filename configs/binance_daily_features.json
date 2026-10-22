@@ -10,7 +10,12 @@
     "leading_fill": false,
     "trailing_fill": false
   },
-  "price_fields": ["open", "high", "low", "close"],
+  "price_fields": [
+    "open",
+    "high",
+    "low",
+    "close"
+  ],
   "volume_field": "quote_asset_volume",
   "momentum_period": 10,
   "rsi_period": 14,
@@ -46,14 +51,19 @@
     "chaikin_ad",
     "obv"
   ],
-  "features_requiring_verification": ["parabolic_sar"],
-  "analysis_output_directory": "outputs/binance_daily_feature_analysis",
+  "features_requiring_verification": [
+    "parabolic_sar"
+  ],
   "feature_selection": {
     "enabled": true,
     "variance_threshold": 0.01,
     "correlation_threshold": 0.8,
     "correlation_method": "pearson",
-    "training_window_sizes": [60, 75, 90],
+    "training_window_sizes": [
+      60,
+      75,
+      90
+    ],
     "window_type": "rolling",
     "refit_frequency": "every_prediction",
     "prediction_step_observations": 1,

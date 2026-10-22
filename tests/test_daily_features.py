@@ -55,7 +55,7 @@ def test_loads_approved_daily_feature_configuration() -> None:
         "data/processed/binance/spot/1d/features"
     )
     assert config.analysis_output_directory == Path(
-        "outputs/binance_daily_feature_analysis"
+        "outputs/binance/spot/feature-selection/binance_daily_silva_2026_features_v1"
     )
 
 

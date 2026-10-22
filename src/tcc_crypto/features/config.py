@@ -11,7 +11,11 @@ from tcc_crypto.features.catalog import ACTIVE_FEATURES
 from tcc_crypto.modeling.config import (
     DailyFeatureSelectionConfig as DailyFeatureSelectionConfig,
 )
-from tcc_crypto.paths import DAILY_FEATURES_DIR
+from tcc_crypto.paths import (
+    DAILY_FEATURES_DIR,
+    EXPLORATION_OUTPUTS_DIR,
+    reject_legacy_analysis_paths,
+)
 
 
 @dataclass(frozen=True)
@@ -43,6 +47,7 @@ def load_daily_feature_config(path: Path) -> DailyFeatureConfig:
     """Load and validate the daily feature configuration."""
     with path.open(encoding="utf-8") as config_file:
         payload = json.load(config_file)
+    reject_legacy_analysis_paths(payload)
 
     if payload["interval"] != "1d":
         raise ValueError("Daily features require the 1d interval.")
@@ -122,7 +127,9 @@ def load_daily_feature_config(path: Path) -> DailyFeatureConfig:
         feature_output_directory=Path(
             payload.get("feature_output_directory", DAILY_FEATURES_DIR)
         ),
-        analysis_output_directory=Path(payload["analysis_output_directory"]),
+        analysis_output_directory=EXPLORATION_OUTPUTS_DIR
+        / "feature-selection"
+        / str(payload["feature_set_id"]),
         feature_selection=DailyFeatureSelectionConfig(
             variance_threshold=0.01,
             correlation_threshold=0.8,

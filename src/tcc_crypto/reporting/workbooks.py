@@ -23,6 +23,8 @@ def _excel_value(value: object) -> object:
         return None
     if isinstance(value, (dict, list, tuple)):
         return json.dumps(value, default=str)
+    if isinstance(value, Path):
+        return str(value)
     if isinstance(value, pd.Timestamp):
         return value.isoformat()
     if isinstance(value, np.generic):
@@ -76,11 +78,18 @@ def write_workbook(
                 default=12,
             )
             sheet.column_dimensions[get_column_letter(column)].width = min(
-                max(length + 2, 16), 62
+                max(math.ceil(length * 1.1) + 4, 16), 62
             )
         if title in ("Summary", "Definitions", "Configuration"):
             for row in range(2, sheet.max_row + 1):
-                sheet.row_dimensions[row].height = 46
+                lines = max(
+                    math.ceil(
+                        len(str(cell.value or ""))
+                        / max(sheet.column_dimensions[cell.column_letter].width - 2, 1)
+                    )
+                    for cell in sheet[row]
+                )
+                sheet.row_dimensions[row].height = max(32, min(409, 15 * lines + 8))
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f".{path.stem}.{uuid4().hex}.tmp.xlsx")
     try:
