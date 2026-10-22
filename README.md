@@ -26,3 +26,21 @@ the required directories.
 Documentation navigation begins at [`docs/index.md`](docs/index.md). The bundle
 uses Open Knowledge Format v0.2 frontmatter, provenance, authority, and index
 conventions.
+
+## Daily pipeline
+
+The daily workflow is organized into collection, data preparation, features,
+targets, modeling, reporting, and workflow packages. See the
+[implementation and execution guide](src/tcc_crypto/README.md) for the location
+of each formula, independent stage commands, artifact constants, and compatibility.
+
+```sh
+python -m pip install -e ".[dev]"
+python -m tcc_crypto.daily paths --profile pilot
+python -m tcc_crypto.daily prepare --profile pilot
+python -m tcc_crypto.daily pilot
+```
+
+The `paths` command is read-only. Preparation requires collected raw data; model
+commands require a prepared dataset. Use `--overwrite` explicitly to replace
+derived outputs. Historical artifacts remain in their original locations.

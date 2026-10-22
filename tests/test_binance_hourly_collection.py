@@ -67,9 +67,7 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.config_path = (
-            REPOSITORY_ROOT
-            / "configs"
-            / "binance_selected_usdt_hourly_collection.json"
+            REPOSITORY_ROOT / "configs" / "binance_selected_usdt_hourly_collection.json"
         )
         cls.config = load_collection_config(cls.config_path)
 
@@ -307,10 +305,10 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             with self.subTest(error=type(error).__name__):
                 with (
                     patch(
-                        "tcc_crypto.binance_hourly_collection.urlopen",
+                        "tcc_crypto.collection.client.urlopen",
                         side_effect=[error, BytesIO(b"[]")],
                     ) as mocked_urlopen,
-                    patch("tcc_crypto.binance_hourly_collection.time.sleep"),
+                    patch("tcc_crypto.collection.client.time.sleep"),
                 ):
                     result = request_json(
                         "https://example.invalid/klines",
@@ -341,11 +339,11 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
         with (
             tempfile.TemporaryDirectory() as directory,
             patch(
-                "tcc_crypto.binance_hourly_collection.collect_symbol_outputs",
+                "tcc_crypto.collection.pipeline.collect_symbol_outputs",
                 side_effect=fake_collect,
             ),
             patch(
-                "tcc_crypto.binance_hourly_collection._write_manifest",
+                "tcc_crypto.collection.pipeline._write_manifest",
                 return_value=Path(directory) / "manifest.xlsx",
             ) as mocked_manifest,
         ):
@@ -376,7 +374,9 @@ class BinanceHourlyCollectionTests(unittest.TestCase):
             end_time_utc=end,
             output_directory=Path("raw"),
         )
-        rows = [make_kline(config.start_time_ms + hour * 3_600_000) for hour in range(24)]
+        rows = [
+            make_kline(config.start_time_ms + hour * 3_600_000) for hour in range(24)
+        ]
 
         def requester(parameters: dict[str, object]) -> object:
             del parameters

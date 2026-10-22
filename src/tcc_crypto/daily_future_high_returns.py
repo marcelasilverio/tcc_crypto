@@ -15,6 +15,9 @@ from typing import Iterable, Sequence
 
 import pandas as pd
 
+from tcc_crypto.data.loaders import find_symbol_csv as find_symbol_csv
+from tcc_crypto.data.time import _parse_utc_timestamp
+
 
 @dataclass(frozen=True)
 class FutureHighReturnConfig:
@@ -30,13 +33,6 @@ class FutureHighReturnConfig:
     eligibility_rule: str
     horizons_days: tuple[int, ...]
     output_directory: Path
-
-
-def _parse_utc_timestamp(value: object, field_name: str) -> pd.Timestamp:
-    timestamp = pd.Timestamp(value)
-    if timestamp.tzinfo is None:
-        raise ValueError(f"{field_name} must include an explicit UTC offset.")
-    return timestamp.tz_convert("UTC")
 
 
 def load_future_high_return_config(path: Path) -> FutureHighReturnConfig:
@@ -87,16 +83,6 @@ def load_collection_symbols(path: Path) -> tuple[str, ...]:
     if len(symbols) != len(set(symbols)):
         raise ValueError("The collection configuration contains duplicate symbols.")
     return symbols
-
-
-def find_symbol_csv(raw_directory: Path, symbol: str) -> Path:
-    """Resolve the single immutable daily CSV for a symbol."""
-    matches = sorted((raw_directory / symbol).glob(f"{symbol}_1d_*.csv.gz"))
-    if len(matches) != 1:
-        raise FileNotFoundError(
-            f"Expected one daily CSV for {symbol}, found {len(matches)}."
-        )
-    return matches[0]
 
 
 def load_daily_open_high(path: Path) -> pd.DataFrame:

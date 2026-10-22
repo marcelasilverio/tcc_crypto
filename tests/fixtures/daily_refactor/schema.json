@@ -1,0 +1,314 @@
+{
+  "aligned": {
+    "dtypes": {
+      "open": "float64",
+      "high": "float64",
+      "low": "float64",
+      "close": "float64",
+      "quote_asset_volume": "float64",
+      "is_imputed": "bool"
+    },
+    "objects": {}
+  },
+  "features": {
+    "dtypes": {
+      "r1": "float64",
+      "r2": "float64",
+      "r3": "float64",
+      "r4": "float64",
+      "r5": "float64",
+      "r6": "float64",
+      "r7": "float64",
+      "r8": "float64",
+      "r9": "float64",
+      "r10": "float64",
+      "r11": "float64",
+      "r12": "float64",
+      "r13": "float64",
+      "r14": "float64",
+      "r15": "float64",
+      "momentum_10": "float64",
+      "rsi_14": "float64",
+      "parabolic_sar": "float64",
+      "atr_14": "float64",
+      "true_range": "float64",
+      "chaikin_ad": "float64",
+      "obv": "float64"
+    },
+    "objects": {}
+  },
+  "targets": {
+    "dtypes": {
+      "target_date_utc": "datetime64[ns, UTC]",
+      "next_day_open": "float64",
+      "next_day_high": "float64",
+      "next_day_d0": "float64",
+      "target_is_imputed": "boolean",
+      "target_2pct": "Int8",
+      "target_3pct": "Int8",
+      "target_4pct": "Int8"
+    },
+    "objects": {}
+  },
+  "pilot_predictions": {
+    "dtypes": {
+      "target": "object",
+      "window_size": "int64",
+      "training_start_utc": "datetime64[ns, UTC]",
+      "training_end_utc": "datetime64[ns, UTC]",
+      "prediction_time_utc": "datetime64[ns, UTC]",
+      "actual": "int64",
+      "training_negative": "int64",
+      "training_positive": "int64",
+      "selected_feature_count": "int64",
+      "selected_features": "object",
+      "status": "object",
+      "prediction": "int64",
+      "decision_score": "float64",
+      "in_sample_accuracy": "float64",
+      "in_sample_precision": "float64",
+      "in_sample_recall": "float64",
+      "in_sample_f1": "float64"
+    },
+    "objects": {
+      "target": {},
+      "selected_features": {},
+      "status": {}
+    }
+  },
+  "pilot_summary": {
+    "dtypes": {
+      "target": "object",
+      "window_size": "int64",
+      "prediction_count": "int64",
+      "successful_prediction_count": "int64",
+      "single_class_count": "int64",
+      "out_of_sample_accuracy": "float64",
+      "out_of_sample_precision": "float64",
+      "out_of_sample_recall": "float64",
+      "out_of_sample_f1": "float64",
+      "true_negative": "int64",
+      "false_positive": "int64",
+      "false_negative": "int64",
+      "true_positive": "int64",
+      "mean_in_sample_accuracy": "float64",
+      "mean_in_sample_precision": "float64",
+      "mean_in_sample_recall": "float64",
+      "mean_in_sample_f1": "float64"
+    },
+    "objects": {
+      "target": {}
+    }
+  },
+  "grid_eligibility": {
+    "dtypes": {
+      "symbol": "object",
+      "target": "object",
+      "window_size": "int64",
+      "status": "object",
+      "reason": "object",
+      "complete_labeled_rows": "int64",
+      "negative_count": "int64",
+      "positive_count": "int64",
+      "first_feature_time_utc": "datetime64[ns, UTC]",
+      "last_feature_time_utc": "datetime64[ns, UTC]",
+      "first_observed_utc": "datetime64[ns]",
+      "last_observed_utc": "datetime64[ns]",
+      "observed_feature_rows": "int64",
+      "feature_imputed_rows": "int64",
+      "target_imputed_rows": "int64",
+      "training_fold_class_counts": "object",
+      "final_test_eligibility_status": "object",
+      "first_permitted_final_test_feature_utc": "datetime64[ns]",
+      "last_permitted_final_test_feature_utc": "datetime64[ns]"
+    },
+    "objects": {
+      "symbol": {},
+      "target": {},
+      "status": {},
+      "reason": {},
+      "training_fold_class_counts": {},
+      "final_test_eligibility_status": {}
+    }
+  },
+  "grid_fold_results": {
+    "dtypes": {
+      "symbol": "object",
+      "target": "object",
+      "window_size": "int64",
+      "candidate_order": "int64",
+      "fold": "int64",
+      "kernel": "object",
+      "C": "float64",
+      "gamma": "object",
+      "degree": "object",
+      "coef0": "object",
+      "class_weight": "object",
+      "training_start_utc": "datetime64[ns, UTC]",
+      "training_end_utc": "datetime64[ns, UTC]",
+      "validation_start_utc": "datetime64[ns, UTC]",
+      "validation_end_utc": "datetime64[ns, UTC]",
+      "training_negative": "int64",
+      "training_positive": "int64",
+      "validation_negative": "int64",
+      "validation_positive": "int64",
+      "selected_feature_count": "int64",
+      "selected_features": "object",
+      "accuracy": "float64",
+      "precision": "float64",
+      "recall": "float64",
+      "f1": "float64",
+      "balanced_accuracy": "float64",
+      "roc_auc": "float64",
+      "average_precision": "float64",
+      "metric_diagnostic": "object",
+      "status": "object",
+      "error": "object"
+    },
+    "objects": {
+      "symbol": {},
+      "target": {},
+      "kernel": {},
+      "gamma": {
+        "pd.NA": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "degree": {
+        "pd.NA": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "coef0": {
+        "pd.NA": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "class_weight": {
+        "None": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "selected_features": {},
+      "metric_diagnostic": {},
+      "status": {},
+      "error": {}
+    }
+  },
+  "grid_candidate_results": {
+    "dtypes": {
+      "symbol": "object",
+      "target": "object",
+      "window_size": "int64",
+      "candidate_order": "int64",
+      "selection_rank": "int64",
+      "kernel": "object",
+      "C": "float64",
+      "gamma": "object",
+      "degree": "object",
+      "coef0": "object",
+      "class_weight": "object",
+      "successful_fold_count": "int64",
+      "failed_fold_count": "int64",
+      "mean_accuracy": "float64",
+      "mean_precision": "float64",
+      "mean_recall": "float64",
+      "mean_f1": "float64",
+      "mean_balanced_accuracy": "float64",
+      "mean_roc_auc": "float64",
+      "mean_average_precision": "float64",
+      "f1_standard_deviation": "float64"
+    },
+    "objects": {
+      "symbol": {},
+      "target": {},
+      "kernel": {},
+      "gamma": {
+        "pd.NA": [
+          0,
+          1
+        ]
+      },
+      "degree": {
+        "pd.NA": [
+          0,
+          1
+        ]
+      },
+      "coef0": {
+        "pd.NA": [
+          0,
+          1
+        ]
+      },
+      "class_weight": {
+        "None": [
+          0,
+          1
+        ]
+      }
+    }
+  },
+  "grid_selected_configurations": {
+    "dtypes": {
+      "symbol": "object",
+      "target": "object",
+      "window_size": "int64",
+      "candidate_order": "int64",
+      "selection_rank": "int64",
+      "kernel": "object",
+      "C": "float64",
+      "gamma": "object",
+      "degree": "object",
+      "coef0": "object",
+      "class_weight": "object",
+      "successful_fold_count": "int64",
+      "failed_fold_count": "int64",
+      "mean_accuracy": "float64",
+      "mean_precision": "float64",
+      "mean_recall": "float64",
+      "mean_f1": "float64",
+      "mean_balanced_accuracy": "float64",
+      "mean_roc_auc": "float64",
+      "mean_average_precision": "float64",
+      "f1_standard_deviation": "float64"
+    },
+    "objects": {
+      "symbol": {},
+      "target": {},
+      "kernel": {},
+      "gamma": {
+        "None": [
+          0
+        ]
+      },
+      "degree": {
+        "None": [
+          0
+        ]
+      },
+      "coef0": {
+        "None": [
+          0
+        ]
+      },
+      "class_weight": {
+        "None": [
+          0
+        ]
+      }
+    }
+  }
+}

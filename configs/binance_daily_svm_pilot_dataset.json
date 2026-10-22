@@ -2,7 +2,6 @@
   "dataset_id": "btc_daily_svm_pilot_2019H2",
   "feature_config": "configs/binance_daily_features.json",
   "symbol": "BTCUSDT",
-  "raw_directory": "data/raw/binance/spot/1d",
   "warmup_start_utc": "2019-06-01T00:00:00Z",
   "sample_start_utc": "2019-07-01T00:00:00Z",
   "sample_end_utc": "2019-12-31T00:00:00Z",
@@ -20,6 +19,5 @@
     "pipeline_position": "after_feature_selection"
   },
   "evaluation_metrics": ["accuracy", "precision", "recall", "f1"],
-  "model_training_status": "approved_default_pilot",
-  "output_directory": "outputs/btc_daily_svm_pilot_2019H2"
+  "model_training_status": "approved_default_pilot"
 }

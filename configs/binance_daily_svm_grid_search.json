@@ -145,6 +145,5 @@
   "probability_estimates": false,
   "score_source": "decision_function",
   "random_shuffle": false,
-  "execution_status": "approved_for_implementation",
-  "output_directory": "outputs/binance_daily_svm_temporal_grid_search_v1"
+  "execution_status": "approved_for_implementation"
 }

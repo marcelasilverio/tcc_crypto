@@ -47,7 +47,6 @@
     "obv"
   ],
   "features_requiring_verification": ["parabolic_sar"],
-  "feature_output_directory": "data/processed/binance/daily_features_silva_2026_v1",
   "analysis_output_directory": "outputs/binance_daily_feature_analysis",
   "feature_selection": {
     "enabled": true,

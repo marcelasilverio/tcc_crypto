@@ -27,12 +27,10 @@ def _daily_values(periods: int = 20) -> pd.DataFrame:
         {
             "open": opens,
             "high": [
-                max(open_price, close) + 2.0
-                for open_price, close in zip(opens, closes)
+                max(open_price, close) + 2.0 for open_price, close in zip(opens, closes)
             ],
             "low": [
-                min(open_price, close) - 1.0
-                for open_price, close in zip(opens, closes)
+                min(open_price, close) - 1.0 for open_price, close in zip(opens, closes)
             ],
             "close": closes,
             "quote_asset_volume": [1_000.0 + 10.0 * position for position in positions],
@@ -54,7 +52,7 @@ def test_loads_approved_daily_feature_configuration() -> None:
     assert config.parabolic_sar_verification_required is True
     assert config.features_requiring_verification == ("parabolic_sar",)
     assert config.feature_output_directory == Path(
-        "data/processed/binance/daily_features_silva_2026_v1"
+        "data/processed/binance/spot/1d/features"
     )
     assert config.analysis_output_directory == Path(
         "outputs/binance_daily_feature_analysis"
@@ -70,7 +68,9 @@ def test_calculates_price_features_from_current_and_past_rows() -> None:
         math.log(values.iloc[position]["close"] / values.iloc[position - 1]["close"])
     )
     assert features.iloc[position]["r4"] == pytest.approx(
-        math.log(values.iloc[position - 3]["close"] / values.iloc[position - 4]["close"])
+        math.log(
+            values.iloc[position - 3]["close"] / values.iloc[position - 4]["close"]
+        )
     )
     assert features.iloc[position]["r6"] == pytest.approx(
         math.log(values.iloc[position]["high"] / values.iloc[position - 1]["open"])
@@ -96,8 +96,7 @@ def test_uses_quote_asset_volume_for_volume_features() -> None:
     )
     assert features.iloc[0]["obv"] == values.iloc[0]["quote_asset_volume"]
     assert features.iloc[1]["obv"] == pytest.approx(
-        values.iloc[0]["quote_asset_volume"]
-        + (-values.iloc[1]["quote_asset_volume"])
+        values.iloc[0]["quote_asset_volume"] + (-values.iloc[1]["quote_asset_volume"])
     )
 
 
