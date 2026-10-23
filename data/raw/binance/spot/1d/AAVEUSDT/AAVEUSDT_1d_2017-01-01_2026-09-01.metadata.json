@@ -1,0 +1,113 @@
+{
+  "metadata": {
+    "Canonical raw CSV SHA-256": "16d7b64d006d5a874b6e68da7b70731b23b68a6df66255253a54136682afc6e0",
+    "Canonical raw format": "gzip-compressed CSV with Binance decimal text preserved",
+    "Code revision": "a4dcc0a35c28a471c2c64a4052d4f9eedefb0652",
+    "Collection ID": "binance_selected_usdt_daily_2017_2026-09-01",
+    "Collection timestamp (UTC)": "2026-09-20T19:14:05.770081+00:00",
+    "Excel role": "Derived human-review copy; numeric cells use Excel floating point",
+    "First observed open (UTC)": "2020-10-15T00:00:00+00:00",
+    "Interval": "1d",
+    "Last observed close (UTC)": "2026-09-01T23:59:59.999000+00:00",
+    "Market": "Binance Spot",
+    "Missing days within observed span": 0,
+    "Observed 1d klines": 2148,
+    "Python version": "3.11.15",
+    "Quote asset": "USDT",
+    "Requested end (UTC)": "2026-09-01T23:59:59.999000+00:00",
+    "Requested start (UTC)": "2017-01-01T00:00:00+00:00",
+    "Selection measure": "Total Binance number_of_trades over available daily klines",
+    "Selection rule": "Top 40 pairs with current status TRADING after excluding stablecoin base assets",
+    "Selection snapshot end (UTC)": "2026-09-01T23:59:59.999000+00:00",
+    "Selection source": "data/exploration/binance_spot_usdt_quote_pair_trade_counts.xlsx",
+    "Selection source SHA-256": "9da47d82b1458fc32f7ab1a9ac09ecf94a5e2eabd2f653697b3718346ae30454",
+    "Shortened candle durations": 0,
+    "Source endpoint": "https://data-api.binance.vision/api/v3/klines",
+    "Timezone": "UTC",
+    "Trading pair": "AAVEUSDT",
+    "openpyxl version": "3.1.5",
+    "pandas version": "3.0.2"
+  },
+  "raw_csv_sha256": "16d7b64d006d5a874b6e68da7b70731b23b68a6df66255253a54136682afc6e0",
+  "validation": [
+    {
+      "Actual": 2148,
+      "Check": "Rows returned",
+      "Expected": ">= 1",
+      "Status": "OK"
+    },
+    {
+      "Actual": 0,
+      "Check": "Duplicate open timestamps",
+      "Expected": 0,
+      "Status": "OK"
+    },
+    {
+      "Actual": 0,
+      "Check": "Non-increasing timestamp transitions",
+      "Expected": 0,
+      "Status": "OK"
+    },
+    {
+      "Actual": 0,
+      "Check": "Open timestamps off the UTC day",
+      "Expected": 0,
+      "Status": "OK"
+    },
+    {
+      "Actual": 0,
+      "Check": "Close times outside the nominal candle window",
+      "Expected": 0,
+      "Status": "OK"
+    },
+    {
+      "Actual": 0,
+      "Check": "Shortened candle durations",
+      "Expected": 0,
+      "Status": "OK"
+    },
+    {
+      "Actual": 0,
+      "Check": "Rows before requested start",
+      "Expected": 0,
+      "Status": "OK"
+    },
+    {
+      "Actual": 0,
+      "Check": "Rows after requested end",
+      "Expected": 0,
+      "Status": "OK"
+    },
+    {
+      "Actual": 0,
+      "Check": "Non-positive OHLC prices",
+      "Expected": 0,
+      "Status": "OK"
+    },
+    {
+      "Actual": 0,
+      "Check": "OHLC consistency violations",
+      "Expected": 0,
+      "Status": "OK"
+    },
+    {
+      "Actual": 0,
+      "Check": "Rows with negative volume",
+      "Expected": 0,
+      "Status": "OK"
+    },
+    {
+      "Actual": 0,
+      "Check": "Rows with negative trade count",
+      "Expected": 0,
+      "Status": "OK"
+    },
+    {
+      "Actual": 0,
+      "Check": "Missing days within observed span",
+      "Expected": 0,
+      "Status": "OK"
+    }
+  ],
+  "workbook_sha256": "99b27ef5ce028f21e3288db5c38194e8bb48a69db53eb25937c6ccf07ed795ef"
+}

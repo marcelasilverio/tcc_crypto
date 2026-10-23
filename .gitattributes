@@ -1,0 +1,5 @@
+# Preserve generated binary artifacts without text conversion or whitespace checks.
+*.pdf binary
+*.xlsx binary
+*.png binary
+*.gz binary

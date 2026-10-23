@@ -1,0 +1,513 @@
+{
+  "checksums": {
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/svm_final/binance_daily_svm_walk_forward_v1/ETHUSDT/asset_eligibility.csv": "c3614e5550774e625b241d40040f08225faa77941c145d0d614d0f5f6e1ff493",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/svm_final/binance_daily_svm_walk_forward_v1/ETHUSDT/classification_metrics.csv": "2eedc494d0d4c8c109a1be96de71343fbe96d120008f2373710bbaea62345e0e",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/svm_final/binance_daily_svm_walk_forward_v1/ETHUSDT/configuration_snapshot.json": "e00407cae9328123ebbae939a097b41b5a47c20ccbf47ccbf294643394627ee9",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/svm_final/binance_daily_svm_walk_forward_v1/ETHUSDT/dated_predictions.csv.gz": "7a45691b1055c433f8fe6f1da78d537e55eb4123c8a1f24fbfbc379e8e8afea6",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/svm_final/binance_daily_svm_walk_forward_v1/ETHUSDT/frozen_configurations.csv": "2c6116dba9bfc44cdf26d3496e57ac183d481c82206f1afd04d9d7afa2e7264e",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/svm_final/binance_daily_svm_walk_forward_v1/ETHUSDT/precision_recall_curve_points.csv.gz": "040b78bd907d8150f8b5077093f494956880b35c17ab20ad998fe489a7cfdf99",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/svm_final/binance_daily_svm_walk_forward_v1/ETHUSDT/precision_recall_curves.png": "f6b1c0bf28023c717de34de1f746a7e3010526057fc54a8874197a5bbc557ca9",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/svm_final/binance_daily_svm_walk_forward_v1/ETHUSDT/roc_curve_points.csv.gz": "e40fceb2969b1a8e7b0f7872b43c474bc8ccbdbe81dd289ee55cab28bb4b933d",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/svm_final/binance_daily_svm_walk_forward_v1/ETHUSDT/roc_curves.png": "8438815bcf7dcd568e941c1a54131779d1faaf316333dc3661d15065d91e3e02",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/svm_final/binance_daily_svm_walk_forward_v1/ETHUSDT/svm_results.xlsx": "cad49bb63f445941ccd9dc8e1d791b172aa19917840eaac1ffe5cfd40975968f"
+  },
+  "code_revision": "72d9c164d3b75a02eeb13c7ca93c28961331fc0b",
+  "comparison_models": [
+    "tuned_svc",
+    "default_svc",
+    "always_negative",
+    "training_class_frequency"
+  ],
+  "configuration": {
+    "development": {
+      "configuration_sha256": {
+        "/Users/marcelapsilverio/projetos/tcc_crypto/configs/binance_daily_features.json": "35e37336647f1bf3d933f691a8d39d56aa4c89064548b6aa1bc5e41f31eab53e",
+        "/Users/marcelapsilverio/projetos/tcc_crypto/configs/binance_daily_svm_grid_search.json": "7c0f88c90e01a8943474efa9dccd51413a3d984123ca6fe41ec71992babfbab6",
+        "/Users/marcelapsilverio/projetos/tcc_crypto/configs/binance_selected_usdt_daily_collection.json": "b1ec42a73d7e2a0aa1b912845e3b2e84b45c9874999bb0f1ad44070c62e901c4"
+      },
+      "data": {
+        "context_id": "binance_daily_svm_temporal_grid_search_v1",
+        "require_warmup_start": false,
+        "sample_end_utc": "2024-12-30 00:00:00+00:00",
+        "sample_start_utc": "2019-07-01 00:00:00+00:00",
+        "symbol": "ETHUSDT",
+        "target_thresholds": [
+          0.02,
+          0.03,
+          0.04
+        ],
+        "warmup_start_utc": "2019-06-01 00:00:00+00:00"
+      },
+      "features": {
+        "active_features": [
+          "r1",
+          "r2",
+          "r3",
+          "r4",
+          "r5",
+          "r6",
+          "r7",
+          "r8",
+          "r9",
+          "r10",
+          "r11",
+          "r12",
+          "r13",
+          "r14",
+          "r15",
+          "momentum_10",
+          "rsi_14",
+          "parabolic_sar",
+          "atr_14",
+          "true_range",
+          "chaikin_ad",
+          "obv"
+        ],
+        "analysis_output_directory": "outputs/binance/spot/feature-selection/binance_daily_silva_2026_features_v1",
+        "atr_period": 14,
+        "collection_config": "configs/binance_selected_usdt_daily_collection.json",
+        "feature_output_directory": "data/processed/binance/spot/1d/features",
+        "feature_selection": {
+          "correlation_method": "pearson",
+          "correlation_threshold": 0.8,
+          "fit_scope": "training_only",
+          "prediction_step_observations": 1,
+          "refit_frequency": "every_prediction",
+          "training_window_sizes": [
+            60,
+            75,
+            90
+          ],
+          "variance_threshold": 0.01,
+          "window_type": "rolling"
+        },
+        "feature_set_id": "binance_daily_silva_2026_features_v1",
+        "features_requiring_verification": [
+          "parabolic_sar"
+        ],
+        "imputation_marker": "is_imputed",
+        "interval": "1d",
+        "missing_data_policy": "forward_fill_internal",
+        "momentum_period": 10,
+        "parabolic_sar_acceleration": 0.0,
+        "parabolic_sar_maximum": 0.0,
+        "parabolic_sar_verification_required": true,
+        "price_fields": [
+          "open",
+          "high",
+          "low",
+          "close"
+        ],
+        "rsi_period": 14,
+        "time_zone": "UTC",
+        "volume_field": "quote_asset_volume"
+      },
+      "model": {
+        "candidate_count": 186,
+        "candidate_symbols": [
+          "BTCUSDT",
+          "FLOKIUSDT",
+          "ETHUSDT",
+          "BONKUSDT",
+          "SOLUSDT",
+          "XRPUSDT",
+          "SHIBUSDT",
+          "DOGEUSDT",
+          "BNBUSDT",
+          "ADAUSDT",
+          "LTCUSDT",
+          "PEPEUSDT",
+          "SUIUSDT",
+          "LINKUSDT",
+          "AVAXUSDT",
+          "DOTUSDT",
+          "TRXUSDT",
+          "WIFUSDT",
+          "NEARUSDT",
+          "NEIROUSDT",
+          "AAVEUSDT",
+          "WLDUSDT",
+          "XLMUSDT",
+          "ZECUSDT",
+          "FILUSDT",
+          "BCHUSDT",
+          "LUNAUSDT",
+          "UNIUSDT",
+          "GALAUSDT",
+          "FETUSDT",
+          "HBARUSDT",
+          "VETUSDT",
+          "ETCUSDT",
+          "ATOMUSDT",
+          "SANDUSDT",
+          "ENAUSDT",
+          "ICPUSDT",
+          "CRVUSDT",
+          "MANAUSDT",
+          "CHZUSDT"
+        ],
+        "collection_config": "configs/binance_selected_usdt_daily_collection.json",
+        "config_path": "/Users/marcelapsilverio/projetos/tcc_crypto/configs/binance_daily_svm_grid_search.json",
+        "development_end_utc": "2024-12-30 00:00:00+00:00",
+        "development_start_utc": "2019-07-01 00:00:00+00:00",
+        "excluded_symbols": [
+          "LUNAUSDT"
+        ],
+        "experiment_id": "binance_daily_svm_temporal_grid_search_v1",
+        "feature_config": "/Users/marcelapsilverio/projetos/tcc_crypto/configs/binance_daily_features.json",
+        "gap": 1,
+        "minimum_complete_rows": 271,
+        "n_splits": 3,
+        "output_directory": "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/grid_search/binance_daily_svm_temporal_grid_search_v1",
+        "parameter_grid": [
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "kernel": [
+              "linear"
+            ]
+          },
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "gamma": [
+              "scale",
+              0.01,
+              0.1
+            ],
+            "kernel": [
+              "rbf"
+            ]
+          },
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "coef0": [
+              0.0,
+              0.5,
+              1.0
+            ],
+            "degree": [
+              2,
+              3,
+              4
+            ],
+            "gamma": [
+              "scale",
+              0.01,
+              0.1
+            ],
+            "kernel": [
+              "poly"
+            ]
+          }
+        ],
+        "primary_metric": "f1",
+        "raw_directory": "/Users/marcelapsilverio/projetos/tcc_crypto/data/raw/binance/spot/1d",
+        "targets": [
+          "target_2pct",
+          "target_3pct",
+          "target_4pct"
+        ],
+        "test_size": 60,
+        "tie_break_order": [
+          "mean_precision_descending",
+          "f1_standard_deviation_ascending",
+          "mean_roc_auc_descending",
+          "kernel_simplicity_linear_rbf_poly",
+          "C_ascending",
+          "parameter_grid_order"
+        ],
+        "tie_tolerance": 1e-12,
+        "training_window_sizes": [
+          60,
+          75,
+          90
+        ]
+      },
+      "profile": "development"
+    },
+    "evaluation": {
+      "comparison_observations": "common_successful_dates",
+      "evaluation_id": "binance_daily_svm_walk_forward_v1",
+      "feature_end_utc": "2026-08-31 00:00:00+00:00",
+      "feature_start_utc": "2025-01-01 00:00:00+00:00",
+      "gap": 1,
+      "grid_search_config": "/Users/marcelapsilverio/projetos/tcc_crypto/configs/binance_daily_svm_grid_search.json",
+      "single_class_training_policy": "record_no_prediction"
+    },
+    "evaluation_config_sha256": "4cdbd02259b03a8d821249c3894e6f341f0eb81aa2dbe2d5d4a22d7653fcb92c",
+    "full_period": {
+      "configuration_sha256": {
+        "/Users/marcelapsilverio/projetos/tcc_crypto/configs/binance_daily_features.json": "35e37336647f1bf3d933f691a8d39d56aa4c89064548b6aa1bc5e41f31eab53e",
+        "/Users/marcelapsilverio/projetos/tcc_crypto/configs/binance_daily_svm_grid_search.json": "7c0f88c90e01a8943474efa9dccd51413a3d984123ca6fe41ec71992babfbab6",
+        "/Users/marcelapsilverio/projetos/tcc_crypto/configs/binance_selected_usdt_daily_collection.json": "b1ec42a73d7e2a0aa1b912845e3b2e84b45c9874999bb0f1ad44070c62e901c4"
+      },
+      "data": {
+        "context_id": "binance_daily_svm_temporal_grid_search_v1_full_period",
+        "require_warmup_start": false,
+        "sample_end_utc": "2026-08-31 00:00:00+00:00",
+        "sample_start_utc": "2019-07-01 00:00:00+00:00",
+        "symbol": "ETHUSDT",
+        "target_thresholds": [
+          0.02,
+          0.03,
+          0.04
+        ],
+        "warmup_start_utc": "2019-06-01 00:00:00+00:00"
+      },
+      "features": {
+        "active_features": [
+          "r1",
+          "r2",
+          "r3",
+          "r4",
+          "r5",
+          "r6",
+          "r7",
+          "r8",
+          "r9",
+          "r10",
+          "r11",
+          "r12",
+          "r13",
+          "r14",
+          "r15",
+          "momentum_10",
+          "rsi_14",
+          "parabolic_sar",
+          "atr_14",
+          "true_range",
+          "chaikin_ad",
+          "obv"
+        ],
+        "analysis_output_directory": "outputs/binance/spot/feature-selection/binance_daily_silva_2026_features_v1",
+        "atr_period": 14,
+        "collection_config": "configs/binance_selected_usdt_daily_collection.json",
+        "feature_output_directory": "data/processed/binance/spot/1d/features",
+        "feature_selection": {
+          "correlation_method": "pearson",
+          "correlation_threshold": 0.8,
+          "fit_scope": "training_only",
+          "prediction_step_observations": 1,
+          "refit_frequency": "every_prediction",
+          "training_window_sizes": [
+            60,
+            75,
+            90
+          ],
+          "variance_threshold": 0.01,
+          "window_type": "rolling"
+        },
+        "feature_set_id": "binance_daily_silva_2026_features_v1",
+        "features_requiring_verification": [
+          "parabolic_sar"
+        ],
+        "imputation_marker": "is_imputed",
+        "interval": "1d",
+        "missing_data_policy": "forward_fill_internal",
+        "momentum_period": 10,
+        "parabolic_sar_acceleration": 0.0,
+        "parabolic_sar_maximum": 0.0,
+        "parabolic_sar_verification_required": true,
+        "price_fields": [
+          "open",
+          "high",
+          "low",
+          "close"
+        ],
+        "rsi_period": 14,
+        "time_zone": "UTC",
+        "volume_field": "quote_asset_volume"
+      },
+      "model": {
+        "candidate_count": 186,
+        "candidate_symbols": [
+          "BTCUSDT",
+          "FLOKIUSDT",
+          "ETHUSDT",
+          "BONKUSDT",
+          "SOLUSDT",
+          "XRPUSDT",
+          "SHIBUSDT",
+          "DOGEUSDT",
+          "BNBUSDT",
+          "ADAUSDT",
+          "LTCUSDT",
+          "PEPEUSDT",
+          "SUIUSDT",
+          "LINKUSDT",
+          "AVAXUSDT",
+          "DOTUSDT",
+          "TRXUSDT",
+          "WIFUSDT",
+          "NEARUSDT",
+          "NEIROUSDT",
+          "AAVEUSDT",
+          "WLDUSDT",
+          "XLMUSDT",
+          "ZECUSDT",
+          "FILUSDT",
+          "BCHUSDT",
+          "LUNAUSDT",
+          "UNIUSDT",
+          "GALAUSDT",
+          "FETUSDT",
+          "HBARUSDT",
+          "VETUSDT",
+          "ETCUSDT",
+          "ATOMUSDT",
+          "SANDUSDT",
+          "ENAUSDT",
+          "ICPUSDT",
+          "CRVUSDT",
+          "MANAUSDT",
+          "CHZUSDT"
+        ],
+        "collection_config": "configs/binance_selected_usdt_daily_collection.json",
+        "config_path": "/Users/marcelapsilverio/projetos/tcc_crypto/configs/binance_daily_svm_grid_search.json",
+        "development_end_utc": "2024-12-30 00:00:00+00:00",
+        "development_start_utc": "2019-07-01 00:00:00+00:00",
+        "excluded_symbols": [
+          "LUNAUSDT"
+        ],
+        "experiment_id": "binance_daily_svm_temporal_grid_search_v1",
+        "feature_config": "/Users/marcelapsilverio/projetos/tcc_crypto/configs/binance_daily_features.json",
+        "gap": 1,
+        "minimum_complete_rows": 271,
+        "n_splits": 3,
+        "output_directory": "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/grid_search/binance_daily_svm_temporal_grid_search_v1",
+        "parameter_grid": [
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "kernel": [
+              "linear"
+            ]
+          },
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "gamma": [
+              "scale",
+              0.01,
+              0.1
+            ],
+            "kernel": [
+              "rbf"
+            ]
+          },
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "coef0": [
+              0.0,
+              0.5,
+              1.0
+            ],
+            "degree": [
+              2,
+              3,
+              4
+            ],
+            "gamma": [
+              "scale",
+              0.01,
+              0.1
+            ],
+            "kernel": [
+              "poly"
+            ]
+          }
+        ],
+        "primary_metric": "f1",
+        "raw_directory": "/Users/marcelapsilverio/projetos/tcc_crypto/data/raw/binance/spot/1d",
+        "targets": [
+          "target_2pct",
+          "target_3pct",
+          "target_4pct"
+        ],
+        "test_size": 60,
+        "tie_break_order": [
+          "mean_precision_descending",
+          "f1_standard_deviation_ascending",
+          "mean_roc_auc_descending",
+          "kernel_simplicity_linear_rbf_poly",
+          "C_ascending",
+          "parameter_grid_order"
+        ],
+        "tie_tolerance": 1e-12,
+        "training_window_sizes": [
+          60,
+          75,
+          90
+        ]
+      },
+      "profile": "experiment"
+    }
+  },
+  "development_data_equality": "exact_full_period_subset",
+  "frozen_search_checksums": {
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/grid_search/binance_daily_svm_temporal_grid_search_v1/ETHUSDT/asset_eligibility.csv": "ec41c7473cae450697ffeeb0b48641eb7638a85fa86990017aec468f9e2fc852",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/grid_search/binance_daily_svm_temporal_grid_search_v1/ETHUSDT/candidate_results.csv.gz": "569a834767382f820f11e2f4a67735f744f4cc7bc3c8054149a4465c77c93852",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/grid_search/binance_daily_svm_temporal_grid_search_v1/ETHUSDT/fold_results.csv.gz": "4470886dfd7312b42e30963f9646f207ee39ca3e23d750b4f6c33e2e7e085933",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/binance/spot/1d/grid_search/binance_daily_svm_temporal_grid_search_v1/ETHUSDT/selected_configurations.csv": "727122a46cdc2862cf94bbfa9db84809c92956d0f692c81ae7f4d711da99d74c"
+  },
+  "generated_at_utc": "2026-10-23T09:56:53.335748+00:00",
+  "package_versions": {
+    "TA-Lib": "0.8.1",
+    "feature-engine": "1.9.4",
+    "numpy": "2.3.5",
+    "openpyxl": "3.1.5",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2"
+  },
+  "python_version": "3.13.9",
+  "random_behavior": false,
+  "random_seed": null,
+  "test_used_for_hyperparameter_selection": false,
+  "universe_interpretation": "ex_post_fixed_2026_snapshot",
+  "working_tree_dirty": true
+}

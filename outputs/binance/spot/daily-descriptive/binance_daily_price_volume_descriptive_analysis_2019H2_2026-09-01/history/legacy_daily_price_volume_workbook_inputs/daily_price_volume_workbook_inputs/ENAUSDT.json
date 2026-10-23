@@ -1,0 +1,6381 @@
+{
+  "analysis_id": "binance_daily_price_volume_descriptive_analysis_2019H2_2026-09-01",
+  "symbol": "ENAUSDT",
+  "source": {
+    "relative_path": "data/raw/binance/spot/1d/ENAUSDT/ENAUSDT_1d_2017-01-01_2026-09-01.csv.gz",
+    "sha256": "df1290776e457fd1a1625dcc39afefe2d9e648f4195df8ae9eaf352344e3dead"
+  },
+  "configured_start_utc": "2019-07-01T00:00:00+00:00",
+  "configured_end_utc": "2026-09-01T00:00:00+00:00",
+  "coverage": {
+    "Symbol": "ENAUSDT",
+    "Observations": 883,
+    "First open (UTC)": "2024-04-02T00:00:00+00:00",
+    "Last open (UTC)": "2026-09-01T00:00:00+00:00",
+    "Observed span (calendar days)": 883,
+    "Missing daily openings within observed span": 0
+  },
+  "overall_statistics": [
+    {
+      "Field": "open",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 883,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.4111007927519819,
+      "Median": 0.3423,
+      "Sample standard deviation": 0.28900537502052476,
+      "Sample variance": 0.08352410679075414,
+      "Minimum": 0.0714,
+      "Q1": 0.1752,
+      "Q3": 0.59075,
+      "Maximum": 1.461,
+      "Range": 1.3896000000000002,
+      "Interquartile range": 0.41555,
+      "Coefficient of variation": 0.7030036918339936,
+      "Skewness": 0.9182614092741481,
+      "Excess kurtosis": 0.1263752833839642
+    },
+    {
+      "Field": "high",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 883,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.43664337485843707,
+      "Median": 0.365,
+      "Sample standard deviation": 0.3105766733555315,
+      "Sample variance": 0.09645787003258852,
+      "Minimum": 0.0738,
+      "Q1": 0.18259999999999998,
+      "Q3": 0.6147,
+      "Maximum": 1.523,
+      "Range": 1.4491999999999998,
+      "Interquartile range": 0.43210000000000004,
+      "Coefficient of variation": 0.7112822299347212,
+      "Skewness": 0.9501405209021041,
+      "Excess kurtosis": 0.24768152785440467
+    },
+    {
+      "Field": "low",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 883,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.3868311438278596,
+      "Median": 0.3209,
+      "Sample standard deviation": 0.26874371030670796,
+      "Sample variance": 0.07222318182941577,
+      "Minimum": 0.0699,
+      "Q1": 0.17054999999999998,
+      "Q3": 0.5544,
+      "Maximum": 1.35,
+      "Range": 1.2801,
+      "Interquartile range": 0.38385,
+      "Coefficient of variation": 0.6947313177718164,
+      "Skewness": 0.8795869701784589,
+      "Excess kurtosis": -0.020536036119470857
+    },
+    {
+      "Field": "close",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 883,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.4108745186862967,
+      "Median": 0.3423,
+      "Sample standard deviation": 0.28909277249238885,
+      "Sample variance": 0.08357463110733611,
+      "Minimum": 0.0714,
+      "Q1": 0.175,
+      "Q3": 0.5905,
+      "Maximum": 1.461,
+      "Range": 1.3896000000000002,
+      "Interquartile range": 0.41550000000000004,
+      "Coefficient of variation": 0.7036035561823477,
+      "Skewness": 0.9186131120856519,
+      "Excess kurtosis": 0.1253413398058023
+    },
+    {
+      "Field": "quote_asset_volume",
+      "Unit": "USDT",
+      "Observations": 883,
+      "Missing values": 0,
+      "Zero observations": 0.0,
+      "Zero share": 0.0,
+      "Total": 70127558269.47076,
+      "Mean": 79419658.28932136,
+      "Median": 43357218.255004,
+      "Sample standard deviation": 108789497.16908033,
+      "Sample variance": 1.1835154694301338e+16,
+      "Minimum": 2908440.840388,
+      "Q1": 20123068.269814998,
+      "Q3": 99085652.675271,
+      "Maximum": 1338574457.35606,
+      "Range": 1335666016.515672,
+      "Interquartile range": 78962584.405456,
+      "Coefficient of variation": 1.369805656589031,
+      "Skewness": 4.646496115834517,
+      "Excess kurtosis": 34.89670594874224
+    }
+  ],
+  "semester_statistics": [
+    {
+      "Semester": "2024-H1",
+      "Status": "Partial",
+      "Observed start (UTC)": "2024-04-02T00:00:00+00:00",
+      "Observed end (UTC)": "2024-06-30T00:00:00+00:00",
+      "Field": "open",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 90,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.8570111111111112,
+      "Median": 0.852,
+      "Sample standard deviation": 0.1977947804064984,
+      "Sample variance": 0.03912277515605492,
+      "Minimum": 0.3,
+      "Q1": 0.7384999999999999,
+      "Q3": 0.9349999999999999,
+      "Maximum": 1.461,
+      "Range": 1.161,
+      "Interquartile range": 0.1965,
+      "Coefficient of variation": 0.2307960513488073,
+      "Skewness": 0.36340617793431773,
+      "Excess kurtosis": 1.0538392817685907
+    },
+    {
+      "Semester": "2024-H1",
+      "Status": "Partial",
+      "Observed start (UTC)": "2024-04-02T00:00:00+00:00",
+      "Observed end (UTC)": "2024-06-30T00:00:00+00:00",
+      "Field": "high",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 90,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.9200888888888888,
+      "Median": 0.907,
+      "Sample standard deviation": 0.21808253485776324,
+      "Sample variance": 0.04755999200998752,
+      "Minimum": 0.529,
+      "Q1": 0.7755000000000001,
+      "Q3": 1.00725,
+      "Maximum": 1.523,
+      "Range": 0.9939999999999999,
+      "Interquartile range": 0.2317499999999999,
+      "Coefficient of variation": 0.23702333273595175,
+      "Skewness": 0.6973352963577509,
+      "Excess kurtosis": 0.6403193567909073
+    },
+    {
+      "Semester": "2024-H1",
+      "Status": "Partial",
+      "Observed start (UTC)": "2024-04-02T00:00:00+00:00",
+      "Observed end (UTC)": "2024-06-30T00:00:00+00:00",
+      "Field": "low",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 90,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.7976333333333334,
+      "Median": 0.815,
+      "Sample standard deviation": 0.17051372807100945,
+      "Sample variance": 0.02907493146067416,
+      "Minimum": 0.3,
+      "Q1": 0.6912499999999999,
+      "Q3": 0.88775,
+      "Maximum": 1.35,
+      "Range": 1.05,
+      "Interquartile range": 0.19650000000000012,
+      "Coefficient of variation": 0.21377457654437224,
+      "Skewness": 0.16957059712237676,
+      "Excess kurtosis": 1.1892585582192625
+    },
+    {
+      "Semester": "2024-H1",
+      "Status": "Partial",
+      "Observed start (UTC)": "2024-04-02T00:00:00+00:00",
+      "Observed end (UTC)": "2024-06-30T00:00:00+00:00",
+      "Field": "close",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 90,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.8594555555555558,
+      "Median": 0.8514999999999999,
+      "Sample standard deviation": 0.19190729041611845,
+      "Sample variance": 0.03682840811485643,
+      "Minimum": 0.489,
+      "Q1": 0.7375,
+      "Q3": 0.93575,
+      "Maximum": 1.461,
+      "Range": 0.9720000000000001,
+      "Interquartile range": 0.19824999999999993,
+      "Coefficient of variation": 0.2232893710158971,
+      "Skewness": 0.5826045832864233,
+      "Excess kurtosis": 0.8022389073862572
+    },
+    {
+      "Semester": "2024-H1",
+      "Status": "Partial",
+      "Observed start (UTC)": "2024-04-02T00:00:00+00:00",
+      "Observed end (UTC)": "2024-06-30T00:00:00+00:00",
+      "Field": "quote_asset_volume",
+      "Unit": "USDT",
+      "Observations": 90,
+      "Missing values": 0,
+      "Zero observations": 0.0,
+      "Zero share": 0.0,
+      "Total": 17802236571.17451,
+      "Mean": 197802628.5686057,
+      "Median": 109878174.40724999,
+      "Sample standard deviation": 236082711.93282372,
+      "Sample variance": 5.573504687355663e+16,
+      "Minimum": 13874883.12493,
+      "Q1": 57685519.2516625,
+      "Q3": 208952095.60447252,
+      "Maximum": 1338574457.35606,
+      "Range": 1324699574.2311301,
+      "Interquartile range": 151266576.35281003,
+      "Coefficient of variation": 1.19352666666379,
+      "Skewness": 2.502197610020934,
+      "Excess kurtosis": 7.34592997039649
+    },
+    {
+      "Semester": "2024-H2",
+      "Status": "Complete",
+      "Observed start (UTC)": "2024-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2024-12-31T00:00:00+00:00",
+      "Field": "open",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 184,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.4856298913043478,
+      "Median": 0.3925,
+      "Sample standard deviation": 0.26175781537591314,
+      "Sample variance": 0.06851715391037062,
+      "Minimum": 0.205,
+      "Q1": 0.30474999999999997,
+      "Q3": 0.553925,
+      "Maximum": 1.252,
+      "Range": 1.047,
+      "Interquartile range": 0.24917500000000004,
+      "Coefficient of variation": 0.5390068034586191,
+      "Skewness": 1.2813918959543595,
+      "Excess kurtosis": 0.52579751665907
+    },
+    {
+      "Semester": "2024-H2",
+      "Status": "Complete",
+      "Observed start (UTC)": "2024-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2024-12-31T00:00:00+00:00",
+      "Field": "high",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 184,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.5191369565217391,
+      "Median": 0.4085,
+      "Sample standard deviation": 0.2835880563962053,
+      "Sample variance": 0.08042218573057734,
+      "Minimum": 0.213,
+      "Q1": 0.32185,
+      "Q3": 0.6056250000000001,
+      "Maximum": 1.33,
+      "Range": 1.117,
+      "Interquartile range": 0.28377500000000005,
+      "Coefficient of variation": 0.5462682878450207,
+      "Skewness": 1.2599510447808715,
+      "Excess kurtosis": 0.44792451182541804
+    },
+    {
+      "Semester": "2024-H2",
+      "Status": "Complete",
+      "Observed start (UTC)": "2024-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2024-12-31T00:00:00+00:00",
+      "Field": "low",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 184,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.4568597826086956,
+      "Median": 0.36615,
+      "Sample standard deviation": 0.24406907785945683,
+      "Sample variance": 0.0595697147671656,
+      "Minimum": 0.194,
+      "Q1": 0.28525,
+      "Q3": 0.52505,
+      "Maximum": 1.1619,
+      "Range": 0.9679,
+      "Interquartile range": 0.2398,
+      "Coefficient of variation": 0.5342319178672467,
+      "Skewness": 1.2681980728259068,
+      "Excess kurtosis": 0.47923115392735793
+    },
+    {
+      "Semester": "2024-H2",
+      "Status": "Complete",
+      "Observed start (UTC)": "2024-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2024-12-31T00:00:00+00:00",
+      "Field": "close",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 184,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.48746793478260875,
+      "Median": 0.39245,
+      "Sample standard deviation": 0.26369201981844304,
+      "Sample variance": 0.06953348131593017,
+      "Minimum": 0.205,
+      "Q1": 0.30474999999999997,
+      "Q3": 0.5542,
+      "Maximum": 1.2518,
+      "Range": 1.0468,
+      "Interquartile range": 0.24945000000000006,
+      "Coefficient of variation": 0.5409422876933211,
+      "Skewness": 1.2540457287663576,
+      "Excess kurtosis": 0.4244950268946819
+    },
+    {
+      "Semester": "2024-H2",
+      "Status": "Complete",
+      "Observed start (UTC)": "2024-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2024-12-31T00:00:00+00:00",
+      "Field": "quote_asset_volume",
+      "Unit": "USDT",
+      "Observations": 184,
+      "Missing values": 0,
+      "Zero observations": 0.0,
+      "Zero share": 0.0,
+      "Total": 12251132439.518576,
+      "Mean": 66582241.5191227,
+      "Median": 37789519.954616,
+      "Sample standard deviation": 66829737.757548496,
+      "Sample variance": 4466213848742703.0,
+      "Minimum": 5435554.93992,
+      "Q1": 22502110.3967475,
+      "Q3": 93000058.90316975,
+      "Maximum": 398852426.394212,
+      "Range": 393416871.454292,
+      "Interquartile range": 70497948.50642225,
+      "Coefficient of variation": 1.0037171508915739,
+      "Skewness": 2.153426108892261,
+      "Excess kurtosis": 5.620721475820037
+    },
+    {
+      "Semester": "2025-H1",
+      "Status": "Complete",
+      "Observed start (UTC)": "2025-01-01T00:00:00+00:00",
+      "Observed end (UTC)": "2025-06-30T00:00:00+00:00",
+      "Field": "open",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 181,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.46134475138121545,
+      "Median": 0.3731,
+      "Sample standard deviation": 0.22956339486940325,
+      "Sample variance": 0.052699352263965556,
+      "Minimum": 0.2381,
+      "Q1": 0.3157,
+      "Q3": 0.4565,
+      "Maximum": 1.2626,
+      "Range": 1.0245,
+      "Interquartile range": 0.14080000000000004,
+      "Coefficient of variation": 0.4975961993327456,
+      "Skewness": 1.674800972991831,
+      "Excess kurtosis": 1.908250524024362
+    },
+    {
+      "Semester": "2025-H1",
+      "Status": "Complete",
+      "Observed start (UTC)": "2025-01-01T00:00:00+00:00",
+      "Observed end (UTC)": "2025-06-30T00:00:00+00:00",
+      "Field": "high",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 181,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.4894635359116022,
+      "Median": 0.3953,
+      "Sample standard deviation": 0.24528202927488532,
+      "Sample variance": 0.060163273885205704,
+      "Minimum": 0.2557,
+      "Q1": 0.3292,
+      "Q3": 0.4801,
+      "Maximum": 1.3124,
+      "Range": 1.0567,
+      "Interquartile range": 0.15090000000000003,
+      "Coefficient of variation": 0.5011242131000819,
+      "Skewness": 1.652321333931495,
+      "Excess kurtosis": 1.8103231878029944
+    },
+    {
+      "Semester": "2025-H1",
+      "Status": "Complete",
+      "Observed start (UTC)": "2025-01-01T00:00:00+00:00",
+      "Observed end (UTC)": "2025-06-30T00:00:00+00:00",
+      "Field": "low",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 181,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.43290497237569064,
+      "Median": 0.3566,
+      "Sample standard deviation": 0.21265851924734044,
+      "Sample variance": 0.04522364580847146,
+      "Minimum": 0.2224,
+      "Q1": 0.2992,
+      "Q3": 0.4351,
+      "Maximum": 1.1945,
+      "Range": 0.9721,
+      "Interquartile range": 0.13589999999999997,
+      "Coefficient of variation": 0.4912360282680876,
+      "Skewness": 1.7465359135231364,
+      "Excess kurtosis": 2.2084952203719976
+    },
+    {
+      "Semester": "2025-H1",
+      "Status": "Complete",
+      "Observed start (UTC)": "2025-01-01T00:00:00+00:00",
+      "Observed end (UTC)": "2025-06-30T00:00:00+00:00",
+      "Field": "close",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 181,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.45777679558011053,
+      "Median": 0.3715,
+      "Sample standard deviation": 0.22755452805062204,
+      "Sample variance": 0.05178106323634134,
+      "Minimum": 0.2382,
+      "Q1": 0.3146,
+      "Q3": 0.4553,
+      "Maximum": 1.2626,
+      "Range": 1.0244,
+      "Interquartile range": 0.1407,
+      "Coefficient of variation": 0.4970862006280967,
+      "Skewness": 1.7205535759355095,
+      "Excess kurtosis": 2.111232602561858
+    },
+    {
+      "Semester": "2025-H1",
+      "Status": "Complete",
+      "Observed start (UTC)": "2025-01-01T00:00:00+00:00",
+      "Observed end (UTC)": "2025-06-30T00:00:00+00:00",
+      "Field": "quote_asset_volume",
+      "Unit": "USDT",
+      "Observations": 181,
+      "Missing values": 0,
+      "Zero observations": 0.0,
+      "Zero share": 0.0,
+      "Total": 15512113494.502094,
+      "Mean": 85702284.50001156,
+      "Median": 68105928.816378,
+      "Sample standard deviation": 63346090.97677899,
+      "Sample variance": 4012727242038361.0,
+      "Minimum": 12894832.253056,
+      "Q1": 40837949.674233,
+      "Q3": 106329556.647797,
+      "Maximum": 433191654.42494094,
+      "Range": 420296822.17188495,
+      "Interquartile range": 65491606.97356401,
+      "Coefficient of variation": 0.7391412183040517,
+      "Skewness": 2.1206371286682764,
+      "Excess kurtosis": 6.727582391727411
+    },
+    {
+      "Semester": "2025-H2",
+      "Status": "Complete",
+      "Observed start (UTC)": "2025-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2025-12-31T00:00:00+00:00",
+      "Field": "open",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 184,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.46221304347826087,
+      "Median": 0.45330000000000004,
+      "Sample standard deviation": 0.18753234954007256,
+      "Sample variance": 0.03516838212401995,
+      "Minimum": 0.1977,
+      "Q1": 0.27655,
+      "Q3": 0.628725,
+      "Maximum": 0.81,
+      "Range": 0.6123000000000001,
+      "Interquartile range": 0.35217499999999996,
+      "Coefficient of variation": 0.40572708231868126,
+      "Skewness": 0.1813815039521016,
+      "Excess kurtosis": -1.3806287594600886
+    },
+    {
+      "Semester": "2025-H2",
+      "Status": "Complete",
+      "Observed start (UTC)": "2025-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2025-12-31T00:00:00+00:00",
+      "Field": "high",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 184,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.48622336956521733,
+      "Median": 0.4769,
+      "Sample standard deviation": 0.19646705072145074,
+      "Sample variance": 0.03859930201918509,
+      "Minimum": 0.2034,
+      "Q1": 0.28795000000000004,
+      "Q3": 0.65585,
+      "Maximum": 0.8727,
+      "Range": 0.6693,
+      "Interquartile range": 0.3679,
+      "Coefficient of variation": 0.40406747807521526,
+      "Skewness": 0.13503475162573153,
+      "Excess kurtosis": -1.3804274789190922
+    },
+    {
+      "Semester": "2025-H2",
+      "Status": "Complete",
+      "Observed start (UTC)": "2025-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2025-12-31T00:00:00+00:00",
+      "Field": "low",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 184,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.437975,
+      "Median": 0.42595,
+      "Sample standard deviation": 0.1811184478689842,
+      "Sample variance": 0.032803892158469954,
+      "Minimum": 0.1313,
+      "Q1": 0.2603,
+      "Q3": 0.60405,
+      "Maximum": 0.7736,
+      "Range": 0.6423,
+      "Interquartile range": 0.34375,
+      "Coefficient of variation": 0.41353604171239045,
+      "Skewness": 0.2149274534129739,
+      "Excess kurtosis": -1.3640738626692388
+    },
+    {
+      "Semester": "2025-H2",
+      "Status": "Complete",
+      "Observed start (UTC)": "2025-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2025-12-31T00:00:00+00:00",
+      "Field": "close",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 184,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.46183315217391296,
+      "Median": 0.45325000000000004,
+      "Sample standard deviation": 0.1879709570604092,
+      "Sample variance": 0.035333080698206204,
+      "Minimum": 0.1976,
+      "Q1": 0.27655,
+      "Q3": 0.62875,
+      "Maximum": 0.81,
+      "Range": 0.6124,
+      "Interquartile range": 0.3522,
+      "Coefficient of variation": 0.4070105322140772,
+      "Skewness": 0.17724003023750265,
+      "Excess kurtosis": -1.3801770348401188
+    },
+    {
+      "Semester": "2025-H2",
+      "Status": "Complete",
+      "Observed start (UTC)": "2025-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2025-12-31T00:00:00+00:00",
+      "Field": "quote_asset_volume",
+      "Unit": "USDT",
+      "Observations": 184,
+      "Missing values": 0,
+      "Zero observations": 0.0,
+      "Zero share": 0.0,
+      "Total": 19502405695.688652,
+      "Mean": 105991335.30265571,
+      "Median": 72145707.329633,
+      "Sample standard deviation": 92479705.48046298,
+      "Sample variance": 8552495925753176.0,
+      "Minimum": 8966344.695548,
+      "Q1": 42215257.568663254,
+      "Q3": 138545722.4688555,
+      "Maximum": 451481147.149814,
+      "Range": 442514802.454266,
+      "Interquartile range": 96330464.90019225,
+      "Coefficient of variation": 0.8725213737178554,
+      "Skewness": 1.579276101335258,
+      "Excess kurtosis": 2.267783873867272
+    },
+    {
+      "Semester": "2026-H1",
+      "Status": "Complete",
+      "Observed start (UTC)": "2026-01-01T00:00:00+00:00",
+      "Observed end (UTC)": "2026-06-30T00:00:00+00:00",
+      "Field": "open",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 181,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.12093867403314916,
+      "Median": 0.1064,
+      "Sample standard deviation": 0.04383328068956077,
+      "Sample variance": 0.0019213564960098213,
+      "Minimum": 0.072,
+      "Q1": 0.0945,
+      "Q3": 0.1217,
+      "Maximum": 0.2568,
+      "Range": 0.18479999999999996,
+      "Interquartile range": 0.027200000000000002,
+      "Coefficient of variation": 0.36244221329519555,
+      "Skewness": 1.703800349704,
+      "Excess kurtosis": 1.9428581407021661
+    },
+    {
+      "Semester": "2026-H1",
+      "Status": "Complete",
+      "Observed start (UTC)": "2026-01-01T00:00:00+00:00",
+      "Observed end (UTC)": "2026-06-30T00:00:00+00:00",
+      "Field": "high",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 181,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.12560000000000002,
+      "Median": 0.1105,
+      "Sample standard deviation": 0.044897623050174446,
+      "Sample variance": 0.002015796555555556,
+      "Minimum": 0.0776,
+      "Q1": 0.0985,
+      "Q3": 0.1289,
+      "Maximum": 0.2633,
+      "Range": 0.18569999999999998,
+      "Interquartile range": 0.030399999999999983,
+      "Coefficient of variation": 0.35746515167336335,
+      "Skewness": 1.7153554447890094,
+      "Excess kurtosis": 2.0153573469574826
+    },
+    {
+      "Semester": "2026-H1",
+      "Status": "Complete",
+      "Observed start (UTC)": "2026-01-01T00:00:00+00:00",
+      "Observed end (UTC)": "2026-06-30T00:00:00+00:00",
+      "Field": "low",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 181,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.11551657458563534,
+      "Median": 0.1017,
+      "Sample standard deviation": 0.041969255299845035,
+      "Sample variance": 0.0017614183904235705,
+      "Minimum": 0.0699,
+      "Q1": 0.0893,
+      "Q3": 0.1183,
+      "Maximum": 0.241,
+      "Range": 0.17109999999999997,
+      "Interquartile range": 0.028999999999999998,
+      "Coefficient of variation": 0.3633180385619223,
+      "Skewness": 1.7361560714950148,
+      "Excess kurtosis": 2.0599386061680254
+    },
+    {
+      "Semester": "2026-H1",
+      "Status": "Complete",
+      "Observed start (UTC)": "2026-01-01T00:00:00+00:00",
+      "Observed end (UTC)": "2026-06-30T00:00:00+00:00",
+      "Field": "close",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 181,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.12022320441988948,
+      "Median": 0.1062,
+      "Sample standard deviation": 0.043588325561211914,
+      "Sample variance": 0.0018999421252302,
+      "Minimum": 0.072,
+      "Q1": 0.0944,
+      "Q3": 0.1216,
+      "Maximum": 0.2569,
+      "Range": 0.1849,
+      "Interquartile range": 0.027200000000000002,
+      "Coefficient of variation": 0.362561668286399,
+      "Skewness": 1.7412216086926684,
+      "Excess kurtosis": 2.120460491548799
+    },
+    {
+      "Semester": "2026-H1",
+      "Status": "Complete",
+      "Observed start (UTC)": "2026-01-01T00:00:00+00:00",
+      "Observed end (UTC)": "2026-06-30T00:00:00+00:00",
+      "Field": "quote_asset_volume",
+      "Unit": "USDT",
+      "Observations": 181,
+      "Missing values": 0,
+      "Zero observations": 0.0,
+      "Zero share": 0.0,
+      "Total": 3586659106.140931,
+      "Mean": 19815796.16652448,
+      "Median": 14888811.970485,
+      "Sample standard deviation": 13852918.634150645,
+      "Sample variance": 191903354684398.2,
+      "Minimum": 4865873.453879,
+      "Q1": 10639449.464362,
+      "Q3": 25558717.862017,
+      "Maximum": 103452584.980233,
+      "Range": 98586711.526354,
+      "Interquartile range": 14919268.397654999,
+      "Coefficient of variation": 0.6990846351938594,
+      "Skewness": 2.340204416202448,
+      "Excess kurtosis": 8.42950657576504
+    },
+    {
+      "Semester": "2026-H2",
+      "Status": "Partial",
+      "Observed start (UTC)": "2026-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2026-09-01T00:00:00+00:00",
+      "Field": "open",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 63,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.09642222222222223,
+      "Median": 0.0847,
+      "Sample standard deviation": 0.02773785956137559,
+      "Sample variance": 0.0007693888530465951,
+      "Minimum": 0.0714,
+      "Q1": 0.08055,
+      "Q3": 0.09234999999999999,
+      "Maximum": 0.1702,
+      "Range": 0.09879999999999999,
+      "Interquartile range": 0.011799999999999991,
+      "Coefficient of variation": 0.2876708182212264,
+      "Skewness": 1.6316933752245535,
+      "Excess kurtosis": 1.089712364866938
+    },
+    {
+      "Semester": "2026-H2",
+      "Status": "Partial",
+      "Observed start (UTC)": "2026-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2026-09-01T00:00:00+00:00",
+      "Field": "high",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 63,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.10214761904761903,
+      "Median": 0.0884,
+      "Sample standard deviation": 0.0324635967694181,
+      "Sample variance": 0.0010538851152073734,
+      "Minimum": 0.0738,
+      "Q1": 0.0831,
+      "Q3": 0.0941,
+      "Maximum": 0.1899,
+      "Range": 0.11610000000000001,
+      "Interquartile range": 0.01100000000000001,
+      "Coefficient of variation": 0.3178106065720854,
+      "Skewness": 1.5757654575408946,
+      "Excess kurtosis": 0.873146424861722
+    },
+    {
+      "Semester": "2026-H2",
+      "Status": "Partial",
+      "Observed start (UTC)": "2026-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2026-09-01T00:00:00+00:00",
+      "Field": "low",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 63,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.09319047619047618,
+      "Median": 0.0825,
+      "Sample standard deviation": 0.02524734872242075,
+      "Sample variance": 0.0006374286175115208,
+      "Minimum": 0.0705,
+      "Q1": 0.07880000000000001,
+      "Q3": 0.08985,
+      "Maximum": 0.1567,
+      "Range": 0.08620000000000001,
+      "Interquartile range": 0.01104999999999999,
+      "Coefficient of variation": 0.2709219842467224,
+      "Skewness": 1.5804887808652939,
+      "Excess kurtosis": 0.8875560818822041
+    },
+    {
+      "Semester": "2026-H2",
+      "Status": "Partial",
+      "Observed start (UTC)": "2026-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2026-09-01T00:00:00+00:00",
+      "Field": "close",
+      "Unit": "USDT per base-asset unit",
+      "Observations": 63,
+      "Missing values": 0,
+      "Zero observations": null,
+      "Zero share": null,
+      "Total": null,
+      "Mean": 0.09780634920634919,
+      "Median": 0.086,
+      "Sample standard deviation": 0.028675131819118634,
+      "Sample variance": 0.0008222631848438299,
+      "Minimum": 0.0714,
+      "Q1": 0.08065,
+      "Q3": 0.09265,
+      "Maximum": 0.1701,
+      "Range": 0.0987,
+      "Interquartile range": 0.011999999999999997,
+      "Coefficient of variation": 0.2931827233283252,
+      "Skewness": 1.5131665919792414,
+      "Excess kurtosis": 0.6377333228437845
+    },
+    {
+      "Semester": "2026-H2",
+      "Status": "Partial",
+      "Observed start (UTC)": "2026-07-01T00:00:00+00:00",
+      "Observed end (UTC)": "2026-09-01T00:00:00+00:00",
+      "Field": "quote_asset_volume",
+      "Unit": "USDT",
+      "Observations": 63,
+      "Missing values": 0,
+      "Zero observations": 0.0,
+      "Zero share": 0.0,
+      "Total": 1473010962.4460087,
+      "Mean": 23381126.388031885,
+      "Median": 11251346.993989,
+      "Sample standard deviation": 33451166.45551103,
+      "Sample variance": 1118980537234306.4,
+      "Minimum": 2908440.840388,
+      "Q1": 8443374.8695215,
+      "Q3": 17318000.9850905,
+      "Maximum": 158857846.937284,
+      "Range": 155949406.096896,
+      "Interquartile range": 8874626.115569001,
+      "Coefficient of variation": 1.430690972725493,
+      "Skewness": 2.7869615790080475,
+      "Excess kurtosis": 7.207242773877683
+    }
+  ],
+  "extrema": [
+    {
+      "Symbol": "ENAUSDT",
+      "Field": "open",
+      "Unit": "USDT per base-asset unit",
+      "Minimum": 0.0714,
+      "Minimum date (UTC)": "2026-07-02T00:00:00+00:00",
+      "Maximum": 1.461,
+      "Maximum date (UTC)": "2024-04-11T00:00:00+00:00"
+    },
+    {
+      "Symbol": "ENAUSDT",
+      "Field": "high",
+      "Unit": "USDT per base-asset unit",
+      "Minimum": 0.0738,
+      "Minimum date (UTC)": "2026-07-01T00:00:00+00:00",
+      "Maximum": 1.523,
+      "Maximum date (UTC)": "2024-04-11T00:00:00+00:00"
+    },
+    {
+      "Symbol": "ENAUSDT",
+      "Field": "low",
+      "Unit": "USDT per base-asset unit",
+      "Minimum": 0.0699,
+      "Minimum date (UTC)": "2026-06-10T00:00:00+00:00",
+      "Maximum": 1.35,
+      "Maximum date (UTC)": "2024-04-11T00:00:00+00:00"
+    },
+    {
+      "Symbol": "ENAUSDT",
+      "Field": "close",
+      "Unit": "USDT per base-asset unit",
+      "Minimum": 0.0714,
+      "Minimum date (UTC)": "2026-07-01T00:00:00+00:00",
+      "Maximum": 1.461,
+      "Maximum date (UTC)": "2024-04-10T00:00:00+00:00"
+    },
+    {
+      "Symbol": "ENAUSDT",
+      "Field": "quote_asset_volume",
+      "Unit": "USDT",
+      "Minimum": 2908440.840388,
+      "Minimum date (UTC)": "2026-08-15T00:00:00+00:00",
+      "Maximum": 1338574457.35606,
+      "Maximum date (UTC)": "2024-04-03T00:00:00+00:00"
+    }
+  ],
+  "chart_data": [
+    {
+      "open_time_utc": "2024-04-02",
+      "open": 0.3,
+      "close": 0.775,
+      "quote_asset_volume": 1071118927.27685
+    },
+    {
+      "open_time_utc": "2024-04-03",
+      "open": 0.775,
+      "close": 1.134,
+      "quote_asset_volume": 1338574457.35606
+    },
+    {
+      "open_time_utc": "2024-04-04",
+      "open": 1.134,
+      "close": 0.97,
+      "quote_asset_volume": 672618444.518
+    },
+    {
+      "open_time_utc": "2024-04-05",
+      "open": 0.97,
+      "close": 1.018,
+      "quote_asset_volume": 482846693.72555
+    },
+    {
+      "open_time_utc": "2024-04-06",
+      "open": 1.018,
+      "close": 1.089,
+      "quote_asset_volume": 453076831.28183
+    },
+    {
+      "open_time_utc": "2024-04-07",
+      "open": 1.089,
+      "close": 1.19,
+      "quote_asset_volume": 495763502.06815
+    },
+    {
+      "open_time_utc": "2024-04-08",
+      "open": 1.191,
+      "close": 1.293,
+      "quote_asset_volume": 648008211.28874
+    },
+    {
+      "open_time_utc": "2024-04-09",
+      "open": 1.293,
+      "close": 1.241,
+      "quote_asset_volume": 556725321.64215
+    },
+    {
+      "open_time_utc": "2024-04-10",
+      "open": 1.241,
+      "close": 1.461,
+      "quote_asset_volume": 795342653.85706
+    },
+    {
+      "open_time_utc": "2024-04-11",
+      "open": 1.461,
+      "close": 1.372,
+      "quote_asset_volume": 516863920.84123
+    },
+    {
+      "open_time_utc": "2024-04-12",
+      "open": 1.372,
+      "close": 1.278,
+      "quote_asset_volume": 750277738.99407
+    },
+    {
+      "open_time_utc": "2024-04-13",
+      "open": 1.278,
+      "close": 1.046,
+      "quote_asset_volume": 632609187.79647
+    },
+    {
+      "open_time_utc": "2024-04-14",
+      "open": 1.047,
+      "close": 1.209,
+      "quote_asset_volume": 490168464.95718
+    },
+    {
+      "open_time_utc": "2024-04-15",
+      "open": 1.209,
+      "close": 1.057,
+      "quote_asset_volume": 421714409.93314
+    },
+    {
+      "open_time_utc": "2024-04-16",
+      "open": 1.056,
+      "close": 0.979,
+      "quote_asset_volume": 355424733.84526
+    },
+    {
+      "open_time_utc": "2024-04-17",
+      "open": 0.98,
+      "close": 0.925,
+      "quote_asset_volume": 299531675.89966
+    },
+    {
+      "open_time_utc": "2024-04-18",
+      "open": 0.924,
+      "close": 0.913,
+      "quote_asset_volume": 266238265.67583
+    },
+    {
+      "open_time_utc": "2024-04-19",
+      "open": 0.913,
+      "close": 0.968,
+      "quote_asset_volume": 307992549.43915
+    },
+    {
+      "open_time_utc": "2024-04-20",
+      "open": 0.969,
+      "close": 1.083,
+      "quote_asset_volume": 278870661.1796
+    },
+    {
+      "open_time_utc": "2024-04-21",
+      "open": 1.082,
+      "close": 1.05,
+      "quote_asset_volume": 166324770.07108
+    },
+    {
+      "open_time_utc": "2024-04-22",
+      "open": 1.05,
+      "close": 1.05,
+      "quote_asset_volume": 176355236.58793
+    },
+    {
+      "open_time_utc": "2024-04-23",
+      "open": 1.05,
+      "close": 0.939,
+      "quote_asset_volume": 198199558.69637
+    },
+    {
+      "open_time_utc": "2024-04-24",
+      "open": 0.938,
+      "close": 0.874,
+      "quote_asset_volume": 190628004.12767
+    },
+    {
+      "open_time_utc": "2024-04-25",
+      "open": 0.874,
+      "close": 0.871,
+      "quote_asset_volume": 138747151.73037
+    },
+    {
+      "open_time_utc": "2024-04-26",
+      "open": 0.871,
+      "close": 0.824,
+      "quote_asset_volume": 123672583.85527
+    },
+    {
+      "open_time_utc": "2024-04-27",
+      "open": 0.824,
+      "close": 0.84,
+      "quote_asset_volume": 124524279.15936
+    },
+    {
+      "open_time_utc": "2024-04-28",
+      "open": 0.841,
+      "close": 0.849,
+      "quote_asset_volume": 129919118.66781
+    },
+    {
+      "open_time_utc": "2024-04-29",
+      "open": 0.848,
+      "close": 0.926,
+      "quote_asset_volume": 206765738.76755
+    },
+    {
+      "open_time_utc": "2024-04-30",
+      "open": 0.926,
+      "close": 0.814,
+      "quote_asset_volume": 190372541.67104
+    },
+    {
+      "open_time_utc": "2024-05-01",
+      "open": 0.814,
+      "close": 0.798,
+      "quote_asset_volume": 180237862.25597
+    },
+    {
+      "open_time_utc": "2024-05-02",
+      "open": 0.799,
+      "close": 0.798,
+      "quote_asset_volume": 110697720.62923
+    },
+    {
+      "open_time_utc": "2024-05-03",
+      "open": 0.797,
+      "close": 0.852,
+      "quote_asset_volume": 121804401.19102
+    },
+    {
+      "open_time_utc": "2024-05-04",
+      "open": 0.852,
+      "close": 0.828,
+      "quote_asset_volume": 101065897.16076
+    },
+    {
+      "open_time_utc": "2024-05-05",
+      "open": 0.828,
+      "close": 0.812,
+      "quote_asset_volume": 71477830.77817
+    },
+    {
+      "open_time_utc": "2024-05-06",
+      "open": 0.813,
+      "close": 0.892,
+      "quote_asset_volume": 209680881.21678
+    },
+    {
+      "open_time_utc": "2024-05-07",
+      "open": 0.892,
+      "close": 0.92,
+      "quote_asset_volume": 263738306.02692
+    },
+    {
+      "open_time_utc": "2024-05-08",
+      "open": 0.92,
+      "close": 0.874,
+      "quote_asset_volume": 216814701.72942
+    },
+    {
+      "open_time_utc": "2024-05-09",
+      "open": 0.874,
+      "close": 0.893,
+      "quote_asset_volume": 85156172.23838
+    },
+    {
+      "open_time_utc": "2024-05-10",
+      "open": 0.894,
+      "close": 0.847,
+      "quote_asset_volume": 115745959.95473
+    },
+    {
+      "open_time_utc": "2024-05-11",
+      "open": 0.847,
+      "close": 0.842,
+      "quote_asset_volume": 45188504.77147
+    },
+    {
+      "open_time_utc": "2024-05-12",
+      "open": 0.841,
+      "close": 0.83,
+      "quote_asset_volume": 41502788.98984
+    },
+    {
+      "open_time_utc": "2024-05-13",
+      "open": 0.83,
+      "close": 0.768,
+      "quote_asset_volume": 131616887.39905
+    },
+    {
+      "open_time_utc": "2024-05-14",
+      "open": 0.767,
+      "close": 0.693,
+      "quote_asset_volume": 120975553.83896
+    },
+    {
+      "open_time_utc": "2024-05-15",
+      "open": 0.694,
+      "close": 0.734,
+      "quote_asset_volume": 146890521.1636
+    },
+    {
+      "open_time_utc": "2024-05-16",
+      "open": 0.735,
+      "close": 0.671,
+      "quote_asset_volume": 108507112.25287
+    },
+    {
+      "open_time_utc": "2024-05-17",
+      "open": 0.672,
+      "close": 0.719,
+      "quote_asset_volume": 100275028.57123
+    },
+    {
+      "open_time_utc": "2024-05-18",
+      "open": 0.72,
+      "close": 0.754,
+      "quote_asset_volume": 97150820.62587
+    },
+    {
+      "open_time_utc": "2024-05-19",
+      "open": 0.753,
+      "close": 0.713,
+      "quote_asset_volume": 49214771.87964
+    },
+    {
+      "open_time_utc": "2024-05-20",
+      "open": 0.713,
+      "close": 0.832,
+      "quote_asset_volume": 120973190.73967
+    },
+    {
+      "open_time_utc": "2024-05-21",
+      "open": 0.833,
+      "close": 0.886,
+      "quote_asset_volume": 187099403.21933
+    },
+    {
+      "open_time_utc": "2024-05-22",
+      "open": 0.886,
+      "close": 0.853,
+      "quote_asset_volume": 109058628.18527
+    },
+    {
+      "open_time_utc": "2024-05-23",
+      "open": 0.853,
+      "close": 0.866,
+      "quote_asset_volume": 218188069.90013
+    },
+    {
+      "open_time_utc": "2024-05-24",
+      "open": 0.866,
+      "close": 0.851,
+      "quote_asset_volume": 117512676.86018
+    },
+    {
+      "open_time_utc": "2024-05-25",
+      "open": 0.852,
+      "close": 0.912,
+      "quote_asset_volume": 105205111.91967
+    },
+    {
+      "open_time_utc": "2024-05-26",
+      "open": 0.913,
+      "close": 0.921,
+      "quote_asset_volume": 93332440.28827
+    },
+    {
+      "open_time_utc": "2024-05-27",
+      "open": 0.922,
+      "close": 0.921,
+      "quote_asset_volume": 105317595.73034
+    },
+    {
+      "open_time_utc": "2024-05-28",
+      "open": 0.921,
+      "close": 0.894,
+      "quote_asset_volume": 91855359.98272
+    },
+    {
+      "open_time_utc": "2024-05-29",
+      "open": 0.893,
+      "close": 0.837,
+      "quote_asset_volume": 62679154.06097
+    },
+    {
+      "open_time_utc": "2024-05-30",
+      "open": 0.837,
+      "close": 0.871,
+      "quote_asset_volume": 73775178.67641
+    },
+    {
+      "open_time_utc": "2024-05-31",
+      "open": 0.872,
+      "close": 0.878,
+      "quote_asset_volume": 81602348.11619
+    },
+    {
+      "open_time_utc": "2024-06-01",
+      "open": 0.879,
+      "close": 0.91,
+      "quote_asset_volume": 58597504.53289
+    },
+    {
+      "open_time_utc": "2024-06-02",
+      "open": 0.911,
+      "close": 0.92,
+      "quote_asset_volume": 82094636.34696
+    },
+    {
+      "open_time_utc": "2024-06-03",
+      "open": 0.921,
+      "close": 1.027,
+      "quote_asset_volume": 159145000.38666
+    },
+    {
+      "open_time_utc": "2024-06-04",
+      "open": 1.027,
+      "close": 0.978,
+      "quote_asset_volume": 152358527.67698
+    },
+    {
+      "open_time_utc": "2024-06-05",
+      "open": 0.977,
+      "close": 0.979,
+      "quote_asset_volume": 77503576.37834
+    },
+    {
+      "open_time_utc": "2024-06-06",
+      "open": 0.98,
+      "close": 0.952,
+      "quote_asset_volume": 54309059.66519
+    },
+    {
+      "open_time_utc": "2024-06-07",
+      "open": 0.952,
+      "close": 0.885,
+      "quote_asset_volume": 95411912.92992
+    },
+    {
+      "open_time_utc": "2024-06-08",
+      "open": 0.885,
+      "close": 0.831,
+      "quote_asset_volume": 43213662.02297
+    },
+    {
+      "open_time_utc": "2024-06-09",
+      "open": 0.831,
+      "close": 0.831,
+      "quote_asset_volume": 29871352.06486
+    },
+    {
+      "open_time_utc": "2024-06-10",
+      "open": 0.831,
+      "close": 0.771,
+      "quote_asset_volume": 44050550.54971
+    },
+    {
+      "open_time_utc": "2024-06-11",
+      "open": 0.771,
+      "close": 0.71,
+      "quote_asset_volume": 95877556.9084
+    },
+    {
+      "open_time_utc": "2024-06-12",
+      "open": 0.709,
+      "close": 0.731,
+      "quote_asset_volume": 88443041.96264
+    },
+    {
+      "open_time_utc": "2024-06-13",
+      "open": 0.731,
+      "close": 0.697,
+      "quote_asset_volume": 40742758.60396
+    },
+    {
+      "open_time_utc": "2024-06-14",
+      "open": 0.697,
+      "close": 0.71,
+      "quote_asset_volume": 49251105.43481
+    },
+    {
+      "open_time_utc": "2024-06-15",
+      "open": 0.71,
+      "close": 0.748,
+      "quote_asset_volume": 31012958.58622
+    },
+    {
+      "open_time_utc": "2024-06-16",
+      "open": 0.749,
+      "close": 0.767,
+      "quote_asset_volume": 35165240.50239
+    },
+    {
+      "open_time_utc": "2024-06-17",
+      "open": 0.767,
+      "close": 0.676,
+      "quote_asset_volume": 70858541.38589
+    },
+    {
+      "open_time_utc": "2024-06-18",
+      "open": 0.676,
+      "close": 0.627,
+      "quote_asset_volume": 92436352.02691
+    },
+    {
+      "open_time_utc": "2024-06-19",
+      "open": 0.628,
+      "close": 0.635,
+      "quote_asset_volume": 57381524.15792
+    },
+    {
+      "open_time_utc": "2024-06-20",
+      "open": 0.635,
+      "close": 0.613,
+      "quote_asset_volume": 48528488.83431
+    },
+    {
+      "open_time_utc": "2024-06-21",
+      "open": 0.613,
+      "close": 0.6,
+      "quote_asset_volume": 27314466.08676
+    },
+    {
+      "open_time_utc": "2024-06-22",
+      "open": 0.6,
+      "close": 0.602,
+      "quote_asset_volume": 13874883.12493
+    },
+    {
+      "open_time_utc": "2024-06-23",
+      "open": 0.602,
+      "close": 0.568,
+      "quote_asset_volume": 18609698.73718
+    },
+    {
+      "open_time_utc": "2024-06-24",
+      "open": 0.568,
+      "close": 0.558,
+      "quote_asset_volume": 42613870.48695
+    },
+    {
+      "open_time_utc": "2024-06-25",
+      "open": 0.558,
+      "close": 0.573,
+      "quote_asset_volume": 25605644.61399
+    },
+    {
+      "open_time_utc": "2024-06-26",
+      "open": 0.573,
+      "close": 0.559,
+      "quote_asset_volume": 24585982.39392
+    },
+    {
+      "open_time_utc": "2024-06-27",
+      "open": 0.56,
+      "close": 0.56,
+      "quote_asset_volume": 23236672.90397
+    },
+    {
+      "open_time_utc": "2024-06-28",
+      "open": 0.561,
+      "close": 0.513,
+      "quote_asset_volume": 26171265.15235
+    },
+    {
+      "open_time_utc": "2024-06-29",
+      "open": 0.513,
+      "close": 0.489,
+      "quote_asset_volume": 14503505.86194
+    },
+    {
+      "open_time_utc": "2024-06-30",
+      "open": 0.489,
+      "close": 0.533,
+      "quote_asset_volume": 15850715.5911
+    },
+    {
+      "open_time_utc": "2024-07-01",
+      "open": 0.533,
+      "close": 0.505,
+      "quote_asset_volume": 23210904.51776
+    },
+    {
+      "open_time_utc": "2024-07-02",
+      "open": 0.506,
+      "close": 0.514,
+      "quote_asset_volume": 17436883.30697
+    },
+    {
+      "open_time_utc": "2024-07-03",
+      "open": 0.514,
+      "close": 0.461,
+      "quote_asset_volume": 25956136.33252
+    },
+    {
+      "open_time_utc": "2024-07-04",
+      "open": 0.461,
+      "close": 0.406,
+      "quote_asset_volume": 29275958.65602
+    },
+    {
+      "open_time_utc": "2024-07-05",
+      "open": 0.407,
+      "close": 0.379,
+      "quote_asset_volume": 40440094.21273
+    },
+    {
+      "open_time_utc": "2024-07-06",
+      "open": 0.379,
+      "close": 0.413,
+      "quote_asset_volume": 18618155.33061
+    },
+    {
+      "open_time_utc": "2024-07-07",
+      "open": 0.413,
+      "close": 0.377,
+      "quote_asset_volume": 22493109.16962
+    },
+    {
+      "open_time_utc": "2024-07-08",
+      "open": 0.378,
+      "close": 0.404,
+      "quote_asset_volume": 38242373.55589
+    },
+    {
+      "open_time_utc": "2024-07-09",
+      "open": 0.404,
+      "close": 0.423,
+      "quote_asset_volume": 20188654.37508
+    },
+    {
+      "open_time_utc": "2024-07-10",
+      "open": 0.423,
+      "close": 0.415,
+      "quote_asset_volume": 18836674.69199
+    },
+    {
+      "open_time_utc": "2024-07-11",
+      "open": 0.416,
+      "close": 0.394,
+      "quote_asset_volume": 20449655.57364
+    },
+    {
+      "open_time_utc": "2024-07-12",
+      "open": 0.394,
+      "close": 0.396,
+      "quote_asset_volume": 19591406.0328
+    },
+    {
+      "open_time_utc": "2024-07-13",
+      "open": 0.397,
+      "close": 0.4,
+      "quote_asset_volume": 14105997.03122
+    },
+    {
+      "open_time_utc": "2024-07-14",
+      "open": 0.4,
+      "close": 0.399,
+      "quote_asset_volume": 20510132.8328
+    },
+    {
+      "open_time_utc": "2024-07-15",
+      "open": 0.4,
+      "close": 0.481,
+      "quote_asset_volume": 56692800.76436
+    },
+    {
+      "open_time_utc": "2024-07-16",
+      "open": 0.481,
+      "close": 0.464,
+      "quote_asset_volume": 43269513.34481
+    },
+    {
+      "open_time_utc": "2024-07-17",
+      "open": 0.464,
+      "close": 0.457,
+      "quote_asset_volume": 41883724.69767
+    },
+    {
+      "open_time_utc": "2024-07-18",
+      "open": 0.458,
+      "close": 0.49,
+      "quote_asset_volume": 42747384.79279
+    },
+    {
+      "open_time_utc": "2024-07-19",
+      "open": 0.49,
+      "close": 0.487,
+      "quote_asset_volume": 29457902.33375
+    },
+    {
+      "open_time_utc": "2024-07-20",
+      "open": 0.488,
+      "close": 0.502,
+      "quote_asset_volume": 21107955.00557
+    },
+    {
+      "open_time_utc": "2024-07-21",
+      "open": 0.502,
+      "close": 0.491,
+      "quote_asset_volume": 21145208.29477
+    },
+    {
+      "open_time_utc": "2024-07-22",
+      "open": 0.491,
+      "close": 0.434,
+      "quote_asset_volume": 26502414.96275
+    },
+    {
+      "open_time_utc": "2024-07-23",
+      "open": 0.434,
+      "close": 0.457,
+      "quote_asset_volume": 49667639.49945
+    },
+    {
+      "open_time_utc": "2024-07-24",
+      "open": 0.457,
+      "close": 0.454,
+      "quote_asset_volume": 63133729.86187
+    },
+    {
+      "open_time_utc": "2024-07-25",
+      "open": 0.455,
+      "close": 0.428,
+      "quote_asset_volume": 34645593.02837
+    },
+    {
+      "open_time_utc": "2024-07-26",
+      "open": 0.429,
+      "close": 0.464,
+      "quote_asset_volume": 23718410.12967
+    },
+    {
+      "open_time_utc": "2024-07-27",
+      "open": 0.465,
+      "close": 0.468,
+      "quote_asset_volume": 18543093.57258
+    },
+    {
+      "open_time_utc": "2024-07-28",
+      "open": 0.469,
+      "close": 0.448,
+      "quote_asset_volume": 12841982.11715
+    },
+    {
+      "open_time_utc": "2024-07-29",
+      "open": 0.449,
+      "close": 0.439,
+      "quote_asset_volume": 25006668.74732
+    },
+    {
+      "open_time_utc": "2024-07-30",
+      "open": 0.44,
+      "close": 0.411,
+      "quote_asset_volume": 17651542.08721
+    },
+    {
+      "open_time_utc": "2024-07-31",
+      "open": 0.412,
+      "close": 0.399,
+      "quote_asset_volume": 19288535.95345
+    },
+    {
+      "open_time_utc": "2024-08-01",
+      "open": 0.4,
+      "close": 0.396,
+      "quote_asset_volume": 22505110.80579
+    },
+    {
+      "open_time_utc": "2024-08-02",
+      "open": 0.396,
+      "close": 0.352,
+      "quote_asset_volume": 25216682.17583
+    },
+    {
+      "open_time_utc": "2024-08-03",
+      "open": 0.351,
+      "close": 0.313,
+      "quote_asset_volume": 22387028.08562
+    },
+    {
+      "open_time_utc": "2024-08-04",
+      "open": 0.313,
+      "close": 0.292,
+      "quote_asset_volume": 29262876.06458
+    },
+    {
+      "open_time_utc": "2024-08-05",
+      "open": 0.292,
+      "close": 0.261,
+      "quote_asset_volume": 61496260.20485
+    },
+    {
+      "open_time_utc": "2024-08-06",
+      "open": 0.261,
+      "close": 0.276,
+      "quote_asset_volume": 22168076.80312
+    },
+    {
+      "open_time_utc": "2024-08-07",
+      "open": 0.276,
+      "close": 0.261,
+      "quote_asset_volume": 19191611.53688
+    },
+    {
+      "open_time_utc": "2024-08-08",
+      "open": 0.262,
+      "close": 0.312,
+      "quote_asset_volume": 15667874.03973
+    },
+    {
+      "open_time_utc": "2024-08-09",
+      "open": 0.313,
+      "close": 0.312,
+      "quote_asset_volume": 15313849.15835
+    },
+    {
+      "open_time_utc": "2024-08-10",
+      "open": 0.312,
+      "close": 0.32,
+      "quote_asset_volume": 11416031.74655
+    },
+    {
+      "open_time_utc": "2024-08-11",
+      "open": 0.32,
+      "close": 0.294,
+      "quote_asset_volume": 11092599.83678
+    },
+    {
+      "open_time_utc": "2024-08-12",
+      "open": 0.294,
+      "close": 0.329,
+      "quote_asset_volume": 33745906.33188
+    },
+    {
+      "open_time_utc": "2024-08-13",
+      "open": 0.33,
+      "close": 0.341,
+      "quote_asset_volume": 16477268.5452
+    },
+    {
+      "open_time_utc": "2024-08-14",
+      "open": 0.341,
+      "close": 0.324,
+      "quote_asset_volume": 14880577.07471
+    },
+    {
+      "open_time_utc": "2024-08-15",
+      "open": 0.325,
+      "close": 0.305,
+      "quote_asset_volume": 15648699.29443
+    },
+    {
+      "open_time_utc": "2024-08-16",
+      "open": 0.305,
+      "close": 0.3,
+      "quote_asset_volume": 11654526.33303
+    },
+    {
+      "open_time_utc": "2024-08-17",
+      "open": 0.3,
+      "close": 0.299,
+      "quote_asset_volume": 5435554.93992
+    },
+    {
+      "open_time_utc": "2024-08-18",
+      "open": 0.299,
+      "close": 0.291,
+      "quote_asset_volume": 10129597.82173
+    },
+    {
+      "open_time_utc": "2024-08-19",
+      "open": 0.292,
+      "close": 0.289,
+      "quote_asset_volume": 13245384.2426
+    },
+    {
+      "open_time_utc": "2024-08-20",
+      "open": 0.289,
+      "close": 0.294,
+      "quote_asset_volume": 12211837.3744
+    },
+    {
+      "open_time_utc": "2024-08-21",
+      "open": 0.294,
+      "close": 0.304,
+      "quote_asset_volume": 12066964.67138
+    },
+    {
+      "open_time_utc": "2024-08-22",
+      "open": 0.304,
+      "close": 0.305,
+      "quote_asset_volume": 9074857.36965
+    },
+    {
+      "open_time_utc": "2024-08-23",
+      "open": 0.305,
+      "close": 0.359,
+      "quote_asset_volume": 30119211.19094
+    },
+    {
+      "open_time_utc": "2024-08-24",
+      "open": 0.36,
+      "close": 0.37,
+      "quote_asset_volume": 20613046.5014
+    },
+    {
+      "open_time_utc": "2024-08-25",
+      "open": 0.37,
+      "close": 0.348,
+      "quote_asset_volume": 17877449.74804
+    },
+    {
+      "open_time_utc": "2024-08-26",
+      "open": 0.349,
+      "close": 0.313,
+      "quote_asset_volume": 19491182.30691
+    },
+    {
+      "open_time_utc": "2024-08-27",
+      "open": 0.313,
+      "close": 0.273,
+      "quote_asset_volume": 25897536.20993
+    },
+    {
+      "open_time_utc": "2024-08-28",
+      "open": 0.273,
+      "close": 0.254,
+      "quote_asset_volume": 34421300.12655
+    },
+    {
+      "open_time_utc": "2024-08-29",
+      "open": 0.255,
+      "close": 0.242,
+      "quote_asset_volume": 30320329.79272
+    },
+    {
+      "open_time_utc": "2024-08-30",
+      "open": 0.242,
+      "close": 0.241,
+      "quote_asset_volume": 26739482.12413
+    },
+    {
+      "open_time_utc": "2024-08-31",
+      "open": 0.242,
+      "close": 0.238,
+      "quote_asset_volume": 9180610.00036
+    },
+    {
+      "open_time_utc": "2024-09-01",
+      "open": 0.238,
+      "close": 0.223,
+      "quote_asset_volume": 17051754.2353
+    },
+    {
+      "open_time_utc": "2024-09-02",
+      "open": 0.223,
+      "close": 0.238,
+      "quote_asset_volume": 20891328.24005
+    },
+    {
+      "open_time_utc": "2024-09-03",
+      "open": 0.239,
+      "close": 0.219,
+      "quote_asset_volume": 14984999.26986
+    },
+    {
+      "open_time_utc": "2024-09-04",
+      "open": 0.22,
+      "close": 0.221,
+      "quote_asset_volume": 24561228.13307
+    },
+    {
+      "open_time_utc": "2024-09-05",
+      "open": 0.222,
+      "close": 0.208,
+      "quote_asset_volume": 27122906.25642
+    },
+    {
+      "open_time_utc": "2024-09-06",
+      "open": 0.208,
+      "close": 0.205,
+      "quote_asset_volume": 33998545.07188
+    },
+    {
+      "open_time_utc": "2024-09-07",
+      "open": 0.205,
+      "close": 0.211,
+      "quote_asset_volume": 7646944.72114
+    },
+    {
+      "open_time_utc": "2024-09-08",
+      "open": 0.211,
+      "close": 0.22,
+      "quote_asset_volume": 13662875.33647
+    },
+    {
+      "open_time_utc": "2024-09-09",
+      "open": 0.221,
+      "close": 0.235,
+      "quote_asset_volume": 19061782.04321
+    },
+    {
+      "open_time_utc": "2024-09-10",
+      "open": 0.235,
+      "close": 0.228,
+      "quote_asset_volume": 26109683.90222
+    },
+    {
+      "open_time_utc": "2024-09-11",
+      "open": 0.228,
+      "close": 0.212,
+      "quote_asset_volume": 31653512.52434
+    },
+    {
+      "open_time_utc": "2024-09-12",
+      "open": 0.212,
+      "close": 0.212,
+      "quote_asset_volume": 33579451.61431
+    },
+    {
+      "open_time_utc": "2024-09-13",
+      "open": 0.212,
+      "close": 0.22,
+      "quote_asset_volume": 33408079.96043
+    },
+    {
+      "open_time_utc": "2024-09-14",
+      "open": 0.22,
+      "close": 0.223,
+      "quote_asset_volume": 18856450.41505
+    },
+    {
+      "open_time_utc": "2024-09-15",
+      "open": 0.223,
+      "close": 0.212,
+      "quote_asset_volume": 21499105.37442
+    },
+    {
+      "open_time_utc": "2024-09-16",
+      "open": 0.213,
+      "close": 0.209,
+      "quote_asset_volume": 22026073.84315
+    },
+    {
+      "open_time_utc": "2024-09-17",
+      "open": 0.21,
+      "close": 0.227,
+      "quote_asset_volume": 24425530.90604
+    },
+    {
+      "open_time_utc": "2024-09-18",
+      "open": 0.228,
+      "close": 0.242,
+      "quote_asset_volume": 29980667.34141
+    },
+    {
+      "open_time_utc": "2024-09-19",
+      "open": 0.243,
+      "close": 0.248,
+      "quote_asset_volume": 23170891.23508
+    },
+    {
+      "open_time_utc": "2024-09-20",
+      "open": 0.249,
+      "close": 0.26,
+      "quote_asset_volume": 31686053.29371
+    },
+    {
+      "open_time_utc": "2024-09-21",
+      "open": 0.261,
+      "close": 0.289,
+      "quote_asset_volume": 23501477.10558
+    },
+    {
+      "open_time_utc": "2024-09-22",
+      "open": 0.289,
+      "close": 0.275,
+      "quote_asset_volume": 31768402.78526
+    },
+    {
+      "open_time_utc": "2024-09-23",
+      "open": 0.275,
+      "close": 0.281,
+      "quote_asset_volume": 30623876.95589
+    },
+    {
+      "open_time_utc": "2024-09-24",
+      "open": 0.282,
+      "close": 0.3223,
+      "quote_asset_volume": 60249030.296525
+    },
+    {
+      "open_time_utc": "2024-09-25",
+      "open": 0.3224,
+      "close": 0.3131,
+      "quote_asset_volume": 34434584.959242
+    },
+    {
+      "open_time_utc": "2024-09-26",
+      "open": 0.3131,
+      "close": 0.364,
+      "quote_asset_volume": 82191512.9946
+    },
+    {
+      "open_time_utc": "2024-09-27",
+      "open": 0.364,
+      "close": 0.3596,
+      "quote_asset_volume": 37658322.04929
+    },
+    {
+      "open_time_utc": "2024-09-28",
+      "open": 0.3596,
+      "close": 0.369,
+      "quote_asset_volume": 23404323.951235
+    },
+    {
+      "open_time_utc": "2024-09-29",
+      "open": 0.369,
+      "close": 0.3881,
+      "quote_asset_volume": 43864780.573785
+    },
+    {
+      "open_time_utc": "2024-09-30",
+      "open": 0.3882,
+      "close": 0.3668,
+      "quote_asset_volume": 72417689.185879
+    },
+    {
+      "open_time_utc": "2024-10-01",
+      "open": 0.3668,
+      "close": 0.3542,
+      "quote_asset_volume": 69892685.000403
+    },
+    {
+      "open_time_utc": "2024-10-02",
+      "open": 0.3541,
+      "close": 0.3205,
+      "quote_asset_volume": 54090924.985045
+    },
+    {
+      "open_time_utc": "2024-10-03",
+      "open": 0.3204,
+      "close": 0.2794,
+      "quote_asset_volume": 59056765.513147
+    },
+    {
+      "open_time_utc": "2024-10-04",
+      "open": 0.2795,
+      "close": 0.3096,
+      "quote_asset_volume": 37361212.29483
+    },
+    {
+      "open_time_utc": "2024-10-05",
+      "open": 0.3096,
+      "close": 0.2863,
+      "quote_asset_volume": 23892645.445618
+    },
+    {
+      "open_time_utc": "2024-10-06",
+      "open": 0.2863,
+      "close": 0.2946,
+      "quote_asset_volume": 23712487.250305
+    },
+    {
+      "open_time_utc": "2024-10-07",
+      "open": 0.2945,
+      "close": 0.2841,
+      "quote_asset_volume": 45914495.512573
+    },
+    {
+      "open_time_utc": "2024-10-08",
+      "open": 0.2842,
+      "close": 0.2826,
+      "quote_asset_volume": 32699117.73728
+    },
+    {
+      "open_time_utc": "2024-10-09",
+      "open": 0.2826,
+      "close": 0.2671,
+      "quote_asset_volume": 27589536.80405
+    },
+    {
+      "open_time_utc": "2024-10-10",
+      "open": 0.2671,
+      "close": 0.2708,
+      "quote_asset_volume": 32330394.079455
+    },
+    {
+      "open_time_utc": "2024-10-11",
+      "open": 0.2708,
+      "close": 0.3431,
+      "quote_asset_volume": 86824826.050672
+    },
+    {
+      "open_time_utc": "2024-10-12",
+      "open": 0.3432,
+      "close": 0.3294,
+      "quote_asset_volume": 45420372.73896
+    },
+    {
+      "open_time_utc": "2024-10-13",
+      "open": 0.3294,
+      "close": 0.357,
+      "quote_asset_volume": 74288406.666452
+    },
+    {
+      "open_time_utc": "2024-10-14",
+      "open": 0.3571,
+      "close": 0.4098,
+      "quote_asset_volume": 115774376.769321
+    },
+    {
+      "open_time_utc": "2024-10-15",
+      "open": 0.4099,
+      "close": 0.4284,
+      "quote_asset_volume": 143447211.557917
+    },
+    {
+      "open_time_utc": "2024-10-16",
+      "open": 0.4284,
+      "close": 0.3978,
+      "quote_asset_volume": 99066796.419356
+    },
+    {
+      "open_time_utc": "2024-10-17",
+      "open": 0.3979,
+      "close": 0.3758,
+      "quote_asset_volume": 63613984.14335
+    },
+    {
+      "open_time_utc": "2024-10-18",
+      "open": 0.3758,
+      "close": 0.4136,
+      "quote_asset_volume": 77340305.560635
+    },
+    {
+      "open_time_utc": "2024-10-19",
+      "open": 0.4135,
+      "close": 0.4014,
+      "quote_asset_volume": 38909894.247941
+    },
+    {
+      "open_time_utc": "2024-10-20",
+      "open": 0.4015,
+      "close": 0.4124,
+      "quote_asset_volume": 34751362.84847
+    },
+    {
+      "open_time_utc": "2024-10-21",
+      "open": 0.4125,
+      "close": 0.3901,
+      "quote_asset_volume": 52212418.420627
+    },
+    {
+      "open_time_utc": "2024-10-22",
+      "open": 0.39,
+      "close": 0.3868,
+      "quote_asset_volume": 35372980.89152
+    },
+    {
+      "open_time_utc": "2024-10-23",
+      "open": 0.3869,
+      "close": 0.3688,
+      "quote_asset_volume": 26464805.312183
+    },
+    {
+      "open_time_utc": "2024-10-24",
+      "open": 0.3689,
+      "close": 0.3909,
+      "quote_asset_volume": 37766909.415154
+    },
+    {
+      "open_time_utc": "2024-10-25",
+      "open": 0.391,
+      "close": 0.3509,
+      "quote_asset_volume": 58643673.21339
+    },
+    {
+      "open_time_utc": "2024-10-26",
+      "open": 0.3509,
+      "close": 0.3576,
+      "quote_asset_volume": 24615125.168766
+    },
+    {
+      "open_time_utc": "2024-10-27",
+      "open": 0.3577,
+      "close": 0.3622,
+      "quote_asset_volume": 22104821.748237
+    },
+    {
+      "open_time_utc": "2024-10-28",
+      "open": 0.3623,
+      "close": 0.3717,
+      "quote_asset_volume": 45371996.531094
+    },
+    {
+      "open_time_utc": "2024-10-29",
+      "open": 0.3717,
+      "close": 0.3809,
+      "quote_asset_volume": 47092990.620145
+    },
+    {
+      "open_time_utc": "2024-10-30",
+      "open": 0.3809,
+      "close": 0.3617,
+      "quote_asset_volume": 50901979.594691
+    },
+    {
+      "open_time_utc": "2024-10-31",
+      "open": 0.3617,
+      "close": 0.3628,
+      "quote_asset_volume": 51726658.627805
+    },
+    {
+      "open_time_utc": "2024-11-01",
+      "open": 0.3627,
+      "close": 0.3693,
+      "quote_asset_volume": 58940285.417178
+    },
+    {
+      "open_time_utc": "2024-11-02",
+      "open": 0.3692,
+      "close": 0.3627,
+      "quote_asset_volume": 25651733.467893
+    },
+    {
+      "open_time_utc": "2024-11-03",
+      "open": 0.3624,
+      "close": 0.3371,
+      "quote_asset_volume": 46397322.218049
+    },
+    {
+      "open_time_utc": "2024-11-04",
+      "open": 0.3372,
+      "close": 0.3295,
+      "quote_asset_volume": 37812130.494078
+    },
+    {
+      "open_time_utc": "2024-11-05",
+      "open": 0.3295,
+      "close": 0.3513,
+      "quote_asset_volume": 43989091.900394
+    },
+    {
+      "open_time_utc": "2024-11-06",
+      "open": 0.3513,
+      "close": 0.4856,
+      "quote_asset_volume": 107845296.245125
+    },
+    {
+      "open_time_utc": "2024-11-07",
+      "open": 0.4857,
+      "close": 0.5082,
+      "quote_asset_volume": 143028331.179498
+    },
+    {
+      "open_time_utc": "2024-11-08",
+      "open": 0.5084,
+      "close": 0.4957,
+      "quote_asset_volume": 100752195.385231
+    },
+    {
+      "open_time_utc": "2024-11-09",
+      "open": 0.4957,
+      "close": 0.5494,
+      "quote_asset_volume": 99795100.421017
+    },
+    {
+      "open_time_utc": "2024-11-10",
+      "open": 0.5494,
+      "close": 0.5548,
+      "quote_asset_volume": 145009179.490844
+    },
+    {
+      "open_time_utc": "2024-11-11",
+      "open": 0.5549,
+      "close": 0.6353,
+      "quote_asset_volume": 224210054.745452
+    },
+    {
+      "open_time_utc": "2024-11-12",
+      "open": 0.635,
+      "close": 0.5911,
+      "quote_asset_volume": 128111167.367893
+    },
+    {
+      "open_time_utc": "2024-11-13",
+      "open": 0.5913,
+      "close": 0.5899,
+      "quote_asset_volume": 127372028.775192
+    },
+    {
+      "open_time_utc": "2024-11-14",
+      "open": 0.5902,
+      "close": 0.5383,
+      "quote_asset_volume": 82736458.967725
+    },
+    {
+      "open_time_utc": "2024-11-15",
+      "open": 0.5382,
+      "close": 0.5362,
+      "quote_asset_volume": 120010496.582133
+    },
+    {
+      "open_time_utc": "2024-11-16",
+      "open": 0.5362,
+      "close": 0.5538,
+      "quote_asset_volume": 71208618.162774
+    },
+    {
+      "open_time_utc": "2024-11-17",
+      "open": 0.5539,
+      "close": 0.554,
+      "quote_asset_volume": 95642105.939554
+    },
+    {
+      "open_time_utc": "2024-11-18",
+      "open": 0.554,
+      "close": 0.5796,
+      "quote_asset_volume": 115380860.246767
+    },
+    {
+      "open_time_utc": "2024-11-19",
+      "open": 0.5796,
+      "close": 0.5343,
+      "quote_asset_volume": 57328647.066786
+    },
+    {
+      "open_time_utc": "2024-11-20",
+      "open": 0.5345,
+      "close": 0.5158,
+      "quote_asset_volume": 59483545.684578
+    },
+    {
+      "open_time_utc": "2024-11-21",
+      "open": 0.5159,
+      "close": 0.5922,
+      "quote_asset_volume": 90330654.880644
+    },
+    {
+      "open_time_utc": "2024-11-22",
+      "open": 0.5922,
+      "close": 0.5957,
+      "quote_asset_volume": 85926087.465114
+    },
+    {
+      "open_time_utc": "2024-11-23",
+      "open": 0.5959,
+      "close": 0.6679,
+      "quote_asset_volume": 113365778.016967
+    },
+    {
+      "open_time_utc": "2024-11-24",
+      "open": 0.668,
+      "close": 0.6808,
+      "quote_asset_volume": 93578820.722981
+    },
+    {
+      "open_time_utc": "2024-11-25",
+      "open": 0.6809,
+      "close": 0.6309,
+      "quote_asset_volume": 92807138.296566
+    },
+    {
+      "open_time_utc": "2024-11-26",
+      "open": 0.6311,
+      "close": 0.6006,
+      "quote_asset_volume": 109551628.708193
+    },
+    {
+      "open_time_utc": "2024-11-27",
+      "open": 0.6006,
+      "close": 0.7083,
+      "quote_asset_volume": 121962669.767291
+    },
+    {
+      "open_time_utc": "2024-11-28",
+      "open": 0.7083,
+      "close": 0.7074,
+      "quote_asset_volume": 127483655.561914
+    },
+    {
+      "open_time_utc": "2024-11-29",
+      "open": 0.7076,
+      "close": 0.7905,
+      "quote_asset_volume": 97194727.151922
+    },
+    {
+      "open_time_utc": "2024-11-30",
+      "open": 0.7906,
+      "close": 0.8438,
+      "quote_asset_volume": 99689549.939461
+    },
+    {
+      "open_time_utc": "2024-12-01",
+      "open": 0.8439,
+      "close": 0.824,
+      "quote_asset_volume": 96763882.435587
+    },
+    {
+      "open_time_utc": "2024-12-02",
+      "open": 0.8239,
+      "close": 0.8391,
+      "quote_asset_volume": 129103709.754161
+    },
+    {
+      "open_time_utc": "2024-12-03",
+      "open": 0.8394,
+      "close": 0.8082,
+      "quote_asset_volume": 144789460.761168
+    },
+    {
+      "open_time_utc": "2024-12-04",
+      "open": 0.8082,
+      "close": 0.9072,
+      "quote_asset_volume": 203515688.860068
+    },
+    {
+      "open_time_utc": "2024-12-05",
+      "open": 0.9073,
+      "close": 0.9636,
+      "quote_asset_volume": 178550577.315525
+    },
+    {
+      "open_time_utc": "2024-12-06",
+      "open": 0.9637,
+      "close": 1.0469,
+      "quote_asset_volume": 168437136.741649
+    },
+    {
+      "open_time_utc": "2024-12-07",
+      "open": 1.047,
+      "close": 1.0497,
+      "quote_asset_volume": 108999708.995021
+    },
+    {
+      "open_time_utc": "2024-12-08",
+      "open": 1.0495,
+      "close": 1.0285,
+      "quote_asset_volume": 113877450.995002
+    },
+    {
+      "open_time_utc": "2024-12-09",
+      "open": 1.0286,
+      "close": 1.0053,
+      "quote_asset_volume": 254401074.872592
+    },
+    {
+      "open_time_utc": "2024-12-10",
+      "open": 1.0052,
+      "close": 0.902,
+      "quote_asset_volume": 267237734.130943
+    },
+    {
+      "open_time_utc": "2024-12-11",
+      "open": 0.9021,
+      "close": 1.0478,
+      "quote_asset_volume": 156934613.144123
+    },
+    {
+      "open_time_utc": "2024-12-12",
+      "open": 1.0478,
+      "close": 1.0363,
+      "quote_asset_volume": 151379856.369435
+    },
+    {
+      "open_time_utc": "2024-12-13",
+      "open": 1.0363,
+      "close": 0.9971,
+      "quote_asset_volume": 90604986.404087
+    },
+    {
+      "open_time_utc": "2024-12-14",
+      "open": 0.9972,
+      "close": 1.1317,
+      "quote_asset_volume": 170516740.291566
+    },
+    {
+      "open_time_utc": "2024-12-15",
+      "open": 1.132,
+      "close": 1.2518,
+      "quote_asset_volume": 272906725.945417
+    },
+    {
+      "open_time_utc": "2024-12-16",
+      "open": 1.252,
+      "close": 1.1827,
+      "quote_asset_volume": 223736626.718974
+    },
+    {
+      "open_time_utc": "2024-12-17",
+      "open": 1.1824,
+      "close": 1.112,
+      "quote_asset_volume": 105047311.664858
+    },
+    {
+      "open_time_utc": "2024-12-18",
+      "open": 1.1121,
+      "close": 1.0767,
+      "quote_asset_volume": 228839988.744594
+    },
+    {
+      "open_time_utc": "2024-12-19",
+      "open": 1.0763,
+      "close": 0.9542,
+      "quote_asset_volume": 362173908.115402
+    },
+    {
+      "open_time_utc": "2024-12-20",
+      "open": 0.9542,
+      "close": 1.1813,
+      "quote_asset_volume": 398852426.394212
+    },
+    {
+      "open_time_utc": "2024-12-21",
+      "open": 1.1813,
+      "close": 1.01,
+      "quote_asset_volume": 273615803.986461
+    },
+    {
+      "open_time_utc": "2024-12-22",
+      "open": 1.0099,
+      "close": 1.0298,
+      "quote_asset_volume": 177483434.759494
+    },
+    {
+      "open_time_utc": "2024-12-23",
+      "open": 1.0299,
+      "close": 1.0782,
+      "quote_asset_volume": 224748600.897271
+    },
+    {
+      "open_time_utc": "2024-12-24",
+      "open": 1.0781,
+      "close": 1.0553,
+      "quote_asset_volume": 132523124.296869
+    },
+    {
+      "open_time_utc": "2024-12-25",
+      "open": 1.0549,
+      "close": 1.0293,
+      "quote_asset_volume": 85382258.969077
+    },
+    {
+      "open_time_utc": "2024-12-26",
+      "open": 1.0296,
+      "close": 0.926,
+      "quote_asset_volume": 111036730.257078
+    },
+    {
+      "open_time_utc": "2024-12-27",
+      "open": 0.9261,
+      "close": 0.9056,
+      "quote_asset_volume": 90184019.26747
+    },
+    {
+      "open_time_utc": "2024-12-28",
+      "open": 0.9052,
+      "close": 0.947,
+      "quote_asset_volume": 64445960.114008
+    },
+    {
+      "open_time_utc": "2024-12-29",
+      "open": 0.947,
+      "close": 0.9432,
+      "quote_asset_volume": 69660757.789008
+    },
+    {
+      "open_time_utc": "2024-12-30",
+      "open": 0.9438,
+      "close": 0.9531,
+      "quote_asset_volume": 152418352.263147
+    },
+    {
+      "open_time_utc": "2024-12-31",
+      "open": 0.9532,
+      "close": 0.9093,
+      "quote_asset_volume": 65014844.979677
+    },
+    {
+      "open_time_utc": "2025-01-01",
+      "open": 0.9093,
+      "close": 0.9591,
+      "quote_asset_volume": 52877703.797705
+    },
+    {
+      "open_time_utc": "2025-01-02",
+      "open": 0.9593,
+      "close": 1.0332,
+      "quote_asset_volume": 108893926.359781
+    },
+    {
+      "open_time_utc": "2025-01-03",
+      "open": 1.0335,
+      "close": 1.2141,
+      "quote_asset_volume": 175784367.627987
+    },
+    {
+      "open_time_utc": "2025-01-04",
+      "open": 1.214,
+      "close": 1.2339,
+      "quote_asset_volume": 144504219.387006
+    },
+    {
+      "open_time_utc": "2025-01-05",
+      "open": 1.2338,
+      "close": 1.2626,
+      "quote_asset_volume": 166501601.83031
+    },
+    {
+      "open_time_utc": "2025-01-06",
+      "open": 1.2626,
+      "close": 1.172,
+      "quote_asset_volume": 149272280.809872
+    },
+    {
+      "open_time_utc": "2025-01-07",
+      "open": 1.172,
+      "close": 1.0357,
+      "quote_asset_volume": 177548544.018564
+    },
+    {
+      "open_time_utc": "2025-01-08",
+      "open": 1.0356,
+      "close": 0.9768,
+      "quote_asset_volume": 186739033.574387
+    },
+    {
+      "open_time_utc": "2025-01-09",
+      "open": 0.9768,
+      "close": 0.9013,
+      "quote_asset_volume": 183053398.91197
+    },
+    {
+      "open_time_utc": "2025-01-10",
+      "open": 0.9014,
+      "close": 0.9105,
+      "quote_asset_volume": 163764481.720995
+    },
+    {
+      "open_time_utc": "2025-01-11",
+      "open": 0.9106,
+      "close": 0.9078,
+      "quote_asset_volume": 107718531.323159
+    },
+    {
+      "open_time_utc": "2025-01-12",
+      "open": 0.9078,
+      "close": 0.8783,
+      "quote_asset_volume": 79033314.532181
+    },
+    {
+      "open_time_utc": "2025-01-13",
+      "open": 0.8783,
+      "close": 0.7982,
+      "quote_asset_volume": 259801705.806966
+    },
+    {
+      "open_time_utc": "2025-01-14",
+      "open": 0.7982,
+      "close": 0.8309,
+      "quote_asset_volume": 139648503.8085
+    },
+    {
+      "open_time_utc": "2025-01-15",
+      "open": 0.8309,
+      "close": 0.9431,
+      "quote_asset_volume": 231720668.142038
+    },
+    {
+      "open_time_utc": "2025-01-16",
+      "open": 0.9433,
+      "close": 0.9128,
+      "quote_asset_volume": 178009716.947567
+    },
+    {
+      "open_time_utc": "2025-01-17",
+      "open": 0.9128,
+      "close": 0.9641,
+      "quote_asset_volume": 180951973.504238
+    },
+    {
+      "open_time_utc": "2025-01-18",
+      "open": 0.964,
+      "close": 0.8821,
+      "quote_asset_volume": 231338695.759681
+    },
+    {
+      "open_time_utc": "2025-01-19",
+      "open": 0.8821,
+      "close": 0.8466,
+      "quote_asset_volume": 342824748.350076
+    },
+    {
+      "open_time_utc": "2025-01-20",
+      "open": 0.8466,
+      "close": 0.8791,
+      "quote_asset_volume": 433191654.42494094
+    },
+    {
+      "open_time_utc": "2025-01-21",
+      "open": 0.8791,
+      "close": 0.9345,
+      "quote_asset_volume": 236417842.937329
+    },
+    {
+      "open_time_utc": "2025-01-22",
+      "open": 0.9345,
+      "close": 0.8548,
+      "quote_asset_volume": 135426572.511809
+    },
+    {
+      "open_time_utc": "2025-01-23",
+      "open": 0.8549,
+      "close": 0.8494,
+      "quote_asset_volume": 147584234.285009
+    },
+    {
+      "open_time_utc": "2025-01-24",
+      "open": 0.8495,
+      "close": 0.8455,
+      "quote_asset_volume": 171089511.611154
+    },
+    {
+      "open_time_utc": "2025-01-25",
+      "open": 0.8455,
+      "close": 0.8567,
+      "quote_asset_volume": 68987533.846023
+    },
+    {
+      "open_time_utc": "2025-01-26",
+      "open": 0.8567,
+      "close": 0.7764,
+      "quote_asset_volume": 82163245.582589
+    },
+    {
+      "open_time_utc": "2025-01-27",
+      "open": 0.7763,
+      "close": 0.7516,
+      "quote_asset_volume": 160115620.905305
+    },
+    {
+      "open_time_utc": "2025-01-28",
+      "open": 0.7517,
+      "close": 0.6576,
+      "quote_asset_volume": 91613582.100755
+    },
+    {
+      "open_time_utc": "2025-01-29",
+      "open": 0.6577,
+      "close": 0.6822,
+      "quote_asset_volume": 106329556.647797
+    },
+    {
+      "open_time_utc": "2025-01-30",
+      "open": 0.6822,
+      "close": 0.7603,
+      "quote_asset_volume": 123117471.887603
+    },
+    {
+      "open_time_utc": "2025-01-31",
+      "open": 0.7604,
+      "close": 0.7646,
+      "quote_asset_volume": 139131299.728937
+    },
+    {
+      "open_time_utc": "2025-02-01",
+      "open": 0.7646,
+      "close": 0.6755,
+      "quote_asset_volume": 88996966.126988
+    },
+    {
+      "open_time_utc": "2025-02-02",
+      "open": 0.6755,
+      "close": 0.5789,
+      "quote_asset_volume": 149132094.52452
+    },
+    {
+      "open_time_utc": "2025-02-03",
+      "open": 0.579,
+      "close": 0.6778,
+      "quote_asset_volume": 339768478.202919
+    },
+    {
+      "open_time_utc": "2025-02-04",
+      "open": 0.6778,
+      "close": 0.6073,
+      "quote_asset_volume": 175611198.357835
+    },
+    {
+      "open_time_utc": "2025-02-05",
+      "open": 0.6074,
+      "close": 0.5491,
+      "quote_asset_volume": 115056590.35412
+    },
+    {
+      "open_time_utc": "2025-02-06",
+      "open": 0.549,
+      "close": 0.4717,
+      "quote_asset_volume": 128408066.628172
+    },
+    {
+      "open_time_utc": "2025-02-07",
+      "open": 0.4717,
+      "close": 0.4935,
+      "quote_asset_volume": 159749267.892144
+    },
+    {
+      "open_time_utc": "2025-02-08",
+      "open": 0.4934,
+      "close": 0.5226,
+      "quote_asset_volume": 82456307.873698
+    },
+    {
+      "open_time_utc": "2025-02-09",
+      "open": 0.5225,
+      "close": 0.4765,
+      "quote_asset_volume": 71799684.275405
+    },
+    {
+      "open_time_utc": "2025-02-10",
+      "open": 0.4765,
+      "close": 0.4783,
+      "quote_asset_volume": 85526900.175528
+    },
+    {
+      "open_time_utc": "2025-02-11",
+      "open": 0.4783,
+      "close": 0.4424,
+      "quote_asset_volume": 111662186.468233
+    },
+    {
+      "open_time_utc": "2025-02-12",
+      "open": 0.4424,
+      "close": 0.4508,
+      "quote_asset_volume": 99104508.931186
+    },
+    {
+      "open_time_utc": "2025-02-13",
+      "open": 0.4509,
+      "close": 0.45,
+      "quote_asset_volume": 83158968.481815
+    },
+    {
+      "open_time_utc": "2025-02-14",
+      "open": 0.4501,
+      "close": 0.4849,
+      "quote_asset_volume": 71207497.317831
+    },
+    {
+      "open_time_utc": "2025-02-15",
+      "open": 0.4849,
+      "close": 0.4565,
+      "quote_asset_volume": 49254850.854565
+    },
+    {
+      "open_time_utc": "2025-02-16",
+      "open": 0.4565,
+      "close": 0.4493,
+      "quote_asset_volume": 30408258.609048
+    },
+    {
+      "open_time_utc": "2025-02-17",
+      "open": 0.4494,
+      "close": 0.4553,
+      "quote_asset_volume": 66687593.680438
+    },
+    {
+      "open_time_utc": "2025-02-18",
+      "open": 0.4554,
+      "close": 0.4229,
+      "quote_asset_volume": 69997291.776122
+    },
+    {
+      "open_time_utc": "2025-02-19",
+      "open": 0.423,
+      "close": 0.3968,
+      "quote_asset_volume": 70370488.795499
+    },
+    {
+      "open_time_utc": "2025-02-20",
+      "open": 0.3967,
+      "close": 0.4192,
+      "quote_asset_volume": 58211157.694102
+    },
+    {
+      "open_time_utc": "2025-02-21",
+      "open": 0.4191,
+      "close": 0.4623,
+      "quote_asset_volume": 174552470.665672
+    },
+    {
+      "open_time_utc": "2025-02-22",
+      "open": 0.4623,
+      "close": 0.4479,
+      "quote_asset_volume": 76693971.13391
+    },
+    {
+      "open_time_utc": "2025-02-23",
+      "open": 0.4479,
+      "close": 0.4417,
+      "quote_asset_volume": 62798308.87869
+    },
+    {
+      "open_time_utc": "2025-02-24",
+      "open": 0.4416,
+      "close": 0.3749,
+      "quote_asset_volume": 95534430.90877
+    },
+    {
+      "open_time_utc": "2025-02-25",
+      "open": 0.375,
+      "close": 0.407,
+      "quote_asset_volume": 131963386.373879
+    },
+    {
+      "open_time_utc": "2025-02-26",
+      "open": 0.407,
+      "close": 0.4283,
+      "quote_asset_volume": 89733296.024517
+    },
+    {
+      "open_time_utc": "2025-02-27",
+      "open": 0.4283,
+      "close": 0.4166,
+      "quote_asset_volume": 55868932.875392
+    },
+    {
+      "open_time_utc": "2025-02-28",
+      "open": 0.4167,
+      "close": 0.414,
+      "quote_asset_volume": 69534540.870358
+    },
+    {
+      "open_time_utc": "2025-03-01",
+      "open": 0.4141,
+      "close": 0.4006,
+      "quote_asset_volume": 35233719.887535
+    },
+    {
+      "open_time_utc": "2025-03-02",
+      "open": 0.4007,
+      "close": 0.4751,
+      "quote_asset_volume": 116950316.222664
+    },
+    {
+      "open_time_utc": "2025-03-03",
+      "open": 0.4752,
+      "close": 0.3638,
+      "quote_asset_volume": 101328091.039484
+    },
+    {
+      "open_time_utc": "2025-03-04",
+      "open": 0.3639,
+      "close": 0.3833,
+      "quote_asset_volume": 80564749.677236
+    },
+    {
+      "open_time_utc": "2025-03-05",
+      "open": 0.3833,
+      "close": 0.3436,
+      "quote_asset_volume": 104467545.456868
+    },
+    {
+      "open_time_utc": "2025-03-06",
+      "open": 0.3435,
+      "close": 0.3644,
+      "quote_asset_volume": 201150448.84448
+    },
+    {
+      "open_time_utc": "2025-03-07",
+      "open": 0.3644,
+      "close": 0.4282,
+      "quote_asset_volume": 212608038.049047
+    },
+    {
+      "open_time_utc": "2025-03-08",
+      "open": 0.4283,
+      "close": 0.4419,
+      "quote_asset_volume": 97916427.697696
+    },
+    {
+      "open_time_utc": "2025-03-09",
+      "open": 0.4418,
+      "close": 0.42,
+      "quote_asset_volume": 65210629.874043
+    },
+    {
+      "open_time_utc": "2025-03-10",
+      "open": 0.4201,
+      "close": 0.4127,
+      "quote_asset_volume": 145080048.583818
+    },
+    {
+      "open_time_utc": "2025-03-11",
+      "open": 0.4127,
+      "close": 0.3904,
+      "quote_asset_volume": 95582542.545389
+    },
+    {
+      "open_time_utc": "2025-03-12",
+      "open": 0.3904,
+      "close": 0.37,
+      "quote_asset_volume": 65840167.813695
+    },
+    {
+      "open_time_utc": "2025-03-13",
+      "open": 0.3701,
+      "close": 0.3391,
+      "quote_asset_volume": 60482843.160428
+    },
+    {
+      "open_time_utc": "2025-03-14",
+      "open": 0.3391,
+      "close": 0.3497,
+      "quote_asset_volume": 68105928.816378
+    },
+    {
+      "open_time_utc": "2025-03-15",
+      "open": 0.3496,
+      "close": 0.3715,
+      "quote_asset_volume": 39051180.479389
+    },
+    {
+      "open_time_utc": "2025-03-16",
+      "open": 0.3715,
+      "close": 0.3585,
+      "quote_asset_volume": 40725006.463963
+    },
+    {
+      "open_time_utc": "2025-03-17",
+      "open": 0.3584,
+      "close": 0.3769,
+      "quote_asset_volume": 55350279.444404
+    },
+    {
+      "open_time_utc": "2025-03-18",
+      "open": 0.3769,
+      "close": 0.3677,
+      "quote_asset_volume": 34232278.586647
+    },
+    {
+      "open_time_utc": "2025-03-19",
+      "open": 0.3678,
+      "close": 0.3933,
+      "quote_asset_volume": 58333484.13658
+    },
+    {
+      "open_time_utc": "2025-03-20",
+      "open": 0.3933,
+      "close": 0.3837,
+      "quote_asset_volume": 33543360.513153
+    },
+    {
+      "open_time_utc": "2025-03-21",
+      "open": 0.3836,
+      "close": 0.3506,
+      "quote_asset_volume": 37275657.590883
+    },
+    {
+      "open_time_utc": "2025-03-22",
+      "open": 0.3506,
+      "close": 0.3554,
+      "quote_asset_volume": 30720192.824896
+    },
+    {
+      "open_time_utc": "2025-03-23",
+      "open": 0.3554,
+      "close": 0.3705,
+      "quote_asset_volume": 23456069.606018
+    },
+    {
+      "open_time_utc": "2025-03-24",
+      "open": 0.3705,
+      "close": 0.4087,
+      "quote_asset_volume": 69372569.657085
+    },
+    {
+      "open_time_utc": "2025-03-25",
+      "open": 0.4087,
+      "close": 0.4245,
+      "quote_asset_volume": 74062362.669438
+    },
+    {
+      "open_time_utc": "2025-03-26",
+      "open": 0.4246,
+      "close": 0.4091,
+      "quote_asset_volume": 60075515.930712
+    },
+    {
+      "open_time_utc": "2025-03-27",
+      "open": 0.4092,
+      "close": 0.4296,
+      "quote_asset_volume": 61920173.611078
+    },
+    {
+      "open_time_utc": "2025-03-28",
+      "open": 0.4297,
+      "close": 0.3854,
+      "quote_asset_volume": 46891084.983667
+    },
+    {
+      "open_time_utc": "2025-03-29",
+      "open": 0.3854,
+      "close": 0.3641,
+      "quote_asset_volume": 32546833.267655
+    },
+    {
+      "open_time_utc": "2025-03-30",
+      "open": 0.3642,
+      "close": 0.3698,
+      "quote_asset_volume": 26121392.920497
+    },
+    {
+      "open_time_utc": "2025-03-31",
+      "open": 0.3699,
+      "close": 0.3437,
+      "quote_asset_volume": 42861730.199367
+    },
+    {
+      "open_time_utc": "2025-04-01",
+      "open": 0.3437,
+      "close": 0.3692,
+      "quote_asset_volume": 51623151.960696
+    },
+    {
+      "open_time_utc": "2025-04-02",
+      "open": 0.3692,
+      "close": 0.3309,
+      "quote_asset_volume": 66599051.30479
+    },
+    {
+      "open_time_utc": "2025-04-03",
+      "open": 0.331,
+      "close": 0.3146,
+      "quote_asset_volume": 66483464.454791
+    },
+    {
+      "open_time_utc": "2025-04-04",
+      "open": 0.3147,
+      "close": 0.3187,
+      "quote_asset_volume": 51733143.521289
+    },
+    {
+      "open_time_utc": "2025-04-05",
+      "open": 0.3186,
+      "close": 0.3199,
+      "quote_asset_volume": 34540164.799389
+    },
+    {
+      "open_time_utc": "2025-04-06",
+      "open": 0.3199,
+      "close": 0.2763,
+      "quote_asset_volume": 42757532.23675
+    },
+    {
+      "open_time_utc": "2025-04-07",
+      "open": 0.2764,
+      "close": 0.2923,
+      "quote_asset_volume": 70554361.709093
+    },
+    {
+      "open_time_utc": "2025-04-08",
+      "open": 0.2923,
+      "close": 0.2753,
+      "quote_asset_volume": 31823642.342925
+    },
+    {
+      "open_time_utc": "2025-04-09",
+      "open": 0.2754,
+      "close": 0.3165,
+      "quote_asset_volume": 67532797.173557
+    },
+    {
+      "open_time_utc": "2025-04-10",
+      "open": 0.3166,
+      "close": 0.3025,
+      "quote_asset_volume": 57713203.412953
+    },
+    {
+      "open_time_utc": "2025-04-11",
+      "open": 0.3025,
+      "close": 0.3156,
+      "quote_asset_volume": 39614845.249274
+    },
+    {
+      "open_time_utc": "2025-04-12",
+      "open": 0.3157,
+      "close": 0.3423,
+      "quote_asset_volume": 38302954.256762
+    },
+    {
+      "open_time_utc": "2025-04-13",
+      "open": 0.3423,
+      "close": 0.3079,
+      "quote_asset_volume": 37674819.577796
+    },
+    {
+      "open_time_utc": "2025-04-14",
+      "open": 0.3079,
+      "close": 0.2961,
+      "quote_asset_volume": 44330963.136798
+    },
+    {
+      "open_time_utc": "2025-04-15",
+      "open": 0.2962,
+      "close": 0.2738,
+      "quote_asset_volume": 38019480.115097
+    },
+    {
+      "open_time_utc": "2025-04-16",
+      "open": 0.2738,
+      "close": 0.2703,
+      "quote_asset_volume": 33521644.04413
+    },
+    {
+      "open_time_utc": "2025-04-17",
+      "open": 0.2703,
+      "close": 0.2761,
+      "quote_asset_volume": 21391528.829298
+    },
+    {
+      "open_time_utc": "2025-04-18",
+      "open": 0.276,
+      "close": 0.2812,
+      "quote_asset_volume": 14052566.87679
+    },
+    {
+      "open_time_utc": "2025-04-19",
+      "open": 0.2811,
+      "close": 0.2851,
+      "quote_asset_volume": 12894832.253056
+    },
+    {
+      "open_time_utc": "2025-04-20",
+      "open": 0.2851,
+      "close": 0.286,
+      "quote_asset_volume": 15381942.77552
+    },
+    {
+      "open_time_utc": "2025-04-21",
+      "open": 0.286,
+      "close": 0.2874,
+      "quote_asset_volume": 30591972.729921
+    },
+    {
+      "open_time_utc": "2025-04-22",
+      "open": 0.2874,
+      "close": 0.3215,
+      "quote_asset_volume": 33309010.539941
+    },
+    {
+      "open_time_utc": "2025-04-23",
+      "open": 0.3215,
+      "close": 0.3401,
+      "quote_asset_volume": 84436057.563494
+    },
+    {
+      "open_time_utc": "2025-04-24",
+      "open": 0.34,
+      "close": 0.3566,
+      "quote_asset_volume": 46495114.913047
+    },
+    {
+      "open_time_utc": "2025-04-25",
+      "open": 0.3566,
+      "close": 0.3631,
+      "quote_asset_volume": 56971109.740848
+    },
+    {
+      "open_time_utc": "2025-04-26",
+      "open": 0.3631,
+      "close": 0.3649,
+      "quote_asset_volume": 31433361.259056
+    },
+    {
+      "open_time_utc": "2025-04-27",
+      "open": 0.3649,
+      "close": 0.344,
+      "quote_asset_volume": 22132776.859218
+    },
+    {
+      "open_time_utc": "2025-04-28",
+      "open": 0.3441,
+      "close": 0.335,
+      "quote_asset_volume": 37794710.400665
+    },
+    {
+      "open_time_utc": "2025-04-29",
+      "open": 0.3351,
+      "close": 0.3105,
+      "quote_asset_volume": 47724828.565484
+    },
+    {
+      "open_time_utc": "2025-04-30",
+      "open": 0.3105,
+      "close": 0.3196,
+      "quote_asset_volume": 30176183.142041
+    },
+    {
+      "open_time_utc": "2025-05-01",
+      "open": 0.3196,
+      "close": 0.3223,
+      "quote_asset_volume": 51430447.605445
+    },
+    {
+      "open_time_utc": "2025-05-02",
+      "open": 0.3223,
+      "close": 0.3074,
+      "quote_asset_volume": 40837949.674233
+    },
+    {
+      "open_time_utc": "2025-05-03",
+      "open": 0.3074,
+      "close": 0.2915,
+      "quote_asset_volume": 21074238.468831
+    },
+    {
+      "open_time_utc": "2025-05-04",
+      "open": 0.2915,
+      "close": 0.2861,
+      "quote_asset_volume": 16325844.705411
+    },
+    {
+      "open_time_utc": "2025-05-05",
+      "open": 0.286,
+      "close": 0.2621,
+      "quote_asset_volume": 27766451.289015
+    },
+    {
+      "open_time_utc": "2025-05-06",
+      "open": 0.2621,
+      "close": 0.2698,
+      "quote_asset_volume": 30715046.411245
+    },
+    {
+      "open_time_utc": "2025-05-07",
+      "open": 0.2699,
+      "close": 0.2674,
+      "quote_asset_volume": 27348268.003662
+    },
+    {
+      "open_time_utc": "2025-05-08",
+      "open": 0.2674,
+      "close": 0.3407,
+      "quote_asset_volume": 104439829.886226
+    },
+    {
+      "open_time_utc": "2025-05-09",
+      "open": 0.3407,
+      "close": 0.3679,
+      "quote_asset_volume": 162368543.282381
+    },
+    {
+      "open_time_utc": "2025-05-10",
+      "open": 0.368,
+      "close": 0.4189,
+      "quote_asset_volume": 95637669.683408
+    },
+    {
+      "open_time_utc": "2025-05-11",
+      "open": 0.4188,
+      "close": 0.4083,
+      "quote_asset_volume": 100064593.121513
+    },
+    {
+      "open_time_utc": "2025-05-12",
+      "open": 0.4084,
+      "close": 0.387,
+      "quote_asset_volume": 122154475.733503
+    },
+    {
+      "open_time_utc": "2025-05-13",
+      "open": 0.387,
+      "close": 0.4545,
+      "quote_asset_volume": 155317980.355891
+    },
+    {
+      "open_time_utc": "2025-05-14",
+      "open": 0.4544,
+      "close": 0.4079,
+      "quote_asset_volume": 92751089.350562
+    },
+    {
+      "open_time_utc": "2025-05-15",
+      "open": 0.408,
+      "close": 0.3671,
+      "quote_asset_volume": 121617127.537325
+    },
+    {
+      "open_time_utc": "2025-05-16",
+      "open": 0.3671,
+      "close": 0.3788,
+      "quote_asset_volume": 85429363.483262
+    },
+    {
+      "open_time_utc": "2025-05-17",
+      "open": 0.3787,
+      "close": 0.3499,
+      "quote_asset_volume": 63462102.602136
+    },
+    {
+      "open_time_utc": "2025-05-18",
+      "open": 0.3498,
+      "close": 0.3904,
+      "quote_asset_volume": 94632800.062599
+    },
+    {
+      "open_time_utc": "2025-05-19",
+      "open": 0.3905,
+      "close": 0.3696,
+      "quote_asset_volume": 91184734.660052
+    },
+    {
+      "open_time_utc": "2025-05-20",
+      "open": 0.3697,
+      "close": 0.3778,
+      "quote_asset_volume": 85388481.844799
+    },
+    {
+      "open_time_utc": "2025-05-21",
+      "open": 0.3778,
+      "close": 0.3959,
+      "quote_asset_volume": 113878701.245059
+    },
+    {
+      "open_time_utc": "2025-05-22",
+      "open": 0.3959,
+      "close": 0.4167,
+      "quote_asset_volume": 101427253.730414
+    },
+    {
+      "open_time_utc": "2025-05-23",
+      "open": 0.4168,
+      "close": 0.3706,
+      "quote_asset_volume": 117659259.00736
+    },
+    {
+      "open_time_utc": "2025-05-24",
+      "open": 0.3705,
+      "close": 0.3682,
+      "quote_asset_volume": 54195870.517728
+    },
+    {
+      "open_time_utc": "2025-05-25",
+      "open": 0.3682,
+      "close": 0.3784,
+      "quote_asset_volume": 42107244.467101
+    },
+    {
+      "open_time_utc": "2025-05-26",
+      "open": 0.3785,
+      "close": 0.3863,
+      "quote_asset_volume": 54851297.780588
+    },
+    {
+      "open_time_utc": "2025-05-27",
+      "open": 0.3863,
+      "close": 0.398,
+      "quote_asset_volume": 83129746.425679
+    },
+    {
+      "open_time_utc": "2025-05-28",
+      "open": 0.3981,
+      "close": 0.39,
+      "quote_asset_volume": 68550657.105905
+    },
+    {
+      "open_time_utc": "2025-05-29",
+      "open": 0.39,
+      "close": 0.3732,
+      "quote_asset_volume": 83557461.660116
+    },
+    {
+      "open_time_utc": "2025-05-30",
+      "open": 0.3731,
+      "close": 0.301,
+      "quote_asset_volume": 104871259.40859
+    },
+    {
+      "open_time_utc": "2025-05-31",
+      "open": 0.301,
+      "close": 0.3057,
+      "quote_asset_volume": 53211559.848037
+    },
+    {
+      "open_time_utc": "2025-06-01",
+      "open": 0.3057,
+      "close": 0.3135,
+      "quote_asset_volume": 28092312.056017
+    },
+    {
+      "open_time_utc": "2025-06-02",
+      "open": 0.3136,
+      "close": 0.3228,
+      "quote_asset_volume": 53642381.944032
+    },
+    {
+      "open_time_utc": "2025-06-03",
+      "open": 0.3227,
+      "close": 0.3378,
+      "quote_asset_volume": 71086212.029512
+    },
+    {
+      "open_time_utc": "2025-06-04",
+      "open": 0.3377,
+      "close": 0.3142,
+      "quote_asset_volume": 77087035.789367
+    },
+    {
+      "open_time_utc": "2025-06-05",
+      "open": 0.3142,
+      "close": 0.2839,
+      "quote_asset_volume": 87329915.095494
+    },
+    {
+      "open_time_utc": "2025-06-06",
+      "open": 0.284,
+      "close": 0.2978,
+      "quote_asset_volume": 52859645.313655
+    },
+    {
+      "open_time_utc": "2025-06-07",
+      "open": 0.2977,
+      "close": 0.3213,
+      "quote_asset_volume": 64663604.614841
+    },
+    {
+      "open_time_utc": "2025-06-08",
+      "open": 0.3212,
+      "close": 0.317,
+      "quote_asset_volume": 40554146.413271
+    },
+    {
+      "open_time_utc": "2025-06-09",
+      "open": 0.317,
+      "close": 0.3435,
+      "quote_asset_volume": 54706866.227412
+    },
+    {
+      "open_time_utc": "2025-06-10",
+      "open": 0.3435,
+      "close": 0.3705,
+      "quote_asset_volume": 106142465.139308
+    },
+    {
+      "open_time_utc": "2025-06-11",
+      "open": 0.3705,
+      "close": 0.3459,
+      "quote_asset_volume": 83528102.758904
+    },
+    {
+      "open_time_utc": "2025-06-12",
+      "open": 0.346,
+      "close": 0.3111,
+      "quote_asset_volume": 64631422.26927
+    },
+    {
+      "open_time_utc": "2025-06-13",
+      "open": 0.3112,
+      "close": 0.3005,
+      "quote_asset_volume": 107586540.775292
+    },
+    {
+      "open_time_utc": "2025-06-14",
+      "open": 0.3005,
+      "close": 0.2925,
+      "quote_asset_volume": 26292860.074918
+    },
+    {
+      "open_time_utc": "2025-06-15",
+      "open": 0.2925,
+      "close": 0.3031,
+      "quote_asset_volume": 24112359.185388
+    },
+    {
+      "open_time_utc": "2025-06-16",
+      "open": 0.3031,
+      "close": 0.2943,
+      "quote_asset_volume": 46747669.994541
+    },
+    {
+      "open_time_utc": "2025-06-17",
+      "open": 0.2943,
+      "close": 0.2799,
+      "quote_asset_volume": 62058127.771141
+    },
+    {
+      "open_time_utc": "2025-06-18",
+      "open": 0.28,
+      "close": 0.2855,
+      "quote_asset_volume": 44388099.673754
+    },
+    {
+      "open_time_utc": "2025-06-19",
+      "open": 0.2855,
+      "close": 0.2827,
+      "quote_asset_volume": 31276755.576273
+    },
+    {
+      "open_time_utc": "2025-06-20",
+      "open": 0.2828,
+      "close": 0.2655,
+      "quote_asset_volume": 45494764.873106
+    },
+    {
+      "open_time_utc": "2025-06-21",
+      "open": 0.2655,
+      "close": 0.2501,
+      "quote_asset_volume": 35292894.81024
+    },
+    {
+      "open_time_utc": "2025-06-22",
+      "open": 0.2502,
+      "close": 0.2382,
+      "quote_asset_volume": 61033030.123708
+    },
+    {
+      "open_time_utc": "2025-06-23",
+      "open": 0.2381,
+      "close": 0.2692,
+      "quote_asset_volume": 57583593.297387
+    },
+    {
+      "open_time_utc": "2025-06-24",
+      "open": 0.2692,
+      "close": 0.2691,
+      "quote_asset_volume": 49424896.504431
+    },
+    {
+      "open_time_utc": "2025-06-25",
+      "open": 0.2691,
+      "close": 0.2578,
+      "quote_asset_volume": 35983962.360537
+    },
+    {
+      "open_time_utc": "2025-06-26",
+      "open": 0.2577,
+      "close": 0.2499,
+      "quote_asset_volume": 38944992.557218
+    },
+    {
+      "open_time_utc": "2025-06-27",
+      "open": 0.25,
+      "close": 0.2537,
+      "quote_asset_volume": 23148888.689027
+    },
+    {
+      "open_time_utc": "2025-06-28",
+      "open": 0.2537,
+      "close": 0.2651,
+      "quote_asset_volume": 15810992.003872
+    },
+    {
+      "open_time_utc": "2025-06-29",
+      "open": 0.2652,
+      "close": 0.2784,
+      "quote_asset_volume": 25415373.465098
+    },
+    {
+      "open_time_utc": "2025-06-30",
+      "open": 0.2784,
+      "close": 0.2665,
+      "quote_asset_volume": 36731110.424753
+    },
+    {
+      "open_time_utc": "2025-07-01",
+      "open": 0.2665,
+      "close": 0.2527,
+      "quote_asset_volume": 22421507.964137
+    },
+    {
+      "open_time_utc": "2025-07-02",
+      "open": 0.2526,
+      "close": 0.276,
+      "quote_asset_volume": 41949602.185337
+    },
+    {
+      "open_time_utc": "2025-07-03",
+      "open": 0.2761,
+      "close": 0.2761,
+      "quote_asset_volume": 42112966.836864
+    },
+    {
+      "open_time_utc": "2025-07-04",
+      "open": 0.276,
+      "close": 0.2532,
+      "quote_asset_volume": 34604877.550576
+    },
+    {
+      "open_time_utc": "2025-07-05",
+      "open": 0.2533,
+      "close": 0.255,
+      "quote_asset_volume": 14039956.323059
+    },
+    {
+      "open_time_utc": "2025-07-06",
+      "open": 0.2551,
+      "close": 0.2619,
+      "quote_asset_volume": 17666612.803582
+    },
+    {
+      "open_time_utc": "2025-07-07",
+      "open": 0.2619,
+      "close": 0.2563,
+      "quote_asset_volume": 24543987.319796
+    },
+    {
+      "open_time_utc": "2025-07-08",
+      "open": 0.2563,
+      "close": 0.2655,
+      "quote_asset_volume": 21597951.462655
+    },
+    {
+      "open_time_utc": "2025-07-09",
+      "open": 0.2655,
+      "close": 0.2874,
+      "quote_asset_volume": 47621443.762189
+    },
+    {
+      "open_time_utc": "2025-07-10",
+      "open": 0.2874,
+      "close": 0.3175,
+      "quote_asset_volume": 54555788.058671
+    },
+    {
+      "open_time_utc": "2025-07-11",
+      "open": 0.3176,
+      "close": 0.3379,
+      "quote_asset_volume": 258394855.026394
+    },
+    {
+      "open_time_utc": "2025-07-12",
+      "open": 0.3379,
+      "close": 0.3226,
+      "quote_asset_volume": 62637708.567156
+    },
+    {
+      "open_time_utc": "2025-07-13",
+      "open": 0.3227,
+      "close": 0.3429,
+      "quote_asset_volume": 62820669.637027
+    },
+    {
+      "open_time_utc": "2025-07-14",
+      "open": 0.343,
+      "close": 0.3372,
+      "quote_asset_volume": 82157724.311686
+    },
+    {
+      "open_time_utc": "2025-07-15",
+      "open": 0.3371,
+      "close": 0.3611,
+      "quote_asset_volume": 89433557.557179
+    },
+    {
+      "open_time_utc": "2025-07-16",
+      "open": 0.361,
+      "close": 0.3716,
+      "quote_asset_volume": 92308581.565752
+    },
+    {
+      "open_time_utc": "2025-07-17",
+      "open": 0.3717,
+      "close": 0.3786,
+      "quote_asset_volume": 97459930.983876
+    },
+    {
+      "open_time_utc": "2025-07-18",
+      "open": 0.3787,
+      "close": 0.3901,
+      "quote_asset_volume": 119851540.394706
+    },
+    {
+      "open_time_utc": "2025-07-19",
+      "open": 0.3902,
+      "close": 0.4338,
+      "quote_asset_volume": 81791322.052406
+    },
+    {
+      "open_time_utc": "2025-07-20",
+      "open": 0.4339,
+      "close": 0.4914,
+      "quote_asset_volume": 242011584.518586
+    },
+    {
+      "open_time_utc": "2025-07-21",
+      "open": 0.4915,
+      "close": 0.5171,
+      "quote_asset_volume": 410763129.982544
+    },
+    {
+      "open_time_utc": "2025-07-22",
+      "open": 0.5172,
+      "close": 0.5084,
+      "quote_asset_volume": 234443636.444561
+    },
+    {
+      "open_time_utc": "2025-07-23",
+      "open": 0.5084,
+      "close": 0.4603,
+      "quote_asset_volume": 152096191.984089
+    },
+    {
+      "open_time_utc": "2025-07-24",
+      "open": 0.4603,
+      "close": 0.4719,
+      "quote_asset_volume": 236027650.108726
+    },
+    {
+      "open_time_utc": "2025-07-25",
+      "open": 0.472,
+      "close": 0.6019,
+      "quote_asset_volume": 450420215.953002
+    },
+    {
+      "open_time_utc": "2025-07-26",
+      "open": 0.6019,
+      "close": 0.6186,
+      "quote_asset_volume": 256392551.229054
+    },
+    {
+      "open_time_utc": "2025-07-27",
+      "open": 0.6185,
+      "close": 0.6697,
+      "quote_asset_volume": 252464099.57808
+    },
+    {
+      "open_time_utc": "2025-07-28",
+      "open": 0.6697,
+      "close": 0.6335,
+      "quote_asset_volume": 271738693.364506
+    },
+    {
+      "open_time_utc": "2025-07-29",
+      "open": 0.6335,
+      "close": 0.5708,
+      "quote_asset_volume": 231437370.508487
+    },
+    {
+      "open_time_utc": "2025-07-30",
+      "open": 0.5709,
+      "close": 0.6082,
+      "quote_asset_volume": 276474264.101424
+    },
+    {
+      "open_time_utc": "2025-07-31",
+      "open": 0.6083,
+      "close": 0.5695,
+      "quote_asset_volume": 340558943.670129
+    },
+    {
+      "open_time_utc": "2025-08-01",
+      "open": 0.5696,
+      "close": 0.5795,
+      "quote_asset_volume": 451481147.149814
+    },
+    {
+      "open_time_utc": "2025-08-02",
+      "open": 0.5794,
+      "close": 0.5217,
+      "quote_asset_volume": 214622346.285509
+    },
+    {
+      "open_time_utc": "2025-08-03",
+      "open": 0.5217,
+      "close": 0.5937,
+      "quote_asset_volume": 227001134.696153
+    },
+    {
+      "open_time_utc": "2025-08-04",
+      "open": 0.5938,
+      "close": 0.604,
+      "quote_asset_volume": 260984268.396479
+    },
+    {
+      "open_time_utc": "2025-08-05",
+      "open": 0.604,
+      "close": 0.5799,
+      "quote_asset_volume": 160832439.655025
+    },
+    {
+      "open_time_utc": "2025-08-06",
+      "open": 0.5798,
+      "close": 0.6013,
+      "quote_asset_volume": 129115631.991436
+    },
+    {
+      "open_time_utc": "2025-08-07",
+      "open": 0.6013,
+      "close": 0.6372,
+      "quote_asset_volume": 190961100.204254
+    },
+    {
+      "open_time_utc": "2025-08-08",
+      "open": 0.6372,
+      "close": 0.6445,
+      "quote_asset_volume": 168211565.746996
+    },
+    {
+      "open_time_utc": "2025-08-09",
+      "open": 0.6445,
+      "close": 0.7363,
+      "quote_asset_volume": 309531500.465443
+    },
+    {
+      "open_time_utc": "2025-08-10",
+      "open": 0.7364,
+      "close": 0.7973,
+      "quote_asset_volume": 282281157.330847
+    },
+    {
+      "open_time_utc": "2025-08-11",
+      "open": 0.7973,
+      "close": 0.7949,
+      "quote_asset_volume": 366168907.314642
+    },
+    {
+      "open_time_utc": "2025-08-12",
+      "open": 0.7949,
+      "close": 0.81,
+      "quote_asset_volume": 312795773.787453
+    },
+    {
+      "open_time_utc": "2025-08-13",
+      "open": 0.81,
+      "close": 0.7762,
+      "quote_asset_volume": 249228630.822448
+    },
+    {
+      "open_time_utc": "2025-08-14",
+      "open": 0.7763,
+      "close": 0.7159,
+      "quote_asset_volume": 329709570.017252
+    },
+    {
+      "open_time_utc": "2025-08-15",
+      "open": 0.7159,
+      "close": 0.7194,
+      "quote_asset_volume": 238517708.708585
+    },
+    {
+      "open_time_utc": "2025-08-16",
+      "open": 0.7194,
+      "close": 0.733,
+      "quote_asset_volume": 99613331.96518
+    },
+    {
+      "open_time_utc": "2025-08-17",
+      "open": 0.7331,
+      "close": 0.7093,
+      "quote_asset_volume": 109639765.14613
+    },
+    {
+      "open_time_utc": "2025-08-18",
+      "open": 0.7093,
+      "close": 0.6772,
+      "quote_asset_volume": 122148792.714966
+    },
+    {
+      "open_time_utc": "2025-08-19",
+      "open": 0.6772,
+      "close": 0.6362,
+      "quote_asset_volume": 128731029.727213
+    },
+    {
+      "open_time_utc": "2025-08-20",
+      "open": 0.6362,
+      "close": 0.6571,
+      "quote_asset_volume": 118079618.150272
+    },
+    {
+      "open_time_utc": "2025-08-21",
+      "open": 0.6572,
+      "close": 0.6289,
+      "quote_asset_volume": 74694672.360217
+    },
+    {
+      "open_time_utc": "2025-08-22",
+      "open": 0.6288,
+      "close": 0.7533,
+      "quote_asset_volume": 301278705.935995
+    },
+    {
+      "open_time_utc": "2025-08-23",
+      "open": 0.7532,
+      "close": 0.7401,
+      "quote_asset_volume": 146130077.787506
+    },
+    {
+      "open_time_utc": "2025-08-24",
+      "open": 0.7401,
+      "close": 0.6945,
+      "quote_asset_volume": 166423462.062643
+    },
+    {
+      "open_time_utc": "2025-08-25",
+      "open": 0.6945,
+      "close": 0.6217,
+      "quote_asset_volume": 156896782.202698
+    },
+    {
+      "open_time_utc": "2025-08-26",
+      "open": 0.6217,
+      "close": 0.6289,
+      "quote_asset_volume": 103589409.515698
+    },
+    {
+      "open_time_utc": "2025-08-27",
+      "open": 0.629,
+      "close": 0.6097,
+      "quote_asset_volume": 122669524.717588
+    },
+    {
+      "open_time_utc": "2025-08-28",
+      "open": 0.6097,
+      "close": 0.6767,
+      "quote_asset_volume": 145787125.500017
+    },
+    {
+      "open_time_utc": "2025-08-29",
+      "open": 0.6768,
+      "close": 0.6413,
+      "quote_asset_volume": 176472803.134932
+    },
+    {
+      "open_time_utc": "2025-08-30",
+      "open": 0.6414,
+      "close": 0.6545,
+      "quote_asset_volume": 71167674.929929
+    },
+    {
+      "open_time_utc": "2025-08-31",
+      "open": 0.6545,
+      "close": 0.6398,
+      "quote_asset_volume": 73443576.258467
+    },
+    {
+      "open_time_utc": "2025-09-01",
+      "open": 0.6398,
+      "close": 0.6287,
+      "quote_asset_volume": 86715634.390642
+    },
+    {
+      "open_time_utc": "2025-09-02",
+      "open": 0.6287,
+      "close": 0.6875,
+      "quote_asset_volume": 199315407.720204
+    },
+    {
+      "open_time_utc": "2025-09-03",
+      "open": 0.6876,
+      "close": 0.7306,
+      "quote_asset_volume": 138303668.699517
+    },
+    {
+      "open_time_utc": "2025-09-04",
+      "open": 0.7306,
+      "close": 0.6473,
+      "quote_asset_volume": 139271883.776871
+    },
+    {
+      "open_time_utc": "2025-09-05",
+      "open": 0.6473,
+      "close": 0.7319,
+      "quote_asset_volume": 265605240.942828
+    },
+    {
+      "open_time_utc": "2025-09-06",
+      "open": 0.7319,
+      "close": 0.7375,
+      "quote_asset_volume": 177209151.091855
+    },
+    {
+      "open_time_utc": "2025-09-07",
+      "open": 0.7375,
+      "close": 0.7371,
+      "quote_asset_volume": 86802926.477343
+    },
+    {
+      "open_time_utc": "2025-09-08",
+      "open": 0.737,
+      "close": 0.7816,
+      "quote_asset_volume": 167267820.524615
+    },
+    {
+      "open_time_utc": "2025-09-09",
+      "open": 0.7816,
+      "close": 0.8067,
+      "quote_asset_volume": 387883893.684577
+    },
+    {
+      "open_time_utc": "2025-09-10",
+      "open": 0.8068,
+      "close": 0.7788,
+      "quote_asset_volume": 206763988.409905
+    },
+    {
+      "open_time_utc": "2025-09-11",
+      "open": 0.7789,
+      "close": 0.7798,
+      "quote_asset_volume": 132765776.224029
+    },
+    {
+      "open_time_utc": "2025-09-12",
+      "open": 0.7798,
+      "close": 0.779,
+      "quote_asset_volume": 120747231.758792
+    },
+    {
+      "open_time_utc": "2025-09-13",
+      "open": 0.779,
+      "close": 0.762,
+      "quote_asset_volume": 91741640.977838
+    },
+    {
+      "open_time_utc": "2025-09-14",
+      "open": 0.762,
+      "close": 0.7428,
+      "quote_asset_volume": 67143838.988509
+    },
+    {
+      "open_time_utc": "2025-09-15",
+      "open": 0.7428,
+      "close": 0.7021,
+      "quote_asset_volume": 208180004.193893
+    },
+    {
+      "open_time_utc": "2025-09-16",
+      "open": 0.7022,
+      "close": 0.6981,
+      "quote_asset_volume": 94196581.668552
+    },
+    {
+      "open_time_utc": "2025-09-17",
+      "open": 0.6982,
+      "close": 0.7101,
+      "quote_asset_volume": 129344162.527973
+    },
+    {
+      "open_time_utc": "2025-09-18",
+      "open": 0.7099,
+      "close": 0.6984,
+      "quote_asset_volume": 99534552.592434
+    },
+    {
+      "open_time_utc": "2025-09-19",
+      "open": 0.6985,
+      "close": 0.6729,
+      "quote_asset_volume": 100066816.384284
+    },
+    {
+      "open_time_utc": "2025-09-20",
+      "open": 0.673,
+      "close": 0.6656,
+      "quote_asset_volume": 41677528.48328
+    },
+    {
+      "open_time_utc": "2025-09-21",
+      "open": 0.6657,
+      "close": 0.6416,
+      "quote_asset_volume": 55217968.11271
+    },
+    {
+      "open_time_utc": "2025-09-22",
+      "open": 0.6416,
+      "close": 0.5997,
+      "quote_asset_volume": 159367199.93064
+    },
+    {
+      "open_time_utc": "2025-09-23",
+      "open": 0.5998,
+      "close": 0.6029,
+      "quote_asset_volume": 85992896.672459
+    },
+    {
+      "open_time_utc": "2025-09-24",
+      "open": 0.603,
+      "close": 0.594,
+      "quote_asset_volume": 72283096.675456
+    },
+    {
+      "open_time_utc": "2025-09-25",
+      "open": 0.5941,
+      "close": 0.5671,
+      "quote_asset_volume": 133350766.322647
+    },
+    {
+      "open_time_utc": "2025-09-26",
+      "open": 0.5671,
+      "close": 0.598,
+      "quote_asset_volume": 72008317.98381
+    },
+    {
+      "open_time_utc": "2025-09-27",
+      "open": 0.5979,
+      "close": 0.5781,
+      "quote_asset_volume": 25613238.303588
+    },
+    {
+      "open_time_utc": "2025-09-28",
+      "open": 0.5782,
+      "close": 0.5998,
+      "quote_asset_volume": 31502411.492199
+    },
+    {
+      "open_time_utc": "2025-09-29",
+      "open": 0.5998,
+      "close": 0.5646,
+      "quote_asset_volume": 50441530.562785
+    },
+    {
+      "open_time_utc": "2025-09-30",
+      "open": 0.5647,
+      "close": 0.5588,
+      "quote_asset_volume": 57702290.419941
+    },
+    {
+      "open_time_utc": "2025-10-01",
+      "open": 0.5589,
+      "close": 0.5813,
+      "quote_asset_volume": 62904752.906094
+    },
+    {
+      "open_time_utc": "2025-10-02",
+      "open": 0.5812,
+      "close": 0.6312,
+      "quote_asset_volume": 152096765.880432
+    },
+    {
+      "open_time_utc": "2025-10-03",
+      "open": 0.6312,
+      "close": 0.6165,
+      "quote_asset_volume": 85759000.168571
+    },
+    {
+      "open_time_utc": "2025-10-04",
+      "open": 0.6166,
+      "close": 0.589,
+      "quote_asset_volume": 45298093.346976
+    },
+    {
+      "open_time_utc": "2025-10-05",
+      "open": 0.5889,
+      "close": 0.5841,
+      "quote_asset_volume": 72289568.25155
+    },
+    {
+      "open_time_utc": "2025-10-06",
+      "open": 0.5841,
+      "close": 0.6032,
+      "quote_asset_volume": 99342434.986753
+    },
+    {
+      "open_time_utc": "2025-10-07",
+      "open": 0.6032,
+      "close": 0.5446,
+      "quote_asset_volume": 100261983.966628
+    },
+    {
+      "open_time_utc": "2025-10-08",
+      "open": 0.5446,
+      "close": 0.577,
+      "quote_asset_volume": 79131851.842061
+    },
+    {
+      "open_time_utc": "2025-10-09",
+      "open": 0.577,
+      "close": 0.5465,
+      "quote_asset_volume": 66502313.343981
+    },
+    {
+      "open_time_utc": "2025-10-10",
+      "open": 0.5466,
+      "close": 0.4355,
+      "quote_asset_volume": 214838778.251926
+    },
+    {
+      "open_time_utc": "2025-10-11",
+      "open": 0.4358,
+      "close": 0.3691,
+      "quote_asset_volume": 124181506.435163
+    },
+    {
+      "open_time_utc": "2025-10-12",
+      "open": 0.3691,
+      "close": 0.4123,
+      "quote_asset_volume": 161130095.340222
+    },
+    {
+      "open_time_utc": "2025-10-13",
+      "open": 0.4123,
+      "close": 0.4662,
+      "quote_asset_volume": 153299245.00579
+    },
+    {
+      "open_time_utc": "2025-10-14",
+      "open": 0.4662,
+      "close": 0.4369,
+      "quote_asset_volume": 129022941.571759
+    },
+    {
+      "open_time_utc": "2025-10-15",
+      "open": 0.4368,
+      "close": 0.4198,
+      "quote_asset_volume": 89120503.624007
+    },
+    {
+      "open_time_utc": "2025-10-16",
+      "open": 0.4197,
+      "close": 0.4029,
+      "quote_asset_volume": 69412923.043111
+    },
+    {
+      "open_time_utc": "2025-10-17",
+      "open": 0.403,
+      "close": 0.4356,
+      "quote_asset_volume": 133168434.719306
+    },
+    {
+      "open_time_utc": "2025-10-18",
+      "open": 0.4356,
+      "close": 0.4622,
+      "quote_asset_volume": 66525524.702683
+    },
+    {
+      "open_time_utc": "2025-10-19",
+      "open": 0.4622,
+      "close": 0.4816,
+      "quote_asset_volume": 90318833.642703
+    },
+    {
+      "open_time_utc": "2025-10-20",
+      "open": 0.4815,
+      "close": 0.4521,
+      "quote_asset_volume": 99599286.221593
+    },
+    {
+      "open_time_utc": "2025-10-21",
+      "open": 0.4522,
+      "close": 0.4544,
+      "quote_asset_volume": 87063305.11503
+    },
+    {
+      "open_time_utc": "2025-10-22",
+      "open": 0.4544,
+      "close": 0.4345,
+      "quote_asset_volume": 104885442.827689
+    },
+    {
+      "open_time_utc": "2025-10-23",
+      "open": 0.4345,
+      "close": 0.4555,
+      "quote_asset_volume": 64487273.607213
+    },
+    {
+      "open_time_utc": "2025-10-24",
+      "open": 0.4555,
+      "close": 0.4824,
+      "quote_asset_volume": 60685657.717927
+    },
+    {
+      "open_time_utc": "2025-10-25",
+      "open": 0.4823,
+      "close": 0.4714,
+      "quote_asset_volume": 27186273.165285
+    },
+    {
+      "open_time_utc": "2025-10-26",
+      "open": 0.4714,
+      "close": 0.5096,
+      "quote_asset_volume": 55250467.733043
+    },
+    {
+      "open_time_utc": "2025-10-27",
+      "open": 0.5097,
+      "close": 0.5013,
+      "quote_asset_volume": 86807067.726984
+    },
+    {
+      "open_time_utc": "2025-10-28",
+      "open": 0.5013,
+      "close": 0.4606,
+      "quote_asset_volume": 65721321.63134
+    },
+    {
+      "open_time_utc": "2025-10-29",
+      "open": 0.4606,
+      "close": 0.4431,
+      "quote_asset_volume": 62218955.766841
+    },
+    {
+      "open_time_utc": "2025-10-30",
+      "open": 0.4431,
+      "close": 0.3941,
+      "quote_asset_volume": 74494320.617692
+    },
+    {
+      "open_time_utc": "2025-10-31",
+      "open": 0.3942,
+      "close": 0.3918,
+      "quote_asset_volume": 42249354.479263
+    },
+    {
+      "open_time_utc": "2025-11-01",
+      "open": 0.3919,
+      "close": 0.3876,
+      "quote_asset_volume": 29203275.086298
+    },
+    {
+      "open_time_utc": "2025-11-02",
+      "open": 0.3877,
+      "close": 0.3745,
+      "quote_asset_volume": 37298669.459165
+    },
+    {
+      "open_time_utc": "2025-11-03",
+      "open": 0.3745,
+      "close": 0.3331,
+      "quote_asset_volume": 57081704.085152
+    },
+    {
+      "open_time_utc": "2025-11-04",
+      "open": 0.3332,
+      "close": 0.3184,
+      "quote_asset_volume": 80610283.863879
+    },
+    {
+      "open_time_utc": "2025-11-05",
+      "open": 0.3185,
+      "close": 0.332,
+      "quote_asset_volume": 48413699.152778
+    },
+    {
+      "open_time_utc": "2025-11-06",
+      "open": 0.332,
+      "close": 0.3096,
+      "quote_asset_volume": 43617472.93272
+    },
+    {
+      "open_time_utc": "2025-11-07",
+      "open": 0.3095,
+      "close": 0.3339,
+      "quote_asset_volume": 69040274.469267
+    },
+    {
+      "open_time_utc": "2025-11-08",
+      "open": 0.3338,
+      "close": 0.3206,
+      "quote_asset_volume": 42579162.219895
+    },
+    {
+      "open_time_utc": "2025-11-09",
+      "open": 0.3206,
+      "close": 0.3269,
+      "quote_asset_volume": 41907335.955031
+    },
+    {
+      "open_time_utc": "2025-11-10",
+      "open": 0.3268,
+      "close": 0.3399,
+      "quote_asset_volume": 73866722.951214
+    },
+    {
+      "open_time_utc": "2025-11-11",
+      "open": 0.34,
+      "close": 0.3094,
+      "quote_asset_volume": 62198166.469614
+    },
+    {
+      "open_time_utc": "2025-11-12",
+      "open": 0.3095,
+      "close": 0.3076,
+      "quote_asset_volume": 52436864.095437
+    },
+    {
+      "open_time_utc": "2025-11-13",
+      "open": 0.3076,
+      "close": 0.2913,
+      "quote_asset_volume": 43672288.896263
+    },
+    {
+      "open_time_utc": "2025-11-14",
+      "open": 0.2913,
+      "close": 0.2767,
+      "quote_asset_volume": 64979103.51807
+    },
+    {
+      "open_time_utc": "2025-11-15",
+      "open": 0.2767,
+      "close": 0.2756,
+      "quote_asset_volume": 38131559.748286
+    },
+    {
+      "open_time_utc": "2025-11-16",
+      "open": 0.2756,
+      "close": 0.2751,
+      "quote_asset_volume": 52214842.06789
+    },
+    {
+      "open_time_utc": "2025-11-17",
+      "open": 0.2751,
+      "close": 0.2598,
+      "quote_asset_volume": 54862118.284744
+    },
+    {
+      "open_time_utc": "2025-11-18",
+      "open": 0.2598,
+      "close": 0.2777,
+      "quote_asset_volume": 65324679.516324
+    },
+    {
+      "open_time_utc": "2025-11-19",
+      "open": 0.2776,
+      "close": 0.269,
+      "quote_asset_volume": 43103535.243548
+    },
+    {
+      "open_time_utc": "2025-11-20",
+      "open": 0.269,
+      "close": 0.2535,
+      "quote_asset_volume": 42309609.698575
+    },
+    {
+      "open_time_utc": "2025-11-21",
+      "open": 0.2534,
+      "close": 0.2374,
+      "quote_asset_volume": 66555896.818679
+    },
+    {
+      "open_time_utc": "2025-11-22",
+      "open": 0.2374,
+      "close": 0.2331,
+      "quote_asset_volume": 19828324.133627
+    },
+    {
+      "open_time_utc": "2025-11-23",
+      "open": 0.2331,
+      "close": 0.2368,
+      "quote_asset_volume": 20127768.588805
+    },
+    {
+      "open_time_utc": "2025-11-24",
+      "open": 0.2368,
+      "close": 0.2639,
+      "quote_asset_volume": 36148303.492407
+    },
+    {
+      "open_time_utc": "2025-11-25",
+      "open": 0.2639,
+      "close": 0.2835,
+      "quote_asset_volume": 57152427.447664
+    },
+    {
+      "open_time_utc": "2025-11-26",
+      "open": 0.2837,
+      "close": 0.2805,
+      "quote_asset_volume": 67298903.233402
+    },
+    {
+      "open_time_utc": "2025-11-27",
+      "open": 0.2805,
+      "close": 0.2859,
+      "quote_asset_volume": 43004009.84625
+    },
+    {
+      "open_time_utc": "2025-11-28",
+      "open": 0.2859,
+      "close": 0.282,
+      "quote_asset_volume": 37505187.676493
+    },
+    {
+      "open_time_utc": "2025-11-29",
+      "open": 0.282,
+      "close": 0.2837,
+      "quote_asset_volume": 25060192.957553
+    },
+    {
+      "open_time_utc": "2025-11-30",
+      "open": 0.2837,
+      "close": 0.2589,
+      "quote_asset_volume": 43970581.553345
+    },
+    {
+      "open_time_utc": "2025-12-01",
+      "open": 0.2588,
+      "close": 0.243,
+      "quote_asset_volume": 42358143.339419
+    },
+    {
+      "open_time_utc": "2025-12-02",
+      "open": 0.243,
+      "close": 0.2696,
+      "quote_asset_volume": 52488439.446672
+    },
+    {
+      "open_time_utc": "2025-12-03",
+      "open": 0.2696,
+      "close": 0.2971,
+      "quote_asset_volume": 54664443.104241
+    },
+    {
+      "open_time_utc": "2025-12-04",
+      "open": 0.2971,
+      "close": 0.2836,
+      "quote_asset_volume": 38743687.727193
+    },
+    {
+      "open_time_utc": "2025-12-05",
+      "open": 0.2836,
+      "close": 0.2601,
+      "quote_asset_volume": 43357218.255004
+    },
+    {
+      "open_time_utc": "2025-12-06",
+      "open": 0.2601,
+      "close": 0.2622,
+      "quote_asset_volume": 17814608.6802
+    },
+    {
+      "open_time_utc": "2025-12-07",
+      "open": 0.2622,
+      "close": 0.2675,
+      "quote_asset_volume": 33019977.701392
+    },
+    {
+      "open_time_utc": "2025-12-08",
+      "open": 0.2676,
+      "close": 0.2725,
+      "quote_asset_volume": 32293262.215066
+    },
+    {
+      "open_time_utc": "2025-12-09",
+      "open": 0.2726,
+      "close": 0.2795,
+      "quote_asset_volume": 51757154.098027
+    },
+    {
+      "open_time_utc": "2025-12-10",
+      "open": 0.2794,
+      "close": 0.2595,
+      "quote_asset_volume": 56327111.089549
+    },
+    {
+      "open_time_utc": "2025-12-11",
+      "open": 0.2595,
+      "close": 0.2649,
+      "quote_asset_volume": 33528093.686846
+    },
+    {
+      "open_time_utc": "2025-12-12",
+      "open": 0.265,
+      "close": 0.2483,
+      "quote_asset_volume": 33693540.636977
+    },
+    {
+      "open_time_utc": "2025-12-13",
+      "open": 0.2483,
+      "close": 0.247,
+      "quote_asset_volume": 17448853.583979
+    },
+    {
+      "open_time_utc": "2025-12-14",
+      "open": 0.247,
+      "close": 0.2344,
+      "quote_asset_volume": 22103856.949328
+    },
+    {
+      "open_time_utc": "2025-12-15",
+      "open": 0.2344,
+      "close": 0.2187,
+      "quote_asset_volume": 37676140.683243
+    },
+    {
+      "open_time_utc": "2025-12-16",
+      "open": 0.2187,
+      "close": 0.2183,
+      "quote_asset_volume": 26142687.805357
+    },
+    {
+      "open_time_utc": "2025-12-17",
+      "open": 0.2183,
+      "close": 0.2043,
+      "quote_asset_volume": 41341200.773911
+    },
+    {
+      "open_time_utc": "2025-12-18",
+      "open": 0.2044,
+      "close": 0.1976,
+      "quote_asset_volume": 40447665.306943
+    },
+    {
+      "open_time_utc": "2025-12-19",
+      "open": 0.1977,
+      "close": 0.2091,
+      "quote_asset_volume": 35716580.180818
+    },
+    {
+      "open_time_utc": "2025-12-20",
+      "open": 0.2091,
+      "close": 0.2125,
+      "quote_asset_volume": 12797416.811113
+    },
+    {
+      "open_time_utc": "2025-12-21",
+      "open": 0.2125,
+      "close": 0.2106,
+      "quote_asset_volume": 14443413.321695
+    },
+    {
+      "open_time_utc": "2025-12-22",
+      "open": 0.2106,
+      "close": 0.207,
+      "quote_asset_volume": 25919422.281669
+    },
+    {
+      "open_time_utc": "2025-12-23",
+      "open": 0.2069,
+      "close": 0.2001,
+      "quote_asset_volume": 22178627.731908
+    },
+    {
+      "open_time_utc": "2025-12-24",
+      "open": 0.2001,
+      "close": 0.201,
+      "quote_asset_volume": 11263850.767921
+    },
+    {
+      "open_time_utc": "2025-12-25",
+      "open": 0.201,
+      "close": 0.1995,
+      "quote_asset_volume": 11265616.588415
+    },
+    {
+      "open_time_utc": "2025-12-26",
+      "open": 0.1994,
+      "close": 0.2102,
+      "quote_asset_volume": 16400951.165535
+    },
+    {
+      "open_time_utc": "2025-12-27",
+      "open": 0.2102,
+      "close": 0.2169,
+      "quote_asset_volume": 8966344.695548
+    },
+    {
+      "open_time_utc": "2025-12-28",
+      "open": 0.2169,
+      "close": 0.2081,
+      "quote_asset_volume": 15291470.734232
+    },
+    {
+      "open_time_utc": "2025-12-29",
+      "open": 0.2082,
+      "close": 0.2106,
+      "quote_asset_volume": 22593642.136243
+    },
+    {
+      "open_time_utc": "2025-12-30",
+      "open": 0.2107,
+      "close": 0.2037,
+      "quote_asset_volume": 16359826.195045
+    },
+    {
+      "open_time_utc": "2025-12-31",
+      "open": 0.2036,
+      "close": 0.1999,
+      "quote_asset_volume": 14219590.410975
+    },
+    {
+      "open_time_utc": "2026-01-01",
+      "open": 0.2,
+      "close": 0.2176,
+      "quote_asset_volume": 12189279.408783
+    },
+    {
+      "open_time_utc": "2026-01-02",
+      "open": 0.2177,
+      "close": 0.2374,
+      "quote_asset_volume": 38722590.123913
+    },
+    {
+      "open_time_utc": "2026-01-03",
+      "open": 0.2373,
+      "close": 0.2392,
+      "quote_asset_volume": 23573495.106189
+    },
+    {
+      "open_time_utc": "2026-01-04",
+      "open": 0.2391,
+      "close": 0.2507,
+      "quote_asset_volume": 27254358.514547
+    },
+    {
+      "open_time_utc": "2026-01-05",
+      "open": 0.2506,
+      "close": 0.2527,
+      "quote_asset_volume": 48474571.58955
+    },
+    {
+      "open_time_utc": "2026-01-06",
+      "open": 0.2527,
+      "close": 0.2569,
+      "quote_asset_volume": 56931679.656818
+    },
+    {
+      "open_time_utc": "2026-01-07",
+      "open": 0.2568,
+      "close": 0.238,
+      "quote_asset_volume": 40659585.445712
+    },
+    {
+      "open_time_utc": "2026-01-08",
+      "open": 0.2381,
+      "close": 0.2332,
+      "quote_asset_volume": 27361209.564797
+    },
+    {
+      "open_time_utc": "2026-01-09",
+      "open": 0.2333,
+      "close": 0.2327,
+      "quote_asset_volume": 23355751.802622
+    },
+    {
+      "open_time_utc": "2026-01-10",
+      "open": 0.2327,
+      "close": 0.2271,
+      "quote_asset_volume": 12437681.778552
+    },
+    {
+      "open_time_utc": "2026-01-11",
+      "open": 0.2272,
+      "close": 0.2285,
+      "quote_asset_volume": 13268325.608547
+    },
+    {
+      "open_time_utc": "2026-01-12",
+      "open": 0.2285,
+      "close": 0.214,
+      "quote_asset_volume": 25064492.795804
+    },
+    {
+      "open_time_utc": "2026-01-13",
+      "open": 0.2139,
+      "close": 0.2406,
+      "quote_asset_volume": 49968751.658703
+    },
+    {
+      "open_time_utc": "2026-01-14",
+      "open": 0.2406,
+      "close": 0.2375,
+      "quote_asset_volume": 63041764.320865
+    },
+    {
+      "open_time_utc": "2026-01-15",
+      "open": 0.2375,
+      "close": 0.2243,
+      "quote_asset_volume": 29845546.905447
+    },
+    {
+      "open_time_utc": "2026-01-16",
+      "open": 0.2243,
+      "close": 0.2214,
+      "quote_asset_volume": 21947355.139801
+    },
+    {
+      "open_time_utc": "2026-01-17",
+      "open": 0.2214,
+      "close": 0.219,
+      "quote_asset_volume": 13115888.424782
+    },
+    {
+      "open_time_utc": "2026-01-18",
+      "open": 0.219,
+      "close": 0.2044,
+      "quote_asset_volume": 22658007.02203
+    },
+    {
+      "open_time_utc": "2026-01-19",
+      "open": 0.2044,
+      "close": 0.1948,
+      "quote_asset_volume": 47441354.671188
+    },
+    {
+      "open_time_utc": "2026-01-20",
+      "open": 0.1949,
+      "close": 0.1794,
+      "quote_asset_volume": 42085446.818081
+    },
+    {
+      "open_time_utc": "2026-01-21",
+      "open": 0.1794,
+      "close": 0.179,
+      "quote_asset_volume": 32309617.335062
+    },
+    {
+      "open_time_utc": "2026-01-22",
+      "open": 0.1791,
+      "close": 0.1753,
+      "quote_asset_volume": 19761423.017056
+    },
+    {
+      "open_time_utc": "2026-01-23",
+      "open": 0.1752,
+      "close": 0.1753,
+      "quote_asset_volume": 18154455.632503
+    },
+    {
+      "open_time_utc": "2026-01-24",
+      "open": 0.1752,
+      "close": 0.1741,
+      "quote_asset_volume": 7014454.344173
+    },
+    {
+      "open_time_utc": "2026-01-25",
+      "open": 0.1741,
+      "close": 0.163,
+      "quote_asset_volume": 24021956.957838
+    },
+    {
+      "open_time_utc": "2026-01-26",
+      "open": 0.163,
+      "close": 0.169,
+      "quote_asset_volume": 15383634.055315
+    },
+    {
+      "open_time_utc": "2026-01-27",
+      "open": 0.169,
+      "close": 0.1747,
+      "quote_asset_volume": 18387280.85399
+    },
+    {
+      "open_time_utc": "2026-01-28",
+      "open": 0.1747,
+      "close": 0.1728,
+      "quote_asset_volume": 20312798.263142
+    },
+    {
+      "open_time_utc": "2026-01-29",
+      "open": 0.1729,
+      "close": 0.1573,
+      "quote_asset_volume": 26825385.564811
+    },
+    {
+      "open_time_utc": "2026-01-30",
+      "open": 0.1572,
+      "close": 0.1539,
+      "quote_asset_volume": 31522125.168908
+    },
+    {
+      "open_time_utc": "2026-01-31",
+      "open": 0.1539,
+      "close": 0.1387,
+      "quote_asset_volume": 54973374.418012
+    },
+    {
+      "open_time_utc": "2026-02-01",
+      "open": 0.1386,
+      "close": 0.1365,
+      "quote_asset_volume": 23327965.311594
+    },
+    {
+      "open_time_utc": "2026-02-02",
+      "open": 0.1366,
+      "close": 0.1401,
+      "quote_asset_volume": 26355052.892906
+    },
+    {
+      "open_time_utc": "2026-02-03",
+      "open": 0.1401,
+      "close": 0.1373,
+      "quote_asset_volume": 25253374.183209
+    },
+    {
+      "open_time_utc": "2026-02-04",
+      "open": 0.1373,
+      "close": 0.1338,
+      "quote_asset_volume": 25092749.269013
+    },
+    {
+      "open_time_utc": "2026-02-05",
+      "open": 0.1339,
+      "close": 0.1141,
+      "quote_asset_volume": 45768069.565404
+    },
+    {
+      "open_time_utc": "2026-02-06",
+      "open": 0.1141,
+      "close": 0.1272,
+      "quote_asset_volume": 47086341.184529
+    },
+    {
+      "open_time_utc": "2026-02-07",
+      "open": 0.1272,
+      "close": 0.1264,
+      "quote_asset_volume": 31958890.724511
+    },
+    {
+      "open_time_utc": "2026-02-08",
+      "open": 0.1265,
+      "close": 0.1202,
+      "quote_asset_volume": 10365150.43162
+    },
+    {
+      "open_time_utc": "2026-02-09",
+      "open": 0.1202,
+      "close": 0.1204,
+      "quote_asset_volume": 11441990.500649
+    },
+    {
+      "open_time_utc": "2026-02-10",
+      "open": 0.1205,
+      "close": 0.1145,
+      "quote_asset_volume": 9167227.224614
+    },
+    {
+      "open_time_utc": "2026-02-11",
+      "open": 0.1146,
+      "close": 0.1115,
+      "quote_asset_volume": 12936162.21629
+    },
+    {
+      "open_time_utc": "2026-02-12",
+      "open": 0.1116,
+      "close": 0.1192,
+      "quote_asset_volume": 11454121.80954
+    },
+    {
+      "open_time_utc": "2026-02-13",
+      "open": 0.1192,
+      "close": 0.1209,
+      "quote_asset_volume": 10270833.051346
+    },
+    {
+      "open_time_utc": "2026-02-14",
+      "open": 0.1209,
+      "close": 0.1285,
+      "quote_asset_volume": 11312633.662543
+    },
+    {
+      "open_time_utc": "2026-02-15",
+      "open": 0.1284,
+      "close": 0.1216,
+      "quote_asset_volume": 13866519.170771
+    },
+    {
+      "open_time_utc": "2026-02-16",
+      "open": 0.1216,
+      "close": 0.1231,
+      "quote_asset_volume": 11924928.578529
+    },
+    {
+      "open_time_utc": "2026-02-17",
+      "open": 0.1232,
+      "close": 0.1205,
+      "quote_asset_volume": 7798449.725657
+    },
+    {
+      "open_time_utc": "2026-02-18",
+      "open": 0.1204,
+      "close": 0.115,
+      "quote_asset_volume": 7286453.233325
+    },
+    {
+      "open_time_utc": "2026-02-19",
+      "open": 0.1151,
+      "close": 0.1109,
+      "quote_asset_volume": 10348839.227418
+    },
+    {
+      "open_time_utc": "2026-02-20",
+      "open": 0.1109,
+      "close": 0.1113,
+      "quote_asset_volume": 18555202.246863
+    },
+    {
+      "open_time_utc": "2026-02-21",
+      "open": 0.1113,
+      "close": 0.108,
+      "quote_asset_volume": 7976912.859865
+    },
+    {
+      "open_time_utc": "2026-02-22",
+      "open": 0.108,
+      "close": 0.1,
+      "quote_asset_volume": 13298480.607272
+    },
+    {
+      "open_time_utc": "2026-02-23",
+      "open": 0.1,
+      "close": 0.0985,
+      "quote_asset_volume": 13736990.786842
+    },
+    {
+      "open_time_utc": "2026-02-24",
+      "open": 0.0985,
+      "close": 0.0979,
+      "quote_asset_volume": 9839330.922697
+    },
+    {
+      "open_time_utc": "2026-02-25",
+      "open": 0.0979,
+      "close": 0.1094,
+      "quote_asset_volume": 18059486.347394
+    },
+    {
+      "open_time_utc": "2026-02-26",
+      "open": 0.1094,
+      "close": 0.1052,
+      "quote_asset_volume": 23337340.800625
+    },
+    {
+      "open_time_utc": "2026-02-27",
+      "open": 0.1052,
+      "close": 0.1028,
+      "quote_asset_volume": 13143042.7804
+    },
+    {
+      "open_time_utc": "2026-02-28",
+      "open": 0.1027,
+      "close": 0.1041,
+      "quote_asset_volume": 13607916.507546
+    },
+    {
+      "open_time_utc": "2026-03-01",
+      "open": 0.1042,
+      "close": 0.1035,
+      "quote_asset_volume": 10738789.67467
+    },
+    {
+      "open_time_utc": "2026-03-02",
+      "open": 0.1036,
+      "close": 0.1139,
+      "quote_asset_volume": 19205053.015644
+    },
+    {
+      "open_time_utc": "2026-03-03",
+      "open": 0.1138,
+      "close": 0.1112,
+      "quote_asset_volume": 13337577.961135
+    },
+    {
+      "open_time_utc": "2026-03-04",
+      "open": 0.1112,
+      "close": 0.1174,
+      "quote_asset_volume": 26721723.781175
+    },
+    {
+      "open_time_utc": "2026-03-05",
+      "open": 0.1174,
+      "close": 0.1151,
+      "quote_asset_volume": 13984081.368361
+    },
+    {
+      "open_time_utc": "2026-03-06",
+      "open": 0.1151,
+      "close": 0.1048,
+      "quote_asset_volume": 13734023.139357
+    },
+    {
+      "open_time_utc": "2026-03-07",
+      "open": 0.1049,
+      "close": 0.1009,
+      "quote_asset_volume": 9097342.677734
+    },
+    {
+      "open_time_utc": "2026-03-08",
+      "open": 0.1009,
+      "close": 0.0988,
+      "quote_asset_volume": 7787289.14013
+    },
+    {
+      "open_time_utc": "2026-03-09",
+      "open": 0.0988,
+      "close": 0.101,
+      "quote_asset_volume": 9915410.376209
+    },
+    {
+      "open_time_utc": "2026-03-10",
+      "open": 0.101,
+      "close": 0.103,
+      "quote_asset_volume": 12803176.190151
+    },
+    {
+      "open_time_utc": "2026-03-11",
+      "open": 0.103,
+      "close": 0.1048,
+      "quote_asset_volume": 10343485.81562
+    },
+    {
+      "open_time_utc": "2026-03-12",
+      "open": 0.1049,
+      "close": 0.1064,
+      "quote_asset_volume": 10584413.180076
+    },
+    {
+      "open_time_utc": "2026-03-13",
+      "open": 0.1064,
+      "close": 0.1087,
+      "quote_asset_volume": 16184887.135938
+    },
+    {
+      "open_time_utc": "2026-03-14",
+      "open": 0.1086,
+      "close": 0.108,
+      "quote_asset_volume": 5559444.353691
+    },
+    {
+      "open_time_utc": "2026-03-15",
+      "open": 0.108,
+      "close": 0.1104,
+      "quote_asset_volume": 7555756.979446
+    },
+    {
+      "open_time_utc": "2026-03-16",
+      "open": 0.1105,
+      "close": 0.1196,
+      "quote_asset_volume": 19635354.247877
+    },
+    {
+      "open_time_utc": "2026-03-17",
+      "open": 0.1196,
+      "close": 0.1167,
+      "quote_asset_volume": 12680293.912093
+    },
+    {
+      "open_time_utc": "2026-03-18",
+      "open": 0.1167,
+      "close": 0.1083,
+      "quote_asset_volume": 14933253.422323
+    },
+    {
+      "open_time_utc": "2026-03-19",
+      "open": 0.1083,
+      "close": 0.103,
+      "quote_asset_volume": 10556907.145147
+    },
+    {
+      "open_time_utc": "2026-03-20",
+      "open": 0.1031,
+      "close": 0.102,
+      "quote_asset_volume": 10168654.307228
+    },
+    {
+      "open_time_utc": "2026-03-21",
+      "open": 0.102,
+      "close": 0.0991,
+      "quote_asset_volume": 6421601.24018
+    },
+    {
+      "open_time_utc": "2026-03-22",
+      "open": 0.0991,
+      "close": 0.0955,
+      "quote_asset_volume": 9088098.676267
+    },
+    {
+      "open_time_utc": "2026-03-23",
+      "open": 0.0955,
+      "close": 0.0937,
+      "quote_asset_volume": 23871617.076131
+    },
+    {
+      "open_time_utc": "2026-03-24",
+      "open": 0.0937,
+      "close": 0.0953,
+      "quote_asset_volume": 16747692.103165
+    },
+    {
+      "open_time_utc": "2026-03-25",
+      "open": 0.0954,
+      "close": 0.1043,
+      "quote_asset_volume": 23172680.891928
+    },
+    {
+      "open_time_utc": "2026-03-26",
+      "open": 0.1043,
+      "close": 0.0967,
+      "quote_asset_volume": 25558717.862017
+    },
+    {
+      "open_time_utc": "2026-03-27",
+      "open": 0.0967,
+      "close": 0.0891,
+      "quote_asset_volume": 13256126.971138
+    },
+    {
+      "open_time_utc": "2026-03-28",
+      "open": 0.0891,
+      "close": 0.0906,
+      "quote_asset_volume": 10086460.872136
+    },
+    {
+      "open_time_utc": "2026-03-29",
+      "open": 0.0905,
+      "close": 0.0898,
+      "quote_asset_volume": 6060605.996512
+    },
+    {
+      "open_time_utc": "2026-03-30",
+      "open": 0.0899,
+      "close": 0.0912,
+      "quote_asset_volume": 8823326.342134
+    },
+    {
+      "open_time_utc": "2026-03-31",
+      "open": 0.0913,
+      "close": 0.091,
+      "quote_asset_volume": 9355050.438151
+    },
+    {
+      "open_time_utc": "2026-04-01",
+      "open": 0.091,
+      "close": 0.0902,
+      "quote_asset_volume": 13506251.36522
+    },
+    {
+      "open_time_utc": "2026-04-02",
+      "open": 0.0902,
+      "close": 0.0812,
+      "quote_asset_volume": 20326675.635663
+    },
+    {
+      "open_time_utc": "2026-04-03",
+      "open": 0.0812,
+      "close": 0.0797,
+      "quote_asset_volume": 7946187.795217
+    },
+    {
+      "open_time_utc": "2026-04-04",
+      "open": 0.0798,
+      "close": 0.0801,
+      "quote_asset_volume": 4865873.453879
+    },
+    {
+      "open_time_utc": "2026-04-05",
+      "open": 0.0801,
+      "close": 0.0806,
+      "quote_asset_volume": 9201605.973953
+    },
+    {
+      "open_time_utc": "2026-04-06",
+      "open": 0.0807,
+      "close": 0.0817,
+      "quote_asset_volume": 14363138.633428
+    },
+    {
+      "open_time_utc": "2026-04-07",
+      "open": 0.0817,
+      "close": 0.0908,
+      "quote_asset_volume": 15959857.255257
+    },
+    {
+      "open_time_utc": "2026-04-08",
+      "open": 0.0909,
+      "close": 0.0881,
+      "quote_asset_volume": 19713987.806667
+    },
+    {
+      "open_time_utc": "2026-04-09",
+      "open": 0.0881,
+      "close": 0.0905,
+      "quote_asset_volume": 12660485.939183
+    },
+    {
+      "open_time_utc": "2026-04-10",
+      "open": 0.0905,
+      "close": 0.0946,
+      "quote_asset_volume": 27045967.318645
+    },
+    {
+      "open_time_utc": "2026-04-11",
+      "open": 0.0945,
+      "close": 0.096,
+      "quote_asset_volume": 12982460.661745
+    },
+    {
+      "open_time_utc": "2026-04-12",
+      "open": 0.0961,
+      "close": 0.0912,
+      "quote_asset_volume": 9441346.144392
+    },
+    {
+      "open_time_utc": "2026-04-13",
+      "open": 0.0912,
+      "close": 0.101,
+      "quote_asset_volume": 17425219.221076
+    },
+    {
+      "open_time_utc": "2026-04-14",
+      "open": 0.101,
+      "close": 0.0963,
+      "quote_asset_volume": 14188882.553433
+    },
+    {
+      "open_time_utc": "2026-04-15",
+      "open": 0.0963,
+      "close": 0.0994,
+      "quote_asset_volume": 12396229.515475
+    },
+    {
+      "open_time_utc": "2026-04-16",
+      "open": 0.0994,
+      "close": 0.1136,
+      "quote_asset_volume": 23504097.705834
+    },
+    {
+      "open_time_utc": "2026-04-17",
+      "open": 0.1135,
+      "close": 0.125,
+      "quote_asset_volume": 36842205.479421
+    },
+    {
+      "open_time_utc": "2026-04-18",
+      "open": 0.125,
+      "close": 0.1199,
+      "quote_asset_volume": 20579784.571312
+    },
+    {
+      "open_time_utc": "2026-04-19",
+      "open": 0.1199,
+      "close": 0.1125,
+      "quote_asset_volume": 17535266.666089
+    },
+    {
+      "open_time_utc": "2026-04-20",
+      "open": 0.1125,
+      "close": 0.1121,
+      "quote_asset_volume": 11241199.630402
+    },
+    {
+      "open_time_utc": "2026-04-21",
+      "open": 0.1121,
+      "close": 0.112,
+      "quote_asset_volume": 12312736.038674
+    },
+    {
+      "open_time_utc": "2026-04-22",
+      "open": 0.1121,
+      "close": 0.1064,
+      "quote_asset_volume": 14007316.510312
+    },
+    {
+      "open_time_utc": "2026-04-23",
+      "open": 0.1065,
+      "close": 0.1099,
+      "quote_asset_volume": 11064762.327576
+    },
+    {
+      "open_time_utc": "2026-04-24",
+      "open": 0.1099,
+      "close": 0.1087,
+      "quote_asset_volume": 6946546.863166
+    },
+    {
+      "open_time_utc": "2026-04-25",
+      "open": 0.1086,
+      "close": 0.1074,
+      "quote_asset_volume": 5194571.512177
+    },
+    {
+      "open_time_utc": "2026-04-26",
+      "open": 0.1073,
+      "close": 0.1094,
+      "quote_asset_volume": 9047918.284873
+    },
+    {
+      "open_time_utc": "2026-04-27",
+      "open": 0.1094,
+      "close": 0.107,
+      "quote_asset_volume": 14786247.953589
+    },
+    {
+      "open_time_utc": "2026-04-28",
+      "open": 0.107,
+      "close": 0.1062,
+      "quote_asset_volume": 5878788.870149
+    },
+    {
+      "open_time_utc": "2026-04-29",
+      "open": 0.1062,
+      "close": 0.104,
+      "quote_asset_volume": 10220992.390238
+    },
+    {
+      "open_time_utc": "2026-04-30",
+      "open": 0.104,
+      "close": 0.1027,
+      "quote_asset_volume": 5505328.363904
+    },
+    {
+      "open_time_utc": "2026-05-01",
+      "open": 0.1028,
+      "close": 0.1021,
+      "quote_asset_volume": 8770573.931492
+    },
+    {
+      "open_time_utc": "2026-05-02",
+      "open": 0.1022,
+      "close": 0.1025,
+      "quote_asset_volume": 9719981.049055
+    },
+    {
+      "open_time_utc": "2026-05-03",
+      "open": 0.1026,
+      "close": 0.1005,
+      "quote_asset_volume": 10432483.091458
+    },
+    {
+      "open_time_utc": "2026-05-04",
+      "open": 0.1005,
+      "close": 0.1003,
+      "quote_asset_volume": 27616870.337487
+    },
+    {
+      "open_time_utc": "2026-05-05",
+      "open": 0.1004,
+      "close": 0.1096,
+      "quote_asset_volume": 28063243.614463
+    },
+    {
+      "open_time_utc": "2026-05-06",
+      "open": 0.1096,
+      "close": 0.1208,
+      "quote_asset_volume": 30429557.86373
+    },
+    {
+      "open_time_utc": "2026-05-07",
+      "open": 0.1208,
+      "close": 0.1196,
+      "quote_asset_volume": 25658890.64691
+    },
+    {
+      "open_time_utc": "2026-05-08",
+      "open": 0.1196,
+      "close": 0.1317,
+      "quote_asset_volume": 34136481.750487
+    },
+    {
+      "open_time_utc": "2026-05-09",
+      "open": 0.1317,
+      "close": 0.13,
+      "quote_asset_volume": 15253204.154079
+    },
+    {
+      "open_time_utc": "2026-05-10",
+      "open": 0.13,
+      "close": 0.1322,
+      "quote_asset_volume": 20118367.950825
+    },
+    {
+      "open_time_utc": "2026-05-11",
+      "open": 0.1322,
+      "close": 0.1288,
+      "quote_asset_volume": 17717432.997439
+    },
+    {
+      "open_time_utc": "2026-05-12",
+      "open": 0.1288,
+      "close": 0.1217,
+      "quote_asset_volume": 12595488.473858
+    },
+    {
+      "open_time_utc": "2026-05-13",
+      "open": 0.1217,
+      "close": 0.1167,
+      "quote_asset_volume": 14109324.562521
+    },
+    {
+      "open_time_utc": "2026-05-14",
+      "open": 0.1167,
+      "close": 0.1208,
+      "quote_asset_volume": 11211249.347539
+    },
+    {
+      "open_time_utc": "2026-05-15",
+      "open": 0.1208,
+      "close": 0.111,
+      "quote_asset_volume": 11429124.738618
+    },
+    {
+      "open_time_utc": "2026-05-16",
+      "open": 0.1109,
+      "close": 0.107,
+      "quote_asset_volume": 11883858.796651
+    },
+    {
+      "open_time_utc": "2026-05-17",
+      "open": 0.1069,
+      "close": 0.1045,
+      "quote_asset_volume": 7597534.113614
+    },
+    {
+      "open_time_utc": "2026-05-18",
+      "open": 0.1044,
+      "close": 0.1056,
+      "quote_asset_volume": 10639449.464362
+    },
+    {
+      "open_time_utc": "2026-05-19",
+      "open": 0.1056,
+      "close": 0.1029,
+      "quote_asset_volume": 7796904.960497
+    },
+    {
+      "open_time_utc": "2026-05-20",
+      "open": 0.1028,
+      "close": 0.1058,
+      "quote_asset_volume": 9810487.22512
+    },
+    {
+      "open_time_utc": "2026-05-21",
+      "open": 0.1058,
+      "close": 0.1069,
+      "quote_asset_volume": 10653318.627529
+    },
+    {
+      "open_time_utc": "2026-05-22",
+      "open": 0.1069,
+      "close": 0.1,
+      "quote_asset_volume": 13156672.796017
+    },
+    {
+      "open_time_utc": "2026-05-23",
+      "open": 0.1,
+      "close": 0.1021,
+      "quote_asset_volume": 15018987.571742
+    },
+    {
+      "open_time_utc": "2026-05-24",
+      "open": 0.1022,
+      "close": 0.0987,
+      "quote_asset_volume": 6174191.301388
+    },
+    {
+      "open_time_utc": "2026-05-25",
+      "open": 0.0987,
+      "close": 0.1002,
+      "quote_asset_volume": 8002581.085045
+    },
+    {
+      "open_time_utc": "2026-05-26",
+      "open": 0.1002,
+      "close": 0.0969,
+      "quote_asset_volume": 15284303.781647
+    },
+    {
+      "open_time_utc": "2026-05-27",
+      "open": 0.0969,
+      "close": 0.0933,
+      "quote_asset_volume": 10762336.728109
+    },
+    {
+      "open_time_utc": "2026-05-28",
+      "open": 0.0932,
+      "close": 0.0883,
+      "quote_asset_volume": 14888811.970485
+    },
+    {
+      "open_time_utc": "2026-05-29",
+      "open": 0.0883,
+      "close": 0.0868,
+      "quote_asset_volume": 12122384.858135
+    },
+    {
+      "open_time_utc": "2026-05-30",
+      "open": 0.0868,
+      "close": 0.0883,
+      "quote_asset_volume": 6840714.405444
+    },
+    {
+      "open_time_utc": "2026-05-31",
+      "open": 0.0884,
+      "close": 0.0881,
+      "quote_asset_volume": 12660633.221272
+    },
+    {
+      "open_time_utc": "2026-06-01",
+      "open": 0.0881,
+      "close": 0.0887,
+      "quote_asset_volume": 12282891.340783
+    },
+    {
+      "open_time_utc": "2026-06-02",
+      "open": 0.0888,
+      "close": 0.0944,
+      "quote_asset_volume": 49444863.896124
+    },
+    {
+      "open_time_utc": "2026-06-03",
+      "open": 0.0944,
+      "close": 0.112,
+      "quote_asset_volume": 103452584.980233
+    },
+    {
+      "open_time_utc": "2026-06-04",
+      "open": 0.112,
+      "close": 0.0945,
+      "quote_asset_volume": 76410552.886602
+    },
+    {
+      "open_time_utc": "2026-06-05",
+      "open": 0.0945,
+      "close": 0.0946,
+      "quote_asset_volume": 52621332.891354
+    },
+    {
+      "open_time_utc": "2026-06-06",
+      "open": 0.0946,
+      "close": 0.0896,
+      "quote_asset_volume": 38293909.259524
+    },
+    {
+      "open_time_utc": "2026-06-07",
+      "open": 0.0897,
+      "close": 0.0898,
+      "quote_asset_volume": 27068840.056805
+    },
+    {
+      "open_time_utc": "2026-06-08",
+      "open": 0.0899,
+      "close": 0.0854,
+      "quote_asset_volume": 30623229.839423
+    },
+    {
+      "open_time_utc": "2026-06-09",
+      "open": 0.0854,
+      "close": 0.0803,
+      "quote_asset_volume": 40649305.354652
+    },
+    {
+      "open_time_utc": "2026-06-10",
+      "open": 0.0804,
+      "close": 0.072,
+      "quote_asset_volume": 28277031.890844
+    },
+    {
+      "open_time_utc": "2026-06-11",
+      "open": 0.072,
+      "close": 0.0799,
+      "quote_asset_volume": 26698563.43918
+    },
+    {
+      "open_time_utc": "2026-06-12",
+      "open": 0.0799,
+      "close": 0.0783,
+      "quote_asset_volume": 27376002.948662
+    },
+    {
+      "open_time_utc": "2026-06-13",
+      "open": 0.0784,
+      "close": 0.084,
+      "quote_asset_volume": 21477257.100152
+    },
+    {
+      "open_time_utc": "2026-06-14",
+      "open": 0.084,
+      "close": 0.0841,
+      "quote_asset_volume": 16634440.359045
+    },
+    {
+      "open_time_utc": "2026-06-15",
+      "open": 0.0841,
+      "close": 0.0855,
+      "quote_asset_volume": 26481615.763622
+    },
+    {
+      "open_time_utc": "2026-06-16",
+      "open": 0.0856,
+      "close": 0.0861,
+      "quote_asset_volume": 21461071.14323
+    },
+    {
+      "open_time_utc": "2026-06-17",
+      "open": 0.0861,
+      "close": 0.0951,
+      "quote_asset_volume": 42357907.112076
+    },
+    {
+      "open_time_utc": "2026-06-18",
+      "open": 0.0951,
+      "close": 0.0957,
+      "quote_asset_volume": 32542672.946904
+    },
+    {
+      "open_time_utc": "2026-06-19",
+      "open": 0.0957,
+      "close": 0.088,
+      "quote_asset_volume": 16968722.60159
+    },
+    {
+      "open_time_utc": "2026-06-20",
+      "open": 0.0879,
+      "close": 0.0894,
+      "quote_asset_volume": 13517376.009573
+    },
+    {
+      "open_time_utc": "2026-06-21",
+      "open": 0.0894,
+      "close": 0.0869,
+      "quote_asset_volume": 15709473.164008
+    },
+    {
+      "open_time_utc": "2026-06-22",
+      "open": 0.087,
+      "close": 0.0909,
+      "quote_asset_volume": 33500988.21395
+    },
+    {
+      "open_time_utc": "2026-06-23",
+      "open": 0.0909,
+      "close": 0.0864,
+      "quote_asset_volume": 18442943.153604
+    },
+    {
+      "open_time_utc": "2026-06-24",
+      "open": 0.0863,
+      "close": 0.0851,
+      "quote_asset_volume": 17039571.822471
+    },
+    {
+      "open_time_utc": "2026-06-25",
+      "open": 0.0851,
+      "close": 0.0824,
+      "quote_asset_volume": 23569013.626566
+    },
+    {
+      "open_time_utc": "2026-06-26",
+      "open": 0.0824,
+      "close": 0.0795,
+      "quote_asset_volume": 28039764.429828
+    },
+    {
+      "open_time_utc": "2026-06-27",
+      "open": 0.0795,
+      "close": 0.0768,
+      "quote_asset_volume": 10044491.753924
+    },
+    {
+      "open_time_utc": "2026-06-28",
+      "open": 0.0769,
+      "close": 0.0769,
+      "quote_asset_volume": 9044887.614036
+    },
+    {
+      "open_time_utc": "2026-06-29",
+      "open": 0.0768,
+      "close": 0.0788,
+      "quote_asset_volume": 30579784.998809
+    },
+    {
+      "open_time_utc": "2026-06-30",
+      "open": 0.0788,
+      "close": 0.0722,
+      "quote_asset_volume": 28197643.601113
+    },
+    {
+      "open_time_utc": "2026-07-01",
+      "open": 0.0723,
+      "close": 0.0714,
+      "quote_asset_volume": 15699028.387352
+    },
+    {
+      "open_time_utc": "2026-07-02",
+      "open": 0.0714,
+      "close": 0.0767,
+      "quote_asset_volume": 32912090.674128
+    },
+    {
+      "open_time_utc": "2026-07-03",
+      "open": 0.0766,
+      "close": 0.0794,
+      "quote_asset_volume": 10945240.272615
+    },
+    {
+      "open_time_utc": "2026-07-04",
+      "open": 0.0794,
+      "close": 0.0789,
+      "quote_asset_volume": 9680058.974562
+    },
+    {
+      "open_time_utc": "2026-07-05",
+      "open": 0.0789,
+      "close": 0.0807,
+      "quote_asset_volume": 7846189.02589
+    },
+    {
+      "open_time_utc": "2026-07-06",
+      "open": 0.0807,
+      "close": 0.0784,
+      "quote_asset_volume": 12874992.957233
+    },
+    {
+      "open_time_utc": "2026-07-07",
+      "open": 0.0784,
+      "close": 0.0758,
+      "quote_asset_volume": 12730050.866752
+    },
+    {
+      "open_time_utc": "2026-07-08",
+      "open": 0.0759,
+      "close": 0.0747,
+      "quote_asset_volume": 11594235.47612
+    },
+    {
+      "open_time_utc": "2026-07-09",
+      "open": 0.0748,
+      "close": 0.0764,
+      "quote_asset_volume": 9587547.519455
+    },
+    {
+      "open_time_utc": "2026-07-10",
+      "open": 0.0765,
+      "close": 0.0811,
+      "quote_asset_volume": 11709781.245784
+    },
+    {
+      "open_time_utc": "2026-07-11",
+      "open": 0.081,
+      "close": 0.0801,
+      "quote_asset_volume": 12944860.150074
+    },
+    {
+      "open_time_utc": "2026-07-12",
+      "open": 0.08,
+      "close": 0.0799,
+      "quote_asset_volume": 5978992.847146
+    },
+    {
+      "open_time_utc": "2026-07-13",
+      "open": 0.08,
+      "close": 0.0786,
+      "quote_asset_volume": 7299220.190868
+    },
+    {
+      "open_time_utc": "2026-07-14",
+      "open": 0.0786,
+      "close": 0.084,
+      "quote_asset_volume": 13377842.90772
+    },
+    {
+      "open_time_utc": "2026-07-15",
+      "open": 0.084,
+      "close": 0.0835,
+      "quote_asset_volume": 9782787.454171
+    },
+    {
+      "open_time_utc": "2026-07-16",
+      "open": 0.0835,
+      "close": 0.0823,
+      "quote_asset_volume": 14963634.89363
+    },
+    {
+      "open_time_utc": "2026-07-17",
+      "open": 0.0823,
+      "close": 0.082,
+      "quote_asset_volume": 11752193.302361
+    },
+    {
+      "open_time_utc": "2026-07-18",
+      "open": 0.082,
+      "close": 0.0806,
+      "quote_asset_volume": 5112220.628014
+    },
+    {
+      "open_time_utc": "2026-07-19",
+      "open": 0.0807,
+      "close": 0.0799,
+      "quote_asset_volume": 3998741.802497
+    },
+    {
+      "open_time_utc": "2026-07-20",
+      "open": 0.0798,
+      "close": 0.0829,
+      "quote_asset_volume": 10394194.711708
+    },
+    {
+      "open_time_utc": "2026-07-21",
+      "open": 0.0829,
+      "close": 0.0868,
+      "quote_asset_volume": 11251346.993989
+    },
+    {
+      "open_time_utc": "2026-07-22",
+      "open": 0.0867,
+      "close": 0.0902,
+      "quote_asset_volume": 17651983.630332
+    },
+    {
+      "open_time_utc": "2026-07-23",
+      "open": 0.0902,
+      "close": 0.0888,
+      "quote_asset_volume": 16424117.067237
+    },
+    {
+      "open_time_utc": "2026-07-24",
+      "open": 0.0889,
+      "close": 0.0873,
+      "quote_asset_volume": 8757242.837378
+    },
+    {
+      "open_time_utc": "2026-07-25",
+      "open": 0.0872,
+      "close": 0.086,
+      "quote_asset_volume": 4213280.165534
+    },
+    {
+      "open_time_utc": "2026-07-26",
+      "open": 0.086,
+      "close": 0.0904,
+      "quote_asset_volume": 8282861.587756
+    },
+    {
+      "open_time_utc": "2026-07-27",
+      "open": 0.0904,
+      "close": 0.0822,
+      "quote_asset_volume": 15983264.024857
+    },
+    {
+      "open_time_utc": "2026-07-28",
+      "open": 0.0823,
+      "close": 0.0835,
+      "quote_asset_volume": 9332246.46879
+    },
+    {
+      "open_time_utc": "2026-07-29",
+      "open": 0.0834,
+      "close": 0.0781,
+      "quote_asset_volume": 12380711.05877
+    },
+    {
+      "open_time_utc": "2026-07-30",
+      "open": 0.0782,
+      "close": 0.0812,
+      "quote_asset_volume": 10693193.214977
+    },
+    {
+      "open_time_utc": "2026-07-31",
+      "open": 0.0812,
+      "close": 0.0803,
+      "quote_asset_volume": 9230464.015675
+    },
+    {
+      "open_time_utc": "2026-08-01",
+      "open": 0.0804,
+      "close": 0.0792,
+      "quote_asset_volume": 8720248.941718
+    },
+    {
+      "open_time_utc": "2026-08-02",
+      "open": 0.0793,
+      "close": 0.0894,
+      "quote_asset_volume": 19424979.717887
+    },
+    {
+      "open_time_utc": "2026-08-03",
+      "open": 0.0894,
+      "close": 0.093,
+      "quote_asset_volume": 16984018.339849
+    },
+    {
+      "open_time_utc": "2026-08-04",
+      "open": 0.0929,
+      "close": 0.0924,
+      "quote_asset_volume": 10095230.747877
+    },
+    {
+      "open_time_utc": "2026-08-05",
+      "open": 0.0923,
+      "close": 0.0924,
+      "quote_asset_volume": 10726406.52278
+    },
+    {
+      "open_time_utc": "2026-08-06",
+      "open": 0.0924,
+      "close": 0.0929,
+      "quote_asset_volume": 10535168.69646
+    },
+    {
+      "open_time_utc": "2026-08-07",
+      "open": 0.0928,
+      "close": 0.0914,
+      "quote_asset_volume": 14652463.814869
+    },
+    {
+      "open_time_utc": "2026-08-08",
+      "open": 0.0915,
+      "close": 0.0903,
+      "quote_asset_volume": 5783481.746472
+    },
+    {
+      "open_time_utc": "2026-08-09",
+      "open": 0.0903,
+      "close": 0.0866,
+      "quote_asset_volume": 6144950.498867
+    },
+    {
+      "open_time_utc": "2026-08-10",
+      "open": 0.0865,
+      "close": 0.088,
+      "quote_asset_volume": 8603888.151287
+    },
+    {
+      "open_time_utc": "2026-08-11",
+      "open": 0.088,
+      "close": 0.0901,
+      "quote_asset_volume": 10613515.576659
+    },
+    {
+      "open_time_utc": "2026-08-12",
+      "open": 0.0901,
+      "close": 0.0867,
+      "quote_asset_volume": 6378582.474175
+    },
+    {
+      "open_time_utc": "2026-08-13",
+      "open": 0.0868,
+      "close": 0.086,
+      "quote_asset_volume": 6268868.323852
+    },
+    {
+      "open_time_utc": "2026-08-14",
+      "open": 0.086,
+      "close": 0.0847,
+      "quote_asset_volume": 5067752.890396
+    },
+    {
+      "open_time_utc": "2026-08-15",
+      "open": 0.0847,
+      "close": 0.084,
+      "quote_asset_volume": 2908440.840388
+    },
+    {
+      "open_time_utc": "2026-08-16",
+      "open": 0.0839,
+      "close": 0.0824,
+      "quote_asset_volume": 3437191.797258
+    },
+    {
+      "open_time_utc": "2026-08-17",
+      "open": 0.0823,
+      "close": 0.0832,
+      "quote_asset_volume": 3799724.045967
+    },
+    {
+      "open_time_utc": "2026-08-18",
+      "open": 0.0833,
+      "close": 0.0828,
+      "quote_asset_volume": 4075428.803126
+    },
+    {
+      "open_time_utc": "2026-08-19",
+      "open": 0.0828,
+      "close": 0.0933,
+      "quote_asset_volume": 14466094.88999
+    },
+    {
+      "open_time_utc": "2026-08-20",
+      "open": 0.0933,
+      "close": 0.1166,
+      "quote_asset_volume": 36278646.950762
+    },
+    {
+      "open_time_utc": "2026-08-21",
+      "open": 0.1166,
+      "close": 0.1421,
+      "quote_asset_volume": 158857846.937284
+    },
+    {
+      "open_time_utc": "2026-08-22",
+      "open": 0.1421,
+      "close": 0.1583,
+      "quote_asset_volume": 119162801.380911
+    },
+    {
+      "open_time_utc": "2026-08-23",
+      "open": 0.1582,
+      "close": 0.1616,
+      "quote_asset_volume": 103227121.853484
+    },
+    {
+      "open_time_utc": "2026-08-24",
+      "open": 0.1616,
+      "close": 0.1527,
+      "quote_asset_volume": 66100414.202981
+    },
+    {
+      "open_time_utc": "2026-08-25",
+      "open": 0.1527,
+      "close": 0.1429,
+      "quote_asset_volume": 37460952.252064
+    },
+    {
+      "open_time_utc": "2026-08-26",
+      "open": 0.1429,
+      "close": 0.1475,
+      "quote_asset_volume": 31929234.226963
+    },
+    {
+      "open_time_utc": "2026-08-27",
+      "open": 0.1474,
+      "close": 0.1701,
+      "quote_asset_volume": 137269138.40864
+    },
+    {
+      "open_time_utc": "2026-08-28",
+      "open": 0.1702,
+      "close": 0.1624,
+      "quote_asset_volume": 121715569.859232
+    },
+    {
+      "open_time_utc": "2026-08-29",
+      "open": 0.1625,
+      "close": 0.1596,
+      "quote_asset_volume": 26808780.759641
+    },
+    {
+      "open_time_utc": "2026-08-30",
+      "open": 0.1596,
+      "close": 0.1482,
+      "quote_asset_volume": 33435136.327251
+    },
+    {
+      "open_time_utc": "2026-08-31",
+      "open": 0.1481,
+      "close": 0.1495,
+      "quote_asset_volume": 24778088.761261
+    },
+    {
+      "open_time_utc": "2026-09-01",
+      "open": 0.1495,
+      "close": 0.1594,
+      "quote_asset_volume": 51916178.352283
+    }
+  ],
+  "definitions": [
+    {
+      "Item": "Open",
+      "Definition": "First traded price recorded in the daily Binance Spot candle."
+    },
+    {
+      "Item": "High",
+      "Definition": "Highest traded price recorded in the daily candle."
+    },
+    {
+      "Item": "Low",
+      "Definition": "Lowest traded price recorded in the daily candle."
+    },
+    {
+      "Item": "Close",
+      "Definition": "Last traded price recorded in the daily candle."
+    },
+    {
+      "Item": "Quote asset volume",
+      "Definition": "Total exchange-reported daily trading volume expressed in USDT."
+    },
+    {
+      "Item": "Observations",
+      "Definition": "Number of observed daily candles used in the calculation."
+    },
+    {
+      "Item": "Missing values",
+      "Definition": "Observed rows with a missing analyzed value; source validation requires zero."
+    },
+    {
+      "Item": "Missing daily openings",
+      "Definition": "Expected UTC dates absent inside the observed span; gaps are not filled."
+    },
+    {
+      "Item": "Zero observations",
+      "Definition": "Number of daily USDT-volume observations equal to zero."
+    },
+    {
+      "Item": "Zero share",
+      "Definition": "Zero-volume observations divided by all observed candles in the period."
+    },
+    {
+      "Item": "Total",
+      "Definition": "Sum of daily quote-asset volume in USDT; reported only for volume."
+    },
+    {
+      "Item": "Mean",
+      "Definition": "Arithmetic average of the observed values."
+    },
+    {
+      "Item": "Median",
+      "Definition": "50th percentile; half the observations are at or below this value."
+    },
+    {
+      "Item": "Sample standard deviation",
+      "Definition": "Sample dispersion around the mean, calculated with ddof=1."
+    },
+    {
+      "Item": "Sample variance",
+      "Definition": "Square of the sample standard deviation, calculated with ddof=1."
+    },
+    {
+      "Item": "Minimum",
+      "Definition": "Smallest observed value in the specified period."
+    },
+    {
+      "Item": "Q1",
+      "Definition": "25th percentile using linear interpolation."
+    },
+    {
+      "Item": "Q3",
+      "Definition": "75th percentile using linear interpolation."
+    },
+    {
+      "Item": "Maximum",
+      "Definition": "Largest observed value in the specified period."
+    },
+    {
+      "Item": "Range",
+      "Definition": "Maximum minus minimum."
+    },
+    {
+      "Item": "Interquartile range",
+      "Definition": "Q3 minus Q1; spread of the central 50% of observations."
+    },
+    {
+      "Item": "Coefficient of variation",
+      "Definition": "Sample standard deviation divided by the arithmetic mean."
+    },
+    {
+      "Item": "Skewness",
+      "Definition": "Unbiased normalized sample skewness; positive values indicate a longer right tail."
+    },
+    {
+      "Item": "Excess kurtosis",
+      "Definition": "Fisher excess kurtosis with unbiased normalization; zero corresponds to normal-distribution kurtosis."
+    },
+    {
+      "Item": "Semester",
+      "Definition": "UTC calendar semester: H1 is January-June and H2 is July-December."
+    },
+    {
+      "Item": "Partial semester",
+      "Definition": "A semester without observations covering both nominal UTC calendar-semester boundaries."
+    },
+    {
+      "Item": "Missing-data treatment",
+      "Definition": "No interpolation, forward fill, backfill, or synthetic observations."
+    },
+    {
+      "Item": "Listing treatment",
+      "Definition": "Each pair begins on 2019-07-01 UTC or its later first Binance candle."
+    },
+    {
+      "Item": "Interpretation",
+      "Definition": "Price levels are non-stationary and coverage differs by listing date; these statistics are not return or risk estimates."
+    },
+    {
+      "Item": "Volume limitation",
+      "Definition": "Kline volume is aggregated exchange-reported activity, not transaction-level data."
+    }
+  ]
+}

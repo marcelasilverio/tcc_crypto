@@ -8,17 +8,5 @@ __pycache__/
 .ruff_cache/
 .venv/
 
-# Research data is reproduced locally and must not be committed.
-data/exploration/*
-!data/exploration/.gitkeep
-data/processed/*
-!data/processed/.gitkeep
-data/raw/*
-!data/raw/.gitkeep
-
-# Generated experiment outputs stay outside version control.
-outputs/*
-!outputs/.gitkeep
-
 # Temporary research packets, render previews and local helper files stay local.
 tmp/

@@ -14,6 +14,7 @@ from tcc_crypto.data.config import (
     load_daily_modeling_dataset_config,
 )
 from tcc_crypto.data.dataset import DailyDataConfig
+from tcc_crypto.data.time import _parse_utc_day
 from tcc_crypto.features.config import DailyFeatureConfig, load_daily_feature_config
 from tcc_crypto.modeling.config import (
     DailySvmGridSearchConfig,
@@ -32,7 +33,7 @@ from tcc_crypto.reporting.provenance import file_sha256
 @dataclass(frozen=True)
 class DailyContext:
     root: Path
-    profile: Literal["pilot", "development"]
+    profile: Literal["pilot", "development", "experiment"]
     data: DailyDataConfig
     paths: ArtifactPaths
     features: DailyFeatureConfig
@@ -41,6 +42,8 @@ class DailyContext:
 
     @property
     def kind(self) -> str:
+        if self.profile == "experiment":
+            return "preparation"
         return "pilot" if self.profile == "pilot" else "grid-search"
 
     def signature(self) -> dict[str, object]:
@@ -65,8 +68,8 @@ def load_context(
     root: Path | None = None,
 ) -> DailyContext:
     root = repository_root(root)
-    if profile not in ("pilot", "development"):
-        raise ValueError("Profile must be pilot or development.")
+    if profile not in ("pilot", "development", "experiment"):
+        raise ValueError("Profile must be pilot, development or experiment.")
     path = resolve_path(
         root,
         config_path or (PILOT_CONFIG_PATH if profile == "pilot" else GRID_CONFIG_PATH),
@@ -98,6 +101,26 @@ def load_context(
             model.development_start_utc,
             model.development_end_utc,
         )
+        if profile == "experiment":
+            final_test = payload["final_test"]
+            sample_end = _parse_utc_day(
+                final_test["feature_end_utc"], "final feature end"
+            )
+            target_end = _parse_utc_day(
+                final_test["target_end_utc"], "final target end"
+            )
+            if (
+                sample_end < model.development_end_utc
+                or target_end != sample_end + pd.Timedelta(days=1)
+            ):
+                raise ValueError(
+                    "Full-period preparation requires consistent final feature/target boundaries."
+                )
+            data = replace(
+                data,
+                context_id=f"{model.experiment_id}_full_period",
+                sample_end_utc=sample_end,
+            )
     feature_path = resolve_path(root, model.feature_config)
     features = load_daily_feature_config(feature_path)
     collection_path = resolve_path(root, features.collection_config)

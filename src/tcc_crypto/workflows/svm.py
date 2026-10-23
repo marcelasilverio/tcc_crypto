@@ -36,6 +36,10 @@ from tcc_crypto.workflows.daily_data import raw_source, read_stage
 
 
 def result_table_paths(context: DailyContext) -> dict[str, Path]:
+    if context.profile == "experiment":
+        raise ValueError(
+            "The experiment profile is preparation-only; use a separate modeling context."
+        )
     names = PILOT_TABLE_NAMES if context.kind == "pilot" else GRID_TABLE_NAMES
     return {
         name: context.paths.results(context.kind) / filename
@@ -45,8 +49,8 @@ def result_table_paths(context: DailyContext) -> dict[str, Path]:
 
 def run(context: DailyContext, *, overwrite: bool = False) -> dict[str, Path]:
     """Execute only the selected model stage; require an existing valid dataset."""
-    directory = context.paths.results(context.kind)
     paths = result_table_paths(context)
+    directory = context.paths.results(context.kind)
     ensure_writable(
         [item for path in paths.values() for item in (path, metadata_path(path))]
         + [
@@ -88,8 +92,8 @@ def persist_results(
     overwrite: bool = False,
 ) -> dict[str, Path]:
     """Persist an already calculated result, including notebook executions."""
-    directory = context.paths.results(context.kind)
     paths = result_table_paths(context)
+    directory = context.paths.results(context.kind)
     ensure_writable(
         [item for path in paths.values() for item in (path, metadata_path(path))]
         + [

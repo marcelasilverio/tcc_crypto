@@ -1,0 +1,2 @@
+symbol,status,raw_rows,warmup_rows_removed,complete_feature_rows,first_feature_time_utc,last_feature_time_utc,feature_file,diagnostic
+BTCUSDT,READY,3303,14,3289,2017-08-31 00:00:00+00:00,2026-09-01 00:00:00+00:00,data/processed/binance/daily_features_silva_2026_v1/BTCUSDT_daily_features.csv.gz,

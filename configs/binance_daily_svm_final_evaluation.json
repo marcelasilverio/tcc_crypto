@@ -1,0 +1,7 @@
+{
+  "evaluation_id": "binance_daily_svm_walk_forward_v1",
+  "grid_search_config": "configs/binance_daily_svm_grid_search.json",
+  "single_class_training_policy": "record_no_prediction",
+  "comparison_observations": "common_successful_dates",
+  "execution_status": "approved"
+}

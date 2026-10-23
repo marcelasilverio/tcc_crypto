@@ -15,3 +15,4 @@
 - [SVM pilot and hyperparameter-search plan](svm-pilot-and-hyperparameter-search.md) - Approved staged SVM experiment using a BTCUSDT 2019H2 default pilot before temporally valid hyperparameter search and full expansion.
 - [Temporal SVM grid search and final evaluation](svm-temporal-grid-search-and-final-evaluation.md) - Approved conditional SVC search, nested temporal model-selection structure, frozen-parameter walk-forward test, and classifier performance reporting.
 - [Daily SVM asset eligibility](daily-svm-asset-eligibility.md) - Approved ex-post candidate universe, dynamic history requirement, per-asset model search, and LUNAUSDT exclusion for the daily SVM classification experiment.
+- [Final SVM evaluation with single-class training windows](svm-final-evaluation-single-class-windows.md) - Approved omission and common-date comparison policy when a final walk-forward training window cannot fit an SVC.

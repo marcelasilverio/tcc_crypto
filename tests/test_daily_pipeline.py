@@ -24,6 +24,60 @@ ROOT = Path(__file__).resolve().parents[1]
 REFERENCES = Path(__file__).parent / "fixtures" / "daily_refactor"
 
 
+def test_full_experiment_context_preserves_modeling_boundaries():
+    full = load_context("experiment", root=ROOT)
+    development = load_context("development", root=ROOT)
+    settings = json.loads(
+        (ROOT / "configs/binance_daily_svm_grid_search.json").read_text()
+    )
+    assert full.model == development.model
+    assert full.data.sample_start_utc == development.data.sample_start_utc
+    assert full.data.warmup_start_utc == pd.Timestamp("2019-06-01", tz="UTC")
+    assert full.data.sample_end_utc == pd.Timestamp(
+        settings["final_test"]["feature_end_utc"]
+    )
+    assert full.data.sample_end_utc + pd.Timedelta(days=1) == pd.Timestamp(
+        settings["final_test"]["target_end_utc"]
+    )
+    assert full.paths.context_id != development.paths.context_id
+    assert "results_workbook" not in full.paths.inventory(full.kind)
+    assert "LUNAUSDT" in full.model.candidate_symbols
+    assert "LUNAUSDT" in full.model.excluded_symbols
+
+
+@pytest.mark.parametrize(
+    "stage,extra",
+    [
+        ("collect", []),
+        ("pilot", []),
+        ("grid-search", []),
+        ("final-test", []),
+        ("export", ["--kind", "results"]),
+        ("export", ["--kind", "final-results"]),
+    ],
+)
+def test_full_experiment_cli_rejects_collection_and_models(stage, extra, monkeypatch):
+    from tcc_crypto.daily import main
+    from tcc_crypto.workflows import context as contexts
+
+    monkeypatch.setattr(
+        contexts,
+        "load_context",
+        lambda *args, **kwargs: pytest.fail("Unexpected execution"),
+    )
+    with pytest.raises(SystemExit) as error:
+        main([stage, "--profile", "experiment", *extra])
+    assert error.value.code == 2
+
+
+def test_full_experiment_api_rejects_modeling_before_reading_data():
+    full = load_context("experiment", root=ROOT)
+    with pytest.raises(ValueError, match="preparation-only"):
+        svm.run(full)
+    with pytest.raises(ValueError, match="preparation-only"):
+        svm.export_results(full)
+
+
 def assert_reference(name, actual):
     expected = pd.read_json(
         StringIO((REFERENCES / f"{name}.json").read_text()), orient="table"

@@ -385,6 +385,14 @@ universe requires the explicit `--all-symbols` flag. The script also supports
 `--eligibility-only` so that universe diagnostics can be produced without
 fitting an estimator.
 
-The final frozen-parameter walk-forward evaluator is intentionally not part of
-this development-search implementation. It must be implemented and executed
-only after the development search and its evidence have been reviewed.
+The final frozen-parameter walk-forward evaluator is separate from the development
+search. On 2026-10-23, the researcher explicitly authorized its implementation and
+execution following expansion of the approved grid search to the full candidate
+universe. The related [single-class window decision](svm-final-evaluation-single-class-windows.md)
+records that authorization and the approved omission/comparison policy.
+`modeling/final_evaluation.py` implements final fitting and scoring;
+`workflows/final_evaluation.py` validates saved development choices and full-period
+data, persists evidence and exports tables/figures. The entrypoint is
+`python -m tcc_crypto.daily final-test --all-symbols`. Running this stage never
+reruns the grid or collects raw data. Portfolio and financial evaluation remain
+outside the implemented classification workflow.

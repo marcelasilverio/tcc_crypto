@@ -152,8 +152,11 @@ interpreted.
   and requested date range.
 - Do not overwrite raw data with cleaned data.
 - Keep exploratory spreadsheets under `data/exploration/`.
-- Keep generated and large datasets out of Git.
-- Version only small, non-sensitive samples needed for tests.
+- The researcher explicitly authorized versioning project research data and
+  generated outputs on 2026-10-23, including raw data, spreadsheets, figures,
+  metadata and model results. Preserve this complete-project publishing policy.
+- Keep credentials, local environments, caches and temporary application lock
+  files out of Git. Inspect newly added artifacts for sensitive content before publishing.
 - Never commit API keys, credentials, tokens, or local environment files.
 - Do not introduce a new external data source without approval.
 - Validate schemas, timestamp uniqueness, chronological ordering, missing

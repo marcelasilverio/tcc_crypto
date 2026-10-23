@@ -1,0 +1,519 @@
+[
+  {
+    "symbol": "AAVEUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"AAVEUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"AAVEUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2148,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2134,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2020-10-29T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/AAVEUSDT/AAVEUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2074,null,3,5.3254580521,16,null,null],[75,2059,null,3,5.3919378339,16,null,null],[90,2044,null,3,5.3091976517,13,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "ADAUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"ADAUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"ADAUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",3060,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",3046,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2018-05-01T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/ADAUSDT/ADAUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2986,null,1,3.0227729404,11,null,null],[75,2971,null,1,3.086839448,7,null,null],[90,2956,null,1,3.1765899865,7,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "ATOMUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"ATOMUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"ATOMUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2683,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2669,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2019-05-13T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/ATOMUSDT/ATOMUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2609,null,2,4.7589114603,16,null,null],[75,2594,null,1,4.9051657672,16,null,null],[90,2579,null,2,5.0003877472,16,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "AVAXUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"AVAXUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"AVAXUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2171,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2157,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2020-10-06T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/AVAXUSDT/AVAXUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2097,null,1,5.1106342394,12,null,null],[75,2082,null,2,5.2680115274,14,null,null],[90,2067,null,2,5.3870343493,15,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "BCHUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"BCHUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"BCHUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2470,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2456,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2019-12-12T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/BCHUSDT/BCHUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2396,null,2,5.2374791319,16,null,null],[75,2381,null,2,5.2578748425,16,null,null],[90,2366,null,2,5.17920541,16,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "BNBUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"BNBUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"BNBUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",3222,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",3208,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2017-11-20T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/BNBUSDT/BNBUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,3148,null,2,4.8262388818,15,null,null],[75,3133,null,3,4.9281838493,15,null,null],[90,3118,null,2,4.9698524695,15,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "BONKUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"BONKUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"BONKUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",992,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",978,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2023-12-29T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/BONKUSDT/BONKUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,918,null,1,3.4008714597,9,null,null],[75,903,null,1,3.511627907,8,null,null],[90,888,null,2,3.5945945946,8,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "BTCUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"BTCUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"BTCUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",3303,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",3289,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2017-08-31T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/BTCUSDT/BTCUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,3229,null,2,4.5927531744,8,null,null],[75,3214,null,2,4.6288114499,7,null,null],[90,3199,null,2,4.6814629572,7,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "CHZUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"CHZUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"CHZUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2553,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2539,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2019-09-20T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/CHZUSDT/CHZUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2479,null,1,3.546187979,15,null,null],[75,2464,null,1,3.7435064935,15,null,null],[90,2449,null,1,3.7778685178,15,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "CRVUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"CRVUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"CRVUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2209,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2195,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2020-08-29T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/CRVUSDT/CRVUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2135,null,1,4.0660421546,14,null,null],[75,2120,null,1,4.3089622642,13,null,null],[90,2105,null,1,4.5501187648,14,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "DOGEUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"DOGEUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"DOGEUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2616,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2602,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2019-07-19T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/DOGEUSDT/DOGEUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2542,null,1,3.3339889851,14,null,null],[75,2527,null,1,3.5278986941,15,null,null],[90,2512,null,1,3.673566879,15,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "DOTUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"DOTUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"DOTUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2206,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2192,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2020-09-01T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/DOTUSDT/DOTUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2132,null,2,4.5314258912,16,null,null],[75,2117,null,2,4.665564478,16,null,null],[90,2102,null,2,4.7745004757,12,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "ENAUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"ENAUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"ENAUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",883,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",869,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2024-04-16T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/ENAUSDT/ENAUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,809,null,1,3.9270704574,8,null,null],[75,794,null,1,4.080604534,8,null,null],[90,779,null,2,4.242618742,8,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "ETCUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"ETCUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"ETCUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",3004,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2990,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2018-06-26T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/ETCUSDT/ETCUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2930,null,2,5.1406143345,19,null,null],[75,2915,null,2,5.2981132075,19,null,null],[90,2900,null,2,5.374137931,19,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "ETHUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"ETHUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"ETHUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",3303,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",3289,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2017-08-31T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/ETHUSDT/ETHUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,3229,null,2,4.7565809848,11,null,null],[75,3214,null,2,4.777535781,7,null,null],[90,3199,null,2,4.8218193185,8,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "FETUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"FETUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"FETUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2743,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2729,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2019-03-14T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/FETUSDT/FETUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2669,null,1,3.9093293368,14,null,null],[75,2654,null,1,4.0908063301,14,null,null],[90,2639,null,1,4.1837817355,13,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "FILUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"FILUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"FILUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2148,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2134,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2020-10-29T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/FILUSDT/FILUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2074,null,1,5.0279652845,18,null,null],[75,2059,null,2,5.033997086,12,null,null],[90,2044,null,2,5.1594911937,11,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "FLOKIUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"FLOKIUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"FLOKIUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",1216,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",1202,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2023-05-19T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/FLOKIUSDT/FLOKIUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,1142,null,1,3.2469352014,9,null,null],[75,1127,null,1,3.5004436557,9,null,null],[90,1112,null,2,3.7464028777,9,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "GALAUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"GALAUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"GALAUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",1815,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",1801,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2021-09-27T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/GALAUSDT/GALAUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,1741,null,1,3.266513498,10,null,null],[75,1726,null,1,3.2885283893,10,null,null],[90,1711,null,1,3.4009351257,8,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "HBARUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"HBARUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"HBARUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2530,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2516,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2019-10-13T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/HBARUSDT/HBARUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2456,null,1,3.4458469055,14,null,null],[75,2441,null,1,3.5686194183,14,null,null],[90,2426,null,1,3.4253915911,14,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "ICPUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"ICPUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"ICPUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",1940,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",1926,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2021-05-25T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/ICPUSDT/ICPUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,1866,null,1,4.6398713826,10,null,null],[75,1851,null,2,4.8924905457,11,null,null],[90,1836,null,2,5.0250544662,12,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "LINKUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"LINKUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"LINKUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2786,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2772,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2019-01-30T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/LINKUSDT/LINKUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2712,null,1,4.9328908555,16,null,null],[75,2697,null,2,5.0545050056,16,null,null],[90,2682,null,2,5.0246085011,15,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "LTCUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"LTCUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"LTCUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",3185,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",3171,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2017-12-27T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/LTCUSDT/LTCUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,3111,null,2,4.9852137576,13,null,null],[75,3096,null,2,4.9815891473,9,null,null],[90,3081,null,2,4.9555339176,9,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "LUNAUSDT",
+    "status": "BLOCKED",
+    "sheets": [
+      "Summary",
+      "Missing dates"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:B12\",\"rows\":12,\"cols\":2,\"values\":[[null,null],[\"LUNAUSDT daily feature analysis\",null],[\"Feature calculation is unavailable until the documented data gap receives an approved treatment.\",null],[null,null],[null,null],[\"Processing status\",null],[\"Trading pair\",\"LUNAUSDT\"],[\"Status\",\"BLOCKED\"],[\"Diagnostic\",\"ValueError: Daily feature input contains missing UTC days; cross-gap feature behavior has not been approved.\"],[\"Missing UTC days\",17],[\"Source\",\"data/raw/binance/spot/1d/LUNAUSDT/LUNAUSDT_1d_2017-01-01_2026-09-01.csv.gz\"],[\"Required action\",\"Approve a missing-data treatment before feature calculation\"]]}"
+  },
+  {
+    "symbol": "MANAUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"MANAUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"MANAUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2218,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2204,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2020-08-20T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/MANAUSDT/MANAUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2144,null,1,3.6236007463,15,null,null],[75,2129,null,1,3.8680131517,16,null,null],[90,2114,null,1,3.9971617786,14,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "NEARUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"NEARUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"NEARUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2149,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2135,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2020-10-28T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/NEARUSDT/NEARUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2075,null,1,4.5175903614,12,null,null],[75,2060,null,1,4.6242718447,11,null,null],[90,2045,null,1,4.7256723716,8,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "NEIROUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"NEIROUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"NEIROUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",716,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",702,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2024-09-30T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/NEIROUSDT/NEIROUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,642,null,1,4.285046729,9,null,null],[75,627,null,2,4.4577352472,9,null,null],[90,612,null,1,4.4264705882,9,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "PEPEUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"PEPEUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"PEPEUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",1216,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",1202,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2023-05-19T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/PEPEUSDT/PEPEUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,1142,null,1,3.3704028021,8,null,null],[75,1127,null,1,3.5412599823,8,null,null],[90,1112,null,1,3.7473021583,8,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "SANDUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"SANDUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"SANDUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2210,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2196,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2020-08-28T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/SANDUSDT/SANDUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2136,null,1,3.9517790262,16,null,null],[75,2121,null,1,4.1900047148,14,null,null],[90,2106,null,1,4.3793922127,14,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "SHIBUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"SHIBUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"SHIBUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",1941,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",1927,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2021-05-24T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/SHIBUSDT/SHIBUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,1867,null,1,2.9282271023,9,null,null],[75,1852,null,1,3.0145788337,8,null,null],[90,1837,null,2,3.1181273816,7,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "SOLUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"SOLUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"SOLUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2213,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2199,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2020-08-25T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/SOLUSDT/SOLUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2139,null,2,5.3071528752,17,null,null],[75,2124,null,3,5.3851224105,17,null,null],[90,2109,null,3,5.435751541,17,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "SUIUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"SUIUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"SUIUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",1218,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",1204,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2023-05-17T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/SUIUSDT/SUIUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,1144,null,2,3.5358391608,9,null,null],[75,1129,null,2,3.6820194863,8,null,null],[90,1114,null,2,3.7800718133,8,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "TRXUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"TRXUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"TRXUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",3005,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2991,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2018-06-25T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/TRXUSDT/TRXUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2931,null,1,2.6891845786,9,null,null],[75,2916,null,1,2.7304526749,7,null,null],[90,2901,null,1,2.7714581179,5,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "UNIUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"UNIUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"UNIUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2176,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2162,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2020-10-01T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/UNIUSDT/UNIUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2102,null,2,4.970980019,16,null,null],[75,2087,null,2,5.0661236224,16,null,null],[90,2072,null,2,5.13996139,12,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "VETUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"VETUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"VETUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2961,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2947,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2018-08-08T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/VETUSDT/VETUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2887,null,1,3.0374090752,14,null,null],[75,2872,null,1,2.8763927577,13,null,null],[90,2857,null,1,2.9474973749,13,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "WIFUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"WIFUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"WIFUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",911,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",897,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2024-03-19T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/WIFUSDT/WIFUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,837,null,2,4.0788530466,10,null,null],[75,822,null,2,4.296836983,11,null,null],[90,807,null,2,4.5390334572,10,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "WLDUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"WLDUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"WLDUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",1136,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",1122,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2023-08-07T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/WLDUSDT/WLDUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,1062,null,2,4.5593220339,12,null,null],[75,1047,null,2,4.7564469914,11,null,null],[90,1032,null,2,4.984496124,11,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "XLMUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"XLMUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"XLMUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",3016,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",3002,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2018-06-14T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/XLMUSDT/XLMUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2942,null,1,3.0893949694,10,null,null],[75,2927,null,1,3.0703792279,10,null,null],[90,2912,null,1,3.0837912088,10,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "XRPUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"XRPUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"XRPUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",3043,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",3029,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2018-05-18T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/XRPUSDT/XRPUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2969,null,1,3.2916807006,18,null,null],[75,2954,null,1,3.3239675017,18,null,null],[90,2939,null,1,3.2851309969,18,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  },
+  {
+    "symbol": "ZECUSDT",
+    "status": "READY",
+    "sheets": [
+      "Summary",
+      "Features",
+      "Selection frequency",
+      "Window summary",
+      "Selection history"
+    ],
+    "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+    "summaryCheck": "{\"kind\":\"table\",\"sheet\":\"Summary\",\"address\":\"A1:H24\",\"rows\":24,\"cols\":8,\"values\":[[null,null,null,null,null,null,null,null],[\"ZECUSDT daily feature analysis\",null,null,null,null,null,null,null],[\"Binance Spot daily observations in UTC; feature selection uses training data only.\",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Feature coverage\",null,null,\"Approved selection settings\",null,null,null,null],[\"Trading pair\",\"ZECUSDT\",null,\"Setting\",\"Value\",\"Status\",\"Unit\",\"Note\"],[\"Status\",\"READY\",null,\"Variance threshold\",0.01,\"Approved\",\"variance\",\"Refitted for every prediction\"],[\"Raw daily observations\",2722,null,\"Correlation threshold\",0.8,\"Approved\",\"absolute Pearson correlation\",\"Applied after variance filtering\"],[\"Warm-up rows removed\",14,null,\"Training windows\",\"60, 75, 90\",\"Approved\",\"daily observations\",\"Separate rolling analyses\"],[\"Complete feature observations\",2708,null,\"Prediction step\",1,\"Approved\",\"daily observation\",\"Next observation is excluded from fitting\"],[\"First feature date (UTC)\",\"2019-04-04T00:00:00.000Z\",null,\"Parabolic SAR acceleration\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Last feature date (UTC)\",\"2026-09-01T00:00:00.000Z\",null,\"Parabolic SAR maximum\",0,\"Verify later\",\"parameter\",\"Provisional Silva-reference value\"],[\"Active features\",22,null,null,null,null,null,null],[\"Source\",\"data/raw/binance/spot/1d/ZECUSDT/ZECUSDT_1d_2017-01-01_2026-09-01.csv.gz\",null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null],[\"Rolling-selection summary\",null,null,null,null,null,null,null],[\"Window\",\"Predictions\",null,\"Minimum selected\",\"Mean selected\",\"Maximum selected\",null,null],[60,2648,null,2,5.246978852,15,null,null],[75,2633,null,2,5.3566274212,15,null,null],[90,2618,null,2,5.4461420932,16,null,null],[null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null]]}"
+  }
+]

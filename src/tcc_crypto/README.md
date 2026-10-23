@@ -2,7 +2,8 @@
 
 The package separates the research steps from persistence and presentation.
 All timestamps use UTC. Raw Binance CSVs remain immutable. The development
-workflow implements model selection only; it does not run the reserved final test.
+workflow implements model selection only. The separate `daily final-test` stage
+uses saved selected configurations for the approved final walk-forward evaluation.
 
 ## Where each step lives
 
@@ -19,12 +20,15 @@ workflow implements model selection only; it does not run the reserved final tes
 | Select and normalize | `modeling/preprocessing.py:prepare_window` | One training window and later evaluation rows | Training-fitted selector/scaler and transformed arrays |
 | Pilot | `modeling/pilot.py:run_default_svc_rolling_pilot` | Prepared pilot dataset | Rolling predictions and metrics |
 | Grid search | `modeling/grid_search.py:run_temporal_grid_search` | Prepared development dataset | Eligibility, fold scores, ranked candidates and selections |
+| Final walk-forward | `modeling/final_evaluation.py:run_final_evaluation` | Full-period data and frozen development choices | Matched baseline predictions, omissions, metrics and ROC/PR points |
 | Export Excel | `reporting/workbooks.py` | Existing tables and metadata | Human-readable inspection workbooks |
 
 `workflows/daily_data.py` coordinates independent preparation stages.
 `workflows/svm.py` coordinates training and export. Pure calculations do not
 read configuration files or write artifacts. `DailyDataConfig` contains only
 data preparation settings; legacy JSON adapters retain their existing validation.
+`workflows/final_evaluation.py` coordinates the separate final test and its
+training-free export and complete-universe overview.
 
 ## Setup and independent execution
 

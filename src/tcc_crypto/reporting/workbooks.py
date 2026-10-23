@@ -165,6 +165,10 @@ def write_svm_workbook(
         "Interpretation": "Classifier evidence only; not portfolio returns or final-test evaluation",
         **{f"{name} rows": len(frame) for name, frame in tables.items()},
     }
+    if kind == "grid-search":
+        summary["Universe interpretation"] = (
+            "Ex-post fixed 2026 snapshot; not a historically reconstructed investable universe"
+        )
     sheets = {
         "Summary": configuration_table(summary),
         **{title: tables[name] for name, title in titles.items()},

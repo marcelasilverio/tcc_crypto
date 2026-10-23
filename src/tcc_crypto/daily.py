@@ -27,14 +27,15 @@ def parser() -> argparse.ArgumentParser:
             "prepare",
             "pilot",
             "grid-search",
+            "final-test",
             "export",
         ),
     )
     command.add_argument(
         "--profile",
-        choices=("pilot", "development"),
+        choices=("pilot", "development", "experiment"),
         default=None,
-        help="Data context; defaults to development (pilot for the pilot command).",
+        help="Data context; experiment prepares the full approved period without modeling. Defaults to development (pilot for the pilot command).",
     )
     command.add_argument(
         "--config", type=Path, help="Experiment JSON; collect uses a collection JSON."
@@ -58,7 +59,7 @@ def parser() -> argparse.ArgumentParser:
     )
     command.add_argument(
         "--kind",
-        choices=("dataset", "results"),
+        choices=("dataset", "results", "final-results"),
         default="dataset",
         help="Workbook to regenerate with export.",
     )
@@ -93,6 +94,13 @@ def main(argv: Sequence[str] | None = None) -> None:
     root = repository_root(args.repository_root)
     if args.eligibility_only and args.stage != "grid-search":
         arguments.error("--eligibility-only applies only to grid-search.")
+    if args.profile == "experiment" and (
+        args.stage in ("collect", "pilot", "grid-search", "final-test")
+        or (args.stage == "export" and args.kind in ("results", "final-results"))
+    ):
+        arguments.error(
+            "The experiment profile supports data preparation and dataset export only."
+        )
     if args.stage == "collect":
         _collect(args, root)
         return
@@ -101,7 +109,7 @@ def main(argv: Sequence[str] | None = None) -> None:
 
     profile = args.profile or ("pilot" if args.stage == "pilot" else "development")
     if (args.stage == "pilot" and profile != "pilot") or (
-        args.stage == "grid-search" and profile != "development"
+        args.stage in ("grid-search", "final-test") and profile != "development"
     ):
         arguments.error("The model command and profile must match.")
     initial = load_context(profile, config_path=args.config, root=root)
@@ -121,6 +129,18 @@ def main(argv: Sequence[str] | None = None) -> None:
             print(json.dumps(context.paths.inventory(context.kind), indent=2))
         elif args.stage in ("align", "features", "targets", "dataset", "prepare"):
             print(getattr(daily_data, args.stage)(context, overwrite=args.overwrite))
+        elif args.stage == "final-test":
+            from tcc_crypto.workflows.final_evaluation import run
+
+            print(
+                json.dumps(
+                    {
+                        key: str(path)
+                        for key, path in run(context, overwrite=args.overwrite).items()
+                    },
+                    indent=2,
+                )
+            )
         elif args.stage in ("pilot", "grid-search"):
             if args.eligibility_only:
                 print(svm.assess(context, overwrite=args.overwrite))
@@ -137,12 +157,32 @@ def main(argv: Sequence[str] | None = None) -> None:
                     )
                 )
         else:
-            export = (
-                daily_data.export_dataset
-                if args.kind == "dataset"
-                else svm.export_results
-            )
+            if args.kind == "final-results":
+                from tcc_crypto.workflows.final_evaluation import export
+            else:
+                export = (
+                    daily_data.export_dataset
+                    if args.kind == "dataset"
+                    else svm.export_results
+                )
             print(export(context, overwrite=args.overwrite))
+    if args.all_symbols and (
+        args.stage == "final-test"
+        or (args.stage == "export" and args.kind == "final-results")
+    ):
+        from tcc_crypto.workflows.final_evaluation import summarize_universe
+
+        print(
+            json.dumps(
+                {
+                    key: str(path)
+                    for key, path in summarize_universe(
+                        contexts, overwrite=args.overwrite
+                    ).items()
+                },
+                indent=2,
+            )
+        )
 
 
 if __name__ == "__main__":

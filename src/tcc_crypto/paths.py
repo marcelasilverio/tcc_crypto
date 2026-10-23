@@ -21,6 +21,25 @@ DAILY_OUTPUTS_DIR: Final = Path("outputs/binance/spot/1d")
 DATASET_WORKBOOKS_DIR: Final = DAILY_OUTPUTS_DIR / "datasets"
 SVM_PILOT_RESULTS_DIR: Final = DAILY_OUTPUTS_DIR / "svm_pilot"
 SVM_GRID_SEARCH_RESULTS_DIR: Final = DAILY_OUTPUTS_DIR / "grid_search"
+SVM_FINAL_RESULTS_DIR: Final = DAILY_OUTPUTS_DIR / "svm_final"
+FINAL_EVALUATION_CONFIG_PATH: Final = Path(
+    "configs/binance_daily_svm_final_evaluation.json"
+)
+FINAL_TABLE_NAMES: Final = {
+    "eligibility": "asset_eligibility.csv",
+    "predictions": "dated_predictions.csv.gz",
+    "metrics": "classification_metrics.csv",
+    "roc": "roc_curve_points.csv.gz",
+    "precision_recall": "precision_recall_curve_points.csv.gz",
+    "selected_configurations": "frozen_configurations.csv",
+}
+FINAL_FIGURE_NAMES: Final = {
+    "roc": "roc_curves.png",
+    "precision_recall": "precision_recall_curves.png",
+}
+TRAINING_REVIEW_DIR_NAME: Final = "supervisor_review"
+TRAINING_FOLD_METRICS_NAME: Final = "training_fold_metrics.csv"
+EXPERIMENT_OVERVIEW_NAME: Final = "experiment_overview.xlsx"
 DATASET_WORKBOOK_NAME: Final = "features_and_targets.xlsx"
 SVM_WORKBOOK_NAME: Final = "svm_results.xlsx"
 RUN_METADATA_NAME: Final = "run_metadata.json"
@@ -49,6 +68,31 @@ def repository_root(explicit: Path | None = None) -> Path:
         if explicit is not None
         else find_repository_root(Path(__file__).parent)
     )
+
+
+@dataclass(frozen=True)
+class FinalArtifactPaths:
+    """Final classifier outputs, isolated from development and pilot evidence."""
+
+    root: Path
+    evaluation_id: str
+    symbol: str
+
+    @property
+    def directory(self) -> Path:
+        return self.root / SVM_FINAL_RESULTS_DIR / self.evaluation_id / self.symbol
+
+    def tables(self) -> dict[str, Path]:
+        return {
+            name: self.directory / filename
+            for name, filename in FINAL_TABLE_NAMES.items()
+        }
+
+    def figures(self) -> dict[str, Path]:
+        return {
+            name: self.directory / filename
+            for name, filename in FINAL_FIGURE_NAMES.items()
+        }
 
 
 def resolve_path(root: Path, path: Path | str) -> Path:
@@ -130,6 +174,8 @@ class ArtifactPaths:
             },
             "dataset_workbook": self.dataset_workbook,
         }
+        if kind == "preparation":
+            return {key: str(value) for key, value in paths.items()}
         names = PILOT_TABLE_NAMES if kind == "pilot" else GRID_TABLE_NAMES
         paths.update(
             {name: self.results(kind) / filename for name, filename in names.items()}

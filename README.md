@@ -4,8 +4,8 @@ This repository supports undergraduate research on cryptocurrency portfolio
 selection using Support Vector Machines and Markowitz mean-variance optimization.
 The implemented workflows cover Binance Spot data collection, exploratory
 analysis, daily feature and target construction, a rolling SVM pilot, and temporal
-grid search. Portfolio allocation, financial backtesting, and final walk-forward
-evaluation remain separate stages outside the current implementation.
+grid search and frozen-parameter final walk-forward classification. Portfolio
+allocation and financial backtesting remain outside the current implementation.
 
 ## Setup
 
@@ -57,7 +57,7 @@ the packages above. The root command modules coordinate execution through
 ## Daily research pipeline
 
 **Collect → align internal gaps → calculate 22 features → construct targets →
-assemble dataset → pilot or grid search → inspect results.**
+assemble dataset → pilot or grid search → final walk-forward → inspect results.**
 
 | Step | Implementation |
 |---|---|
@@ -72,6 +72,7 @@ assemble dataset → pilot or grid search → inspect results.**
 | Training-window selection and scaling | [modeling/preprocessing.py](src/tcc_crypto/modeling/preprocessing.py) |
 | Rolling SVM pilot | [modeling/pilot.py](src/tcc_crypto/modeling/pilot.py) |
 | Temporal grid search | [modeling/grid_search.py](src/tcc_crypto/modeling/grid_search.py) |
+| Final walk-forward and baselines | [modeling/final_evaluation.py](src/tcc_crypto/modeling/final_evaluation.py) |
 
 ### Pilot
 
@@ -114,6 +115,64 @@ configured universe. `grid-search --eligibility-only` records eligibility from
 prepared datasets without fitting candidates. See the
 [daily execution guide](src/tcc_crypto/README.md) for configuration overrides,
 temporal boundaries, and the complete command reference.
+
+### Prepare the full experiment without training
+
+The `experiment` profile prepares all configured assets from the approved
+development start through the final-test feature boundary. With the current
+configuration, feature dates span 2019-07-01 through 2026-08-31, with June 2019
+warm-up and next-day target inputs through 2026-09-01. Later-listed assets start
+after their observed history and indicator warm-up; no pre-listing data is created.
+
+```sh
+python -m tcc_crypto.daily paths --profile experiment --all-symbols
+python -m tcc_crypto.daily prepare --profile experiment --all-symbols
+```
+
+This profile reads existing raw files and never collects or fits models. It uses
+the separate `{experiment_id}_full_period` artifact context, preserves all 40
+assets for inspection (including LUNAUSDT, which remains excluded from modeling),
+and exports one `features_and_targets.xlsx` per asset. Its sheets contain aligned
+data, features, targets, the joined dataset, definitions and a summary.
+The complete dataset includes the development/test boundary gap for inspection;
+it is not a combined training sample. Model commands reject this profile. The
+development and final-test boundaries and existing modeling outputs are unchanged.
+
+### Final classifier evaluation
+
+After all development searches have completed, run the approved frozen-parameter
+walk-forward evaluation on 2025-01-01 through 2026-08-31:
+
+```sh
+python -m tcc_crypto.daily grid-search --all-symbols
+python -m tcc_crypto.daily final-test --all-symbols
+```
+
+`final-test` requires saved development datasets/search evidence and the complete
+`experiment` datasets. It checks exact equality on their shared development dates.
+The stage never tunes on test data: selected parameters remain frozen, while
+selectors, scalers and estimators are refitted on each trailing window with the
+approved one-observation gap. Identical feature preprocessing can be shared across
+targets for the same date/window because it does not use target labels.
+
+Final results go to
+`outputs/binance/spot/1d/svm_final/binance_daily_svm_walk_forward_v1/{symbol}/`:
+dated predictions, metrics, eligibility, frozen configurations, ROC/PR points,
+ROC/PR figures, metadata and `svm_results.xlsx`. The tuned SVC is compared with
+default SVC, constant-zero dummy and prior dummy on common successful dates.
+Single-class windows retain dated omissions rather than invented predictions.
+LUNAUSDT and combinations lacking an eligible development search remain excluded.
+These are classifier results for an ex-post fixed universe, not portfolio returns.
+
+When all assets have completed, `universe/experiment_overview.xlsx` in that same
+evaluation directory consolidates their metrics, eligibility and artifact paths.
+It retains individual asset-target-window comparisons rather than inventing a
+pooled classifier score.
+
+Use `python -m tcc_crypto.daily export --kind final-results --all-symbols --overwrite`
+to regenerate final Excel and figures from saved tables without fitting models.
+`workflows.final_evaluation.export_figures` regenerates only ROC/PR images;
+precision-recall figures use step rendering consistent with sklearn's display.
 
 ### Regenerate inspection workbooks
 
@@ -170,7 +229,7 @@ Start JupyterLab after installing the development dependencies:
 jupyter lab
 ```
 
-The 15 notebooks contain imports, execution choices, calls into the package and
+The 16 notebooks contain imports, execution choices, calls into the package and
 result displays. Run their cells gradually to inspect each stage:
 
 - **01–04:** initial market and collection explorations.
@@ -178,6 +237,20 @@ result displays. Run their cells gradually to inspect each stage:
 - **06–09:** hourly correlations and descriptive analyses.
 - **11–13:** daily descriptive analysis, future-high outcomes and feature selection.
 - **14–15:** SVM pilot and development grid-search inspection.
+- **16:** [complete experiment supervisor review](notebooks/16_binance_daily_svm_experiment_results.ipynb):
+  per-coin training, development-validation and final out-of-sample results,
+  matched baselines, confusion matrices, ROC/PR curves and exclusions. Change
+  `SYMBOL` to inspect a coin; the appendix includes every configured asset.
+
+Notebook 16 only reloads saved evidence. In-sample scores are reconstructed
+resubstitution scores for the selected candidate's original development training
+folds, averaged over folds. They are not final-test training-window averages.
+The explicit, resumable `workflows.experiment_review.reconstruct_in_sample()`
+operation fits only these selected candidates and verifies their validation
+scores against the completed search before saving
+`{final_asset_directory}/supervisor_review/training_fold_metrics.csv` and metadata.
+It never repeats the grid search or replaces final predictions. Training and
+validation fold means must be distinguished from final matched-date metrics.
 
 Use the reload cells to inspect a saved execution without rerunning calculations
 or training. Exploratory runs are identified by `RUN_ID`; daily modeling uses its
@@ -186,8 +259,9 @@ pilot or development context. Metric figures report classifier performance.
 ## Artifact locations and provenance
 
 [paths.py](src/tcc_crypto/paths.py) is the source of directory and filename
-constants. `ArtifactPaths` resolves daily artifacts; `ExplorationPaths` resolves
-exploratory artifacts. Paths are rooted in the project, independently of the
+constants. `ArtifactPaths` resolves daily artifacts; `FinalArtifactPaths` resolves
+final classifier evidence; `ExplorationPaths` resolves exploratory artifacts.
+Paths are rooted in the project, independently of the
 command's working directory. Use `--repository-root` to select another checkout.
 
 | Daily artifact | Default location |
@@ -200,6 +274,8 @@ command's working directory. Use `--repository-root` to select another checkout.
 | Dataset workbook | `outputs/binance/spot/1d/datasets/{context_id}/{symbol}/features_and_targets.xlsx` |
 | Pilot results | `outputs/binance/spot/1d/svm_pilot/{context_id}/{symbol}/` |
 | Grid-search results | `outputs/binance/spot/1d/grid_search/{context_id}/{symbol}/` |
+| Final classifier results | `outputs/binance/spot/1d/svm_final/{evaluation_id}/{symbol}/` |
+| Complete-universe overview | `outputs/binance/spot/1d/svm_final/{evaluation_id}/universe/experiment_overview.xlsx` |
 
 `context_id` is the pilot's `dataset_id` or the development's `experiment_id`.
 Result directories contain CSV tables, `svm_results.xlsx`, configuration snapshots
@@ -208,7 +284,11 @@ and run metadata. Exploratory tables use
 workbooks use `data/exploration/binance/spot/{analysis}/{analysis_id}/{run_id}/`;
 figures and manifests use `outputs/binance/spot/{analysis}/{analysis_id}/{run_id}/`.
 
-Research data and generated outputs are kept out of Git. Saved stages record
+Research data and generated outputs are versioned with the project, as explicitly
+authorized by the researcher on 2026-10-23. This includes raw and processed data,
+spreadsheets, figures, historical migration artifacts and model results. Local
+environments, caches, credentials and temporary application lock files remain
+excluded. Saved stages record
 configuration and source checksums, schema, UTC timestamps, code revision and
 package versions. Incompatible or modified inputs must be rebuilt before reuse.
 

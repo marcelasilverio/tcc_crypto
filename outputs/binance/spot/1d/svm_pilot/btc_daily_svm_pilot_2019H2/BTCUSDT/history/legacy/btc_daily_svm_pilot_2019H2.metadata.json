@@ -1,0 +1,89 @@
+{
+  "code_revision": "cd176805eaf46dcd2f84b6b519d922c1eea8dc82",
+  "csv_sha256": "6c574f9213a968f2f395d5b67d4c2e9d0b0a4fabe24254e29e70732302482925",
+  "dataset_id": "btc_daily_svm_pilot_2019H2",
+  "estimator": "sklearn.svm.SVC",
+  "estimator_parameters": "defaults",
+  "evaluation_metrics": [
+    "accuracy",
+    "precision",
+    "recall",
+    "f1"
+  ],
+  "feature_columns": [
+    "r1",
+    "r2",
+    "r3",
+    "r4",
+    "r5",
+    "r6",
+    "r7",
+    "r8",
+    "r9",
+    "r10",
+    "r11",
+    "r12",
+    "r13",
+    "r14",
+    "r15",
+    "momentum_10",
+    "rsi_14",
+    "parabolic_sar",
+    "atr_14",
+    "true_range",
+    "chaikin_ad",
+    "obv"
+  ],
+  "feature_config": "configs/binance_daily_features.json",
+  "feature_imputed_rows": 0,
+  "generated_at_utc": "2026-10-12T19:00:10.510153+00:00",
+  "missing_data_policy": "forward_fill_internal",
+  "model_training_status": "approved_default_pilot",
+  "package_versions": {
+    "TA-Lib": "0.8.1",
+    "feature-engine": "1.9.4",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2"
+  },
+  "row_count": 184,
+  "sample_end_utc": "2019-12-31T00:00:00+00:00",
+  "sample_start_utc": "2019-07-01T00:00:00+00:00",
+  "scaler": "sklearn.preprocessing.StandardScaler",
+  "scaling_fit_scope": "training_only",
+  "scaling_pipeline_position": "after_feature_selection",
+  "scaling_refit_frequency": "every_prediction",
+  "symbol": "BTCUSDT",
+  "target_imputed_rows": 0,
+  "target_offset_days": 1,
+  "target_source": "next_day_d0",
+  "target_summary": {
+    "target_2pct": {
+      "labeled": 184,
+      "negative": 117,
+      "positive": 67
+    },
+    "target_3pct": {
+      "labeled": 184,
+      "negative": 138,
+      "positive": 46
+    },
+    "target_4pct": {
+      "labeled": 184,
+      "negative": 151,
+      "positive": 33
+    }
+  },
+  "target_thresholds": [
+    0.02,
+    0.03,
+    0.04
+  ],
+  "training_window_sizes": [
+    60,
+    75,
+    90
+  ],
+  "warmup_start_utc": "2019-06-01T00:00:00+00:00",
+  "working_tree_dirty": true
+}

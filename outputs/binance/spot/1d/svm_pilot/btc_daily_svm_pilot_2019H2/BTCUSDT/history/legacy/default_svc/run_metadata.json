@@ -1,0 +1,61 @@
+{
+  "code_revision": "cd176805eaf46dcd2f84b6b519d922c1eea8dc82",
+  "dataset_id": "btc_daily_svm_pilot_2019H2",
+  "estimator": "sklearn.svm.SVC",
+  "estimator_parameters": {
+    "C": 1.0,
+    "break_ties": false,
+    "cache_size": 200,
+    "class_weight": null,
+    "coef0": 0.0,
+    "decision_function_shape": "ovr",
+    "degree": 3,
+    "gamma": "scale",
+    "kernel": "rbf",
+    "max_iter": -1,
+    "probability": false,
+    "random_state": null,
+    "shrinking": true,
+    "tol": 0.001,
+    "verbose": false
+  },
+  "evaluation_metrics": [
+    "accuracy",
+    "precision",
+    "recall",
+    "f1"
+  ],
+  "generated_at_utc": "2026-10-12T19:00:10.580283+00:00",
+  "package_versions": {
+    "feature-engine": "1.9.4",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2"
+  },
+  "prediction_rows": 981,
+  "sample_end_utc": "2019-12-31T00:00:00+00:00",
+  "sample_start_utc": "2019-07-01T00:00:00+00:00",
+  "scaler": "sklearn.preprocessing.StandardScaler",
+  "scaler_parameters": {
+    "copy": true,
+    "with_mean": true,
+    "with_std": true
+  },
+  "scaling_fit_scope": "training_only",
+  "scaling_pipeline_position": "after_feature_selection",
+  "scaling_refit_frequency": "every_prediction",
+  "summary_rows": 9,
+  "symbol": "BTCUSDT",
+  "target_alignment": "features(t) -> D0(t+1)",
+  "target_thresholds": [
+    0.02,
+    0.03,
+    0.04
+  ],
+  "training_window_sizes": [
+    60,
+    75,
+    90
+  ],
+  "working_tree_dirty": true
+}

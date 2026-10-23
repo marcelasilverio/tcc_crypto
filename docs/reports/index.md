@@ -5,3 +5,4 @@
 - [BTCUSDT Development Grid-Search Validation](btcusdt_daily_svm_grid_search_validation_2026-10-13.md) - Operational validation of the approved development-only temporal SVC search without access to final-test feature rows.
 - [Daily SVM Development Eligibility Manifest](daily_svm_development_eligibility_2026-10-13.md) - Development-only eligibility results for all 40 configured candidate symbols, targets, and training windows.
 - [Exploratory refactor and historical artifact migration](exploratory-refactor-and-migration.md) - Implementation boundaries, correlation-universe correction, and provenance rules for the exploratory pipeline refactor.
+- [Complete daily SVM classification execution](daily-svm-complete-classification-2026-10-23.md) - Execution evidence for the 40-asset development search and frozen-parameter final classification evaluation.
