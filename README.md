@@ -229,7 +229,7 @@ Start JupyterLab after installing the development dependencies:
 jupyter lab
 ```
 
-The 16 notebooks contain imports, execution choices, calls into the package and
+The 17 notebooks contain imports, execution choices, calls into the package and
 result displays. Run their cells gradually to inspect each stage:
 
 - **01–04:** initial market and collection explorations.
@@ -241,6 +241,15 @@ result displays. Run their cells gradually to inspect each stage:
   per-coin training, development-validation and final out-of-sample results,
   matched baselines, confusion matrices, ROC/PR curves and exclusions. Change
   `SYMBOL` to inspect a coin; the appendix includes every configured asset.
+
+- **17:** [complete execution walkthrough](notebooks/17_binance_daily_svm_experiment_walkthrough.ipynb):
+  Portuguese didactic explanations and copyable commands for existing raw inputs,
+  gap treatment, 22 features, targets, both datasets, eligibility, preprocessing,
+  full grid search, final walk-forward, selected-fold training scores and export.
+  Set `SYMBOL`, an explicit new `RUN_ID` and `MODE = "run"` to execute one asset.
+  Use `MODE = "load"` with an existing identifier to inspect saved stages without
+  fitting models. Inspection target/window choices never reduce the experiment.
+  Workbook regeneration is explicit through `EXPORT_WORKBOOKS = True`.
 
 Notebook 16 only reloads saved evidence. In-sample scores are reconstructed
 resubstitution scores for the selected candidate's original development training
@@ -254,7 +263,23 @@ validation fold means must be distinguished from final matched-date metrics.
 
 Use the reload cells to inspect a saved execution without rerunning calculations
 or training. Exploratory runs are identified by `RUN_ID`; daily modeling uses its
-pilot or development context. Metric figures report classifier performance.
+pilot or development context with an optional isolated `RUN_ID`. Metric figures
+report classifier performance.
+
+Daily commands now accept `--run-id`; omitting it preserves historical paths and
+metadata signatures. Derived paths insert `runs/{run_id}` after the context,
+including configured directory overrides. Raw inputs remain shared. The new
+`training-review` command reconstructs only selected development training folds.
+For example, after preparing both profiles and completing the search:
+
+```sh
+python -m tcc_crypto.daily final-test --symbols BTCUSDT --run-id supervisor_20261029_btc_v1
+python -m tcc_crypto.daily training-review --symbols BTCUSDT --run-id supervisor_20261029_btc_v1
+```
+
+Notebook 17 contains the complete ordered command guide, including the optional
+`--all-symbols` expansion. Existing derived files require explicit `--overwrite`
+for replacement; saved training reviews are reused unless overwrite is requested.
 
 ## Artifact locations and provenance
 

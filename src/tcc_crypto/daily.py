@@ -28,6 +28,7 @@ def parser() -> argparse.ArgumentParser:
             "pilot",
             "grid-search",
             "final-test",
+            "training-review",
             "export",
         ),
     )
@@ -41,6 +42,9 @@ def parser() -> argparse.ArgumentParser:
         "--config", type=Path, help="Experiment JSON; collect uses a collection JSON."
     )
     command.add_argument("--repository-root", type=Path)
+    command.add_argument(
+        "--run-id", help="Isolated derived execution; raw inputs remain shared."
+    )
     symbols = command.add_mutually_exclusive_group()
     symbols.add_argument(
         "--symbols",
@@ -92,10 +96,13 @@ def main(argv: Sequence[str] | None = None) -> None:
     args = arguments.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     root = repository_root(args.repository_root)
+    if args.run_id is not None and args.stage == "collect":
+        arguments.error("--run-id applies to derived stages, not raw collection.")
     if args.eligibility_only and args.stage != "grid-search":
         arguments.error("--eligibility-only applies only to grid-search.")
     if args.profile == "experiment" and (
-        args.stage in ("collect", "pilot", "grid-search", "final-test")
+        args.stage
+        in ("collect", "pilot", "grid-search", "final-test", "training-review")
         or (args.stage == "export" and args.kind in ("results", "final-results"))
     ):
         arguments.error(
@@ -109,10 +116,13 @@ def main(argv: Sequence[str] | None = None) -> None:
 
     profile = args.profile or ("pilot" if args.stage == "pilot" else "development")
     if (args.stage == "pilot" and profile != "pilot") or (
-        args.stage in ("grid-search", "final-test") and profile != "development"
+        args.stage in ("grid-search", "final-test", "training-review")
+        and profile != "development"
     ):
         arguments.error("The model command and profile must match.")
-    initial = load_context(profile, config_path=args.config, root=root)
+    initial = load_context(
+        profile, config_path=args.config, root=root, run_id=args.run_id
+    )
     symbols = (
         getattr(initial.model, "candidate_symbols", (initial.data.symbol,))
         if args.all_symbols
@@ -121,7 +131,13 @@ def main(argv: Sequence[str] | None = None) -> None:
     if len(set(symbols)) != len(symbols):
         arguments.error("Symbols must be unique.")
     contexts = [
-        load_context(profile, config_path=args.config, symbol=symbol, root=root)
+        load_context(
+            profile,
+            config_path=args.config,
+            symbol=symbol,
+            root=root,
+            run_id=args.run_id,
+        )
         for symbol in symbols
     ]
     for context in contexts:
@@ -129,6 +145,20 @@ def main(argv: Sequence[str] | None = None) -> None:
             print(json.dumps(context.paths.inventory(context.kind), indent=2))
         elif args.stage in ("align", "features", "targets", "dataset", "prepare"):
             print(getattr(daily_data, args.stage)(context, overwrite=args.overwrite))
+        elif args.stage == "training-review":
+            from tcc_crypto.workflows.experiment_review import reconstruct_in_sample
+
+            if args.config is not None:
+                arguments.error(
+                    "training-review uses the approved final evaluation configuration."
+                )
+            result = reconstruct_in_sample(
+                root=root,
+                symbols=(context.data.symbol,),
+                run_id=args.run_id,
+                overwrite=args.overwrite,
+            )
+            print(f"Training folds: {len(result)}")
         elif args.stage == "final-test":
             from tcc_crypto.workflows.final_evaluation import run
 

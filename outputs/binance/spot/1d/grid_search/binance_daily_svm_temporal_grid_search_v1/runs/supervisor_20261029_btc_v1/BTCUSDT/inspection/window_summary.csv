@@ -1,0 +1,9 @@
+,Setting,Value
+0,Target,target_2pct
+1,Training start UTC,2024-05-04T00:00:00+00:00
+2,Training end UTC,2024-07-02T00:00:00+00:00
+3,Evaluation start UTC,2024-07-04T00:00:00+00:00
+4,Evaluation end UTC,2024-09-01T00:00:00+00:00
+5,Training rows,60
+6,Evaluation rows,60
+7,Selected features,"[""momentum_10"", ""atr_14"", ""true_range"", ""chaikin_ad""]"

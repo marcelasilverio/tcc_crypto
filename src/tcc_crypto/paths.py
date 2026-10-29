@@ -37,6 +37,10 @@ FINAL_FIGURE_NAMES: Final = {
     "roc": "roc_curves.png",
     "precision_recall": "precision_recall_curves.png",
 }
+WINDOW_INSPECTION_NAMES: Final = {
+    "summary": "window_summary.csv",
+    "scaling": "window_scaling.csv",
+}
 TRAINING_REVIEW_DIR_NAME: Final = "supervisor_review"
 TRAINING_FOLD_METRICS_NAME: Final = "training_fold_metrics.csv"
 EXPERIMENT_OVERVIEW_NAME: Final = "experiment_overview.xlsx"
@@ -70,6 +74,20 @@ def repository_root(explicit: Path | None = None) -> Path:
     )
 
 
+def run_directory(directory: Path, run_id: str | None) -> Path:
+    """Resolve an isolated execution without changing legacy paths or creating files."""
+    if run_id is None:
+        return directory
+    if (
+        not run_id
+        or Path(run_id).name != run_id
+        or run_id in (".", "..")
+        or "\\" in run_id
+    ):
+        raise ValueError("Run ID must be a nonempty single path component.")
+    return directory / "runs" / run_id
+
+
 @dataclass(frozen=True)
 class FinalArtifactPaths:
     """Final classifier outputs, isolated from development and pilot evidence."""
@@ -77,10 +95,23 @@ class FinalArtifactPaths:
     root: Path
     evaluation_id: str
     symbol: str
+    run_id: str | None = None
+
+    def __post_init__(self) -> None:
+        run_directory(self.root, self.run_id)
+
+    @property
+    def training_metrics(self) -> Path:
+        return self.directory / TRAINING_REVIEW_DIR_NAME / TRAINING_FOLD_METRICS_NAME
 
     @property
     def directory(self) -> Path:
-        return self.root / SVM_FINAL_RESULTS_DIR / self.evaluation_id / self.symbol
+        return (
+            run_directory(
+                self.root / SVM_FINAL_RESULTS_DIR / self.evaluation_id, self.run_id
+            )
+            / self.symbol
+        )
 
     def tables(self) -> dict[str, Path]:
         return {
@@ -113,8 +144,10 @@ class ArtifactPaths:
     raw_directory: Path = RAW_DAILY_DIR
     results_directory: Path | None = None
     feature_directory: Path | None = None
+    run_id: str | None = None
 
     def __post_init__(self) -> None:
+        run_directory(self.root, self.run_id)
         for value in (self.context_id, self.symbol):
             if (
                 not value
@@ -136,34 +169,40 @@ class ArtifactPaths:
             "targets": DAILY_TARGETS_DIR,
             "dataset": DAILY_DATASETS_DIR,
         }
-        if stage == "features" and self.feature_directory is not None:
-            return (
-                resolve_path(self.root, self.feature_directory)
-                / self.context_id
-                / f"{self.symbol}.csv.gz"
-            )
+        directory = (
+            resolve_path(self.root, self.feature_directory)
+            if stage == "features" and self.feature_directory is not None
+            else self.root / directories[stage]
+        )
         return (
-            self.root / directories[stage] / self.context_id / f"{self.symbol}.csv.gz"
+            run_directory(directory / self.context_id, self.run_id)
+            / f"{self.symbol}.csv.gz"
         )
 
     @property
     def dataset_workbook(self) -> Path:
-        return (
-            self.root
-            / DATASET_WORKBOOKS_DIR
-            / self.context_id
-            / self.symbol
-            / DATASET_WORKBOOK_NAME
+        directory = run_directory(
+            self.root / DATASET_WORKBOOKS_DIR / self.context_id, self.run_id
         )
+        return directory / self.symbol / DATASET_WORKBOOK_NAME
 
     def results(self, kind: str) -> Path:
         directory = {
             "pilot": SVM_PILOT_RESULTS_DIR,
             "grid-search": SVM_GRID_SEARCH_RESULTS_DIR,
         }[kind]
-        if self.results_directory is not None:
-            return resolve_path(self.root, self.results_directory) / self.symbol
-        return self.root / directory / self.context_id / self.symbol
+        base = (
+            resolve_path(self.root, self.results_directory)
+            if self.results_directory is not None
+            else self.root / directory / self.context_id
+        )
+        return run_directory(base, self.run_id) / self.symbol
+
+    def window_inspection(self) -> dict[str, Path]:
+        return {
+            name: self.results("grid-search") / "inspection" / filename
+            for name, filename in WINDOW_INSPECTION_NAMES.items()
+        }
 
     def inventory(self, kind: str) -> dict[str, str]:
         paths = {

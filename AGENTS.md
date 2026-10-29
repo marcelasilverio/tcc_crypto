@@ -38,6 +38,11 @@ All repository content must be written in English, including:
 
 Conversation with the repository owner may be in Portuguese.
 
+The researcher authorized Portuguese explanations and command-guide narrative in
+`notebooks/17_binance_daily_svm_experiment_walkthrough.ipynb` on 2026-10-29.
+This exception is limited to that notebook's didactic narrative. Code, identifiers,
+configuration keys, filenames and reusable chart labels remain in English.
+
 ## Working principles
 
 1. Work only on the task explicitly requested by the user.

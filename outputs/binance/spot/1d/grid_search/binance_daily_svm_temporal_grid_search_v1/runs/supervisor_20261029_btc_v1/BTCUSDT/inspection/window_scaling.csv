@@ -1,0 +1,5 @@
+,training_mean_after_scaling,training_std_after_scaling
+momentum_10,1.6653345369377347e-17,1.0
+atr_14,7.06841992344683e-16,1.0
+true_range,-1.9613940101711098e-16,1.0
+chaikin_ad,7.024011002461824e-15,0.9999999999999998

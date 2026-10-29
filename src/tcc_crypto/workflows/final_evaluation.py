@@ -47,12 +47,15 @@ def _inputs(context: DailyContext, config_path: Path):
         raise ValueError(
             "Final evaluation and search must reference the same configuration."
         )
-    paths = FinalArtifactPaths(context.root, config.evaluation_id, context.data.symbol)
+    paths = FinalArtifactPaths(
+        context.root, config.evaluation_id, context.data.symbol, context.run_id
+    )
     full = load_context(
         "experiment",
         root=context.root,
         symbol=context.data.symbol,
         config_path=context.configuration_files[0],
+        run_id=context.run_id,
     )
     signature = json.loads(
         json.dumps(
@@ -254,7 +257,9 @@ def summarize_universe(
     if symbols != first.model.candidate_symbols:
         raise ValueError("Universe summary requires all configured symbols in order.")
     config, _, _, _ = _inputs(first, config_path)
-    destination = FinalArtifactPaths(first.root, config.evaluation_id, "universe")
+    destination = FinalArtifactPaths(
+        first.root, config.evaluation_id, "universe", first.run_id
+    )
     outputs = {name: destination.tables()[name] for name in ("metrics", "eligibility")}
     outputs["workbook"] = destination.directory / EXPERIMENT_OVERVIEW_NAME
     ensure_writable(
@@ -275,6 +280,7 @@ def summarize_universe(
     for context in contexts:
         if (
             context.root != first.root
+            or context.run_id != first.run_id
             or context.configuration_files != first.configuration_files
         ):
             raise ValueError(
@@ -322,6 +328,8 @@ def summarize_universe(
             default=str,
         )
     )
+    if first.run_id is not None:
+        signature["run_id"] = first.run_id
     for name in frames:
         write_table(
             tables[name],

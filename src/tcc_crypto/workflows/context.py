@@ -41,6 +41,10 @@ class DailyContext:
     configuration_files: tuple[Path, ...]
 
     @property
+    def run_id(self) -> str | None:
+        return self.paths.run_id
+
+    @property
     def kind(self) -> str:
         if self.profile == "experiment":
             return "preparation"
@@ -57,6 +61,8 @@ class DailyContext:
                 str(p): file_sha256(p) for p in self.configuration_files
             },
         }
+        if self.run_id is not None:
+            value["run_id"] = self.run_id
         return json.loads(json.dumps(value, default=str))
 
 
@@ -66,6 +72,7 @@ def load_context(
     config_path: Path | None = None,
     symbol: str | None = None,
     root: Path | None = None,
+    run_id: str | None = None,
 ) -> DailyContext:
     root = repository_root(root)
     if profile not in ("pilot", "development", "experiment"):
@@ -140,6 +147,7 @@ def load_context(
         Path(feature_payload["feature_output_directory"])
         if "feature_output_directory" in feature_payload
         else None,
+        run_id=run_id,
     )
     return DailyContext(
         root,

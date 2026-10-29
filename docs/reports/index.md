@@ -6,3 +6,4 @@
 - [Daily SVM Development Eligibility Manifest](daily_svm_development_eligibility_2026-10-13.md) - Development-only eligibility results for all 40 configured candidate symbols, targets, and training windows.
 - [Exploratory refactor and historical artifact migration](exploratory-refactor-and-migration.md) - Implementation boundaries, correlation-universe correction, and provenance rules for the exploratory pipeline refactor.
 - [Complete daily SVM classification execution](daily-svm-complete-classification-2026-10-23.md) - Execution evidence for the 40-asset development search and frozen-parameter final classification evaluation.
+- [Daily SVM execution walkthrough validation](daily-svm-walkthrough-2026-10-29.md) - Isolated BTCUSDT notebook execution and equivalence checks against historical evidence.
