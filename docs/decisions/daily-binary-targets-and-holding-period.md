@@ -15,11 +15,22 @@ sources:
 
 # Daily next-day binary targets and same-day exit
 
+## October 31 revision
+
+The current target thresholds are 1%, 2% and 3%. The next-day D0 formula and same-day exit below remain applicable. Each row is dated by its features at t and labeled by the outcome at t + 1. In-sample labels support supervised fitting; out-of-sample labels are used only for later scoring. The implementation must check when training labels become known; no outer gap or target-formula change is approved.
+
+The [Daily block-window SVM experiment](daily-block-window-experiment.md) is the
+current authority for these changes. The active implementation is described in
+the [implementation guide](daily-code-organization.md); the record below is historical.
+
+## Historical decision record
+
+
 The researcher recorded the following decisions from the supervisor meeting on
 2026-10-09:
 
 - construct three independent binary targets with return thresholds of `2%`,
-  `3%`, and `4%`, replacing the earlier proposed thresholds of `3%`, `4%`, and
+  `3%`, and `4%` (historical; revised to 1%, 2%, and 3% on 2026-10-31), replacing the earlier proposed thresholds of `3%`, `4%`, and
   `5%`;
 - use these thresholds because of the observed outcome asymmetry, the need for
   more useful class balance, and the methodological basis supplied by the

@@ -10,10 +10,10 @@ generated: { by: "process:okf-migration", at: "2026-09-29T10:16:31Z" }
 verified: { by: "human:marcela-prata-silverio", at: "2026-09-29T10:16:31Z" }
 sources:
   - id: analysis-config
-    resource: ../../configs/binance_daily_price_volume_descriptive_analysis.json
+    resource: ../../archive/pre_block_20261031/configs/binance_daily_price_volume_descriptive_analysis.json
     title: Binance daily price and volume descriptive-analysis configuration
   - id: analysis-notebook
-    resource: ../../notebooks/11_binance_daily_price_volume_descriptive_analysis.ipynb
+    resource: ../../archive/pre_block_20261031/notebooks/11_binance_daily_price_volume_descriptive_analysis.ipynb
     title: Binance daily price and volume descriptive-analysis notebook
 ---
 

@@ -10,7 +10,7 @@ generated: { by: "process:okf-migration", at: "2026-09-29T10:16:31Z" }
 verified: { by: "human:marcela-prata-silverio", at: "2026-09-29T10:16:31Z" }
 sources:
   - id: daily-collection-config
-    resource: ../../configs/binance_selected_usdt_daily_collection.json
+    resource: ../../archive/pre_block_20261031/configs/binance_selected_usdt_daily_collection.json
     title: Binance selected USDT daily collection configuration
 ---
 

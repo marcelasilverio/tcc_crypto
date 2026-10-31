@@ -9,7 +9,7 @@ decision_status: approved
 generated: { by: "process:codex", at: "2026-10-08T00:00:00Z" }
 sources:
   - id: feature-config
-    resource: ../../configs/binance_daily_features.json
+    resource: ../../archive/pre_block_20261031/configs/binance_daily_features.json
     title: Binance daily feature configuration
   - id: silva-feature-reference
     resource: ../references/silva_2026_feature_code_excerpt.md
@@ -17,6 +17,17 @@ sources:
 ---
 
 # Daily rolling feature selection
+
+## October 31 revision
+
+The per-day refitting schedule below is historical. The current protocol fits selection within each internal training fold and on the complete outer in-sample, then applies it unchanged to the corresponding out-of-sample block. The researcher explicitly adopted the supplied recorte selection procedure. Its VarianceThreshold retains variance strictly greater than 0.01; audit values are variance and correlation diagnostics, not predictive importances.
+
+The [Daily block-window SVM experiment](daily-block-window-experiment.md) is the
+current authority for these changes. The active implementation is described in
+the [implementation guide](daily-code-organization.md); the record below is historical.
+
+## Historical decision record
+
 
 Approved on 2026-10-08 for the daily feature pipeline:
 

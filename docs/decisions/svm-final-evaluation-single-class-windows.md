@@ -12,11 +12,22 @@ sources:
     resource: svm-temporal-grid-search-and-final-evaluation.md
     title: Temporal SVM grid search and final evaluation
   - id: final-evaluation-config
-    resource: ../../configs/binance_daily_svm_final_evaluation.json
+    resource: ../../archive/pre_block_20261031/configs/binance_daily_svm_final_evaluation.json
     title: Final daily SVM execution configuration
 ---
 
 # Final SVM evaluation with single-class training windows
+
+## October 31 revision
+
+The fixed final-test and frozen-hyperparameter execution context below is historical. The researcher explicitly confirmed that the existing single-class handling remains unchanged, including failure diagnostics, no fabricated predictions, and common-successful-date comparisons. No replacement classifier or shortened training window is authorized.
+
+The [Daily block-window SVM experiment](daily-block-window-experiment.md) is the
+current authority for these changes. The active implementation is described in
+the [implementation guide](daily-code-organization.md); the record below is historical.
+
+## Historical decision record
+
 
 On 2026-10-23, the researcher explicitly requested execution of the complete
 classification experiment, including implementation and execution of the

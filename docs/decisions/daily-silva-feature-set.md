@@ -9,7 +9,7 @@ decision_status: approved
 generated: { by: "process:codex", at: "2026-10-06T00:00:00Z" }
 sources:
   - id: feature-config
-    resource: ../../configs/binance_daily_features.json
+    resource: ../../archive/pre_block_20261031/configs/binance_daily_features.json
     title: Binance daily feature configuration
   - id: silva-feature-reference
     resource: ../references/silva_2026_feature_code_excerpt.md

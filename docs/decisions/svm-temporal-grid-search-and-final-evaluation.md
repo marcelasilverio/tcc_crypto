@@ -9,7 +9,7 @@ decision_status: approved
 generated: { by: "process:codex", at: "2026-10-13T00:00:00Z" }
 sources:
   - id: grid-search-config
-    resource: ../../configs/binance_daily_svm_grid_search.json
+    resource: ../../archive/pre_block_20261031/configs/binance_daily_svm_grid_search.json
     title: Daily SVM temporal grid-search configuration
   - id: svm-pilot-decision
     resource: svm-pilot-and-hyperparameter-search.md
@@ -35,6 +35,17 @@ sources:
 ---
 
 # Temporal SVM grid search and final evaluation
+
+## October 31 revision
+
+The development/final-test calendar partition, one-day outer gaps, separate development search and frozen-parameter daily walk-forward procedure below are historical and superseded. The current design repeats integrated training/search inside each complete 60-, 75- or 90-day in-sample and validates on the immediately following block. Internal TimeSeriesSplit uses the approved documented defaults: five splits, expanding training, automatic validation size and zero gap. The researcher explicitly confirmed the existing 186-candidate grid, F1 winner criterion and deterministic tie-breaking remain unchanged. Implementation descriptions and results below refer to the earlier protocol.
+
+The [Daily block-window SVM experiment](daily-block-window-experiment.md) is the
+current authority for these changes. The active implementation is described in
+the [implementation guide](daily-code-organization.md); the record below is historical.
+
+## Historical decision record
+
 
 ## Decision and scope
 

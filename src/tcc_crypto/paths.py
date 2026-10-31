@@ -1,364 +1,78 @@
-"""Canonical artifact locations. Importing this module performs no filesystem I/O."""
-
-from __future__ import annotations
+"""Artifact names and immutable path resolution; importing creates nothing."""
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import TYPE_CHECKING, Final
 
-if TYPE_CHECKING:
-    from tcc_crypto.collection.config import CollectionConfig
-
-from tcc_crypto.data.repository import find_repository_root
-
-RAW_DAILY_DIR: Final = Path("data/raw/binance/spot/1d")
-PROCESSED_DAILY_DIR: Final = Path("data/processed/binance/spot/1d")
-ALIGNED_DAILY_DIR: Final = PROCESSED_DAILY_DIR / "aligned"
-DAILY_FEATURES_DIR: Final = PROCESSED_DAILY_DIR / "features"
-DAILY_TARGETS_DIR: Final = PROCESSED_DAILY_DIR / "targets"
-DAILY_DATASETS_DIR: Final = PROCESSED_DAILY_DIR / "datasets"
-DAILY_OUTPUTS_DIR: Final = Path("outputs/binance/spot/1d")
-DATASET_WORKBOOKS_DIR: Final = DAILY_OUTPUTS_DIR / "datasets"
-SVM_PILOT_RESULTS_DIR: Final = DAILY_OUTPUTS_DIR / "svm_pilot"
-SVM_GRID_SEARCH_RESULTS_DIR: Final = DAILY_OUTPUTS_DIR / "grid_search"
-SVM_FINAL_RESULTS_DIR: Final = DAILY_OUTPUTS_DIR / "svm_final"
-FINAL_EVALUATION_CONFIG_PATH: Final = Path(
-    "configs/binance_daily_svm_final_evaluation.json"
-)
-FINAL_TABLE_NAMES: Final = {
-    "eligibility": "asset_eligibility.csv",
-    "predictions": "dated_predictions.csv.gz",
-    "metrics": "classification_metrics.csv",
-    "roc": "roc_curve_points.csv.gz",
-    "precision_recall": "precision_recall_curve_points.csv.gz",
-    "selected_configurations": "frozen_configurations.csv",
-}
-FINAL_FIGURE_NAMES: Final = {
-    "roc": "roc_curves.png",
-    "precision_recall": "precision_recall_curves.png",
-}
-WINDOW_INSPECTION_NAMES: Final = {
-    "summary": "window_summary.csv",
-    "scaling": "window_scaling.csv",
-}
-TRAINING_REVIEW_DIR_NAME: Final = "supervisor_review"
-TRAINING_FOLD_METRICS_NAME: Final = "training_fold_metrics.csv"
-EXPERIMENT_OVERVIEW_NAME: Final = "experiment_overview.xlsx"
-DATASET_WORKBOOK_NAME: Final = "features_and_targets.xlsx"
-SVM_WORKBOOK_NAME: Final = "svm_results.xlsx"
-RUN_METADATA_NAME: Final = "run_metadata.json"
-CONFIGURATION_SNAPSHOT_NAME: Final = "configuration_snapshot.json"
-PILOT_TABLE_NAMES: Final = {
-    "predictions": "rolling_predictions.csv",
-    "summary": "metrics_summary.csv",
-}
-GRID_TABLE_NAMES: Final = {
-    "eligibility": "asset_eligibility.csv",
-    "fold_results": "fold_results.csv.gz",
-    "candidate_results": "candidate_results.csv.gz",
-    "selected_configurations": "selected_configurations.csv",
-}
-PILOT_CONFIG_PATH: Final = Path("configs/binance_daily_svm_pilot_dataset.json")
-GRID_CONFIG_PATH: Final = Path("configs/binance_daily_svm_grid_search.json")
-COLLECTION_CONFIG_PATH: Final = Path(
-    "configs/binance_selected_usdt_daily_collection.json"
+ROOT = Path(__file__).resolve().parents[2]
+CONFIG = Path("configs/experiment.json")
+RAW = Path("data/raw/binance/spot/1d")
+PROCESSED = Path("data/processed")
+OUTPUTS = Path("outputs/experiments")
+NULL_TOKEN = "__TCC_NULL__"
+MAIN_TABLES = (
+    "availability",
+    "treatment",
+    "metrics",
+    "feature_selection",
+    "predictions_in_sample",
+    "actuals_in_sample",
+    "predictions_out_of_sample",
+    "actuals_out_of_sample",
 )
 
 
-def repository_root(explicit: Path | None = None) -> Path:
-    """Resolve an explicit root or the installed editable source checkout."""
-    return (
-        explicit.resolve()
-        if explicit is not None
-        else find_repository_root(Path(__file__).parent)
-    )
-
-
-def run_directory(directory: Path, run_id: str | None) -> Path:
-    """Resolve an isolated execution without changing legacy paths or creating files."""
-    if run_id is None:
-        return directory
-    if (
-        not run_id
-        or Path(run_id).name != run_id
-        or run_id in (".", "..")
-        or "\\" in run_id
-    ):
-        raise ValueError("Run ID must be a nonempty single path component.")
-    return directory / "runs" / run_id
+def component(value: str) -> str:
+    if not value or value in (".", "..") or Path(value).name != value or "\\" in value:
+        raise ValueError(f"Invalid path component: {value!r}")
+    return value
 
 
 @dataclass(frozen=True)
-class FinalArtifactPaths:
-    """Final classifier outputs, isolated from development and pilot evidence."""
-
+class Paths:
     root: Path
-    evaluation_id: str
-    symbol: str
-    run_id: str | None = None
+    run_id: str
 
-    def __post_init__(self) -> None:
-        run_directory(self.root, self.run_id)
+    def __post_init__(self):
+        component(self.run_id)
 
     @property
-    def training_metrics(self) -> Path:
-        return self.directory / TRAINING_REVIEW_DIR_NAME / TRAINING_FOLD_METRICS_NAME
+    def processed(self):
+        return self.root / PROCESSED / f"daily_{self.run_id}"
 
     @property
-    def directory(self) -> Path:
-        return (
-            run_directory(
-                self.root / SVM_FINAL_RESULTS_DIR / self.evaluation_id, self.run_id
-            )
-            / self.symbol
-        )
+    def output(self):
+        return self.root / OUTPUTS / f"daily_{self.run_id}"
 
-    def tables(self) -> dict[str, Path]:
-        return {
-            name: self.directory / filename
-            for name, filename in FINAL_TABLE_NAMES.items()
-        }
+    @property
+    def configuration(self) -> Path:
+        return self.output / "configuration.json"
 
-    def figures(self) -> dict[str, Path]:
-        return {
-            name: self.directory / filename
-            for name, filename in FINAL_FIGURE_NAMES.items()
-        }
+    @property
+    def execution(self) -> Path:
+        return self.output / "execution.json"
 
+    def table(self, symbol: str, stage: str) -> Path:
+        return self.processed / f"{component(symbol)}_{component(stage)}.csv"
 
-def resolve_path(root: Path, path: Path | str) -> Path:
-    return (root / path).resolve()
+    def audit(self, symbol: str, name: str) -> Path:
+        return self.output / "audit" / f"{component(symbol)}_{component(name)}.csv"
+
+    def main(self, name: str) -> Path:
+        if name not in MAIN_TABLES:
+            raise ValueError(f"Unknown main table: {name}")
+        return self.output / f"{name}.csv"
 
 
 def metadata_path(path: Path) -> Path:
     return path.with_name(path.name + ".metadata.json")
 
 
-@dataclass(frozen=True)
-class ArtifactPaths:
-    """All outputs for one context and asset, with explicit legacy overrides."""
-
-    root: Path
-    context_id: str
-    symbol: str
-    raw_directory: Path = RAW_DAILY_DIR
-    results_directory: Path | None = None
-    feature_directory: Path | None = None
-    run_id: str | None = None
-
-    def __post_init__(self) -> None:
-        run_directory(self.root, self.run_id)
-        for value in (self.context_id, self.symbol):
-            if (
-                not value
-                or Path(value).name != value
-                or value in (".", "..")
-                or "\\" in value
-            ):
-                raise ValueError("Context and symbol must be single path components.")
-        object.__setattr__(self, "root", self.root.resolve())
-
-    @property
-    def raw(self) -> Path:
-        return resolve_path(self.root, self.raw_directory) / self.symbol
-
-    def table(self, stage: str) -> Path:
-        directories = {
-            "aligned": ALIGNED_DAILY_DIR,
-            "features": DAILY_FEATURES_DIR,
-            "targets": DAILY_TARGETS_DIR,
-            "dataset": DAILY_DATASETS_DIR,
-        }
-        directory = (
-            resolve_path(self.root, self.feature_directory)
-            if stage == "features" and self.feature_directory is not None
-            else self.root / directories[stage]
-        )
-        return (
-            run_directory(directory / self.context_id, self.run_id)
-            / f"{self.symbol}.csv.gz"
-        )
-
-    @property
-    def dataset_workbook(self) -> Path:
-        directory = run_directory(
-            self.root / DATASET_WORKBOOKS_DIR / self.context_id, self.run_id
-        )
-        return directory / self.symbol / DATASET_WORKBOOK_NAME
-
-    def results(self, kind: str) -> Path:
-        directory = {
-            "pilot": SVM_PILOT_RESULTS_DIR,
-            "grid-search": SVM_GRID_SEARCH_RESULTS_DIR,
-        }[kind]
-        base = (
-            resolve_path(self.root, self.results_directory)
-            if self.results_directory is not None
-            else self.root / directory / self.context_id
-        )
-        return run_directory(base, self.run_id) / self.symbol
-
-    def window_inspection(self) -> dict[str, Path]:
-        return {
-            name: self.results("grid-search") / "inspection" / filename
-            for name, filename in WINDOW_INSPECTION_NAMES.items()
-        }
-
-    def inventory(self, kind: str) -> dict[str, str]:
-        paths = {
-            "raw_directory": self.raw,
-            **{
-                stage: self.table(stage)
-                for stage in ("aligned", "features", "targets", "dataset")
-            },
-            "dataset_workbook": self.dataset_workbook,
-        }
-        if kind == "preparation":
-            return {key: str(value) for key, value in paths.items()}
-        names = PILOT_TABLE_NAMES if kind == "pilot" else GRID_TABLE_NAMES
-        paths.update(
-            {name: self.results(kind) / filename for name, filename in names.items()}
-        )
-        paths.update(
-            {
-                "results_workbook": self.results(kind) / SVM_WORKBOOK_NAME,
-                "run_metadata": self.results(kind) / RUN_METADATA_NAME,
-                "configuration_snapshot": self.results(kind)
-                / CONFIGURATION_SNAPSHOT_NAME,
-            }
-        )
-        return {key: str(value) for key, value in paths.items()}
-
-
-@dataclass(frozen=True)
-class PairOutputPaths:
-    """Final and resumable artifact paths for one trading pair."""
-
-    directory: Path
-    raw_csv_gz: Path
-    workbook: Path
-    metadata_json: Path
-    partial_csv: Path
-    checkpoint_json: Path
-
-
-def pair_output_paths(
-    symbol: str,
-    config: CollectionConfig,
-    repository_root: Path,
-) -> PairOutputPaths:
-    """Return the structured per-symbol paths for final and partial artifacts."""
-    start_date = config.start_time_utc.strftime("%Y-%m-%d")
-    end_date = config.end_time_utc.strftime("%Y-%m-%d")
-    stem = f"{symbol}_{config.interval}_{start_date}_{end_date}"
-    directory = repository_root / config.output_directory / symbol
-    return PairOutputPaths(
-        directory=directory,
-        raw_csv_gz=directory / f"{stem}.csv.gz",
-        workbook=directory / f"{stem}.xlsx",
-        metadata_json=directory / f"{stem}.metadata.json",
-        partial_csv=directory / f".{stem}.partial.csv",
-        checkpoint_json=directory / f".{stem}.checkpoint.json",
-    )
-
-
-# Exploratory artifacts use one explicit UTC execution identifier across stages.
-EXPLORATION_RAW_DIR: Final = Path("data/raw/binance/spot/exploration")
-EXPLORATION_WORKBOOKS_DIR: Final = Path("data/exploration/binance/spot")
-EXPLORATION_OUTPUTS_DIR: Final = Path("outputs/binance/spot")
-EXPLORATION_PROCESSED_DIR: Final = Path("data/processed/binance/spot")
-MIGRATION_MANIFEST_DIR: Final = Path("outputs/migrations")
-ANALYSIS_TABLE_SUFFIX: Final = ".csv.gz"
-ANALYSIS_INPUTS_NAME: Final = "inputs.json"
-ANALYSIS_RESULTS_NAME: Final = "results.json"
-ANALYSIS_WORKBOOK_NAME: Final = "analysis.xlsx"
-
-
-def reject_legacy_analysis_paths(payload: dict) -> None:
-    """Require migration instead of silently writing to historical directories."""
-    obsolete = {
-        "output_directory",
-        "analysis_output_directory",
-        "packet_directory",
-    } & payload.keys()
-    if obsolete:
-        raise ValueError(
-            f"Legacy analysis path keys {sorted(obsolete)} must be removed. "
-            "Use 'python -m tcc_crypto.migrate' to inventory and migrate historical outputs."
-        )
-
-
-def analysis_output_directory(root: Path, analysis: str, analysis_id: str) -> Path:
-    return root / EXPLORATION_OUTPUTS_DIR / analysis / analysis_id
-
-
-def new_run_id() -> str:
-    from datetime import datetime, timezone
-
-    return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
-
-
-@dataclass(frozen=True)
-class ExplorationPaths:
-    """Resolved locations for an exploratory execution; construction does no I/O."""
-
-    root: Path
-    analysis: str
-    analysis_id: str
-    run_id: str
-    interval: str
-
-    def __post_init__(self) -> None:
-        for value in (self.analysis, self.analysis_id, self.run_id, self.interval):
-            if (
-                not value
-                or Path(value).name != value
-                or value in (".", "..")
-                or "\\" in value
-            ):
-                raise ValueError("Analysis identifiers must be single path components.")
-        object.__setattr__(self, "root", self.root.resolve())
-
-    @property
-    def raw(self) -> Path:
-        return self.root / EXPLORATION_RAW_DIR / self.analysis / self.run_id
-
-    @property
-    def tables(self) -> Path:
-        return (
-            self.root
-            / EXPLORATION_PROCESSED_DIR
-            / self.interval
-            / "analyses"
-            / self.analysis
-            / self.analysis_id
-            / self.run_id
-        )
-
-    @property
-    def workbooks(self) -> Path:
-        return (
-            self.root
-            / EXPLORATION_WORKBOOKS_DIR
-            / self.analysis
-            / self.analysis_id
-            / self.run_id
-        )
-
-    @property
-    def outputs(self) -> Path:
-        return (
-            analysis_output_directory(self.root, self.analysis, self.analysis_id)
-            / self.run_id
-        )
-
-    def table(self, name: str) -> Path:
-        if Path(name).name != name or name in (".", ".."):
-            raise ValueError("Table name must be a single path component.")
-        return self.tables / (name + ANALYSIS_TABLE_SUFFIX)
-
-    def inventory(self) -> dict[str, str]:
-        return {
-            name: str(getattr(self, name))
-            for name in ("raw", "tables", "workbooks", "outputs")
-        }
+def raw_paths(root: Path, symbol: str, collection: dict) -> dict[str, Path]:
+    directory = root / RAW / component(symbol)
+    stem = f"{symbol}_1d_{collection['start_time_utc'][:10]}_{collection['end_time_utc'][:10]}"
+    return {
+        "raw": directory / f"{stem}.csv.gz",
+        "metadata": directory / f"{stem}.metadata.json",
+        "partial": directory / f".{stem}.partial.csv",
+        "checkpoint": directory / f".{stem}.checkpoint.json",
+    }

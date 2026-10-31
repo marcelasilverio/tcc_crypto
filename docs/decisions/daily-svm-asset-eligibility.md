@@ -9,7 +9,7 @@ decision_status: approved
 generated: { by: "process:codex", at: "2026-10-13T00:00:00Z" }
 sources:
   - id: daily-collection-config
-    resource: ../../configs/binance_selected_usdt_daily_collection.json
+    resource: ../../archive/pre_block_20261031/configs/binance_selected_usdt_daily_collection.json
     title: Binance selected USDT daily collection configuration
   - id: daily-collection-decision
     resource: daily-data-collection.md
@@ -18,7 +18,7 @@ sources:
     resource: hourly-data-collection-universe.md
     title: Hourly data-collection universe
   - id: grid-search-config
-    resource: ../../configs/binance_daily_svm_grid_search.json
+    resource: ../../archive/pre_block_20261031/configs/binance_daily_svm_grid_search.json
     title: Daily SVM temporal grid-search configuration
   - id: temporal-grid-decision
     resource: svm-temporal-grid-search-and-final-evaluation.md
@@ -26,6 +26,17 @@ sources:
 ---
 
 # Daily SVM asset eligibility
+
+## October 31 revision
+
+The common 271-row minimum and fixed final-test entry rules below are superseded by per-asset available-history block construction. Late listing or early termination alone does not exclude an asset. The researcher explicitly reaffirmed the LUNAUSDT economic-continuity exclusion; retain its raw availability evidence but exclude it from modeling and portfolio signals. The ex-post universe limitation remains applicable. The former nine-search count below is historical: search now repeats for every outer block.
+
+The [Daily block-window SVM experiment](daily-block-window-experiment.md) is the
+current authority for these changes. The active implementation is described in
+the [implementation guide](daily-code-organization.md); the record below is historical.
+
+## Historical decision record
+
 
 ## Approved classification universe
 

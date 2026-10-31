@@ -10,7 +10,7 @@ generated: { by: "process:okf-migration", at: "2026-09-29T10:16:31Z" }
 verified: { by: "human:marcela-prata-silverio", at: "2026-09-29T10:16:31Z" }
 sources:
   - id: hourly-collection-config
-    resource: ../../configs/binance_selected_usdt_hourly_collection.json
+    resource: ../../archive/pre_block_20261031/configs/binance_selected_usdt_hourly_collection.json
     title: Binance selected USDT hourly collection configuration
   - id: trade-count-ranking
     resource: ../../data/exploration/binance_spot_usdt_quote_pair_trade_counts.xlsx

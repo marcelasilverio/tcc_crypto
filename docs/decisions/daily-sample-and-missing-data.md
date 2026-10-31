@@ -9,10 +9,10 @@ decision_status: approved
 generated: { by: "process:codex", at: "2026-10-09T00:00:00Z" }
 sources:
   - id: daily-collection-config
-    resource: ../../configs/binance_selected_usdt_daily_collection.json
+    resource: ../../archive/pre_block_20261031/configs/binance_selected_usdt_daily_collection.json
     title: Binance selected USDT daily collection configuration
   - id: daily-feature-config
-    resource: ../../configs/binance_daily_features.json
+    resource: ../../archive/pre_block_20261031/configs/binance_daily_features.json
     title: Binance daily feature configuration
   - id: silva-methodology-reference
     resource: ../references/erci_silva_2026_methodology.md
@@ -20,6 +20,17 @@ sources:
 ---
 
 # Daily experiment period and internal-gap treatment
+
+## October 31 revision
+
+The revised calendar ends on 2026-09-01. Incomplete and invalid candles are treated as absent; fill only internal gaps between the first and last valid candles. Validate and treat candles before feature and target calculation, then construct windows from each asset's available modeling dataset. The raw availability CSV remains unchanged by filling. Earlier warm-up provenance below is retained.
+
+The [Daily block-window SVM experiment](daily-block-window-experiment.md) is the
+current authority for these changes. The active implementation is described in
+the [implementation guide](daily-code-organization.md); the record below is historical.
+
+## Historical decision record
+
 
 The researcher recorded the following decisions from the supervisor meeting on
 2026-10-09:

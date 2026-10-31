@@ -9,7 +9,7 @@ as_of: "2026-10-13T00:00:00Z"
 generated: { by: "process:codex", at: "2026-10-13T00:00:00Z" }
 sources:
   - id: grid-search-config
-    resource: ../../configs/binance_daily_svm_grid_search.json
+    resource: ../../archive/pre_block_20261031/configs/binance_daily_svm_grid_search.json
     title: Daily SVM temporal grid-search configuration
   - id: grid-search-implementation
     resource: ../../src/tcc_crypto/daily_svm_grid_search.py

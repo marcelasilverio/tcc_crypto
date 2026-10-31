@@ -1,5 +1,15 @@
 # Approved methodology decisions
 
+The October 31 block-window decision is the current authority for the revised
+experiment. Earlier decisions retain historical provenance and explicit revision
+notices. The active implementation follows the new block protocol; previous
+configurations and evidence are archived.
+
+- [Daily experiment implementation and consultation guide](daily-code-organization.md) - Approved eight-module implementation, two configurations, stage commands, CSV dictionary and historical migration contract.
+- [CSV artifact organization by execution](csv-artifact-organization.md) - Approved shallow data and result layout using CSV tables without parallel Excel exports, with preserved historical evidence.
+- [Daily block-window SVM experiment](daily-block-window-experiment.md) - October 31 revision defining raw availability, candle treatment, consecutive training and validation blocks, and integrated temporal SVM search.
+- [Daily block-window experiment diagram](daily-block-window-experiment-diagram.md) - Visual map of the revised data preparation, per-window SVM training, validation and audit outputs.
+
 - [Exploratory USDT pair trade-count collection](exploratory-usdt-pair-trade-count-collection.md) - Approved parameters for the exploratory Binance USDT pair trade-count collection.
 - [Hourly data-collection universe](hourly-data-collection-universe.md) - Approved initial and expanded universes for Binance USDT hourly kline collection.
 - [Daily data collection](daily-data-collection.md) - Approved parameters for collecting daily klines for the expanded 40-pair universe.

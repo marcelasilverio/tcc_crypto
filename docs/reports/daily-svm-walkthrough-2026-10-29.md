@@ -12,7 +12,7 @@ sources:
     resource: ../../notebooks/17_binance_daily_svm_experiment_walkthrough.ipynb
     title: Executed didactic experiment walkthrough
   - id: search-configuration
-    resource: ../../configs/binance_daily_svm_grid_search.json
+    resource: ../../archive/pre_block_20261031/configs/binance_daily_svm_grid_search.json
     title: Approved grid search protocol
   - id: previous-execution
     resource: daily-svm-complete-classification-2026-10-23.md

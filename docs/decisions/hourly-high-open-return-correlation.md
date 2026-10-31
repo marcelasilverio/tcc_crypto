@@ -10,7 +10,7 @@ generated: { by: "process:okf-migration", at: "2026-09-29T10:16:31Z" }
 verified: { by: "human:marcela-prata-silverio", at: "2026-09-29T10:16:31Z" }
 sources:
   - id: analysis-notebook
-    resource: ../../notebooks/07_binance_hourly_high_open_return_correlation.ipynb
+    resource: ../../archive/pre_block_20261031/notebooks/07_binance_hourly_high_open_return_correlation.ipynb
     title: Binance hourly high-to-open return correlation notebook
 ---
 

@@ -1,0 +1,78 @@
+{
+  "parameter_grid": [
+    {
+      "kernel": [
+        "linear"
+      ],
+      "C": [
+        0.1,
+        1.0,
+        10.0
+      ],
+      "class_weight": [
+        null,
+        "balanced"
+      ]
+    },
+    {
+      "kernel": [
+        "rbf"
+      ],
+      "C": [
+        0.1,
+        1.0,
+        10.0
+      ],
+      "gamma": [
+        "scale",
+        0.01,
+        0.1
+      ],
+      "class_weight": [
+        null,
+        "balanced"
+      ]
+    },
+    {
+      "kernel": [
+        "poly"
+      ],
+      "C": [
+        0.1,
+        1.0,
+        10.0
+      ],
+      "gamma": [
+        "scale",
+        0.01,
+        0.1
+      ],
+      "degree": [
+        2,
+        3,
+        4
+      ],
+      "coef0": [
+        0.0,
+        0.5,
+        1.0
+      ],
+      "class_weight": [
+        null,
+        "balanced"
+      ]
+    }
+  ],
+  "selection": {
+    "primary_metric": "f1",
+    "floating_point_tolerance": 1e-12,
+    "tie_break_order": [
+      "mean_precision_descending",
+      "f1_standard_deviation_ascending",
+      "mean_roc_auc_descending",
+      "kernel_simplicity_linear_rbf_poly",
+      "C_ascending",
+      "parameter_grid_order"
+    ]
+  }
+}

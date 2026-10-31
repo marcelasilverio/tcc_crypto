@@ -8,7 +8,7 @@ authority: generated-evidence
 generated: { by: "process:exploratory-refactor", at: "2026-10-22T00:00:00Z" }
 sources:
   - id: implementation-guide
-    resource: ../../src/tcc_crypto/EXPLORATION.md
+    resource: ../../archive/pre_block_20261031/src/tcc_crypto/EXPLORATION.md
     title: Exploratory execution and migration guide
   - id: approved-open-correlation
     resource: ../decisions/hourly-open-price-correlation.md

@@ -130,3 +130,17 @@ implementation must address at least the following points:
   experimental results.
 
 No methodological choice listed above is resolved by the supplied excerpt.
+
+## October 31 selection adoption
+
+On 2026-10-31 the researcher explicitly selected the feature-selection procedure
+in this excerpt for the revised experiment. The source remains external reference
+material; the scoped approval is recorded in the
+[Daily block-window SVM experiment](../decisions/daily-block-window-experiment.md).
+It does not automatically approve the example's feature-engineering parameters or
+fixed warm-up removal. VarianceThreshold retains columns strictly above 0.01.
+
+The supplied Python files were reread without execution on 2026-10-31. Checksums:
+
+- `recorte_features.py`: `be0f91ca24334a672824c7c66a2ca5d9d940076a5596a467d10084cf4579afa0`.
+- `exemplo_uso.py`: `522a06cdd9cb07a76320b520d22aa4537481bb8b0b9dfe78b12a0e563bab04db`.

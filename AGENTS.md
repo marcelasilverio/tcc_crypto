@@ -156,7 +156,13 @@ interpreted.
 - Store collection metadata such as symbol, interval, request time, source,
   and requested date range.
 - Do not overwrite raw data with cleaned data.
-- Keep exploratory spreadsheets under `data/exploration/`.
+- Keep exploratory CSV tables under `data/exploration/`.
+- The researcher approved CSV-only tabular outputs and simplified folders grouped
+  by execution on 2026-10-31. Follow `docs/decisions/csv-artifact-organization.md`.
+  Do not generate parallel Excel exports for new workflows. Preserve historical
+  Excel artifacts and immutable raw files until an explicitly scoped migration.
+  The active daily pipeline implements this layout; historical artifacts are
+  preserved through the migration manifest.
 - The researcher explicitly authorized versioning project research data and
   generated outputs on 2026-10-23, including raw data, spreadsheets, figures,
   metadata and model results. Preserve this complete-project publishing policy.
@@ -183,47 +189,34 @@ configuration whenever the upstream API permits it.
 - Use logging instead of scattered `print` statements in library code.
 - Add docstrings where behavior, assumptions, or formulas are not obvious.
 
-### Layer responsibilities
+### Active module responsibilities
 
-| Location | Responsibility |
+The approved daily experiment has eight modules plus `__init__.py`:
+
+| Module | Responsibility |
 | --- | --- |
-| `paths.py` | Default artifact directories, filenames and immutable path resolvers |
-| `collection/` | Binance requests, pagination, checkpoints and raw persistence |
-| `data/` | Loading, schema validation, gap treatment and dataset assembly |
-| `features/` | Feature formulas, indicators, catalog and feature table composition |
-| `targets/` | Outcomes, target formulas and temporal label alignment |
-| `analysis/` | Exploratory statistics, coverage, correlations and selection analysis |
-| `modeling/` | Temporal splits, training-only preprocessing, SVM, ranking and metrics |
-| `visualization/` | Figures and presentation helpers |
-| `reporting/` | Table, workbook and metadata exports from computed results |
-| `workflows/` | Explicit stage coordination shared by commands and notebooks |
+| `collection.py` | Binance requests, pagination, raw persistence and resume |
+| `preparation.py` | Candle validation, raw availability and internal-gap treatment |
+| `dataset.py` | Feature formulas, next-day targets and dataset construction |
+| `training.py` | Temporal blocks, fitted selection/scaling, search and evaluation |
+| `results.py` | Schema-aware CSV persistence, matrices and metadata |
+| `experiment.py` | Public stage functions, asset iteration and the sole CLI |
+| `config.py` | Load and validate the two experiment JSONs |
+| `paths.py` | Resolve standard artifact paths without filesystem side effects |
 
-- Keep package-root Python modules limited to `__init__.py`, `paths.py` and
-  the supported `daily.py`, `explore.py` and `migrate.py` entrypoints. Update
-  this contract and its tests deliberately when adding an approved entrypoint
-  or domain layer.
-- Import implementations from their owning layers. Do not reintroduce flat
-  compatibility modules, forwarding scripts or aliases for removed APIs.
-- Domain implementations must not import command entrypoints or workflow
-  orchestration. Features, targets and modeling must not depend on collection,
-  exploratory analyses, reporting or visualization. Existing reporting imports
-  of workflow result/context types and the feature-column helper are a limited
-  existing dependency, not permission to call preparation or training from exports.
-- Keep formulas in calculation functions. The feature catalog and exported
-  definitions describe those functions; they must not implement formulas again.
-- Dataset assembly aligns and joins existing tables without recalculating features.
-- Separate computation from configuration loading and persistence. Functions
-  responsible for calculations receive inputs and return results; workflow stages
-  explicitly call loaders, calculations and writers.
-- Share implementations between commands and notebooks. Preserve distinct approved
-  policies, including exploratory gap blocking versus modeling gap filling and
-  pilot versus grid-search temporal protocols.
-- Extract functions around recognizable responsibilities. Do not impose arbitrary
-  line limits, mandatory class hierarchies or generic abstractions without reuse.
+Calculation functions receive explicit inputs and return calculated tables.
+Preparation, dataset and training must not import the orchestrator, collection
+or persistence. Results must not collect, calculate features or fit models.
+Raw persistence belongs to collection; derived persistence is called explicitly
+by the orchestrator. Use the same functions from commands and the notebook.
+There are no compatibility aliases or active legacy command entrypoints.
+Historical sources, configurations, notebooks and protocol-specific tests under
+`archive/pre_block_20261031/` are immutable reference, outside package and test
+discovery. Their commands are not supported.
 
 ### Notebook contract
 
-- Cells may import workflow or visualization APIs and `IPython.display`, choose
+- Cells may import active package APIs and `IPython.display`, choose
   configuration values, call package stages and display returned results.
 - Keep formulas, loops, comprehensions, conditional processing, aggregation,
   eligibility, HTTP, filesystem operations, chart construction and direct model
@@ -236,11 +229,11 @@ configuration whenever the upstream API permits it.
 ### Paths and stage contracts
 
 - Declare standard output directories and filenames only in `paths.py`; resolve
-  them through `ArtifactPaths` or `ExplorationPaths`. Scientific parameters belong
+  them through `Paths` and the raw path resolver. Scientific parameters belong
   in domain configurations, not path constants or notebook cells.
 - Resolve repository-relative paths independently of the working directory.
   Importing modules and displaying paths must not create directories or artifacts.
-- Preserve daily context identifiers and exploratory UTC run identifiers across
+- Preserve scientific configuration and run identifiers across
   stages. Never mix outputs from different contexts or executions.
 - Independent stages require their saved upstream inputs and validate configuration,
   schema and source metadata. Missing or incompatible inputs must identify the
@@ -252,10 +245,11 @@ configuration whenever the upstream API permits it.
 - Preserve timestamps, nullable types, warm-up rows and imputation markers through
   persistence. Record source checksums, configuration, schema, execution time,
   package versions, revision and resolved paths.
-- Export figures and workbooks from saved or explicitly supplied calculated tables.
+- Export figures and CSV tables from saved or explicitly supplied calculated tables.
   Export must not collect data, recompute features or fit selectors, scalers or
-  models. Use the existing Python/openpyxl exporters; do not restore the removed
-  JavaScript workbook stack.
+  models. Use Python exporters; do not add Excel generation or restore the removed
+  JavaScript workbook stack. Historical openpyxl code is archived reference,
+  not authorization for new workbook outputs.
 
 ## Financial calculations
 

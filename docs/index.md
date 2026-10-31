@@ -35,6 +35,17 @@ approved experimental choices.
 - [Generated reports](reports/) - Point-in-time evidence from collection and
   validation work.
 
+## Current experiment revision
+
+The [daily block-window SVM decision](decisions/daily-block-window-experiment.md)
+records the October 31 corrections and later confirmations. The
+[CSV artifact organization](decisions/csv-artifact-organization.md) defines the
+approved simplified folders and CSV-only tabular outputs. Its
+[experiment diagram](decisions/daily-block-window-experiment-diagram.md) maps the
+implemented workflow. The [implementation guide](decisions/daily-code-organization.md)
+explains the active modules, commands and CSVs. Historical results belong to the
+previous protocol; implementation tests do not constitute a production experiment.
+
 ## Deprecated paths
 
 - [Legacy methodology decision register](methodology_decisions.md) - Deprecated path retained for links created before the OKF migration.

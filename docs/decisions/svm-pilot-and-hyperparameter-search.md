@@ -9,7 +9,7 @@ decision_status: approved
 generated: { by: "process:codex", at: "2026-10-09T00:00:00Z" }
 sources:
   - id: pilot-dataset-config
-    resource: ../../configs/binance_daily_svm_pilot_dataset.json
+    resource: ../../archive/pre_block_20261031/configs/binance_daily_svm_pilot_dataset.json
     title: BTCUSDT daily SVM pilot dataset configuration
   - id: silva-methodology-reference
     resource: ../references/erci_silva_2026_methodology.md
@@ -17,6 +17,17 @@ sources:
 ---
 
 # SVM pilot and hyperparameter-search plan
+
+## October 31 revision
+
+The staged pilot and development/final-test procedure below describes historical work. It is not the current experiment design: each outer in-sample now includes its own training and grid search, followed by validation on the next block. Existing pilot results remain historical evidence.
+
+The [Daily block-window SVM experiment](daily-block-window-experiment.md) is the
+current authority for these changes. The active implementation is described in
+the [implementation guide](daily-code-organization.md); the record below is historical.
+
+## Historical decision record
+
 
 The researcher recorded the following staged experiment plan from the
 supervisor meeting on 2026-10-09:

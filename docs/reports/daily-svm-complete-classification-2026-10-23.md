@@ -9,16 +9,16 @@ as_of: "2026-10-23T00:00:00Z"
 generated: { by: "process:codex", at: "2026-10-23T00:00:00Z" }
 sources:
   - id: search-configuration
-    resource: ../../configs/binance_daily_svm_grid_search.json
+    resource: ../../archive/pre_block_20261031/configs/binance_daily_svm_grid_search.json
     title: Approved development and final-test protocol
   - id: final-configuration
-    resource: ../../configs/binance_daily_svm_final_evaluation.json
+    resource: ../../archive/pre_block_20261031/configs/binance_daily_svm_final_evaluation.json
     title: Final evaluation execution settings
   - id: omission-decision
     resource: ../decisions/svm-final-evaluation-single-class-windows.md
     title: Approved single-class omission and common-date comparison policy
   - id: universe-evidence
-    resource: ../../outputs/binance/spot/1d/svm_final/binance_daily_svm_walk_forward_v1/universe/run_metadata.json
+    resource: ../../outputs/archive/binance_daily_svm_walk_forward_v1/87fadac2e71a7ac1_run_metadata.json
     title: Consolidated execution metadata and artifact checksums
 ---
 
@@ -84,7 +84,7 @@ metrics; it does not calculate a pooled performance score.
 
 ## Supervisor-review notebook and training-score reconstruction
 
-[Notebook 16](../../notebooks/16_binance_daily_svm_experiment_results.ipynb)
+[Notebook 16](../../archive/pre_block_20261031/notebooks/16_binance_daily_svm_experiment_results.ipynb)
 collects the complete experiment into a read-only presentation with an individual
 section for every configured coin. It separates training resubstitution,
 development validation and final OOS, shows matched baselines, confusion counts,
