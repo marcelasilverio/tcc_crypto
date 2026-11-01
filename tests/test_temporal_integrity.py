@@ -130,3 +130,30 @@ def test_single_class_inner_fold_keeps_other_fold_scores():
         .predicted.isna()
         .all()
     )
+
+
+def test_scaling_precedes_selection_and_keeps_all_feature_audit():
+    config = small_config()
+    X = pd.DataFrame(
+        {
+            "small": np.arange(60.0) * 0.0001,
+            "large": np.sin(np.arange(60.0)) * 1000,
+            "constant": np.ones(60),
+        }
+    )
+    fitted = training.pipeline(config.values).fit(X, np.arange(60) % 2)
+    assert list(fitted.named_steps) == ["scaling", "selection", "svc"]
+    selector = fitted.named_steps["selection"]
+    assert selector.selected_features_ == ["small", "large"]
+    np.testing.assert_allclose(selector.variances_, [1.0, 1.0, 0.0], atol=1e-12)
+    audit = {}
+    training._save_preprocessing(
+        fitted,
+        {"fit_scope": "full_in_sample"},
+        lambda name, frame, identity: audit.update({name: frame}),
+    )
+    assert audit["scaling"].feature.tolist() == list(X.columns)
+    np.testing.assert_allclose(audit["scaling"]["mean"], X.mean())
+    before = fitted.named_steps["scaling"].mean_.copy()
+    fitted.predict(X * 100)
+    np.testing.assert_array_equal(fitted.named_steps["scaling"].mean_, before)

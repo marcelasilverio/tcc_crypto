@@ -138,5 +138,10 @@
   "single_class_training_policy": "record_no_prediction",
   "comparison_observations": "common_successful_dates",
   "random_seed": 0,
-  "grid_config": "svm_grid.json"
+  "grid_config": "svm_grid.json",
+  "preprocessing_order": [
+    "scaling",
+    "selection",
+    "svc"
+  ]
 }

@@ -276,8 +276,11 @@ def describe_windows(dataset: pd.DataFrame, settings: dict) -> pd.DataFrame:
 def pipeline(settings: dict, estimator=None) -> Pipeline:
     return Pipeline(
         [
+            (
+                "scaling",
+                StandardScaler(**settings["scaling"]).set_output(transform="pandas"),
+            ),
             ("selection", FeatureSelector(**settings["selection"])),
-            ("scaling", StandardScaler(**settings["scaling"])),
             (
                 "svc",
                 SVC(random_state=settings["random_seed"])
@@ -511,7 +514,7 @@ def _save_preprocessing(fitted, identity, save):
         "scaling",
         pd.DataFrame(
             {
-                "feature": selector.selected_features_,
+                "feature": scaler.feature_names_in_,
                 "mean": scaler.mean_,
                 "scale": scaler.scale_,
                 "variance": scaler.var_,

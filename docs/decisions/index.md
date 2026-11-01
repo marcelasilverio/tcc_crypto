@@ -1,6 +1,7 @@
 # Approved methodology decisions
 
-The October 31 block-window decision is the current authority for the revised
+The October 31 block-window decision, including the November 1 correction
+requiring normalization before feature selection, is the current authority for the revised
 experiment. Earlier decisions retain historical provenance and explicit revision
 notices. The active implementation follows the new block protocol; previous
 configurations and evidence are archived.

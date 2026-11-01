@@ -148,7 +148,7 @@ are not required to have the full outer training-window length.
 Source: [TimeSeriesSplit defaults](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html).
 Persist these effective values explicitly during configuration migration so
 future library default changes do not silently alter the experiment. No
-configuration or model code is changed by this documentation update.
+historical results are converted into results of the revised preprocessing order.
 
 Fit feature selection and scaling independently on each internal training
 subset. With refit enabled, fit the selected procedure on the complete outer
@@ -157,15 +157,26 @@ corresponding outer out-of-sample. The out-of-sample must not influence tuning,
 selection, scaling or refitting for that outer block. In the next block it is
 historical training data, as expressly approved.
 
-The order inherited from the supplied selection example and existing scaler is:
+On 2026-11-01 the researcher explicitly revised preprocessing order: normalization
+is the first operation on each training window, before feature selection. This
+supersedes the previous selection-before-scaling order. The approved order is:
 
 ```text
-unscaled features -> variance filter -> correlation filter -> StandardScaler -> SVC
+features -> StandardScaler -> variance filter -> correlation filter -> SVC
 ```
 
 The approved implementation uses a Pipeline inside GridSearchCV for enforcing
 these boundaries; equivalent explicit coordination must preserve the same fit
 scope. Normalizing an entire in-sample before internal CV is not equivalent.
+
+StandardScaler is fitted on all configured features, using only each internal
+training subset or the complete in-sample at refit. Selection audit variances
+therefore describe standardized inputs; scaler audit covers every input feature
+and records its original mean and variance. Nonconstant standardized features
+generally have variance one, so the 0.01 variance filter will primarily remove
+constant features. The threshold remains unchanged by this ordering decision.
+The effective configuration records `preprocessing_order`, making old run
+configurations incompatible with the revised pipeline.
 
 ## Exact feature-selection reference
 
@@ -173,7 +184,7 @@ The researcher explicitly chose the selection procedure in
 `recorte/recorte_features.py`, demonstrated by `recorte/exemplo_uso.py`:
 
 1. Preserve the supplied 22-feature order and apply VarianceThreshold with
-   threshold 0.01 to unscaled training features. Features must exceed the
+   threshold 0.01 to standardized training features. Features must exceed the
    threshold to survive.
 2. If that call raises ValueError, the excerpt computes pandas sample variances
    and returns only the feature with the largest variance.

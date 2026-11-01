@@ -45,7 +45,7 @@ recalculating features, selection, scaling or models.
 Install the project with `python -m pip install -e '.[dev]'`. The only active
 configuration files are [experiment.json](../../configs/experiment.json) and
 [svm_grid.json](../../configs/svm_grid.json). The first holds data, indicators,
-targets, windows, selection, scaling, temporal splits and operational settings.
+targets, windows, preprocessing order, selection, scaling, temporal splits and operational settings.
 It references the second, which holds the unchanged 186 conditional candidates,
 F1 tolerance and deterministic tie-break order. Production indicator periods and
 USDT quote-volume convention remain unchanged. The zero-parameter Parabolic SAR
@@ -91,7 +91,7 @@ Main files live directly in `outputs/experiments/daily_<run_id>/`:
 | availability.csv | date_utc, then configured symbols; raw valid candle = 1, invalid or absent = 0 |
 | treatment.csv | symbol/date, observed or filled status, reason and source_date_utc |
 | metrics.csv | symbol/target/window_size/block_id/role/model; metrics, sample counts, confusion counts and status |
-| feature_selection.csv | symbol/target/window_size/block_id/feature; full-fit variance, retained/discarded reason and correlation |
+| feature_selection.csv | symbol/target/window_size/block_id/feature; full-fit standardized variance, retained/discarded reason and correlation |
 | predictions_in_sample.csv | feature_time_utc/target/window_size, then symbols; fitted SVM training predictions |
 | actuals_in_sample.csv | same coordinates; actual next-day binary targets |
 | predictions_out_of_sample.csv | same coordinates; SVM validation predictions |
@@ -123,6 +123,10 @@ No figure folder is created unless figures actually exist. New Excel export is
 not supported.
 
 ## Timing and verification
+
+The November 1 correction makes StandardScaler the first window operation,
+followed by variance filtering, correlation filtering and SVC. Scaling audit
+covers all input features; selection variances refer to standardized values.
 
 Every complete in-sample is followed immediately by its out-of-sample. Each search
 fits preprocessing only on the current inner training subset. Its callable refit

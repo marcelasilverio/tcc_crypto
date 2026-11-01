@@ -68,8 +68,8 @@ The planned experiment contains the following stages:
 3. Build price-derived features and technical indicators.
 4. Construct binary targets using the thresholds and temporal alignment in
    the approved methodology decision and the experiment configuration.
-5. Perform feature selection using training data only.
-6. Normalize features using training data only.
+5. Normalize features using training data only.
+6. Perform feature selection on the normalized training features.
 7. Train and evaluate an SVM classifier with temporal validation.
 8. Use classification signals to select portfolio candidates.
 9. Allocate capital using either equal weights or Markowitz optimization.

@@ -29,7 +29,7 @@ flowchart TD
     H --> I["In-sample: exactly W days"]
     H --> J["Out-of-sample: next W days; last block may be shorter"]
     I --> K["GridSearchCV: TimeSeriesSplit, 5 splits, expanding training, gap 0"]
-    K --> L["Each internal training subset: variance filter, correlation filter, scaling, SVC"]
+    K --> L["Each internal training subset: scaling, variance filter, correlation filter, SVC"]
     L --> M["Evaluate candidates on later internal subsets"]
     M --> N["Refit selected procedure on complete in-sample"]
     N --> O["In-sample daily predictions and actual labels"]

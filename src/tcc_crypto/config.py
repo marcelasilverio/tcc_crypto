@@ -49,6 +49,7 @@ def validate_config(config: Config) -> Config:
         "windows",
         "selection",
         "scaling",
+        "preprocessing_order",
         "cv",
         "metrics",
         "models",
@@ -142,6 +143,8 @@ def validate_config(config: Config) -> Config:
         raise ValueError("Use the approved classification metrics.")
     if p["scaling"] != {"with_mean": True, "with_std": True}:
         raise ValueError("Use standard centering and variance scaling.")
+    if p["preprocessing_order"] != ["scaling", "selection", "svc"]:
+        raise ValueError("Normalize before feature selection and SVM fitting.")
     variance = p["selection"]["variance_threshold"]
     correlation = p["selection"]["correlation_threshold"]
     if not math.isfinite(variance) or variance < 0 or not 0 < correlation <= 1:
