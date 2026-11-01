@@ -139,7 +139,7 @@
   "comparison_observations": "common_successful_dates",
   "random_seed": 0,
   "grid_config": "svm_grid.json",
-  "preprocessing_order": [
+  "pipeline_order": [
     "scaling",
     "selection",
     "svc"

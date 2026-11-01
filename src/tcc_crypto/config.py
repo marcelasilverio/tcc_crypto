@@ -38,6 +38,8 @@ def load_config(path: Path | str | None = None) -> Config:
 
 def validate_config(config: Config) -> Config:
     p = config.values
+    if "preprocessing_order" in p:
+        raise ValueError("Rename 'preprocessing_order' to 'pipeline_order'.")
     required = {
         "experiment_id",
         "symbols",
@@ -49,7 +51,7 @@ def validate_config(config: Config) -> Config:
         "windows",
         "selection",
         "scaling",
-        "preprocessing_order",
+        "pipeline_order",
         "cv",
         "metrics",
         "models",
@@ -143,7 +145,7 @@ def validate_config(config: Config) -> Config:
         raise ValueError("Use the approved classification metrics.")
     if p["scaling"] != {"with_mean": True, "with_std": True}:
         raise ValueError("Use standard centering and variance scaling.")
-    if p["preprocessing_order"] != ["scaling", "selection", "svc"]:
+    if p["pipeline_order"] != ["scaling", "selection", "svc"]:
         raise ValueError("Normalize before feature selection and SVM fitting.")
     variance = p["selection"]["variance_threshold"]
     correlation = p["selection"]["correlation_threshold"]

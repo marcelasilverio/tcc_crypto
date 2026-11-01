@@ -8,7 +8,6 @@ CONFIG = Path("configs/experiment.json")
 RAW = Path("data/raw/binance/spot/1d")
 PROCESSED = Path("data/processed")
 OUTPUTS = Path("outputs/experiments")
-NULL_TOKEN = "__TCC_NULL__"
 MAIN_TABLES = (
     "availability",
     "treatment",

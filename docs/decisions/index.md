@@ -6,7 +6,10 @@ experiment. Earlier decisions retain historical provenance and explicit revision
 notices. The active implementation follows the new block protocol; previous
 configurations and evidence are retained in Git history.
 
-- [Daily experiment implementation and consultation guide](daily-code-organization.md) - Approved eight-module implementation, two configurations, stage commands, CSV dictionary and Git-based historical retention.
+The effective configuration names the complete scaling, selection and classifier
+sequence `pipeline_order`.
+
+- [Daily experiment implementation and consultation guide](daily-code-organization.md) - Approved eight-module implementation, two configurations, stage commands, CSV dictionary with the `__NULL__` missing-value marker and Git-based historical retention.
 - [CSV artifact organization by execution](csv-artifact-organization.md) - Approved shallow data and result layout using CSV tables without parallel Excel exports, with preserved historical evidence.
 - [Daily block-window SVM experiment](daily-block-window-experiment.md) - October 31 revision defining raw availability, candle treatment, consecutive training and validation blocks, and integrated temporal SVM search.
 - [Daily block-window experiment diagram](daily-block-window-experiment-diagram.md) - Visual map of the revised data preparation, per-window SVM training, validation and audit outputs.

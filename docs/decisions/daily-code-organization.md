@@ -1,7 +1,7 @@
 ---
 type: Methodology Decision
 title: Daily experiment implementation and consultation guide
-description: Approved eight-module implementation, two configurations, stage commands, CSV dictionary and Git-based historical retention.
+description: Approved eight-module implementation, two configurations, stage commands, CSV dictionary with the `__NULL__` missing-value marker and Git-based historical retention.
 tags: [implementation, daily, csv, reproducibility]
 status: draft
 authority: approved-methodology
@@ -45,7 +45,7 @@ recalculating features, selection, scaling or models.
 Install the project with `python -m pip install -e '.[dev]'`. The only active
 configuration files are [experiment.json](../../configs/experiment.json) and
 [svm_grid.json](../../configs/svm_grid.json). The first holds data, indicators,
-targets, windows, preprocessing order, selection, scaling, temporal splits and operational settings.
+targets, windows, pipeline order, selection, scaling, temporal splits and operational settings.
 It references the second, which holds the unchanged 186 conditional candidates,
 F1 tolerance and deterministic tie-break order. Production indicator periods and
 USDT quote-volume convention remain unchanged. The zero-parameter Parabolic SAR
@@ -113,7 +113,7 @@ preparation quality. Inner selection is audited once per division, independently
 of the candidate grid. Variance and correlations describe these filters; they
 are not SVM coefficient importance. Fallback records the original exception.
 
-Each table uses UTF-8, commas and decimal points, with `__TCC_NULL__` for missing
+Each table uses UTF-8, commas and decimal points, with `__NULL__` for missing
 values. Its `.metadata.json` records ordered columns, restored nullable types,
 UTC timestamps, row count, SHA-256, sources and configuration identity. Use
 `results.read_table` to restore types and verify provenance. Atomic temporary-file

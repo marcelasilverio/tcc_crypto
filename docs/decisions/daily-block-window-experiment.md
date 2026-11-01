@@ -175,7 +175,8 @@ therefore describe standardized inputs; scaler audit covers every input feature
 and records its original mean and variance. Nonconstant standardized features
 generally have variance one, so the 0.01 variance filter will primarily remove
 constant features. The threshold remains unchanged by this ordering decision.
-The effective configuration records `preprocessing_order`, making old run
+The effective configuration records `pipeline_order`, including both
+preprocessing and the SVC classifier, making old run
 configurations incompatible with the revised pipeline.
 
 ## Exact feature-selection reference

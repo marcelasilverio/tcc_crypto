@@ -11,7 +11,9 @@ from uuid import uuid4
 
 import pandas as pd
 
-from tcc_crypto.paths import NULL_TOKEN, metadata_path
+from tcc_crypto.paths import metadata_path
+
+NULL_TOKEN = "__NULL__"
 
 
 def file_sha256(path: Path) -> str:
