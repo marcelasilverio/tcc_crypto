@@ -10,7 +10,7 @@ generated: { by: "process:okf-migration", at: "2026-09-29T10:16:31Z" }
 verified: { by: "human:marcela-prata-silverio", at: "2026-09-29T10:16:31Z" }
 sources:
   - id: trade-count-notebook
-    resource: ../../archive/pre_block_20261031/notebooks/04_binance_usdt_quote_pair_trade_count.ipynb
+    resource: https://github.com/marcelasilverio/tcc_crypto/blob/855e32eb9d248f1e36796bd09dd7233210d10d54/archive/pre_block_20261031/notebooks/04_binance_usdt_quote_pair_trade_count.ipynb
     title: Binance USDT quote-pair trade-count notebook
 ---
 

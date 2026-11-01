@@ -27,8 +27,9 @@ exploratory and experiment tabular outputs, including audit tables. CSV files
 are the tables actually consumed by the experiment and inspected by the user.
 
 The [implementation guide](daily-code-organization.md) records the implemented
-layout and historical migration. Existing raw data and historical Excel files
-are preserved byte-for-byte. New derived tables use CSV only.
+layout. The November 1 [history retention decision](git-only-history-retention.md)
+keeps superseded artifacts in Git history. All raw files remain preserved.
+New derived tables use CSV only.
 
 ## Directory layout
 
@@ -50,9 +51,6 @@ outputs/
       audit/                        Detailed search and provenance evidence
   exploration/
     <analysis_execution>/           Exploratory figures and execution metadata
-  reports/                          Human-readable research reports
-  archive/
-    <historical_execution>/         Previous protocol results and migration evidence
 ```
 
 Angle-bracket components are placeholders, not literal directory names. Resolve
@@ -62,7 +60,7 @@ metadata. Do not share mutable outputs between incompatible contexts.
 
 Keep the existing raw collection hierarchy initially because it supports
 collection/resume and immutability. New exploratory tables belong under data/exploration. Historical exploratory
-tables are preserved under outputs/archive and mapped by the migration manifest. Avoid coin, target, window, grid-search and final-evaluation
+tables are retained in Git history. Avoid coin, target, window, grid-search and final-evaluation
 subdirectories for the revised experiment. Optional folders are created only
 when artifacts are written. Do not retain the empty functional distinction
 between output and outputs for new results; outputs is the result root.
@@ -120,19 +118,11 @@ package versions, execution/revision identifiers and metadata. This is not a
 second tabular export. Figures and research reports remain separate non-tabular
 artifacts when useful. Do not retain workbook-generation packets as a new stage.
 
-## Migration requirements
+## Historical retention
 
-- Inventory existing artifacts and retain their original bytes and provenance.
-- Keep prior scientific protocols distinct from the revised block experiment.
-- Map old paths to new paths with checksums and execution/context identifiers.
-- Reduce redundant historical nesting rather than wrapping the complete old
-  tree in another folder. Resolve filename collisions without overwriting.
-- Update paths.py, loaders, writers, collection resume paths where applicable,
-  configurations, commands, notebooks, documentation and path/schema tests
-  together. Merely moving folders would recreate old paths on the next run.
-- Keep valid saved upstream inputs usable without automatic recollection,
-  feature recomputation or model fitting. Existing overwrite rules remain.
-- Preserve the complete-project publishing policy; historical research evidence
-  is not disposable merely because the new exporter no longer creates Excel.
-
-This decision changes storage and consultation, not the scientific calculations.
+The original migration preserved historical files locally. The researcher
+superseded that requirement on November 1 with the
+[Git-only history retention decision](git-only-history-retention.md). Old
+sources, tables, figures, models and reports are recoverable from their
+historical commits. Raw data remains intact. Current producers and consumers
+continue using the CSV layout above.

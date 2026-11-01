@@ -159,10 +159,10 @@ interpreted.
 - Keep exploratory CSV tables under `data/exploration/`.
 - The researcher approved CSV-only tabular outputs and simplified folders grouped
   by execution on 2026-10-31. Follow `docs/decisions/csv-artifact-organization.md`.
-  Do not generate parallel Excel exports for new workflows. Preserve historical
-  Excel artifacts and immutable raw files until an explicitly scoped migration.
-  The active daily pipeline implements this layout; historical artifacts are
-  preserved through the migration manifest.
+  Do not generate parallel Excel exports for new workflows. On 2026-11-01,
+  the researcher approved retaining superseded sources, outputs and reports
+  only in Git history. Follow `docs/decisions/git-only-history-retention.md`.
+  Preserve all raw files, including metadata and any historical Excel in raw.
 - The researcher explicitly authorized versioning project research data and
   generated outputs on 2026-10-23, including raw data, spreadsheets, figures,
   metadata and model results. Preserve this complete-project publishing policy.
@@ -210,9 +210,9 @@ or persistence. Results must not collect, calculate features or fit models.
 Raw persistence belongs to collection; derived persistence is called explicitly
 by the orchestrator. Use the same functions from commands and the notebook.
 There are no compatibility aliases or active legacy command entrypoints.
-Historical sources, configurations, notebooks and protocol-specific tests under
-`archive/pre_block_20261031/` are immutable reference, outside package and test
-discovery. Their commands are not supported.
+Historical sources, configurations, notebooks and results live only in Git
+history. Keep active scientific references linked to an immutable historical
+commit when their source files have been removed from the working tree.
 
 ### Notebook contract
 
@@ -241,15 +241,14 @@ discovery. Their commands are not supported.
   preparation or run operations.
 - Require explicit overwrite for new derived artifacts. Preserve collector resume
   behavior and raw immutability. Record effective path overrides in metadata;
-  reject unsupported legacy exploratory output keys with migration guidance.
+  reject unsupported configuration keys with actionable guidance.
 - Preserve timestamps, nullable types, warm-up rows and imputation markers through
   persistence. Record source checksums, configuration, schema, execution time,
   package versions, revision and resolved paths.
 - Export figures and CSV tables from saved or explicitly supplied calculated tables.
   Export must not collect data, recompute features or fit selectors, scalers or
   models. Use Python exporters; do not add Excel generation or restore the removed
-  JavaScript workbook stack. Historical openpyxl code is archived reference,
-  not authorization for new workbook outputs.
+  JavaScript workbook stack. Historical openpyxl code is available through Git history.
 
 ## Financial calculations
 

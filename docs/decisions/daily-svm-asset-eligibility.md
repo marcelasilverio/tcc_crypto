@@ -9,7 +9,7 @@ decision_status: approved
 generated: { by: "process:codex", at: "2026-10-13T00:00:00Z" }
 sources:
   - id: daily-collection-config
-    resource: ../../archive/pre_block_20261031/configs/binance_selected_usdt_daily_collection.json
+    resource: https://github.com/marcelasilverio/tcc_crypto/blob/855e32eb9d248f1e36796bd09dd7233210d10d54/archive/pre_block_20261031/configs/binance_selected_usdt_daily_collection.json
     title: Binance selected USDT daily collection configuration
   - id: daily-collection-decision
     resource: daily-data-collection.md
@@ -18,7 +18,7 @@ sources:
     resource: hourly-data-collection-universe.md
     title: Hourly data-collection universe
   - id: grid-search-config
-    resource: ../../archive/pre_block_20261031/configs/binance_daily_svm_grid_search.json
+    resource: https://github.com/marcelasilverio/tcc_crypto/blob/855e32eb9d248f1e36796bd09dd7233210d10d54/archive/pre_block_20261031/configs/binance_daily_svm_grid_search.json
     title: Daily SVM temporal grid-search configuration
   - id: temporal-grid-decision
     resource: svm-temporal-grid-search-and-final-evaluation.md

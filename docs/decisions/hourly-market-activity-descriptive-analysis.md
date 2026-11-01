@@ -10,10 +10,10 @@ generated: { by: "process:okf-migration", at: "2026-09-29T10:16:31Z" }
 verified: { by: "human:marcela-prata-silverio", at: "2026-09-29T10:16:31Z" }
 sources:
   - id: analysis-config
-    resource: ../../archive/pre_block_20261031/configs/binance_hourly_market_activity_descriptive_analysis.json
+    resource: https://github.com/marcelasilverio/tcc_crypto/blob/855e32eb9d248f1e36796bd09dd7233210d10d54/archive/pre_block_20261031/configs/binance_hourly_market_activity_descriptive_analysis.json
     title: Binance hourly market-activity descriptive-analysis configuration
   - id: analysis-notebook
-    resource: ../../archive/pre_block_20261031/notebooks/09_binance_hourly_market_activity_descriptive_analysis.ipynb
+    resource: https://github.com/marcelasilverio/tcc_crypto/blob/855e32eb9d248f1e36796bd09dd7233210d10d54/archive/pre_block_20261031/notebooks/09_binance_hourly_market_activity_descriptive_analysis.ipynb
     title: Binance hourly market-activity descriptive-analysis notebook
 ---
 

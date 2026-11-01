@@ -17,7 +17,7 @@ When documents differ, use this order of authority:
 3. the experiment configuration for parameters of a particular run;
 4. `docs/tcc/` as background and evidence of intended design;
 5. `docs/references/` for comparison and adaptation;
-6. `docs/reports/` as point-in-time evidence about executed work.
+6. historical reports in Git as point-in-time evidence about executed work.
 
 The OKF `verified` field records that a human reviewed the document against its
 intended source and purpose. It does not make a proposal or external reference
@@ -32,9 +32,6 @@ approved experimental choices.
 - [TCC I research context](tcc/) - Structured synopsis of the research proposal.
 - [External references](references/) - Methodologies analyzed for comparison,
   not automatic adoption.
-- [Generated reports](reports/) - Point-in-time evidence from collection and
-  validation work.
-
 ## Current experiment revision
 
 The [daily block-window SVM decision](decisions/daily-block-window-experiment.md)
@@ -45,6 +42,9 @@ approved simplified folders and CSV-only tabular outputs. Its
 implemented workflow. The [implementation guide](decisions/daily-code-organization.md)
 explains the active modules, commands and CSVs. Historical results belong to the
 previous protocol; implementation tests do not constitute a production experiment.
+
+Historical artifacts and reports are retained only in Git under the
+[history retention decision](decisions/git-only-history-retention.md).
 
 ## Deprecated paths
 

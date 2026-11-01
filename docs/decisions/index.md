@@ -4,9 +4,9 @@ The October 31 block-window decision, including the November 1 correction
 requiring normalization before feature selection, is the current authority for the revised
 experiment. Earlier decisions retain historical provenance and explicit revision
 notices. The active implementation follows the new block protocol; previous
-configurations and evidence are archived.
+configurations and evidence are retained in Git history.
 
-- [Daily experiment implementation and consultation guide](daily-code-organization.md) - Approved eight-module implementation, two configurations, stage commands, CSV dictionary and historical migration contract.
+- [Daily experiment implementation and consultation guide](daily-code-organization.md) - Approved eight-module implementation, two configurations, stage commands, CSV dictionary and Git-based historical retention.
 - [CSV artifact organization by execution](csv-artifact-organization.md) - Approved shallow data and result layout using CSV tables without parallel Excel exports, with preserved historical evidence.
 - [Daily block-window SVM experiment](daily-block-window-experiment.md) - October 31 revision defining raw availability, candle treatment, consecutive training and validation blocks, and integrated temporal SVM search.
 - [Daily block-window experiment diagram](daily-block-window-experiment-diagram.md) - Visual map of the revised data preparation, per-window SVM training, validation and audit outputs.
@@ -27,3 +27,5 @@ configurations and evidence are archived.
 - [Temporal SVM grid search and final evaluation](svm-temporal-grid-search-and-final-evaluation.md) - Approved conditional SVC search, nested temporal model-selection structure, frozen-parameter walk-forward test, and classifier performance reporting.
 - [Daily SVM asset eligibility](daily-svm-asset-eligibility.md) - Approved ex-post candidate universe, dynamic history requirement, per-asset model search, and LUNAUSDT exclusion for the daily SVM classification experiment.
 - [Final SVM evaluation with single-class training windows](svm-final-evaluation-single-class-windows.md) - Approved omission and common-date comparison policy when a final walk-forward training window cannot fit an SVC.
+
+- [Git-only retention of historical experiment files](git-only-history-retention.md) - Approved removal of superseded local artifacts and reports while preserving raw data and historical Git references.

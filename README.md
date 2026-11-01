@@ -75,10 +75,10 @@ Main CSVs and detailed audit: `outputs/experiments/daily_<run_id>/`.
 Missing signals remain missing, distinct from zero. Standard readers restore UTC
 and nullable types and reject stale inputs through source checksums.
 
-Previous sources/configurations/notebooks/tests are reference-only under
-`archive/pre_block_20261031/`; historical outputs are under `outputs/archive/`.
-The [manifest](archive/pre_block_20261031/migration.json) resolves old paths.
-Raw files and historical Excel bytes are preserved. No old entrypoint is supported.
+Historical sources, configurations, notebooks, outputs and reports are available
+in [Git history](https://github.com/marcelasilverio/tcc_crypto/tree/855e32eb9d248f1e36796bd09dd7233210d10d54). The working tree contains the current experiment and
+its supporting documentation. All raw files remain at their original paths.
+See the [history retention decision](docs/decisions/git-only-history-retention.md).
 
 Validation:
 

@@ -12,7 +12,7 @@ sources:
     resource: svm-temporal-grid-search-and-final-evaluation.md
     title: Temporal SVM grid search and final evaluation
   - id: final-evaluation-config
-    resource: ../../archive/pre_block_20261031/configs/binance_daily_svm_final_evaluation.json
+    resource: https://github.com/marcelasilverio/tcc_crypto/blob/855e32eb9d248f1e36796bd09dd7233210d10d54/archive/pre_block_20261031/configs/binance_daily_svm_final_evaluation.json
     title: Final daily SVM execution configuration
 ---
 

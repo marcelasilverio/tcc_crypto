@@ -10,7 +10,7 @@ generated: { by: "process:okf-migration", at: "2026-09-29T10:16:31Z" }
 verified: { by: "human:marcela-prata-silverio", at: "2026-09-29T10:16:31Z" }
 sources:
   - id: analysis-notebook
-    resource: ../../archive/pre_block_20261031/notebooks/06_binance_hourly_open_price_correlation.ipynb
+    resource: https://github.com/marcelasilverio/tcc_crypto/blob/855e32eb9d248f1e36796bd09dd7233210d10d54/archive/pre_block_20261031/notebooks/06_binance_hourly_open_price_correlation.ipynb
     title: Binance hourly open-price correlation notebook
 ---
 

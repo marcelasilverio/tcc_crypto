@@ -1,7 +1,7 @@
 ---
 type: Methodology Decision
 title: Daily experiment implementation and consultation guide
-description: Approved eight-module implementation, two configurations, stage commands, CSV dictionary and historical migration contract.
+description: Approved eight-module implementation, two configurations, stage commands, CSV dictionary and Git-based historical retention.
 tags: [implementation, daily, csv, reproducibility]
 status: draft
 authority: approved-methodology
@@ -143,15 +143,10 @@ Its Portuguese narrative is the sole authorized language exception.
 
 ## Historical evidence
 
-Previous source, JSONs, notebooks and protocol-specific tests are preserved under
-`archive/pre_block_20261031/`. Previous derived tables, models, figures and Excel
-files are grouped under `outputs/archive/` with stable origin-derived names.
-The [migration manifest](../../archive/pre_block_20261031/migration.json) maps every
-original path to its destination, size and SHA-256. Unchanged raw files remain at
-their original paths. Old commands are reference material and are not supported.
-Old results cannot be interpreted as results of the revised block experiment.
-
-`python scripts/migrate_block_experiment.py` verifies the frozen inventory without
-moving files. `--apply` performs the authorized idempotent migration; existing
-verified targets are skipped. Historical internal references resolve through the
-manifest, preserving the bytes of the original evidence.
+Superseded sources, configurations, notebooks, tests, outputs and reports are
+available in the [pre-cleanup commit](https://github.com/marcelasilverio/tcc_crypto/tree/855e32eb9d248f1e36796bd09dd7233210d10d54). Historical artifacts have been
+removed from the working tree under the
+[history retention decision](git-only-history-retention.md). Raw files remain
+at their original paths. The current experiment does not depend on the former
+migration script or its manifest. Previous results describe their original
+protocol and are not results of the revised experiment.
