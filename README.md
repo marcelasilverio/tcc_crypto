@@ -88,3 +88,14 @@ python scripts/validate_okf_docs.py docs
 python -m ruff check src/tcc_crypto tests scripts
 python -m ruff format --check src/tcc_crypto tests scripts
 ```
+
+## Rights and academic access
+
+Copyright (c) 2026 Marcela Prata Silvério. All rights reserved.
+
+This repository is available for reading and academic review, including review
+by the research advisor. It is not released under an open-source license.
+Reuse of original copyrighted material requires prior written permission,
+except as permitted by applicable law or the GitHub Terms of Service.
+Third-party materials retain their respective rights and terms.
+See [LICENSE](LICENSE) for the complete notice.
