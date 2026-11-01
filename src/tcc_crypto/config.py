@@ -40,6 +40,8 @@ def validate_config(config: Config) -> Config:
     p = config.values
     if "preprocessing_order" in p:
         raise ValueError("Rename 'preprocessing_order' to 'pipeline_order'.")
+    if "cv" in p:
+        raise ValueError("Rename 'cv' to 'temporal_cross_validation'.")
     required = {
         "experiment_id",
         "symbols",
@@ -52,7 +54,7 @@ def validate_config(config: Config) -> Config:
         "selection",
         "scaling",
         "pipeline_order",
-        "cv",
+        "temporal_cross_validation",
         "metrics",
         "models",
         "single_class_training_policy",
@@ -91,7 +93,12 @@ def validate_config(config: Config) -> Config:
         )
     if not p["windows"] or any(w < 6 or not isinstance(w, int) for w in p["windows"]):
         raise ValueError("Window sizes must support five temporal splits.")
-    if p["cv"] != {"n_splits": 5, "max_train_size": None, "test_size": None, "gap": 0}:
+    if p["temporal_cross_validation"] != {
+        "n_splits": 5,
+        "max_train_size": None,
+        "test_size": None,
+        "gap": 0,
+    }:
         raise ValueError("Use the approved TimeSeriesSplit defaults.")
     if (
         p["single_class_training_policy"] != "record_no_prediction"

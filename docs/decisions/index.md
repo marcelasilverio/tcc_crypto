@@ -7,7 +7,8 @@ notices. The active implementation follows the new block protocol; previous
 configurations and evidence are retained in Git history.
 
 The effective configuration names the complete scaling, selection and classifier
-sequence `pipeline_order`.
+sequence `pipeline_order` and the internal temporal validation settings
+`temporal_cross_validation`.
 
 - [Daily experiment implementation and consultation guide](daily-code-organization.md) - Approved eight-module implementation, two configurations, stage commands, CSV dictionary with the `__NULL__` missing-value marker and Git-based historical retention.
 - [CSV artifact organization by execution](csv-artifact-organization.md) - Approved shallow data and result layout using CSV tables without parallel Excel exports, with preserved historical evidence.

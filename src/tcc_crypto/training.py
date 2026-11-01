@@ -249,7 +249,9 @@ def describe_windows(dataset: pd.DataFrame, settings: dict) -> pd.DataFrame:
                 *[
                     ("inner", i, a[c], a[d])
                     for i, (c, d) in enumerate(
-                        TimeSeriesSplit(**settings["cv"]).split(a)
+                        TimeSeriesSplit(**settings["temporal_cross_validation"]).split(
+                            a
+                        )
                     )
                 ],
             ]:
@@ -360,7 +362,7 @@ def fit_search(X, y, settings: dict, grid: dict):
             for branch in grid["parameter_grid"]
         ],
         scoring=score_estimator,
-        cv=TimeSeriesSplit(**settings["cv"]),
+        cv=TimeSeriesSplit(**settings["temporal_cross_validation"]),
         refit=refit,
         error_score=np.nan,
         return_train_score=False,
@@ -527,7 +529,9 @@ def _save_preprocessing(fitted, identity, save):
 def audit_inner_splits(train, X, y, settings, identity, save) -> bool:
     """Record each inner calendar, class count and training-only preprocessing."""
     inner_blocked = False
-    for fold, (a, b) in enumerate(TimeSeriesSplit(**settings["cv"]).split(X)):
+    for fold, (a, b) in enumerate(
+        TimeSeriesSplit(**settings["temporal_cross_validation"]).split(X)
+    ):
         inner_time = assert_label_availability(train.iloc[a], train.iloc[b])
         inner_blocked |= y.iloc[a].nunique() < 2
         fold_id = {**identity, "fit_scope": "inner", "fold": fold}

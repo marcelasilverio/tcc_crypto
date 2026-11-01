@@ -126,6 +126,7 @@ TimeSeriesSplit approach: training precedes internal validation, without random
 shuffling. The researcher approved the documented TimeSeriesSplit defaults:
 `n_splits=5`, `max_train_size=None`, `test_size=None`, `gap=0`.
 These replace the earlier internal split settings for this block protocol.
+The experiment JSON groups these settings under `temporal_cross_validation`.
 
 Pass a TimeSeriesSplit instance to GridSearchCV's cv argument; leaving
 GridSearchCV's cv unset would not select temporal validation automatically.

@@ -55,7 +55,11 @@ def test_production_grid_and_defaults():
         (75, [15, 27, 39, 51, 63]),
         (90, [15, 30, 45, 60, 75]),
     ]:
-        splits = list(TimeSeriesSplit(**config.values["cv"]).split(range(size)))
+        splits = list(
+            TimeSeriesSplit(**config.values["temporal_cross_validation"]).split(
+                range(size)
+            )
+        )
         assert [len(a) for a, b in splits] == expected
         assert all(len(b) == size // 6 and a[-1] + 1 == b[0] for a, b in splits)
 
