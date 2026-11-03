@@ -1,0 +1,13 @@
+{
+  "execution_time_utc": "2026-11-01T19:51:16.449231+00:00",
+  "package_versions": {
+    "TA-Lib": "0.8.3",
+    "feature-engine": "1.9.4",
+    "numpy": "2.4.4",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.9.1"
+  },
+  "python_version": "3.11.15",
+  "revision": "0a9d52bb055f9b5b90c1ff04e42d4ad4b4a05425",
+  "working_tree_status": "M notebooks/17_binance_daily_svm_experiment_walkthrough.ipynb\n?? outputs/\n?? src/tcc_crypto.egg-info/"
+}

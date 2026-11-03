@@ -1,0 +1,265 @@
+{
+  "attributes": {},
+  "column_order": [
+    "feature_time_utc",
+    "target_time_utc",
+    "next_day_open",
+    "next_day_high",
+    "next_day_d0",
+    "target_1pct",
+    "target_2pct",
+    "target_3pct",
+    "target_is_imputed",
+    "target_available_at_utc"
+  ],
+  "columns": {
+    "feature_time_utc": "datetime64[ns, UTC]",
+    "next_day_d0": "float64",
+    "next_day_high": "float64",
+    "next_day_open": "float64",
+    "target_1pct": "Int64",
+    "target_2pct": "Int64",
+    "target_3pct": "Int64",
+    "target_available_at_utc": "datetime64[ns, UTC]",
+    "target_is_imputed": "boolean",
+    "target_time_utc": "datetime64[ns, UTC]"
+  },
+  "context": {
+    "configuration": {
+      "experiment": {
+        "collection": {
+          "base_url": "https://data-api.binance.vision",
+          "end_time_utc": "2026-09-01T23:59:59.999Z",
+          "interval": "1d",
+          "kline_path": "/api/v3/klines",
+          "limit": 1000,
+          "max_retries": 6,
+          "max_workers": 2,
+          "request_timeout_seconds": 30,
+          "start_time_utc": "2017-01-01T00:00:00Z",
+          "time_zone": "0"
+        },
+        "comparison_observations": "common_successful_dates",
+        "excluded_symbols": [
+          "LUNAUSDT"
+        ],
+        "experiment_id": "daily_block_svm_v1",
+        "features": {
+          "active_features": [
+            "r1",
+            "r2",
+            "r3",
+            "r4",
+            "r5",
+            "r6",
+            "r7",
+            "r8",
+            "r9",
+            "r10",
+            "r11",
+            "r12",
+            "r13",
+            "r14",
+            "r15",
+            "momentum_10",
+            "rsi_14",
+            "parabolic_sar",
+            "atr_14",
+            "true_range",
+            "chaikin_ad",
+            "obv"
+          ],
+          "atr_period": 14,
+          "momentum_period": 10,
+          "parabolic_sar": {
+            "acceleration": 0.0,
+            "maximum": 0.0
+          },
+          "rsi_period": 14,
+          "volume_field": "quote_asset_volume"
+        },
+        "grid_config": "svm_grid.json",
+        "metrics": [
+          "accuracy",
+          "precision",
+          "recall",
+          "f1",
+          "balanced_accuracy",
+          "roc_auc",
+          "average_precision"
+        ],
+        "models": [
+          "tuned_svc",
+          "default_svc",
+          "always_negative",
+          "training_class_frequency"
+        ],
+        "pipeline_order": [
+          "scaling",
+          "selection",
+          "svc"
+        ],
+        "random_seed": 0,
+        "scaling": {
+          "with_mean": true,
+          "with_std": true
+        },
+        "selection": {
+          "correlation_threshold": 0.8,
+          "variance_threshold": 0.01
+        },
+        "single_class_training_policy": "record_no_prediction",
+        "study": {
+          "end": "2026-09-01",
+          "start": "2019-07-01",
+          "warmup_start": "2019-06-01"
+        },
+        "symbols": [
+          "BTCUSDT",
+          "FLOKIUSDT",
+          "ETHUSDT",
+          "BONKUSDT",
+          "SOLUSDT",
+          "XRPUSDT",
+          "SHIBUSDT",
+          "DOGEUSDT",
+          "BNBUSDT",
+          "ADAUSDT",
+          "LTCUSDT",
+          "PEPEUSDT",
+          "SUIUSDT",
+          "LINKUSDT",
+          "AVAXUSDT",
+          "DOTUSDT",
+          "TRXUSDT",
+          "WIFUSDT",
+          "NEARUSDT",
+          "NEIROUSDT",
+          "AAVEUSDT",
+          "WLDUSDT",
+          "XLMUSDT",
+          "ZECUSDT",
+          "FILUSDT",
+          "BCHUSDT",
+          "LUNAUSDT",
+          "UNIUSDT",
+          "GALAUSDT",
+          "FETUSDT",
+          "HBARUSDT",
+          "VETUSDT",
+          "ETCUSDT",
+          "ATOMUSDT",
+          "SANDUSDT",
+          "ENAUSDT",
+          "ICPUSDT",
+          "CRVUSDT",
+          "MANAUSDT",
+          "CHZUSDT"
+        ],
+        "targets": [
+          0.01,
+          0.02,
+          0.03
+        ],
+        "temporal_cross_validation": {
+          "gap": 0,
+          "max_train_size": null,
+          "n_splits": 5,
+          "test_size": null
+        },
+        "windows": [
+          60,
+          75,
+          90
+        ]
+      },
+      "grid": {
+        "parameter_grid": [
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "kernel": [
+              "linear"
+            ]
+          },
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "gamma": [
+              "scale",
+              0.01,
+              0.1
+            ],
+            "kernel": [
+              "rbf"
+            ]
+          },
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "coef0": [
+              0.0,
+              0.5,
+              1.0
+            ],
+            "degree": [
+              2,
+              3,
+              4
+            ],
+            "gamma": [
+              "scale",
+              0.01,
+              0.1
+            ],
+            "kernel": [
+              "poly"
+            ]
+          }
+        ],
+        "selection": {
+          "floating_point_tolerance": 1e-12,
+          "primary_metric": "f1",
+          "tie_break_order": [
+            "mean_precision_descending",
+            "f1_standard_deviation_ascending",
+            "mean_roc_auc_descending",
+            "kernel_simplicity_linear_rbf_poly",
+            "C_ascending",
+            "parameter_grid_order"
+          ]
+        }
+      }
+    },
+    "run_id": "full_01"
+  },
+  "row_count": 2171,
+  "schema_version": 2,
+  "sha256": "6a72ebd478ead5a0efbde5ce4d0fa392ba9cb0eff12e0294425a0dd3c14699d7",
+  "sources": {
+    "/Users/marcelapsilverio/projetos/tcc_crypto/data/processed/daily_full_01/AVAXUSDT_treated.csv": "e2bc1ac2d60490bac387af15dda139e7dd603f5198918c2c381791d34c8f5a74",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/data/processed/daily_full_01/AVAXUSDT_treated.csv.metadata.json": "64f4acf9794db81c488cdc7f9ba26a892003e7b0cfdff8435a6d0a117244d293"
+  },
+  "written_at_utc": "2026-11-01T19:51:22.588623+00:00"
+}

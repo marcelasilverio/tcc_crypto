@@ -1,0 +1,335 @@
+{
+  "attributes": {},
+  "column_order": [
+    "date_utc",
+    "symbol",
+    "source_date_utc",
+    "is_imputed",
+    "reason",
+    "status"
+  ],
+  "columns": {
+    "date_utc": "datetime64[ns, UTC]",
+    "is_imputed": "bool",
+    "reason": "string",
+    "source_date_utc": "datetime64[ns, UTC]",
+    "status": "string",
+    "symbol": "string"
+  },
+  "context": {
+    "configuration": {
+      "experiment": {
+        "collection": {
+          "base_url": "https://data-api.binance.vision",
+          "end_time_utc": "2026-09-01T23:59:59.999Z",
+          "interval": "1d",
+          "kline_path": "/api/v3/klines",
+          "limit": 1000,
+          "max_retries": 6,
+          "max_workers": 2,
+          "request_timeout_seconds": 30,
+          "start_time_utc": "2017-01-01T00:00:00Z",
+          "time_zone": "0"
+        },
+        "comparison_observations": "common_successful_dates",
+        "excluded_symbols": [
+          "LUNAUSDT"
+        ],
+        "experiment_id": "daily_block_svm_v1",
+        "features": {
+          "active_features": [
+            "r1",
+            "r2",
+            "r3",
+            "r4",
+            "r5",
+            "r6",
+            "r7",
+            "r8",
+            "r9",
+            "r10",
+            "r11",
+            "r12",
+            "r13",
+            "r14",
+            "r15",
+            "momentum_10",
+            "rsi_14",
+            "parabolic_sar",
+            "atr_14",
+            "true_range",
+            "chaikin_ad",
+            "obv"
+          ],
+          "atr_period": 14,
+          "momentum_period": 10,
+          "parabolic_sar": {
+            "acceleration": 0.0,
+            "maximum": 0.0
+          },
+          "rsi_period": 14,
+          "volume_field": "quote_asset_volume"
+        },
+        "grid_config": "svm_grid.json",
+        "metrics": [
+          "accuracy",
+          "precision",
+          "recall",
+          "f1",
+          "balanced_accuracy",
+          "roc_auc",
+          "average_precision"
+        ],
+        "models": [
+          "tuned_svc",
+          "default_svc",
+          "always_negative",
+          "training_class_frequency"
+        ],
+        "pipeline_order": [
+          "scaling",
+          "selection",
+          "svc"
+        ],
+        "random_seed": 0,
+        "scaling": {
+          "with_mean": true,
+          "with_std": true
+        },
+        "selection": {
+          "correlation_threshold": 0.8,
+          "variance_threshold": 0.01
+        },
+        "single_class_training_policy": "record_no_prediction",
+        "study": {
+          "end": "2026-09-01",
+          "start": "2019-07-01",
+          "warmup_start": "2019-06-01"
+        },
+        "symbols": [
+          "BTCUSDT",
+          "FLOKIUSDT",
+          "ETHUSDT",
+          "BONKUSDT",
+          "SOLUSDT",
+          "XRPUSDT",
+          "SHIBUSDT",
+          "DOGEUSDT",
+          "BNBUSDT",
+          "ADAUSDT",
+          "LTCUSDT",
+          "PEPEUSDT",
+          "SUIUSDT",
+          "LINKUSDT",
+          "AVAXUSDT",
+          "DOTUSDT",
+          "TRXUSDT",
+          "WIFUSDT",
+          "NEARUSDT",
+          "NEIROUSDT",
+          "AAVEUSDT",
+          "WLDUSDT",
+          "XLMUSDT",
+          "ZECUSDT",
+          "FILUSDT",
+          "BCHUSDT",
+          "LUNAUSDT",
+          "UNIUSDT",
+          "GALAUSDT",
+          "FETUSDT",
+          "HBARUSDT",
+          "VETUSDT",
+          "ETCUSDT",
+          "ATOMUSDT",
+          "SANDUSDT",
+          "ENAUSDT",
+          "ICPUSDT",
+          "CRVUSDT",
+          "MANAUSDT",
+          "CHZUSDT"
+        ],
+        "targets": [
+          0.01,
+          0.02,
+          0.03
+        ],
+        "temporal_cross_validation": {
+          "gap": 0,
+          "max_train_size": null,
+          "n_splits": 5,
+          "test_size": null
+        },
+        "windows": [
+          60,
+          75,
+          90
+        ]
+      },
+      "grid": {
+        "parameter_grid": [
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "kernel": [
+              "linear"
+            ]
+          },
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "gamma": [
+              "scale",
+              0.01,
+              0.1
+            ],
+            "kernel": [
+              "rbf"
+            ]
+          },
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "coef0": [
+              0.0,
+              0.5,
+              1.0
+            ],
+            "degree": [
+              2,
+              3,
+              4
+            ],
+            "gamma": [
+              "scale",
+              0.01,
+              0.1
+            ],
+            "kernel": [
+              "poly"
+            ]
+          }
+        ],
+        "selection": {
+          "floating_point_tolerance": 1e-12,
+          "primary_metric": "f1",
+          "tie_break_order": [
+            "mean_precision_descending",
+            "f1_standard_deviation_ascending",
+            "mean_roc_auc_descending",
+            "kernel_simplicity_linear_rbf_poly",
+            "C_ascending",
+            "parameter_grid_order"
+          ]
+        }
+      }
+    },
+    "run_id": "full_01"
+  },
+  "row_count": 85304,
+  "schema_version": 2,
+  "sha256": "4c4217e58974b3c6c4bc9149fa74ab9e20fed302822fa0b2b5c371dac6285a93",
+  "sources": {
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/AAVEUSDT_treatment.csv": "e6b4dcff60da8b43685683777777d5bb157510719a4c76df3591092480def313",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/AAVEUSDT_treatment.csv.metadata.json": "28890bc0b89ec8a9498d77c3a8a5d8a5062ccf75bda655a52b69505042608c47",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ADAUSDT_treatment.csv": "6935f3ba8465aeda526a2be936e095225409be61d90fa265326f1733b735e1b9",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ADAUSDT_treatment.csv.metadata.json": "ed9e8dce830c39944af53b19c5cf020b40f3f6018a58dd005027906acaa2c6a1",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ATOMUSDT_treatment.csv": "dc33c769e34342ee8d794778a3c6eba4e4f320efb9c852891cbb9b61d0227143",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ATOMUSDT_treatment.csv.metadata.json": "a378ed91a1724bf57fc7f5b0693c1118a9fbb514e32d516f78c4c3c1b88b3e62",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/AVAXUSDT_treatment.csv": "6b225ba72ce374fce27cba5b95f126c558cdb3646d2d86877c9cffa202d2fca3",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/AVAXUSDT_treatment.csv.metadata.json": "d043749306d06639fafe7e711c8115704f2735a72b06b912498c987b94879842",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BCHUSDT_treatment.csv": "ca54a8dcfba2de013c66d6f1fb85fcb4e906f53b996cee1c296bb3c886412005",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BCHUSDT_treatment.csv.metadata.json": "4d385e8b8d9409c2695171927eee06f6a2a3afdb3ff1172352b07918a7d240a5",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BNBUSDT_treatment.csv": "52fc4b496f53315de32253e4b433708fcd633e810c9c4cbc2209fe8a301d7496",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BNBUSDT_treatment.csv.metadata.json": "62237a1fd4a32e16c511f63c6b62bd1789cc2ac3a4f8a1038636044046886ec8",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BONKUSDT_treatment.csv": "5d5cd0d3469c009a482d5cdc04b71e9cb9cf0a655d403b770a240b3bc9852458",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BONKUSDT_treatment.csv.metadata.json": "1031d06add5a511f932afeef478d648a0963aae6213fc8b45b8906789615a1f1",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BTCUSDT_treatment.csv": "73988ff602d12658930d4a89525f05521cfd912677ac3f4df707b48131c2b247",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BTCUSDT_treatment.csv.metadata.json": "8043fb94c55061ed154a70c9e8cf0fb7002f5d09b731b26e736cc47bbfaff641",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/CHZUSDT_treatment.csv": "aaa805787c924e2c29d443abc57b18b35e15b1037db565c8c2d1e2761fdb816c",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/CHZUSDT_treatment.csv.metadata.json": "86e451805660294272bfd81237891c690271c8ac1e6b21f70c0178c98eba1bc3",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/CRVUSDT_treatment.csv": "983c4b1c68dbf9286ff2b8eee0806868a4cb0d0af8a129e5e42d11c19975bc96",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/CRVUSDT_treatment.csv.metadata.json": "1f215310fe07fc98be951282b2bccb281c3ff39ae3d9eb190aa6306d32539fb9",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/DOGEUSDT_treatment.csv": "dab002694326507aebd27abbffa6bc6abf44936afd25f0469798b5c592bcb731",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/DOGEUSDT_treatment.csv.metadata.json": "c9898f053f72e60b772d0c8d6b918947f6bb803dd02e536dc473302dc341d62d",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/DOTUSDT_treatment.csv": "ca30bb13e51ed076d7d31d923e9624f4b92327df2566eadc0c40fb2e8f382f66",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/DOTUSDT_treatment.csv.metadata.json": "d600984f38222f67728d6df2cc49d39d20edac0b6eae6de7a451825726aa8896",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ENAUSDT_treatment.csv": "623be835f6529ce9655fe7bbf50f0a168e8b591ed3e340e19e223acbdd1be3cb",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ENAUSDT_treatment.csv.metadata.json": "d87ee9b91aff4eee6755a84a26e32630ce52282f70676651b0fcca3b0a4cde3a",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ETCUSDT_treatment.csv": "3b4f5923e0971e33462961f854d167d16c8a4b95138f97bce668c078e682fbf3",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ETCUSDT_treatment.csv.metadata.json": "5ab7dac645817b3b430b7f1c9c10e6e71ecd3c450289ce8525a8c0da4695e63b",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ETHUSDT_treatment.csv": "5d2e5883590719add2584ebbdbaef10523835e4345137ea71cb5e5d16900d0ca",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ETHUSDT_treatment.csv.metadata.json": "b8666e363740e8e33ade4b9b917fe50c19b5595bacf926e2e4760735e6531613",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/FETUSDT_treatment.csv": "8a0c7b4767e5267c3db9e9249b9589b977076d68680a3d9ceca98179b112c135",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/FETUSDT_treatment.csv.metadata.json": "031c9ff10fa7e238693ab1eea3ed3d7f911ef98f61fb27a7b62f314e86596cc7",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/FILUSDT_treatment.csv": "178581efbd60be1321a1f894a9d112805b4b3bfc38d36a8b84c7802963419df9",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/FILUSDT_treatment.csv.metadata.json": "52d4b7f0ce5e712e7dae72e2d8eebc30ff71848bb8df2663d0d34dfaf673c49b",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/FLOKIUSDT_treatment.csv": "3157ec801beaa023f2f23fda1d65b87bbedf60756a628a18ad78624f6fffbdc8",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/FLOKIUSDT_treatment.csv.metadata.json": "b450040c9aa0685ae55f6bbd8352771b6be648f3a12c7cdd67a260e68a10d81e",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/GALAUSDT_treatment.csv": "2145c10a587c21de7d0ebe53ec2c9489db7b1100cecb6e60b292d7ff9ff53ee3",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/GALAUSDT_treatment.csv.metadata.json": "0109c16a71ed443ec38fba07a700e74eb5724481c4eec99a30bd95f160bdbc29",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/HBARUSDT_treatment.csv": "9835ebae5db5642288f554c8e57ab2d9198c703e6970a32661c1767e98fa2591",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/HBARUSDT_treatment.csv.metadata.json": "fc137f5e7c71d18d4f444f0106b22137189f9f898c6178f609963608a6132936",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ICPUSDT_treatment.csv": "163c6ed9c37a188d4d271470fa78f3320701e84e74821a46371009e4da0b7aa7",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ICPUSDT_treatment.csv.metadata.json": "ab75ff676284741a33f17b70a8d8d976e3f2f9e9b948972258389bbc01d0068a",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/LINKUSDT_treatment.csv": "e9ce2c6b33864c2fcd83e6028bf9e46865a446ae601c1bfcc76bc4491514e64c",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/LINKUSDT_treatment.csv.metadata.json": "75c7155776c07af1d50badc2f783ef4ed0c1d7b27e62c01c9649400fe8f8554f",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/LTCUSDT_treatment.csv": "e9eff58454d9f21b8de01005e3d3d387de4fd43eb79cfc997282f2f3c4ce9631",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/LTCUSDT_treatment.csv.metadata.json": "b0b85390dbfcbcb0b3fca9c5457186f07da4a79e966e1cc4698d754781373183",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/LUNAUSDT_treatment.csv": "7a05df72f9a42fefc27e284f8604b4d0a420f5e35425d62edea9fd3df8f01cf1",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/LUNAUSDT_treatment.csv.metadata.json": "89cede6915c3755acd24499730a29388e0f9901d960e8488686a0ae2ad4a0c07",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/MANAUSDT_treatment.csv": "e1cfff2996ea085edb1c2243082c3ea043151aae6990474c5e2aaff24e8148ec",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/MANAUSDT_treatment.csv.metadata.json": "9f1c7fa29008070d5e85cb10e46997e7a49c1ea9b8a1f4c0e25ae4802c209302",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/NEARUSDT_treatment.csv": "97fb8b9b9d4992db5f8398fccf075149cf0e7b1631ace1b3e71861d864e1693d",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/NEARUSDT_treatment.csv.metadata.json": "d552adee8722712473978455ec55f8f914bdb81c025534a10f5f8e30492e430c",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/NEIROUSDT_treatment.csv": "22262bb80fdda3f8e218c182e71a78cb0bda74800e6ef996111bd5bacfd06a68",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/NEIROUSDT_treatment.csv.metadata.json": "12bd45ac365b64e0f9de32ee53a9dc672aecff5ad947246fdd7ae54d9b677806",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/PEPEUSDT_treatment.csv": "04f1d09515ec6f5cf7a60bda15d96d43c446863ce35807429b854478f1043c1c",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/PEPEUSDT_treatment.csv.metadata.json": "74e48c3dc89fd4cd1a4a1b5f1d2c43f9a5a46ab36a0f6a6673c54cc9ae1231e9",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SANDUSDT_treatment.csv": "7630413d6b2f8a5c0db72cfbd5f103cdfeaa25aabe4445f0c21ad170ccb02e71",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SANDUSDT_treatment.csv.metadata.json": "89d7eb01a461a78665617eb2077d23dc5ac74851a9f9c9ab9a364410e89be8b8",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SHIBUSDT_treatment.csv": "217bbb4ea9e5860f1f50ba7387c1f4aac0d8366d9eef2a38fc3ae361b628a3e5",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SHIBUSDT_treatment.csv.metadata.json": "5b9cf349c41197a244ad1c5f52dfc8b856ee322b842b55db80ba4a3ba6a99d2f",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SOLUSDT_treatment.csv": "c9f44c6fc583a35672777c0a9e838720992c8187e1fe384af4ca1b11a09049e1",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SOLUSDT_treatment.csv.metadata.json": "2bda60c2fbfd75e0655b0a881f194d12a4d7e630de475c742e14d065e8957e2d",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SUIUSDT_treatment.csv": "e54c333b578c2293c93e0e3e2ef01f5687d2972df0d8b5e424e51a01dd3da4d5",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SUIUSDT_treatment.csv.metadata.json": "bf6ee072ab78b3b113b132a9dcd59cc4e79f4bf971ca640d84879aa524b60d17",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/TRXUSDT_treatment.csv": "edc6eef20940fa20e22f62080bd4dafdc13d3229ba69b0d99d9d163a1493a285",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/TRXUSDT_treatment.csv.metadata.json": "ca535ba0c4a9f42e1c14860d6163b3fce3048622faf6935037f64a27cb2656bc",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/UNIUSDT_treatment.csv": "8f15484dee37ed799144ce57aa6172354be2484b634a5fd80d0d1dac2bc8aa08",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/UNIUSDT_treatment.csv.metadata.json": "63f05f8f33ae73f9ae05be981399e73cc1c3f8f87b8475f307fd8c6fac26fd1f",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/VETUSDT_treatment.csv": "efa042aedca2ab381fe5029b315e42a9cafe2d43e236d9d2ff179c36123b49df",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/VETUSDT_treatment.csv.metadata.json": "5a5ff0e6636897f99a5d992ae0abbedf002a4224b7cd982d353f2bce5669c688",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/WIFUSDT_treatment.csv": "977092eec06ccb434f5b271511851d2c3001cff7d571e9fdc1e7c99301b227de",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/WIFUSDT_treatment.csv.metadata.json": "a560de76321dfae0242e6dee1b09365bfdb2de4475ac3f676a4af28e65527e33",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/WLDUSDT_treatment.csv": "0d453e31ca03fea7198a416ab07316950a4dab23a656ee3423ba8252ee3e011f",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/WLDUSDT_treatment.csv.metadata.json": "61d6d2cae88ec7934f9638dddd1d866124d4534b385abdaf853070c14944ca4a",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/XLMUSDT_treatment.csv": "9ec8e37418558ec5aec0282d8ccc4598d5e820b402b38d0cb450ed830a3fb981",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/XLMUSDT_treatment.csv.metadata.json": "3e8bc948a5cc5dfc10f30490bc0cde29773c7419613f698999515dc28a5b2770",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/XRPUSDT_treatment.csv": "18416b58e9e6e404e78cbad6be5875216e56688d2d2eedf2b41e50508e00704b",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/XRPUSDT_treatment.csv.metadata.json": "2aa0aa07a417b96bf3c4c105b743b35abafe50c52fbe14e36d4c5917b3d72e7b",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ZECUSDT_treatment.csv": "6bb9e1b42c41d642ed8d679dc5da9e09ec3b91391dafa6aec8e093e0a75c4c7e",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ZECUSDT_treatment.csv.metadata.json": "31fab7a9397cf844f16d1b7939bcd7fe841c75f15ef96451246ddf5b168547e9"
+  },
+  "written_at_utc": "2026-11-01T19:51:20.337300+00:00"
+}
