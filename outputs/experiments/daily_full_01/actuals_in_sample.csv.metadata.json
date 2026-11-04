@@ -1,0 +1,407 @@
+{
+  "attributes": {},
+  "column_order": [
+    "feature_time_utc",
+    "target",
+    "window_size",
+    "BTCUSDT",
+    "FLOKIUSDT",
+    "ETHUSDT",
+    "BONKUSDT",
+    "SOLUSDT",
+    "XRPUSDT",
+    "SHIBUSDT",
+    "DOGEUSDT",
+    "BNBUSDT",
+    "ADAUSDT",
+    "LTCUSDT",
+    "PEPEUSDT",
+    "SUIUSDT",
+    "LINKUSDT",
+    "AVAXUSDT",
+    "DOTUSDT",
+    "TRXUSDT",
+    "WIFUSDT",
+    "NEARUSDT",
+    "NEIROUSDT",
+    "AAVEUSDT",
+    "WLDUSDT",
+    "XLMUSDT",
+    "ZECUSDT",
+    "FILUSDT",
+    "BCHUSDT",
+    "LUNAUSDT",
+    "UNIUSDT",
+    "GALAUSDT",
+    "FETUSDT",
+    "HBARUSDT",
+    "VETUSDT",
+    "ETCUSDT",
+    "ATOMUSDT",
+    "SANDUSDT",
+    "ENAUSDT",
+    "ICPUSDT",
+    "CRVUSDT",
+    "MANAUSDT",
+    "CHZUSDT"
+  ],
+  "columns": {
+    "AAVEUSDT": "Int64",
+    "ADAUSDT": "Int64",
+    "ATOMUSDT": "Int64",
+    "AVAXUSDT": "Int64",
+    "BCHUSDT": "Int64",
+    "BNBUSDT": "Int64",
+    "BONKUSDT": "Int64",
+    "BTCUSDT": "Int64",
+    "CHZUSDT": "Int64",
+    "CRVUSDT": "Int64",
+    "DOGEUSDT": "Int64",
+    "DOTUSDT": "Int64",
+    "ENAUSDT": "Int64",
+    "ETCUSDT": "Int64",
+    "ETHUSDT": "Int64",
+    "FETUSDT": "Int64",
+    "FILUSDT": "Int64",
+    "FLOKIUSDT": "Int64",
+    "GALAUSDT": "Int64",
+    "HBARUSDT": "Int64",
+    "ICPUSDT": "Int64",
+    "LINKUSDT": "Int64",
+    "LTCUSDT": "Int64",
+    "LUNAUSDT": "Int64",
+    "MANAUSDT": "Int64",
+    "NEARUSDT": "Int64",
+    "NEIROUSDT": "Int64",
+    "PEPEUSDT": "Int64",
+    "SANDUSDT": "Int64",
+    "SHIBUSDT": "Int64",
+    "SOLUSDT": "Int64",
+    "SUIUSDT": "Int64",
+    "TRXUSDT": "Int64",
+    "UNIUSDT": "Int64",
+    "VETUSDT": "Int64",
+    "WIFUSDT": "Int64",
+    "WLDUSDT": "Int64",
+    "XLMUSDT": "Int64",
+    "XRPUSDT": "Int64",
+    "ZECUSDT": "Int64",
+    "feature_time_utc": "datetime64[ns, UTC]",
+    "target": "string",
+    "window_size": "int64"
+  },
+  "context": {
+    "configuration": {
+      "experiment": {
+        "collection": {
+          "base_url": "https://data-api.binance.vision",
+          "end_time_utc": "2026-09-01T23:59:59.999Z",
+          "interval": "1d",
+          "kline_path": "/api/v3/klines",
+          "limit": 1000,
+          "max_retries": 6,
+          "max_workers": 2,
+          "request_timeout_seconds": 30,
+          "start_time_utc": "2017-01-01T00:00:00Z",
+          "time_zone": "0"
+        },
+        "comparison_observations": "common_successful_dates",
+        "excluded_symbols": [
+          "LUNAUSDT"
+        ],
+        "experiment_id": "daily_block_svm_v1",
+        "features": {
+          "active_features": [
+            "r1",
+            "r2",
+            "r3",
+            "r4",
+            "r5",
+            "r6",
+            "r7",
+            "r8",
+            "r9",
+            "r10",
+            "r11",
+            "r12",
+            "r13",
+            "r14",
+            "r15",
+            "momentum_10",
+            "rsi_14",
+            "parabolic_sar",
+            "atr_14",
+            "true_range",
+            "chaikin_ad",
+            "obv"
+          ],
+          "atr_period": 14,
+          "momentum_period": 10,
+          "parabolic_sar": {
+            "acceleration": 0.0,
+            "maximum": 0.0
+          },
+          "rsi_period": 14,
+          "volume_field": "quote_asset_volume"
+        },
+        "grid_config": "svm_grid.json",
+        "metrics": [
+          "accuracy",
+          "precision",
+          "recall",
+          "f1",
+          "balanced_accuracy",
+          "roc_auc",
+          "average_precision"
+        ],
+        "models": [
+          "tuned_svc",
+          "default_svc",
+          "always_negative",
+          "training_class_frequency"
+        ],
+        "pipeline_order": [
+          "scaling",
+          "selection",
+          "svc"
+        ],
+        "random_seed": 0,
+        "scaling": {
+          "with_mean": true,
+          "with_std": true
+        },
+        "selection": {
+          "correlation_threshold": 0.8,
+          "variance_threshold": 0.01
+        },
+        "single_class_training_policy": "record_no_prediction",
+        "study": {
+          "end": "2026-09-01",
+          "start": "2019-07-01",
+          "warmup_start": "2019-06-01"
+        },
+        "symbols": [
+          "BTCUSDT",
+          "FLOKIUSDT",
+          "ETHUSDT",
+          "BONKUSDT",
+          "SOLUSDT",
+          "XRPUSDT",
+          "SHIBUSDT",
+          "DOGEUSDT",
+          "BNBUSDT",
+          "ADAUSDT",
+          "LTCUSDT",
+          "PEPEUSDT",
+          "SUIUSDT",
+          "LINKUSDT",
+          "AVAXUSDT",
+          "DOTUSDT",
+          "TRXUSDT",
+          "WIFUSDT",
+          "NEARUSDT",
+          "NEIROUSDT",
+          "AAVEUSDT",
+          "WLDUSDT",
+          "XLMUSDT",
+          "ZECUSDT",
+          "FILUSDT",
+          "BCHUSDT",
+          "LUNAUSDT",
+          "UNIUSDT",
+          "GALAUSDT",
+          "FETUSDT",
+          "HBARUSDT",
+          "VETUSDT",
+          "ETCUSDT",
+          "ATOMUSDT",
+          "SANDUSDT",
+          "ENAUSDT",
+          "ICPUSDT",
+          "CRVUSDT",
+          "MANAUSDT",
+          "CHZUSDT"
+        ],
+        "targets": [
+          0.01,
+          0.02,
+          0.03
+        ],
+        "temporal_cross_validation": {
+          "gap": 0,
+          "max_train_size": null,
+          "n_splits": 5,
+          "test_size": null
+        },
+        "windows": [
+          60,
+          75,
+          90
+        ]
+      },
+      "grid": {
+        "parameter_grid": [
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "kernel": [
+              "linear"
+            ]
+          },
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "gamma": [
+              "scale",
+              0.01,
+              0.1
+            ],
+            "kernel": [
+              "rbf"
+            ]
+          },
+          {
+            "C": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "class_weight": [
+              null,
+              "balanced"
+            ],
+            "coef0": [
+              0.0,
+              0.5,
+              1.0
+            ],
+            "degree": [
+              2,
+              3,
+              4
+            ],
+            "gamma": [
+              "scale",
+              0.01,
+              0.1
+            ],
+            "kernel": [
+              "poly"
+            ]
+          }
+        ],
+        "selection": {
+          "floating_point_tolerance": 1e-12,
+          "primary_metric": "f1",
+          "tie_break_order": [
+            "mean_precision_descending",
+            "f1_standard_deviation_ascending",
+            "mean_roc_auc_descending",
+            "kernel_simplicity_linear_rbf_poly",
+            "C_ascending",
+            "parameter_grid_order"
+          ]
+        }
+      }
+    },
+    "run_id": "full_01"
+  },
+  "row_count": 23562,
+  "schema_version": 2,
+  "sha256": "e442b958a6c114cff43eeb10874670540037ad2c223dd008bb2a4328d40f51fe",
+  "sources": {
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/AAVEUSDT_predictions.csv": "748ae547259fb8c7f3fa0c2061541c36ad36604bcbc35ff24f814098771eadf1",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/AAVEUSDT_predictions.csv.metadata.json": "462e96c068cae92ecfd5a50a795b6e58c13357f7c32f1df2b102a0ed5f27e00a",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ADAUSDT_predictions.csv": "4484884b5509bc7f3b8e8954907a289d24146e542f34c1b8d900ccac2de8119c",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ADAUSDT_predictions.csv.metadata.json": "32f86981d06fe0da3f0fcdda014ad651116e6b37b3cc76431137558a4f9efaca",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ATOMUSDT_predictions.csv": "88f7c5dba5aaa20c0ddf2440a693c1c1f34ffa7bcc8a3588f3a0c2e075f39a32",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ATOMUSDT_predictions.csv.metadata.json": "17635e55bbadc51c5483dfa2db6b3a52cb5f6470ff01c36f7d215dd4867df6da",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/AVAXUSDT_predictions.csv": "6de4615e301609ea994049f35e5e2407bd242ce7c9e416c047b8ade5caff6e25",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/AVAXUSDT_predictions.csv.metadata.json": "725f2c051522277c027153813f470efbae666dce288a951751946ff19d4d9729",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BCHUSDT_predictions.csv": "c20dba4e76b95b7fb1a0270898e15c116797cc1ce2064cb370464257f56a56d8",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BCHUSDT_predictions.csv.metadata.json": "e4bfd36ed637c382188e03f4bf91899376842f4919230635bb7036d5e11fddb7",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BNBUSDT_predictions.csv": "fcb744ebb5c141efa600f82e9b984e986fd9a75b5e16c322029a3e31b8eb5571",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BNBUSDT_predictions.csv.metadata.json": "3292bee1bdd2aac1c4c9582cf6a12446adb0d51e29e86c2e08ba1f2f93f88ef9",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BONKUSDT_predictions.csv": "882d6dde73ca381f3e1f9b25da2a1431c86fe1b2ae573857efea8e66c63faa84",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BONKUSDT_predictions.csv.metadata.json": "fc5dceedda30ca85605eb8af74ebb8ca5966909e7bac67a21acbb75bf49b620c",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BTCUSDT_predictions.csv": "aaea9d42af136295d4a8a47ae3d84bdb3b1e5279322f69a102aa2ca28c476c99",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/BTCUSDT_predictions.csv.metadata.json": "5fe97ae36b66b22f5cf8cff129d936266c4fd270bc7b4d1c923ce2c216d0ded6",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/CHZUSDT_predictions.csv": "a2374f5db243d9ccde9e78f8c9c3041727079cdb169d66574cfae7e68a84b7de",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/CHZUSDT_predictions.csv.metadata.json": "b0fbf3b6f7b8f079729ec47c85a876842f11200c999cc34d47c61512e28800e3",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/CRVUSDT_predictions.csv": "0e7db53260456daa76e0f538d5da8a572dd393858fe218776cb97290d208fb7d",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/CRVUSDT_predictions.csv.metadata.json": "1d76eed2f803e9f164ea6a42304fb2da4146896d1111ebcb3c7cc95459020b8a",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/DOGEUSDT_predictions.csv": "892383180d5734ac142a9bc691252965c4865523a205b64f6d6638b2240de5d8",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/DOGEUSDT_predictions.csv.metadata.json": "9cad23bd6399122db52936b9f8914b8dd4ae4fa3989ce82ae28c1600cc8ad724",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/DOTUSDT_predictions.csv": "89f31d45def9d4cf14d754a5371812d4e8e9ef0a35aa94bde13aa8fe3d7a81d5",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/DOTUSDT_predictions.csv.metadata.json": "e7ae721d1b91af8d68852bed5cb92937660b93ad279cc234ceb864a87f4cdb5b",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ENAUSDT_predictions.csv": "c2f809671fda56a1de77162f0f98c1e9bd259d336663a4ab91e281871cf4e7af",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ENAUSDT_predictions.csv.metadata.json": "f7464788200063e773881b5708baace5b501d0dad2309686078b1ad73e6111c0",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ETCUSDT_predictions.csv": "ab7fb537beaa66f0a476fcd6d857ce082c4c8ca14b0ebed672b1adca9246b955",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ETCUSDT_predictions.csv.metadata.json": "6e10923c1a4bfcb1fe2afde6b00c2681c887cba66be342cc8b37d45038b37ad8",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ETHUSDT_predictions.csv": "85b186b2c397b2db8cc786870a358ef8d979a974dda37e9ed0041d8d19f7581d",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ETHUSDT_predictions.csv.metadata.json": "4aabef82c20b820381643af87b3e8d00a3f8105610a83c6d686cb74901930dac",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/FETUSDT_predictions.csv": "b1b7d9a62fdb3131ee2dece27bf4b7092d382901347f1e68e7f05fda6cc5d34e",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/FETUSDT_predictions.csv.metadata.json": "713b1505a230ed792473402152dbbfc41eca0f56b2d756c3a9b5bf18d275e122",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/FILUSDT_predictions.csv": "fe1e895e7aea4efeccfbabf8f8602f0837abd452ffc164ce43a5ac72e7661180",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/FILUSDT_predictions.csv.metadata.json": "25fd66b047861e5159e44cdd61597ea76026c20313a84e664c994aeb73e335a4",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/FLOKIUSDT_predictions.csv": "f9ce53d527f20142a8b3b44b45ee059a5c9de03ddb3c12a13448c5c4e4d6ad27",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/FLOKIUSDT_predictions.csv.metadata.json": "d82a19bab650a7e0bc007e84343e3a37da197b4930854ae334d2be257c4c515c",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/GALAUSDT_predictions.csv": "ffe53969936be850dd87ee40e5ddf6668aa2579fe8154e7ab265e5f15a260bd7",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/GALAUSDT_predictions.csv.metadata.json": "6ea3c677da2eb038c1c04ac762801dd2b411d0b95bdb04a8f5f33fc5a1d2e7d1",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/HBARUSDT_predictions.csv": "57cd4f15138b0082268a7efa989f8b62d8afdbdfe025469d956027a4f0ba3f59",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/HBARUSDT_predictions.csv.metadata.json": "423e4310b04bc7817ecd9f6cd4a9ba883b125809a80223a714e3c0a1964ceeea",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ICPUSDT_predictions.csv": "fadeca5d8cac734d84a255bf2da3309fa9fa39a4738047d6688ac8ad5dd8931f",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ICPUSDT_predictions.csv.metadata.json": "aed1ffbd7088b5e75cd077b99c637b421d8216a803618cb690fc9a98b30c05eb",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/LINKUSDT_predictions.csv": "7bdca5b89cb3d65f617bb438d70a92c7882df738789cce36e1ca1b14a18feacf",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/LINKUSDT_predictions.csv.metadata.json": "a95d714541862196c875585f02c15f008b86a1a3a2f7177aba71d01d3652121f",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/LTCUSDT_predictions.csv": "03833b0e580f287f59536255e729180cc560a5eb92d5e1c60b20ba93364a794e",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/LTCUSDT_predictions.csv.metadata.json": "43b052cff1de6f551c21bbc66818d348232a66e1942aff20c71ed015e4027a10",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/MANAUSDT_predictions.csv": "11216d8e8cacd31fb5d6197ea9ff29470f0afb6e6beffc7048396697ce427c48",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/MANAUSDT_predictions.csv.metadata.json": "6ef0c7f6ee545a461478f36abb7aff9c849b862853955e490aaf8b3c384a7921",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/NEARUSDT_predictions.csv": "f702bead114ee0473a47295082dbd8d9a7c00202cd301d150bfb5e6ddaf8abd9",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/NEARUSDT_predictions.csv.metadata.json": "e1f7ec9627dddd1bdc52dc92613bb7499cf2857ece8bde4fc4337ccc28b56f59",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/NEIROUSDT_predictions.csv": "532e45c1cf4ddaffbbe1716cf0357f7a1835ef00f65f900e390408c11619c970",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/NEIROUSDT_predictions.csv.metadata.json": "e2fc681347c13386ebc762a7a84f369abc4322dbeb9d64fab71b4fd606825207",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/PEPEUSDT_predictions.csv": "79f460dca1938a19ba46f6b326575f56169e27437a02c9e13a43721e9768b457",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/PEPEUSDT_predictions.csv.metadata.json": "981b8a73bf1233be4e6bd397b37a84d44dca11c4ad607c736ab0919f687264bc",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SANDUSDT_predictions.csv": "1f967918d977855f898907af203933a8d11a9b6a0e7a58147def1ab53f1d4685",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SANDUSDT_predictions.csv.metadata.json": "ebe8bed16c7404f4e41f00bef946cdb66bf4ff94e39d43a828c237a4a5f39cca",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SHIBUSDT_predictions.csv": "965f3c122f36bfb239054c74730b688a708b514609f43e3a429411363c6aa65d",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SHIBUSDT_predictions.csv.metadata.json": "408d5901fa66b8c8ad3a250961f0b6fb3e6eb180344c03aaacc5ca23fe290637",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SOLUSDT_predictions.csv": "fd27a14e9b577adc04779a0c06d8b16ec7040392c20e27ff23ad28eb9e654661",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SOLUSDT_predictions.csv.metadata.json": "feddfe05f53ac0eb4500ca67e7ff35159a21f2618d37fb11a55ae9ebdb649281",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SUIUSDT_predictions.csv": "5d079dffded9ad696b5d1348300d6acec3ae766599fb0d48590d58fcd6bc0b06",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/SUIUSDT_predictions.csv.metadata.json": "c4d4bce4569c6a7e2e836305b1a3a2e2e8b50e891c3dcde07b5991d533d75159",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/TRXUSDT_predictions.csv": "6a05541276efafe28e285ecc0b0f53e06291b648ee9b0fad04e3ecf6afadfd2a",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/TRXUSDT_predictions.csv.metadata.json": "aa3d1dd9e8add816e8db66f08b3fddbebf6a85a216102b4b607d96bb81895728",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/UNIUSDT_predictions.csv": "33c129ea4f92f2eb67c954e99b7fd8c13b2472bd3c545a7290df9dc81101520e",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/UNIUSDT_predictions.csv.metadata.json": "06a511a742503bf83e509161a50ccee5a2082cd4936d41dadf2390a98afe27f0",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/VETUSDT_predictions.csv": "6f955fbfaf12bc6064b985570652b475de6b361656aed230b2b50bde6c423cc7",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/VETUSDT_predictions.csv.metadata.json": "13d75b0427115363d4abdd7ace6d76fc7ad9510b24fcecfaf5db33b2af86842a",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/WIFUSDT_predictions.csv": "8936236ff717093f812951151c9a0936b91de801e97a6e66a30c1fce56de0d54",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/WIFUSDT_predictions.csv.metadata.json": "0d02fe85f663a4e67a6043094362db9bc04818bed81c3a1860f0b89de98e062e",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/WLDUSDT_predictions.csv": "e57770546c11bc235cace1c7efa2816c101d42a38e71a22d9f3f585c300602d4",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/WLDUSDT_predictions.csv.metadata.json": "d6280fa26e0860f4c5d9331911f5786ece5846e34bbb7961c165df06da1dd8a5",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/XLMUSDT_predictions.csv": "1982576208197b966ebfae625774d0cebabce23013a8cc0aa16011c91d8d1248",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/XLMUSDT_predictions.csv.metadata.json": "f78c626b488ae7d55a98e4fc4f26257f779abc8548b9cb6f0a87d839fbff28d1",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/XRPUSDT_predictions.csv": "26bd89aad9f9be30d82f7ccfac6490d1b1c0fc715b43fdfff4762cf1b98b9655",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/XRPUSDT_predictions.csv.metadata.json": "55c9e6c0c1e7a705ee6c5a2f9070a750b6a243912717fe96e9ca6ca5d20e882a",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ZECUSDT_predictions.csv": "2e6746f59934aa828d15eee381a12bdbaeb2571d370cd40a650a13ec5cbda3bd",
+    "/Users/marcelapsilverio/projetos/tcc_crypto/outputs/experiments/daily_full_01/audit/ZECUSDT_predictions.csv.metadata.json": "2fc3e82fab129fdde091e6f2e1743d92d3a73610efb22e97f8ae4209b92a64b9"
+  },
+  "written_at_utc": "2026-11-04T04:43:24.820721+00:00"
+}
