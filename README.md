@@ -99,3 +99,18 @@ Reuse of original copyrighted material requires prior written permission,
 except as permitted by applicable law or the GitHub Terms of Service.
 Third-party materials retain their respective rights and terms.
 See [LICENSE](LICENSE) for the complete notice.
+
+## Saved results visual report
+
+[Notebook 18](notebooks/18_binance_daily_svm_results_visual_report.ipynb) reads the
+saved `full_01` execution and plots data coverage, treatment, classification
+metrics, confusion counts, class balance, signals, feature retention and selected
+parameters. Run it in the project environment; change the target/window display
+filters to inspect other saved settings. It validates saved provenance and does
+not collect data or fit models. Scores are descriptive means of nonmissing block
+metrics, with training and validation shown separately.
+
+Notebook presentation is written in Portuguese. Metrics notebooks keep filtering,
+descriptive aggregation and chart construction directly in their cells; other
+notebooks remain strict clients of package stages. See the
+[notebook policy](docs/decisions/notebook-language-and-metrics-logic.md).

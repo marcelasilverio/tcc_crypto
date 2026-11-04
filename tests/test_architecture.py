@@ -56,11 +56,20 @@ def test_active_modules_and_dependencies():
 
 
 def test_notebook_is_an_explicit_stage_client():
-    notebooks = list((ROOT / "notebooks").glob("*.ipynb"))
+    notebooks = sorted((ROOT / "notebooks").glob("*.ipynb"))
     assert [p.name for p in notebooks] == [
-        "17_binance_daily_svm_experiment_walkthrough.ipynb"
+        "17_binance_daily_svm_experiment_walkthrough.ipynb",
+        "18_binance_daily_svm_results_visual_report.ipynb",
     ]
-    notebook = json.loads(notebooks[0].read_text())
+    for notebook_path in notebooks:
+        if notebook_path.name == "18_binance_daily_svm_results_visual_report.ipynb":
+            _check_metrics_notebook(notebook_path)
+        else:
+            _check_notebook_calls(notebook_path)
+
+
+def _check_notebook_calls(notebook_path):
+    notebook = json.loads(notebook_path.read_text())
     allowed = {"load_config", "select_symbols", "Paths", "display"}
     methods = {
         "collect",
@@ -71,6 +80,8 @@ def test_notebook_is_an_explicit_stage_client():
         "inspect",
         "inspect_windows",
         "main",
+        "load_report",
+        "preview",
     }
     for cell in notebook["cells"]:
         if cell["cell_type"] != "code":
@@ -97,4 +108,72 @@ def test_notebook_is_an_explicit_stage_client():
                     assert isinstance(node.func, ast.Attribute)
                     assert node.func.attr in methods
                     assert isinstance(node.func.value, ast.Name)
-                    assert node.func.value.id in {"experiment", "paths"}
+                    assert node.func.value.id in {"experiment", "paths", "results"}
+
+
+def _check_metrics_notebook(path):
+    notebook = json.loads(path.read_text())
+    assert notebook["metadata"]["tcc_crypto"] == {
+        "kind": "metrics",
+        "language": "pt-BR",
+    }
+    imports = {
+        "IPython.display",
+        "matplotlib.pyplot",
+        "numpy",
+        "pandas",
+        "matplotlib.colors",
+        "tcc_crypto",
+        "tcc_crypto.paths",
+    }
+    forbidden = {
+        "collect",
+        "prepare",
+        "build_datasets",
+        "train",
+        "run",
+        "main",
+        "consolidate",
+        "fit",
+        "fit_transform",
+        "fit_predict",
+        "read_csv",
+        "to_csv",
+        "open",
+        "write_text",
+        "exec",
+        "eval",
+        "__import__",
+        "plot_report",
+        "report_slice",
+        "report_summary",
+    }
+    charts = []
+    for cell in notebook["cells"]:
+        if cell["cell_type"] != "code":
+            continue
+        tree = ast.parse("".join(cell["source"]))
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                assert all(alias.name in imports for alias in node.names)
+            if isinstance(node, ast.ImportFrom):
+                assert node.module in imports
+                if node.module == "tcc_crypto":
+                    assert [alias.name for alias in node.names] == ["experiment"]
+            if isinstance(node, ast.Call):
+                name = getattr(node.func, "attr", getattr(node.func, "id", ""))
+                assert name not in forbidden
+                if isinstance(node.func, ast.Attribute) and isinstance(
+                    node.func.value, ast.Name
+                ):
+                    if node.func.value.id == "experiment":
+                        assert node.func.attr == "load_report"
+        if "report-chart" in cell.get("metadata", {}).get("tags", []):
+            charts.append(cell)
+            assert any(
+                isinstance(node, ast.Call)
+                and isinstance(node.func, ast.Attribute)
+                and node.func.attr == "subplots"
+                for node in ast.walk(tree)
+            )
+    assert len(charts) == 18

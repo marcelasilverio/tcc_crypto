@@ -10,7 +10,7 @@ import pandas as pd
 
 from tcc_crypto import collection, dataset, preparation, results, training
 from tcc_crypto.config import Config, load_config, select_symbols
-from tcc_crypto.paths import ROOT, Paths, metadata_path, raw_paths
+from tcc_crypto.paths import MAIN_TABLES, ROOT, Paths, metadata_path, raw_paths
 
 LOGGER = logging.getLogger(__name__)
 AUDIT_NAMES = (
@@ -359,6 +359,32 @@ def main(argv=None):
             {"prepare": prepare, "dataset": build_datasets, "train": train, "run": run}[
                 args.stage
             ](config, symbols, paths, overwrite=args.overwrite)
+
+
+def load_report(paths: Paths) -> dict:
+    """Load an explicit saved run and validate provenance, without creating files.
+
+    Use its historical configuration, not the possibly changed current JSONs.
+    Missing/incompatible artifacts fail with the prerequisite stage named.
+    """
+    if not paths.configuration.exists() or not paths.execution.exists():
+        raise FileNotFoundError(
+            "Missing saved execution; run the explicit preparation/training stages first."
+        )
+    signature = json.loads(paths.configuration.read_text())
+    if signature.get("run_id") != paths.run_id:
+        raise ValueError("Saved run ID does not match the requested run.")
+    return {
+        "run_id": paths.run_id,
+        "configuration": signature["configuration"],
+        "execution": json.loads(paths.execution.read_text()),
+        "tables": {
+            name: results.read_table(
+                paths.main(name), context=signature, stage="results"
+            )
+            for name in MAIN_TABLES
+        },
+    }
 
 
 if __name__ == "__main__":

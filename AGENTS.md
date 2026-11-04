@@ -24,7 +24,7 @@ inconsistent.
 
 ## Language
 
-All repository content must be written in English, including:
+Repository content outside notebooks must be written in English, including:
 
 - source code;
 - identifiers;
@@ -32,16 +32,16 @@ All repository content must be written in English, including:
 - configuration keys;
 - documentation;
 - commit messages;
-- notebook titles and narrative cells;
 - chart labels;
 - filenames and directory names.
 
 Conversation with the repository owner may be in Portuguese.
 
-The researcher authorized Portuguese explanations and command-guide narrative in
-`notebooks/17_binance_daily_svm_experiment_walkthrough.ipynb` on 2026-10-29.
-This exception is limited to that notebook's didactic narrative. Code, identifiers,
-configuration keys, filenames and reusable chart labels remain in English.
+On 2026-11-04, the researcher approved Portuguese for all notebooks, superseding
+the earlier exception limited to notebook 17. Notebook titles, narrative,
+comments, docstrings and displayed chart/table labels must be in Portuguese.
+Keep code identifiers, configuration keys, persisted schemas, filenames and
+reusable package APIs in English so notebooks match the saved experiment data.
 
 ## Working principles
 
@@ -179,7 +179,9 @@ configuration whenever the upstream API permits it.
 ## Code organization
 
 - Put reusable implementation in `src/tcc_crypto/`.
-- Use notebooks only as step-by-step execution and inspection clients.
+- Use non-metrics notebooks only as step-by-step execution and inspection clients.
+- Keep metrics-notebook analysis and chart construction directly in notebook cells,
+  as specified by the notebook contract below.
 - Keep data collection, feature engineering, modeling, portfolio
   construction, backtesting, and evaluation as separate concerns.
 - Prefer explicit functions with typed inputs and outputs.
@@ -216,15 +218,34 @@ commit when their source files have been removed from the working tree.
 
 ### Notebook contract
 
+All notebooks use Portuguese narrative and presentation under the language rule.
+
+For non-metrics notebooks, the existing stage-client contract remains in force:
+
 - Cells may import active package APIs and `IPython.display`, choose
   configuration values, call package stages and display returned results.
 - Keep formulas, loops, comprehensions, conditional processing, aggregation,
   eligibility, HTTP, filesystem operations, chart construction and direct model
-  training out of notebooks. Call named package functions for these operations.
-- Notebook calls must use the imported APIs, rather than methods on result tables
-  to implement extra processing. Use package preview helpers for inspection.
-- Keep stage calls visible so saved inputs and results can be loaded without
-  collecting, preparing or training again.
+  training out of these notebooks. Call named package functions instead.
+- Calls must use imported APIs rather than methods on result tables to implement
+  extra processing. Use package preview helpers for inspection.
+- Keep stage calls visible so saved results can be loaded independently.
+
+For metrics notebooks, approved on 2026-11-04:
+
+- Put filtering, descriptive aggregation and construction of each chart directly
+  in notebook cells, with Portuguese explanations next to the corresponding code.
+- Loops, conditions, table methods and local presentation helpers are permitted.
+  Do not hide chart-specific logic in package plotting dispatchers.
+- Read saved evidence through package APIs that validate schema, configuration
+  and provenance. Preserve missing values and separate experimental settings.
+- Do not collect data, rebuild features/targets, fit models or change scientific
+  parameters while producing a metrics report.
+- Mark these notebooks with `metadata.tcc_crypto.kind = "metrics"` and maintain
+  an explicit reviewed list in architecture tests. Other notebooks retain the
+  strict contract; metadata alone does not grant an exception.
+
+See [the notebook policy decision](docs/decisions/notebook-language-and-metrics-logic.md).
 
 ### Paths and stage contracts
 
@@ -338,8 +359,9 @@ or expensive research experiments for automated tests.
 Do not manually edit generated datasets, model artifacts, figures, or metric
 files. Regenerate them through the corresponding pipeline.
 
-Charts and tables must include clear English labels, units, date ranges, and
-enough context to identify the experiment that produced them.
+Charts and tables must include clear labels, units, date ranges, and enough
+context to identify the experiment that produced them. Notebook presentation
+uses Portuguese; reusable outputs outside notebooks use English.
 
 ## Definition of done
 

@@ -139,7 +139,11 @@ Training predictions are retrospective fitted values and are labeled separately.
 The [experiment diagram](daily-block-window-experiment-diagram.md) shows the flow.
 The presentation client is
 [notebook 17](../../notebooks/17_binance_daily_svm_experiment_walkthrough.ipynb).
-Its Portuguese narrative is the sole authorized language exception.
+The [November 4 notebook policy](notebook-language-and-metrics-logic.md) now
+requires Portuguese presentation in all notebooks. Non-metrics notebooks remain
+strict stage clients. Metrics notebook 18 keeps descriptive analysis and chart
+construction in its own cells, while saved-result loading remains validated by
+the package.
 
 ## Historical evidence
 
