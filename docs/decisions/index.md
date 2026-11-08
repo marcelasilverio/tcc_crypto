@@ -1,5 +1,7 @@
 # Approved methodology decisions
 
+- [Daily minimum-variance and equal-weight portfolio comparison](daily-portfolio-allocation.md) - Approved daily capital simulation from saved 60-day SVM predictions and shared random signals, with rolling R1 covariance and same-day exits.
+
 The October 31 block-window decision, including the November 1 correction
 requiring normalization before feature selection, is the current authority for the revised
 experiment. Earlier decisions retain historical provenance and explicit revision
@@ -11,7 +13,7 @@ sequence `pipeline_order` and the internal temporal validation settings
 `temporal_cross_validation`.
 
 - [Portuguese notebooks and local metrics visualization logic](notebook-language-and-metrics-logic.md) - Researcher-approved Portuguese notebook presentation and in-cell metrics visualization, preserving strict stage clients for other notebooks.
-- [Daily experiment implementation and consultation guide](daily-code-organization.md) - Approved eight-module implementation, two configurations, stage commands, CSV dictionary with the `__NULL__` missing-value marker and Git-based historical retention.
+- [Daily experiment implementation and consultation guide](daily-code-organization.md) - Approved classification and independent portfolio implementation, configuration contracts, stage commands, CSV schemas and Git-based historical retention.
 - [CSV artifact organization by execution](csv-artifact-organization.md) - Approved shallow data and result layout using CSV tables without parallel Excel exports, with preserved historical evidence.
 - [Daily block-window SVM experiment](daily-block-window-experiment.md) - October 31 revision defining raw availability, candle treatment, consecutive training and validation blocks, and integrated temporal SVM search.
 - [Daily block-window experiment diagram](daily-block-window-experiment-diagram.md) - Visual map of the revised data preparation, per-window SVM training, validation and audit outputs.

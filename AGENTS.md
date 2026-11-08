@@ -193,7 +193,7 @@ configuration whenever the upstream API permits it.
 
 ### Active module responsibilities
 
-The approved daily experiment has eight modules plus `__init__.py`:
+The approved daily experiment has ten modules plus `__init__.py`:
 
 | Module | Responsibility |
 | --- | --- |
@@ -201,20 +201,30 @@ The approved daily experiment has eight modules plus `__init__.py`:
 | `preparation.py` | Candle validation, raw availability and internal-gap treatment |
 | `dataset.py` | Feature formulas, next-day targets and dataset construction |
 | `training.py` | Temporal blocks, fitted selection/scaling, search and evaluation |
-| `results.py` | Schema-aware CSV persistence, matrices and metadata |
+| `portfolio.py` | Historical eligibility, signals and portfolio weights |
+| `backtesting.py` | Same-day execution and compounded capital |
+| `results.py` | Schema-aware CSV persistence, matrices, metadata and portfolio publication |
 | `experiment.py` | Public stage functions, asset iteration and the sole CLI |
-| `config.py` | Load and validate the two experiment JSONs |
+| `config.py` | Load and validate the classification JSONs and separate portfolio JSON |
 | `paths.py` | Resolve standard artifact paths without filesystem side effects |
 
 Calculation functions receive explicit inputs and return calculated tables.
-Preparation, dataset and training must not import the orchestrator, collection
-or persistence. Results must not collect, calculate features or fit models.
+Preparation, dataset, training, portfolio and backtesting must not import the
+orchestrator, collection or persistence. Results must not collect, calculate features, allocate portfolios, simulate trades or fit models.
 Raw persistence belongs to collection; derived persistence is called explicitly
 by the orchestrator. Use the same functions from commands and the notebook.
 There are no compatibility aliases or active legacy command entrypoints.
 Historical sources, configurations, notebooks and results live only in Git
 history. Keep active scientific references linked to an immutable historical
 commit when their source files have been removed from the working tree.
+
+The independent `portfolio` command reads an explicitly selected classification
+run through `--source-run-id`, or the latest saved run when that option is omitted.
+Only an explicit `portfolio` invocation may execute allocation and backtesting.
+The existing classification commands, including `run`, must never call it.
+The [portfolio decision](docs/decisions/daily-portfolio-allocation.md) limits this
+stage to its four approved strategies and supersedes the earlier Buy and Hold
+requirement for this stage.
 
 ### Notebook contract
 

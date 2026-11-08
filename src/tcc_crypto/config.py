@@ -174,3 +174,111 @@ def select_symbols(
     ):
         raise ValueError("Unknown or repeated symbols.")
     return selected
+
+
+# This declaration validates the approved portfolio protocol independently of
+# historical classification signatures. Unknown options must never be ignored.
+PORTFOLIO_POLICY = {
+    "implementation_status": "implemented",
+    "source": {
+        "run_selection": "latest_execution_time_utc",
+        "model": "tuned_svc",
+        "training_window_days": 60,
+        "sample_role": "out_of_sample",
+        "universe": "source_training_universe",
+        "missing_prediction": "forward_fill_same_symbol_and_target",
+        "before_first_prediction": "exclude_from_svm_selection",
+    },
+    "calendar": {
+        "timezone": "UTC",
+        "start": "first_out_of_sample_operation_date_across_symbols",
+        "end": "last_out_of_sample_operation_date_across_symbols",
+        "step_days": 1,
+    },
+    "targets": [0.01, 0.02, 0.03],
+    "strategies": [
+        "svm_min_variance",
+        "random_min_variance",
+        "svm_equal_weight",
+        "random_equal_weight",
+    ],
+    "capital": {
+        "initial": 10000,
+        "currency": "USDT",
+        "compound_across_days_and_blocks": True,
+        "cash_daily_return": 0,
+    },
+    "history": {
+        "feature": "r1",
+        "standardize": False,
+        "window_days": 60,
+        "first_day_offset": -60,
+        "last_day_offset": -1,
+        "allow_imputed_candles": True,
+        "insufficient_history": "exclude_symbol_in_all_strategies",
+    },
+    "random_signals": {
+        "positive_probability": 0.5,
+        "seed": 0,
+        "generator": "PCG64",
+        "initialize_once_per_simulation": True,
+        "draw_per": ["operation_date", "target", "symbol"],
+        "shared_across_allocation_methods": True,
+    },
+    "allocation": {
+        "library": "pypfopt",
+        "class": "EfficientFrontier",
+        "method": "min_volatility",
+        "solver": "CLARABEL",
+        "weight_tolerance": 1e-8,
+        "covariance_estimator": "sample",
+        "covariance_ddof": 1,
+        "covariance_frequency": "daily",
+        "weight_bounds": [0, 1],
+        "weight_sum": 1,
+        "single_symbol_weight": 1,
+        "equal_weight_rule": "one_over_selected_eligible_count",
+        "empty_selection": "cash",
+        "optimization_failure": "cash_for_affected_strategy_and_day",
+    },
+    "execution": {
+        "entry": "operation_day_open",
+        "target_hit_exit": "open_times_one_plus_target",
+        "target_miss_exit": "operation_day_close",
+        "fractional_units": True,
+        "fee_rate": 0,
+        "slippage_rate": 0,
+        "allow_imputed_candles": True,
+        "preserve_imputation_markers": True,
+    },
+    "report": {
+        "chart_count": 3,
+        "group_by": "target",
+        "curves_per_chart": 4,
+        "x": "operation_date",
+        "y": "accumulated_capital_usdt",
+    },
+}
+
+
+def validate_portfolio_config(payload: dict) -> dict:
+    """Require the recorded methodology, rejecting unsupported keys and policies."""
+    if set(payload) != {"experiment_id", *PORTFOLIO_POLICY}:
+        raise ValueError("Unsupported portfolio configuration keys.")
+    component(payload["experiment_id"])
+    for key, approved in PORTFOLIO_POLICY.items():
+        # JSON comparison distinguishes booleans from integers and rejects NaN.
+        if json.dumps(payload[key], sort_keys=True, allow_nan=False) != json.dumps(
+            approved, sort_keys=True
+        ):
+            raise ValueError(
+                f"Unsupported portfolio setting '{key}'; use the approved portfolio decision."
+            )
+    return payload
+
+
+def load_portfolio_config(path: Path | str | None = None) -> dict:
+    from tcc_crypto.paths import PORTFOLIO_CONFIG
+
+    source = Path(path) if path is not None else ROOT / PORTFOLIO_CONFIG
+    return validate_portfolio_config(json.loads(source.read_text()))

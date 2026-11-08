@@ -52,3 +52,12 @@ Notebook metadata identifies metrics clients; architecture tests explicitly
 register the permitted notebooks and continue enforcing the old contract on
 other notebooks. Tests execute the actual metric cell with small synthetic data
 to verify target/window separation and missing-score treatment.
+
+
+## Portfolio metrics notebook
+
+The approved portfolio plan adds
+[Notebook 19](../../notebooks/19_binance_daily_portfolio_results_visual_report.ipynb)
+to the explicit metrics-notebook list. It reads `experiment.load_portfolio_report`,
+constructs three capital charts locally and summarizes saved audit evidence.
+Its guards prohibit allocation, simulation and experiment execution in cells.

@@ -1,7 +1,7 @@
 ---
 type: Methodology Decision
 title: Daily experiment implementation and consultation guide
-description: Approved eight-module implementation, two configurations, stage commands, CSV dictionary with the `__NULL__` missing-value marker and Git-based historical retention.
+description: Approved classification and independent portfolio implementation, configuration contracts, stage commands, CSV schemas and Git-based historical retention.
 tags: [implementation, daily, csv, reproducibility]
 status: draft
 authority: approved-methodology
@@ -19,7 +19,8 @@ sources:
 # Daily experiment implementation and consultation guide
 
 The researcher authorized the eight-module architecture and historical migration
-on October 31. The active implementation stops at classification. Automated tests
+on October 31 and the separate portfolio and backtesting modules in the approved
+portfolio implementation plan. Automated tests
 use small synthetic observations and a reduced test grid; they are not scientific
 results. No complete collection or production experiment is triggered by this change.
 
@@ -31,18 +32,20 @@ results. No complete collection or production experiment is triggered by this ch
 | preparation.py | prepare_symbol: validate complete candles, availability, bounded filling |
 | dataset.py | calculate_features and build_dataset: formulas, next-day labels and alignment |
 | training.py | FeatureSelector, outer_blocks, fit_search, train_symbol: calculation only |
-| results.py | write_table, read_table, binary_matrix: CSV schemas, provenance and consultation |
-| experiment.py | collect, prepare, build_datasets, train, consolidate, run: explicit coordination |
-| config.py | load_config and select_symbols: effective parameters and explicit asset choice |
-| paths.py | Paths and raw_paths: standard directories and filenames |
+| portfolio.py | effective_signals, allocate_portfolios: historical eligibility and weights |
+| backtesting.py | realized_trade, simulate_capital: execution and capital compounding |
+| results.py | write_table, read_table, binary_matrix, portfolio publication: schemas and provenance |
+| experiment.py | classification stages, execute_portfolio and load_portfolio_report: explicit coordination |
+| config.py | load_config, load_portfolio_config and select_symbols: validated parameters |
+| paths.py | Paths, PortfolioPaths and raw_paths: standard artifact locations |
 
-Functions in preparation, dataset and training perform calculations without writing
+Functions in preparation, dataset, training, portfolio and backtesting calculate without writing
 files. The orchestrator writes their results. Export reads saved evidence without
 recalculating features, selection, scaling or models.
 
 ## Configuration and execution
 
-Install the project with `python -m pip install -e '.[dev]'`. The only active
+Install the project with `python -m pip install -e '.[dev]'`. The classification
 configuration files are [experiment.json](../../configs/experiment.json) and
 [svm_grid.json](../../configs/svm_grid.json). The first holds data, indicators,
 targets, windows, pipeline order, selection, scaling, temporal splits and operational settings.
@@ -50,6 +53,11 @@ It references the second, which holds the unchanged 186 conditional candidates,
 F1 tolerance and deterministic tie-break order. Production indicator periods and
 USDT quote-volume convention remain unchanged. The zero-parameter Parabolic SAR
 still requires the previously documented scientific review before final results.
+
+The [portfolio allocation decision](daily-portfolio-allocation.md) adds
+[portfolio.json](../../configs/portfolio.json) for the independent downstream
+stage. Keeping this configuration separate preserves saved classification
+identities. The architecture inventory includes all three JSONs.
 
 Run a single asset explicitly, using existing saved inputs:
 
@@ -154,3 +162,63 @@ removed from the working tree under the
 at their original paths. The current experiment does not depend on the former
 migration script or its manifest. Previous results describe their original
 protocol and are not results of the revised experiment.
+
+
+## Independent portfolio execution
+
+Install the declared PyPortfolioOpt dependency and its CVXPY/CLARABEL backend
+through the project dependency command above. Invoke the portfolio explicitly:
+
+```sh
+python -m tcc_crypto.experiment portfolio --run-id portfolio_01
+```
+
+`--portfolio-config` optionally selects another configuration file. The output
+ID identifies the portfolio execution. By default, the newest classification execution is
+resolved from its saved UTC execution timestamp, and its source ID and hashes
+are recorded separately. The source must provide tuned_svc out-of-sample
+predictions with window_size 60 and the required historical inputs. The command
+uses the saved universe, including exclusions; symbol subset flags are rejected.
+The existing classification commands have no portfolio execution path.
+
+Outputs are grouped in `outputs/portfolios/<run_id>/`. The three CSV tables are
+`capital.csv`, `signals.csv` and `operations.csv`, each with schema metadata.
+Capital records opening/closing balance, simple daily return and cash reason.
+Signals record original and effective predictions, signal source dates/blocks,
+random draws, eligible history counts and exclusions. Operations record fixed
+weights, optimizer diagnostics, allocated amounts, fractional units, execution
+prices, realized outcomes and imputation provenance. Cash portfolios retain
+an operation diagnostic row with zero weight and nullable execution fields.
+
+Configuration, source provenance and execution JSONs accompany a completion
+manifest. A directory lock protects calculations and publication. Interrupted
+staging is never a readable result. `--overwrite` requires the same configuration
+and source identity/checksums. Changing either requires a new portfolio ID.
+A hard process termination can leave a lock or hidden staging directory; inspect
+that execution before removing its stale lock and retrying. Normal exceptions
+clean staging and preserve the previous committed generation.
+
+`experiment.load_portfolio_report(run_id)` validates completion, all recorded
+hashes and the original classification dependency graph before restoring tables.
+The reader refuses active locks and incomplete generations.
+[Notebook 19](../../notebooks/19_binance_daily_portfolio_results_visual_report.ipynb)
+reads that API and constructs three Portuguese charts directly in cells. It also
+shows final capital, cash days, reused predictions and imputed operations.
+
+
+## Explicit portfolio source selection
+
+Select a saved classification execution with `--source-run-id`:
+
+```sh
+python -m tcc_crypto.experiment portfolio --run-id portfolio_01 --source-run-id full_01
+```
+
+`--source-run-id` identifies the input training execution, while `--run-id`
+identifies the output portfolio execution. When the source option is omitted,
+the configured latest-execution policy applies. An explicit source takes
+precedence over that default and is validated under its saved configuration.
+Missing or incompatible inputs produce an error without falling back to another
+execution. The resolved source and selection mode are recorded in metadata.
+This option is exclusive to the portfolio command. The Python API accepts the
+same choice as `execute_portfolio(..., source_run_id="full_01")`.

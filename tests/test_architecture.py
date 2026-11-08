@@ -15,6 +15,8 @@ MODULES = {
     "experiment",
     "config",
     "paths",
+    "portfolio",
+    "backtesting",
 }
 
 
@@ -23,10 +25,19 @@ def test_active_modules_and_dependencies():
     assert {p.stem for p in source.glob("*.py")} == MODULES
     assert not [p for p in source.rglob("*.py") if p.parent != source]
     forbidden = {
+        "portfolio": {"experiment", "results", "collection", "backtesting"},
+        "backtesting": {"experiment", "results", "collection", "training"},
         "preparation": {"experiment", "results", "collection"},
         "dataset": {"experiment", "results", "collection"},
         "training": {"experiment", "results", "collection"},
-        "results": {"experiment", "dataset", "training", "collection"},
+        "results": {
+            "experiment",
+            "dataset",
+            "training",
+            "collection",
+            "portfolio",
+            "backtesting",
+        },
     }
     for path in source.glob("*.py"):
         tree = ast.parse(path.read_text())
@@ -41,7 +52,13 @@ def test_active_modules_and_dependencies():
             if isinstance(node, ast.Call):
                 name = getattr(node.func, "attr", getattr(node.func, "id", ""))
                 assert name not in {"to_excel", "read_excel", "ExcelWriter"}
-                if path.stem in {"preparation", "dataset", "training"}:
+                if path.stem in {
+                    "preparation",
+                    "dataset",
+                    "training",
+                    "portfolio",
+                    "backtesting",
+                }:
                     assert name not in {
                         "open",
                         "read_csv",
@@ -52,6 +69,7 @@ def test_active_modules_and_dependencies():
     assert {p.name for p in (ROOT / "configs").glob("*.json")} == {
         "experiment.json",
         "svm_grid.json",
+        "portfolio.json",
     }
 
 
@@ -60,9 +78,13 @@ def test_notebook_is_an_explicit_stage_client():
     assert [p.name for p in notebooks] == [
         "17_binance_daily_svm_experiment_walkthrough.ipynb",
         "18_binance_daily_svm_results_visual_report.ipynb",
+        "19_binance_daily_portfolio_results_visual_report.ipynb",
     ]
     for notebook_path in notebooks:
-        if notebook_path.name == "18_binance_daily_svm_results_visual_report.ipynb":
+        if notebook_path.name in {
+            "18_binance_daily_svm_results_visual_report.ipynb",
+            "19_binance_daily_portfolio_results_visual_report.ipynb",
+        }:
             _check_metrics_notebook(notebook_path)
         else:
             _check_notebook_calls(notebook_path)
@@ -144,6 +166,10 @@ def _check_metrics_notebook(path):
         "exec",
         "eval",
         "__import__",
+        "execute_portfolio",
+        "allocate_portfolios",
+        "simulate_capital",
+        "minimum_variance_weights",
         "plot_report",
         "report_slice",
         "report_summary",
@@ -167,7 +193,11 @@ def _check_metrics_notebook(path):
                     node.func.value, ast.Name
                 ):
                     if node.func.value.id == "experiment":
-                        assert node.func.attr == "load_report"
+                        assert node.func.attr == (
+                            "load_portfolio_report"
+                            if path.name.startswith("19_")
+                            else "load_report"
+                        )
         if "report-chart" in cell.get("metadata", {}).get("tags", []):
             charts.append(cell)
             assert any(
@@ -176,4 +206,4 @@ def _check_metrics_notebook(path):
                 and node.func.attr == "subplots"
                 for node in ast.walk(tree)
             )
-    assert len(charts) == 18
+    assert len(charts) == (3 if path.name.startswith("19_") else 18)

@@ -34,6 +34,11 @@ approved experimental choices.
   not automatic adoption.
 ## Current experiment revision
 
+The [daily portfolio allocation decision](decisions/daily-portfolio-allocation.md)
+records the approved next stage and its separate portfolio configuration.
+Its independent portfolio command reads saved training evidence and produces
+CSV results for the dedicated metrics notebook.
+
 The [daily block-window SVM decision](decisions/daily-block-window-experiment.md)
 records the October 31 corrections and later confirmations. The
 [CSV artifact organization](decisions/csv-artifact-organization.md) defines the

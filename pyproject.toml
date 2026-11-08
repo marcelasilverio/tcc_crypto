@@ -12,6 +12,9 @@ dependencies = [
     "matplotlib>=3.8,<4.0",
     "numpy>=1.26,<3.0",
     "pandas>=2.2,<3.0",
+    "PyPortfolioOpt>=1.5.6,<2.0",
+    "cvxpy>=1.4,<2.0",
+    "clarabel>=0.5,<1.0",
     "scikit-learn>=1.5,<2.0",
     "TA-Lib>=0.8,<0.9",
 ]

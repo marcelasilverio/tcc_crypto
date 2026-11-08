@@ -8,6 +8,9 @@ CONFIG = Path("configs/experiment.json")
 RAW = Path("data/raw/binance/spot/1d")
 PROCESSED = Path("data/processed")
 OUTPUTS = Path("outputs/experiments")
+PORTFOLIO_CONFIG = Path("configs/portfolio.json")
+PORTFOLIO_OUTPUTS = Path("outputs/portfolios")
+PORTFOLIO_TABLES = ("capital", "signals", "operations")
 MAIN_TABLES = (
     "availability",
     "treatment",
@@ -64,6 +67,39 @@ class Paths:
 
 def metadata_path(path: Path) -> Path:
     return path.with_name(path.name + ".metadata.json")
+
+
+@dataclass(frozen=True)
+class PortfolioPaths:
+    root: Path
+    run_id: str
+
+    def __post_init__(self):
+        component(self.run_id)
+
+    @property
+    def output(self) -> Path:
+        return self.root / PORTFOLIO_OUTPUTS / self.run_id
+
+    @property
+    def lock(self) -> Path:
+        return self.output.with_name(f".{self.run_id}.lock")
+
+    def temporary(self, token: str) -> Path:
+        return self.output.with_name(f".{self.run_id}.{component(token)}")
+
+    def artifact(self, name: str, directory: Path | None = None) -> Path:
+        suffixes = {
+            **dict.fromkeys(PORTFOLIO_TABLES, ".csv"),
+            **dict.fromkeys(
+                ("configuration", "source", "execution", "complete"), ".json"
+            ),
+        }
+        if name not in suffixes:
+            raise ValueError(f"Unknown portfolio artifact: {name}")
+        return (self.output if directory is None else directory) / (
+            name + suffixes[name]
+        )
 
 
 def raw_paths(root: Path, symbol: str, collection: dict) -> dict[str, Path]:

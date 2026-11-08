@@ -1,4 +1,4 @@
-"""One entrypoint: collect -> prepare -> dataset -> train -> results."""
+"""Explicit classification stages and independent portfolio execution."""
 
 import argparse
 import json
@@ -328,17 +328,50 @@ def inspect_windows(config: Config, paths: Paths, symbol: str) -> pd.DataFrame:
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "stage", choices=["collect", "prepare", "dataset", "train", "results", "run"]
+        "stage",
+        choices=[
+            "collect",
+            "prepare",
+            "dataset",
+            "train",
+            "results",
+            "run",
+            "portfolio",
+        ],
     )
     parser.add_argument("--config", type=Path)
+    parser.add_argument("--portfolio-config", type=Path)
+    parser.add_argument(
+        "--source-run-id",
+        help="Saved classification run used by portfolio; defaults to the latest run.",
+    )
     parser.add_argument("--run-id")
     parser.add_argument("--overwrite", action="store_true")
-    group = parser.add_mutually_exclusive_group(required=True)
+    group = parser.add_mutually_exclusive_group()
     group.add_argument("--symbols", nargs="+")
     group.add_argument("--all-symbols", action="store_true")
     args = parser.parse_args(argv)
     if args.stage != "collect" and not args.run_id:
         parser.error("--run-id is required for derived stages.")
+    if args.stage == "portfolio":
+        if args.config or args.symbols or args.all_symbols:
+            parser.error(
+                "portfolio uses --portfolio-config and the saved training universe."
+            )
+        logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+        execute_portfolio(
+            args.run_id,
+            config_path=args.portfolio_config,
+            overwrite=args.overwrite,
+            source_run_id=args.source_run_id,
+        )
+        return
+    if args.portfolio_config:
+        parser.error("--portfolio-config applies only to portfolio.")
+    if args.source_run_id is not None:
+        parser.error("--source-run-id applies only to portfolio.")
+    if not args.symbols and not args.all_symbols:
+        parser.error("Choose --symbols or --all-symbols.")
     config = load_config(args.config)
     symbols = select_symbols(config, args.symbols, all_symbols=args.all_symbols)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -384,6 +417,309 @@ def load_report(paths: Paths) -> dict:
             )
             for name in MAIN_TABLES
         },
+    }
+
+
+def latest_training_execution(root: Path = ROOT) -> Paths:
+    """Resolve the most recently recorded classification execution exactly once."""
+    from tcc_crypto.paths import OUTPUTS
+
+    candidates = []
+    for directory in sorted((root / OUTPUTS).glob("daily_*")):
+        if not directory.is_dir():
+            continue
+        paths = Paths(root, directory.name.removeprefix("daily_"))
+        if not paths.execution.exists():
+            raise ValueError(f"Missing execution timestamp: {directory}")
+        timestamp = pd.Timestamp(
+            json.loads(paths.execution.read_text())["execution_time_utc"]
+        )
+        if pd.isna(timestamp) or timestamp.tzinfo is None:
+            raise ValueError(f"Invalid execution timestamp: {directory}")
+        candidates.append((timestamp.tz_convert("UTC"), paths))
+    if not candidates:
+        raise FileNotFoundError(
+            "No saved training execution; run the classification stages explicitly."
+        )
+    latest = max(t for t, _ in candidates)
+    selected = [p for t, p in candidates if t == latest]
+    if len(selected) != 1:
+        raise ValueError("Latest training execution timestamp is ambiguous.")
+    return selected[0]
+
+
+def load_portfolio_inputs(paths: Paths, settings: dict) -> dict:
+    """Read historical inputs under their saved classification configuration."""
+    from tcc_crypto.config import validate_config
+
+    if not paths.configuration.exists() or not paths.execution.exists():
+        raise FileNotFoundError(
+            "Missing saved classification configuration; run the prerequisite stages explicitly."
+        )
+    configuration_digest = results.file_sha256(paths.configuration)
+    signature = json.loads(paths.configuration.read_text())
+    if signature.get("run_id") != paths.run_id:
+        raise ValueError("Saved training run ID mismatch.")
+    saved = signature["configuration"]
+    config = validate_config(Config(saved["experiment"], saved["grid"]))
+    if (
+        settings["targets"] != config.values["targets"]
+        or settings["source"]["training_window_days"] not in config.values["windows"]
+    ):
+        raise ValueError(
+            "Newest training execution is incompatible with the portfolio configuration."
+        )
+    symbols = [
+        s
+        for s in config.values["symbols"]
+        if s not in config.values["excluded_symbols"]
+    ]
+    required_columns = {
+        "features": {"feature_time_utc", "r1"},
+        "targets": {
+            "feature_time_utc",
+            "target_time_utc",
+            *[f"target_{q * 100:g}pct" for q in settings["targets"]],
+        },
+        "treated": {
+            "date_utc",
+            "open",
+            "high",
+            "low",
+            "close",
+            "is_imputed",
+            "source_date_utc",
+        },
+        "predictions": {
+            "symbol",
+            "model",
+            "role",
+            "window_size",
+            "target",
+            "block_id",
+            "feature_time_utc",
+            "target_time_utc",
+            "fit_time_utc",
+            "prediction_time_utc",
+            "predicted",
+        },
+    }
+    tables, source_tables = {}, []
+    checksums = {
+        str(paths.configuration.resolve()): configuration_digest,
+        str(paths.execution.resolve()): results.file_sha256(paths.execution),
+    }
+    for name in ("features", "targets", "treated", "predictions"):
+        tables[name] = {}
+        for symbol in symbols:
+            path = (
+                paths.audit(symbol, name)
+                if name == "predictions"
+                else paths.table(symbol, name)
+            )
+            for dependency in (path, metadata_path(path)):
+                if not dependency.exists():
+                    raise FileNotFoundError(
+                        f"Missing saved {name} input {dependency}; run its prerequisite stage explicitly."
+                    )
+                checksums[str(dependency.resolve())] = results.file_sha256(dependency)
+            tables[name][symbol] = results.read_table(
+                path,
+                context=signature,
+                stage="train" if name == "predictions" else "dataset/prepare",
+            )
+            if not required_columns[name] <= set(tables[name][symbol]):
+                raise ValueError(
+                    f"Missing required {name} columns for {symbol}; inspect the saved prerequisite stage."
+                )
+            source_tables.append(path.resolve())
+    # Validate saved table semantics separately from their persisted dtype schema.
+    from tcc_crypto.portfolio import _dated
+
+    for symbol in symbols:
+        features = tables["features"][symbol]
+        treated = tables["treated"][symbol]
+        targets = tables["targets"][symbol]
+        _dated(features, "feature_time_utc", symbol)
+        _dated(treated, "date_utc", symbol)
+        _dated(targets, "feature_time_utc", symbol)
+        if not pd.api.types.is_numeric_dtype(features.r1):
+            raise ValueError(f"R1 must be numeric: {symbol}")
+        if (
+            not pd.api.types.is_bool_dtype(treated.is_imputed)
+            or treated.is_imputed.isna().any()
+        ):
+            raise ValueError(f"Invalid imputation markers: {symbol}")
+        if (
+            treated.source_date_utc.isna().any()
+            or not treated.source_date_utc.le(treated.date_utc).all()
+        ):
+            raise ValueError(f"Invalid candle source dates: {symbol}")
+        for column in ("open", "high", "low", "close"):
+            if not pd.api.types.is_numeric_dtype(treated[column]):
+                raise ValueError(f"{column} must be numeric: {symbol}")
+        if not targets.target_time_utc.eq(
+            targets.feature_time_utc + pd.Timedelta(days=1)
+        ).all():
+            raise ValueError(f"Invalid saved target alignment: {symbol}")
+        predicted = tables["predictions"][symbol]
+        if not predicted.empty and not predicted.symbol.eq(symbol).all():
+            raise ValueError(f"Prediction symbol mismatch: {symbol}")
+    source = {
+        "run_id": paths.run_id,
+        "context": signature,
+        "execution_time_utc": json.loads(paths.execution.read_text())[
+            "execution_time_utc"
+        ],
+        "symbols": symbols,
+        "tables": [str(p) for p in source_tables],
+        "checksums": checksums,
+    }
+    results.validate_portfolio_source(source)
+    return {"source": source, "tables": tables, "symbols": symbols}
+
+
+def execute_portfolio(
+    run_id: str,
+    *,
+    config_path: Path | None = None,
+    root: Path = ROOT,
+    overwrite=False,
+    source_run_id: str | None = None,
+) -> Path:
+    """Execute only saved-input portfolio allocation and backtesting."""
+    from tcc_crypto import backtesting, portfolio
+    from tcc_crypto.config import load_portfolio_config
+    from tcc_crypto.paths import PORTFOLIO_CONFIG, PortfolioPaths
+
+    settings = load_portfolio_config(config_path)
+    portfolio.check_solver(settings["allocation"]["solver"])
+    origin = (
+        latest_training_execution(root)
+        if source_run_id is None
+        else Paths(root, source_run_id)
+    )
+    LOGGER.info(
+        "Portfolio source: %s; model=%s; window=%s",
+        origin.run_id,
+        settings["source"]["model"],
+        settings["source"]["training_window_days"],
+    )
+    inputs = load_portfolio_inputs(origin, settings)
+    paths = PortfolioPaths(root, run_id)
+    signature = {
+        "run_id": run_id,
+        "configuration": settings,
+        "source_run_id": origin.run_id,
+    }
+    with results.portfolio_transaction(
+        paths, signature, inputs["source"], overwrite=overwrite
+    ) as directory:
+        tables = inputs["tables"]
+        # Only historical R1 and imputation flags cross the allocation boundary.
+        allocations = portfolio.allocate_portfolios(
+            pd.concat(tables["predictions"].values(), ignore_index=True)[
+                [
+                    "symbol",
+                    "model",
+                    "role",
+                    "window_size",
+                    "target",
+                    "block_id",
+                    "feature_time_utc",
+                    "target_time_utc",
+                    "fit_time_utc",
+                    "prediction_time_utc",
+                    "predicted",
+                ]
+            ],
+            {s: f[["feature_time_utc", "r1"]] for s, f in tables["features"].items()},
+            {s: f[["date_utc", "is_imputed"]] for s, f in tables["treated"].items()},
+            inputs["symbols"],
+            settings,
+        )
+        evaluated = backtesting.simulate_capital(
+            allocations.weights, tables["treated"], tables["targets"], settings
+        )
+        execution = results.execution_metadata(root)
+        from importlib.metadata import version
+
+        execution["package_versions"].update(
+            {name: version(name) for name in ("PyPortfolioOpt", "cvxpy", "clarabel")}
+        )
+        execution.update(
+            {
+                "solver": settings["allocation"]["solver"],
+                "random_generator": "PCG64",
+                "source_selection": "latest" if source_run_id is None else "explicit",
+                "source_run_id": origin.run_id,
+                "symbols": inputs["symbols"],
+                "operation_start": str(evaluated.capital.operation_date.min()),
+                "operation_end": str(evaluated.capital.operation_date.max()),
+                "output_path": str(paths.output.resolve()),
+                "config_path": str(Path(config_path).resolve())
+                if config_path
+                else str((ROOT / PORTFOLIO_CONFIG).resolve()),
+            }
+        )
+        results.publish_portfolio(
+            paths,
+            directory,
+            signature,
+            inputs["source"],
+            {
+                "capital": evaluated.capital,
+                "signals": allocations.signals,
+                "operations": evaluated.operations,
+            },
+            execution,
+        )
+    LOGGER.info("Portfolio saved: %s", paths.output)
+    return paths.output
+
+
+def load_portfolio_report(run_id: str, *, root: Path = ROOT) -> dict:
+    """Load a committed portfolio and verify both portfolio and source provenance."""
+    from tcc_crypto.config import validate_portfolio_config
+    from tcc_crypto.paths import PORTFOLIO_TABLES, PortfolioPaths
+
+    paths = PortfolioPaths(root, run_id)
+    if paths.lock.exists():
+        raise ValueError(
+            "Portfolio result is locked by an active or interrupted execution."
+        )
+    generation_digest = (
+        results.file_sha256(paths.artifact("complete"))
+        if paths.artifact("complete").exists()
+        else None
+    )
+    signature = results.validate_portfolio_bundle(paths)
+    validate_portfolio_config(signature["configuration"])
+    if signature["run_id"] != run_id:
+        raise ValueError("Portfolio run ID mismatch.")
+    source = json.loads(paths.artifact("source").read_text())
+    if source["run_id"] != signature["source_run_id"]:
+        raise ValueError("Portfolio source run ID mismatch.")
+    results.validate_portfolio_source(source)
+    tables = {
+        name: results.read_table(
+            paths.artifact(name), context=signature, stage="portfolio"
+        )
+        for name in PORTFOLIO_TABLES
+    }
+    if (
+        paths.lock.exists()
+        or results.file_sha256(paths.artifact("complete")) != generation_digest
+    ):
+        raise ValueError(
+            "Portfolio changed while loading; retry after execution completes."
+        )
+    return {
+        "run_id": run_id,
+        "source": source,
+        "configuration": signature["configuration"],
+        "execution": json.loads(paths.artifact("execution").read_text()),
+        "tables": tables,
     }
 
 

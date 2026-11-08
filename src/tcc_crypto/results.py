@@ -3,7 +3,9 @@
 import hashlib
 import json
 import platform
+import shutil
 import subprocess
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
@@ -176,3 +178,116 @@ def binary_matrix(
 def preview(frame: pd.DataFrame, rows: int = 10) -> pd.DataFrame:
     """Notebook inspection only; no scientific recalculation."""
     return frame.head(rows)
+
+
+def validate_portfolio_source(source: dict) -> None:
+    """Validate the source under its original classification context."""
+    for filename, digest in source["checksums"].items():
+        path = Path(filename)
+        if not path.exists() or file_sha256(path) != digest:
+            raise ValueError(f"Missing or modified portfolio source: {filename}")
+    for filename in source["tables"]:
+        validate_artifact(Path(filename), source["context"], "saved training/data")
+
+
+def validate_portfolio_bundle(paths, directory: Path | None = None) -> dict:
+    """Require an intact, fully committed portfolio generation before reading."""
+    base = paths.output if directory is None else directory
+    completed = paths.artifact("complete", base)
+    if not completed.exists():
+        raise ValueError(
+            "Incomplete portfolio result; run the explicit portfolio command."
+        )
+    manifest = json.loads(completed.read_text())
+    if manifest.get("status") != "complete" or manifest.get("run_id") != paths.run_id:
+        raise ValueError("Incompatible portfolio completion manifest.")
+    from tcc_crypto.paths import PORTFOLIO_TABLES
+
+    expected = {
+        paths.artifact(name, base).name
+        for name in ("configuration", "source", "execution", *PORTFOLIO_TABLES)
+    }
+    expected.update(
+        metadata_path(paths.artifact(name, base)).name for name in PORTFOLIO_TABLES
+    )
+    if set(manifest["files"]) != expected:
+        raise ValueError("Portfolio manifest has an unexpected artifact set.")
+    for filename, digest in manifest["files"].items():
+        path = base / filename
+        if not path.exists() or file_sha256(path) != digest:
+            raise ValueError(f"Incomplete or modified portfolio artifact: {filename}")
+    return json.loads(paths.artifact("configuration", base).read_text())
+
+
+def publish_portfolio(
+    paths, directory: Path, signature: dict, source: dict, tables: dict, execution: dict
+) -> None:
+    """Stage a self-contained generation and commit its integrity manifest last."""
+    from tcc_crypto.paths import PORTFOLIO_TABLES
+
+    if set(tables) != set(PORTFOLIO_TABLES):
+        raise ValueError("Portfolio tables differ from the required artifact set.")
+    write_json(paths.artifact("configuration", directory), signature)
+    write_json(paths.artifact("source", directory), source)
+    write_json(paths.artifact("execution", directory), execution)
+    for name, frame in tables.items():
+        destination = paths.artifact(name, directory)
+        # Source CSVs belong to another context. Their graph is checked explicitly
+        # through source.json by the report loader, preserving the generic reader.
+        write_table(frame, destination, context=signature)
+        read_table(destination, context=signature, stage="portfolio")
+    validate_portfolio_source(source)
+    files = [p for p in directory.iterdir() if p.is_file()]
+    write_json(
+        paths.artifact("complete", directory),
+        {
+            "status": "complete",
+            "run_id": paths.run_id,
+            "files": {p.name: file_sha256(p) for p in files},
+        },
+    )
+    validate_portfolio_bundle(paths, directory)
+
+
+# A directory lock covers calculation and publication. Readers reject locked
+# generations, including the short replacement interval during overwrite.
+@contextmanager
+def portfolio_transaction(paths, signature: dict, source: dict, *, overwrite=False):
+    """Protect one output ID and restore its preceding generation on publish failure."""
+    paths.output.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        paths.lock.mkdir()
+    except FileExistsError as error:
+        raise FileExistsError(f"Portfolio execution is locked: {paths.lock}") from error
+    stage = paths.temporary(f"staging-{uuid4().hex}")
+    backup = paths.temporary(f"backup-{uuid4().hex}")
+    moved_old = False
+    try:
+        if paths.output.exists():
+            if not overwrite:
+                raise FileExistsError(
+                    "Portfolio output exists; choose another run ID or use --overwrite."
+                )
+            previous = validate_portfolio_bundle(paths)
+            previous_source = json.loads(paths.artifact("source").read_text())
+            if previous != signature or previous_source != source:
+                raise ValueError("Portfolio context changed; choose a new run ID.")
+        stage.mkdir()
+        yield stage
+        validate_portfolio_bundle(paths, stage)
+        if paths.output.exists():
+            paths.output.rename(backup)
+            moved_old = True
+        try:
+            stage.rename(paths.output)
+        except BaseException:
+            if moved_old:
+                backup.rename(paths.output)
+                moved_old = False
+            raise
+        if moved_old:
+            shutil.rmtree(backup)
+    finally:
+        if stage.exists():
+            shutil.rmtree(stage)
+        paths.lock.rmdir()
