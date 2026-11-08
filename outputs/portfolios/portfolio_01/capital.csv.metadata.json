@@ -1,0 +1,127 @@
+{
+  "attributes": {},
+  "column_order": [
+    "operation_date",
+    "target",
+    "strategy",
+    "opening_capital",
+    "closing_capital",
+    "daily_return",
+    "cash_capital",
+    "asset_count",
+    "cash_reason"
+  ],
+  "columns": {
+    "asset_count": "int64",
+    "cash_capital": "float64",
+    "cash_reason": "string",
+    "closing_capital": "float64",
+    "daily_return": "float64",
+    "opening_capital": "float64",
+    "operation_date": "datetime64[ns, UTC]",
+    "strategy": "string",
+    "target": "string"
+  },
+  "context": {
+    "configuration": {
+      "allocation": {
+        "class": "EfficientFrontier",
+        "covariance_ddof": 1,
+        "covariance_estimator": "sample",
+        "covariance_frequency": "daily",
+        "empty_selection": "cash",
+        "equal_weight_rule": "one_over_selected_eligible_count",
+        "library": "pypfopt",
+        "method": "min_volatility",
+        "optimization_failure": "cash_for_affected_strategy_and_day",
+        "single_symbol_weight": 1,
+        "solver": "CLARABEL",
+        "weight_bounds": [
+          0,
+          1
+        ],
+        "weight_sum": 1,
+        "weight_tolerance": 1e-08
+      },
+      "calendar": {
+        "end": "last_out_of_sample_operation_date_across_symbols",
+        "start": "first_out_of_sample_operation_date_across_symbols",
+        "step_days": 1,
+        "timezone": "UTC"
+      },
+      "capital": {
+        "cash_daily_return": 0,
+        "compound_across_days_and_blocks": true,
+        "currency": "USDT",
+        "initial": 10000
+      },
+      "execution": {
+        "allow_imputed_candles": true,
+        "entry": "operation_day_open",
+        "fee_rate": 0,
+        "fractional_units": true,
+        "preserve_imputation_markers": true,
+        "slippage_rate": 0,
+        "target_hit_exit": "open_times_one_plus_target",
+        "target_miss_exit": "operation_day_close"
+      },
+      "experiment_id": "daily_portfolio_v1",
+      "history": {
+        "allow_imputed_candles": true,
+        "feature": "r1",
+        "first_day_offset": -60,
+        "insufficient_history": "exclude_symbol_in_all_strategies",
+        "last_day_offset": -1,
+        "standardize": false,
+        "window_days": 60
+      },
+      "implementation_status": "implemented",
+      "random_signals": {
+        "draw_per": [
+          "operation_date",
+          "target",
+          "symbol"
+        ],
+        "generator": "PCG64",
+        "initialize_once_per_simulation": true,
+        "positive_probability": 0.5,
+        "seed": 0,
+        "shared_across_allocation_methods": true
+      },
+      "report": {
+        "chart_count": 3,
+        "curves_per_chart": 4,
+        "group_by": "target",
+        "x": "operation_date",
+        "y": "accumulated_capital_usdt"
+      },
+      "source": {
+        "before_first_prediction": "exclude_from_svm_selection",
+        "missing_prediction": "forward_fill_same_symbol_and_target",
+        "model": "tuned_svc",
+        "run_selection": "latest_execution_time_utc",
+        "sample_role": "out_of_sample",
+        "training_window_days": 60,
+        "universe": "source_training_universe"
+      },
+      "strategies": [
+        "svm_min_variance",
+        "random_min_variance",
+        "svm_equal_weight",
+        "random_equal_weight"
+      ],
+      "targets": [
+        0.01,
+        0.02,
+        0.03
+      ]
+    },
+    "run_id": "portfolio_01",
+    "source_run_id": "full_01"
+  },
+  "row_count": 30708,
+  "schema_version": 2,
+  "sha256": "cc7851f37ff1d83c5c9cba53172b26784a9d42826c38296351bcc93888a41f9d",
+  "sources": {},
+  "written_at_utc": "2026-11-08T13:12:31.115725+00:00"
+}
