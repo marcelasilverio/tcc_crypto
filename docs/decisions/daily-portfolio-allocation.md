@@ -1,7 +1,7 @@
 ---
 type: Methodology Decision
 title: Daily minimum-variance and equal-weight portfolio comparison
-description: Approved daily capital simulation from saved 60-day SVM predictions and shared random signals, with rolling R1 covariance and same-day exits.
+description: Approved daily capital simulation from saved 60-day SVM predictions and shared random signals, with rolling R1 covariance and same-day exits; revised November 10 to treat absent predictions as zero.
 tags: [portfolio, allocation, backtesting, minimum-variance, daily]
 status: draft
 authority: approved-methodology
@@ -11,6 +11,9 @@ sources:
   - id: researcher-confirmation
     resource: "source-artifact:researcher-conversation-2026-11-05-through-2026-11-07"
     title: Supervisor guidance and researcher confirmations for portfolio allocation
+  - id: missing-prediction-revision
+    resource: "source-artifact:researcher-conversation-2026-11-10"
+    title: Researcher approval to treat absent portfolio predictions as zero
   - id: daily-blocks
     resource: daily-block-window-experiment.md
     title: Daily block-window SVM experiment
@@ -39,7 +42,10 @@ identity of saved upstream evidence needed by this simulation.
 This decision defines the random baseline for this stage and limits its scope
 to four strategies. Buy and Hold remains part of the historical proposal.
 The classification protocol and its recorded failures remain the source evidence.
-Forward-filled portfolio signals must retain their source prediction dates.
+On November 10, 2026, the researcher replaced prediction forward filling with
+an effective zero for every absent portfolio prediction. This revision is
+recorded as daily_portfolio_v2 in the portfolio configuration. Original
+classification predictions remain unchanged, including their missing values.
 
 ## Sources, calendar and signals
 
@@ -53,11 +59,21 @@ by these predictions across the assets. Process every calendar day in this span.
 Use outcome dates for operations; a prediction indexed by feature day t applies
 to operation day t + 1. Prediction availability must precede its execution.
 
-For each asset and target, select a positive SVM signal. Forward-fill an absent
-prediction with the last available prediction for that asset and target,
-including consecutive missing days and block transitions. Before the first
-available prediction, exclude that asset from SVM selection. Preserve original
-missing predictions and audit each reused signal separately.
+For each asset and target, select a positive SVM signal. An absent prediction
+has effective value zero, including dates before the first prediction,
+consecutive missing days, absent calendar rows and block transitions. Never
+reuse the previous prediction. Preserve the original missing value in
+original_prediction; effective_prediction is zero. Signal source dates and
+blocks remain missing for these synthetic zero signals. The existing
+signal_reused audit field is false under this rule. Observed zero and one
+predictions retain their values and original source coordinates.
+
+This revision applies only to portfolio selection. It does not change saved
+classification results, their metrics, random signals, candle filling or target
+construction. Earlier portfolio artifacts retain their original configuration;
+produce a new run ID for the revised simulation rather than overwriting results
+from another methodology. The current report loader requires the current
+approved configuration and therefore rejects earlier forward-fill portfolios.
 
 For the random baseline, draw an independent binary signal with probability
 0.5 of a positive value for each day, target and asset in the source universe.
@@ -167,7 +183,7 @@ validates the portfolio and source graphs under their respective contexts.
 [Notebook 19](../../notebooks/19_binance_daily_portfolio_results_visual_report.ipynb)
 loads the saved portfolio report and constructs the three charts directly in
 Portuguese cells, including the initial capital point. It displays audit counts
-for cash days, repeated predictions and imputed execution candles.
+for cash days, absent original predictions and imputed execution candles.
 
 
 ## Explicit portfolio source selection

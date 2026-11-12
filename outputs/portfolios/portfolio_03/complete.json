@@ -1,0 +1,15 @@
+{
+  "files": {
+    "capital.csv": "f9428d7011bd72bfbb14df7785a2f39fe8f1ea231787d399bae9cb22d76ee783",
+    "capital.csv.metadata.json": "b5b1367f16cdcc5fe08bfa8aa79b0cd90e54be724f4c59c1381cf729ac296410",
+    "configuration.json": "30fc3d1e87842e02b25a9255d0b2057136c02df94af25e9782903e754bf16bbf",
+    "execution.json": "6395dbddf67372426c02889dc3ad72cdd812f006c01d063f466a9e6487d5dd8a",
+    "operations.csv": "9c9a38e2ef65ec0366468cbcb567bb869611f622633933b0160ebf7efe4d2373",
+    "operations.csv.metadata.json": "485e8498c11787b36514677088a047a9fa59a3618fcca82ea4add41c4f8a33ee",
+    "signals.csv": "31cca19c5816599189fa9db1c46d4de7b2510118b11331fa9d7b5c0a6ffe7e96",
+    "signals.csv.metadata.json": "85d4503444d1418f4c9573361f620461019016360b0738946d8107686b4ffb7a",
+    "source.json": "3a4e8cb519a8370a17a50266ccdfd9a2671b1e801b022da72a5fabeaa066d995"
+  },
+  "run_id": "portfolio_03",
+  "status": "complete"
+}

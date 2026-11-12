@@ -1,6 +1,6 @@
 # Approved methodology decisions
 
-- [Daily minimum-variance and equal-weight portfolio comparison](daily-portfolio-allocation.md) - Approved daily capital simulation from saved 60-day SVM predictions and shared random signals, with rolling R1 covariance and same-day exits.
+- [Daily minimum-variance and equal-weight portfolio comparison](daily-portfolio-allocation.md) - Approved daily capital simulation from saved 60-day SVM predictions and shared random signals, with rolling R1 covariance and same-day exits; revised November 10 to treat absent predictions as zero.
 
 The October 31 block-window decision, including the November 1 correction
 requiring normalization before feature selection, is the current authority for the revised

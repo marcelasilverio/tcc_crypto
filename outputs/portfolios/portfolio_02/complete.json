@@ -1,0 +1,15 @@
+{
+  "files": {
+    "capital.csv": "cc7851f37ff1d83c5c9cba53172b26784a9d42826c38296351bcc93888a41f9d",
+    "capital.csv.metadata.json": "429aba9aa6acf00fd6e015d5571864f5477f86bdabe5bc2ac876469b6b42a8a8",
+    "configuration.json": "f0f6e87b67c5c6104b721831ff99fbec28e8c1f879957f2139d74cae4ecaa9dc",
+    "execution.json": "696c8924d59dcb2315c749fdbf7d58186795f507ca2a91d5608f9540b9134f03",
+    "operations.csv": "e2c36c947e8d4035042a1480b61112356bc97daa64e9d0f99f3ee2e2e59a8277",
+    "operations.csv.metadata.json": "1e235188adb2550db4217fbe9323ef29c15304215b52182162355c463cf55902",
+    "signals.csv": "f95d5c58078049313f6ee3c9c275e4951f094b17a44d60c012995085e1f0a0e7",
+    "signals.csv.metadata.json": "4f7e9a7efc90f8080578fe8c05ac6803cc1a1559530d0eac4d1c32545c9a433a",
+    "source.json": "3a4e8cb519a8370a17a50266ccdfd9a2671b1e801b022da72a5fabeaa066d995"
+  },
+  "run_id": "portfolio_02",
+  "status": "complete"
+}

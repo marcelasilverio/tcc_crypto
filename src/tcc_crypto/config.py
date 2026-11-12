@@ -186,8 +186,8 @@ PORTFOLIO_POLICY = {
         "training_window_days": 60,
         "sample_role": "out_of_sample",
         "universe": "source_training_universe",
-        "missing_prediction": "forward_fill_same_symbol_and_target",
-        "before_first_prediction": "exclude_from_svm_selection",
+        "missing_prediction": "zero",
+        "before_first_prediction": "zero",
     },
     "calendar": {
         "timezone": "UTC",

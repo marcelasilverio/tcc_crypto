@@ -184,6 +184,8 @@ The existing classification commands have no portfolio execution path.
 Outputs are grouped in `outputs/portfolios/<run_id>/`. The three CSV tables are
 `capital.csv`, `signals.csv` and `operations.csv`, each with schema metadata.
 Capital records opening/closing balance, simple daily return and cash reason.
+Absent portfolio predictions have effective value zero under the November 10
+revision, with the original absence preserved and no previous signal reused.
 Signals record original and effective predictions, signal source dates/blocks,
 random draws, eligible history counts and exclusions. Operations record fixed
 weights, optimizer diagnostics, allocated amounts, fractional units, execution
@@ -203,7 +205,7 @@ hashes and the original classification dependency graph before restoring tables.
 The reader refuses active locks and incomplete generations.
 [Notebook 19](../../notebooks/19_binance_daily_portfolio_results_visual_report.ipynb)
 reads that API and constructs three Portuguese charts directly in cells. It also
-shows final capital, cash days, reused predictions and imputed operations.
+shows final capital, cash days, absent predictions and imputed operations.
 
 
 ## Explicit portfolio source selection

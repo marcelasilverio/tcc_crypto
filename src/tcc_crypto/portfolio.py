@@ -87,7 +87,7 @@ def _dated(frame: pd.DataFrame, column: str, name: str) -> pd.DataFrame:
 def effective_signals(
     predictions: pd.DataFrame, symbols: list[str], settings: dict
 ) -> pd.DataFrame:
-    """Align saved predictions to operation dates and forward-fill within each target."""
+    """Align saved predictions to operation dates; missing values mean zero."""
     expected_targets = [f"target_{q * 100:g}pct" for q in settings["targets"]]
     source = settings["source"]
     rows = predictions.loc[
@@ -146,11 +146,9 @@ def effective_signals(
                 raise ValueError(f"Missing saved training for {symbol}, {target}.")
             panel = part.set_index("target_time_utc").reindex(calendar)
             original = panel.predicted.astype("Int64")
-            signal = original.ffill()
-            source_day = (
-                pd.Series(panel.index, index=panel.index)
-                .where(original.notna())
-                .ffill()
+            signal = original.fillna(0)
+            source_day = pd.Series(panel.index, index=panel.index).where(
+                original.notna()
             )
             panels.append(
                 pd.DataFrame(
@@ -162,10 +160,9 @@ def effective_signals(
                         "effective_prediction": signal.array,
                         "signal_source_date": source_day.array,
                         "signal_source_block": panel.block_id.where(original.notna())
-                        .ffill()
                         .astype("Int64")
                         .array,
-                        "signal_reused": (original.isna() & signal.notna()).array,
+                        "signal_reused": False,
                     }
                 )
             )
@@ -207,7 +204,7 @@ def allocate_portfolios(
             selection = {"svm": [], "random": []}
             for position, symbol in enumerate(symbols):
                 saved = indexed.loc[(day, target, symbol)]
-                imputed = markers[symbol].reindex(dates)
+                imputed = markers[symbol].reindex(dates).astype("boolean")
                 if eligible[symbol] and imputed.isna().any():
                     raise ValueError(
                         f"Missing history imputation markers for {symbol} on {day}."

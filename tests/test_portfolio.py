@@ -154,15 +154,28 @@ def test_realized_returns(actual, high, close, expected):
         backtesting.realized_trade(candle, 1 - actual, 0.02)
 
 
-def test_alignment_fill_and_reproducible_shared_draws(source_run):
+def test_alignment_zero_fill_and_reproducible_shared_draws(source_run):
     paths, settings = source_run
     args = allocation_inputs(paths, settings)
     first = portfolio.allocate_portfolios(**args)
     second = portfolio.allocate_portfolios(**args)
     pd.testing.assert_frame_equal(first.signals, second.signals)
     pd.testing.assert_frame_equal(first.weights, second.weights)
-    assert first.signals.signal_reused.sum() == 6
-    assert first.signals.effective_prediction.eq(1).all()
+    missing = first.signals.original_prediction.isna()
+    assert missing.sum() == 6
+    assert first.signals.loc[missing, "effective_prediction"].eq(0).all()
+    assert first.signals.loc[~missing, "effective_prediction"].eq(1).all()
+    assert not first.signals.signal_reused.any()
+    assert first.signals.loc[missing, "signal_source_date"].isna().all()
+    assert first.signals.loc[missing, "signal_source_block"].isna().all()
+    cash = first.weights[
+        first.weights.operation_date.eq(
+            first.signals.loc[missing, "operation_date"].iloc[0]
+        )
+        & first.weights.strategy.str.startswith("svm")
+    ]
+    assert cash.allocation_status.eq("no_eligible_selection").all()
+    assert cash.weight.eq(0).all()
     assert (
         (first.signals.operation_date - first.signals.history_end)
         .eq(pd.Timedelta(days=1))
@@ -188,6 +201,31 @@ def test_alignment_fill_and_reproducible_shared_draws(source_run):
         )
 
 
+@pytest.mark.parametrize("drop_rows", [False, True])
+def test_missing_signals_never_reuse_previous_block(source_run, drop_rows):
+    paths, settings = source_run
+    args = allocation_inputs(paths, settings)
+    predictions = args["predictions"]
+    dates = sorted(predictions.target_time_utc.unique())
+    # Keep positive ETH signals to retain the full calendar, including absent rows.
+    missing = predictions.symbol.eq("BTCUSDT") & predictions.target_time_utc.isin(
+        dates[1:]
+    )
+    predictions.loc[missing, "predicted"] = pd.NA
+    if drop_rows:
+        predictions = predictions.loc[~missing].copy()
+    signals = portfolio.effective_signals(predictions, args["symbols"], settings)
+    btc = signals[signals.symbol.eq("BTCUSDT")]
+    assert btc.loc[btc.operation_date.eq(dates[0]), "effective_prediction"].eq(1).all()
+    absent = btc[btc.operation_date.isin(dates[1:])]
+    assert len(absent) == 6
+    assert absent.original_prediction.isna().all()
+    assert absent.effective_prediction.eq(0).all()
+    assert absent.signal_source_date.isna().all()
+    assert absent.signal_source_block.isna().all()
+    assert not signals.signal_reused.any()
+
+
 def test_missing_initial_prediction_and_history_filter(source_run):
     paths, settings = source_run
     args = allocation_inputs(paths, settings)
@@ -197,7 +235,7 @@ def test_missing_initial_prediction_and_history_filter(source_run):
     args["features"]["BTCUSDT"] = args["features"]["BTCUSDT"].iloc[1:].copy()
     allocated = portfolio.allocate_portfolios(**args)
     day = allocated.signals[allocated.signals.operation_date.eq(first_day)]
-    assert day[day.symbol.eq("ETHUSDT")].effective_prediction.isna().all()
+    assert day[day.symbol.eq("ETHUSDT")].effective_prediction.eq(0).all()
     assert not day[day.symbol.eq("BTCUSDT")].history_eligible.any()
     assert (
         not allocated.weights.loc[
@@ -215,6 +253,29 @@ def test_missing_initial_prediction_and_history_filter(source_run):
         .eq("no_eligible_selection")
         .all()
     )
+
+
+@pytest.mark.filterwarnings("error::FutureWarning")
+@pytest.mark.parametrize("marker_dtype", ["bool", "boolean", "object"])
+def test_history_imputation_count_with_missing_dates(source_run, marker_dtype):
+    paths, settings = source_run
+    args = allocation_inputs(paths, settings)
+    symbol = "BTCUSDT"
+    args["features"][symbol] = args["features"][symbol].iloc[1:].copy()
+    markers = args["history_markers"][symbol].iloc[1:].copy()
+    markers.loc[markers.index[0], "is_imputed"] = True
+    markers["is_imputed"] = markers["is_imputed"].astype(marker_dtype)
+    args["history_markers"][symbol] = markers
+
+    allocated = portfolio.allocate_portfolios(**args)
+
+    first_day = allocated.signals.operation_date.min()
+    audit = allocated.signals[
+        allocated.signals.operation_date.eq(first_day)
+        & allocated.signals.symbol.eq(symbol)
+    ]
+    assert not audit.history_eligible.any()
+    assert audit.history_imputed_days.eq(1).all()
 
 
 def test_future_r1_does_not_change_prior_allocations(source_run):
@@ -253,9 +314,22 @@ def test_solver_failure_holds_only_min_variance_in_cash(source_run, monkeypatch)
     allocated = portfolio.allocate_portfolios(**allocation_inputs(paths, settings))
     selected = allocated.weights[allocated.weights.strategy.eq("svm_min_variance")]
     assert selected.weight.eq(0).all()
-    assert selected.allocation_status.eq("optimization_failure").all()
+    missing_day = allocated.signals.loc[
+        allocated.signals.original_prediction.isna(), "operation_date"
+    ].iloc[0]
+    assert (
+        selected.loc[selected.operation_date.eq(missing_day), "allocation_status"]
+        .eq("no_eligible_selection")
+        .all()
+    )
+    assert (
+        selected.loc[selected.operation_date.ne(missing_day), "allocation_status"]
+        .eq("optimization_failure")
+        .all()
+    )
     equal = allocated.weights[allocated.weights.strategy.eq("svm_equal_weight")]
-    assert equal.weight.eq(0.5).all()
+    assert equal.loc[equal.operation_date.eq(missing_day), "weight"].eq(0).all()
+    assert equal.loc[equal.operation_date.ne(missing_day), "weight"].eq(0.5).all()
     data = experiment.load_portfolio_inputs(paths, settings)["tables"]
     report = backtesting.simulate_capital(
         allocated.weights, data["treated"], data["targets"], settings
@@ -280,7 +354,7 @@ def test_compounding_saved_targets_and_imputation(source_run):
         (report.capital.target == "target_2pct")
         & (report.capital.strategy == "svm_equal_weight")
     ]
-    assert curve.closing_capital.tolist() == pytest.approx([10200, 10404, 10612.08])
+    assert curve.closing_capital.tolist() == pytest.approx([10200, 10200, 10404])
     day = curve.operation_date.iloc[0]
     data["targets"]["BTCUSDT"].loc[
         data["targets"]["BTCUSDT"].target_time_utc.eq(day), "target_1pct"

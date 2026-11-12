@@ -3,4 +3,4 @@
 *.xlsx binary
 *.png binary
 *.gz binary
-outputs/portfolios/portfolio_01/operations.csv filter=lfs diff=lfs merge=lfs -text
+outputs/portfolios/*/operations.csv filter=lfs diff=lfs merge=lfs -text
