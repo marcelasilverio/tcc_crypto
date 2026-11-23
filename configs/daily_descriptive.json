@@ -1,0 +1,8 @@
+{
+  "analysis_id": "daily_candle_descriptive_v1",
+  "start": "2019-07-01",
+  "end": "2026-09-01",
+  "tail_quantiles": [0.05, 0.95],
+  "rolling_returns": 30,
+  "low_correlation_support": 30
+}

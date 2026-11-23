@@ -20,6 +20,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+report = ["python-docx>=1.1,<2.0"]
 dev = [
     "ipykernel>=6.29,<7.0",
     "jupyterlab>=4.2,<5.0",

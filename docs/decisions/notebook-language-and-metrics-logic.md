@@ -61,3 +61,10 @@ The approved portfolio plan adds
 to the explicit metrics-notebook list. It reads `experiment.load_portfolio_report`,
 constructs three capital charts locally and summarizes saved audit evidence.
 Its guards prohibit allocation, simulation and experiment execution in cells.
+
+## Daily candle descriptive notebook
+
+[Notebook 20](../../notebooks/20_binance_daily_candle_descriptive_report.ipynb)
+loads canonical raw candles through the read-only collection API and performs
+the approved descriptive calculations and chart construction in cells. Its
+guard permits those read and publication calls explicitly.

@@ -19,6 +19,10 @@ sources:
 
 # Daily price and USDT-volume descriptive analysis from 2019-H2
 
+The [daily monograph report decision](daily-candle-monograph-description.md)
+extends the descriptive questions. Its artifact layout follows the later
+CSV-only decision.
+
 Approved on 2026-09-20 for the descriptive-analysis stage:
 
 - universe and source: all 40 pairs and each immutable canonical daily CSV from

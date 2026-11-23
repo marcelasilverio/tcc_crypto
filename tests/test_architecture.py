@@ -67,6 +67,7 @@ def test_active_modules_and_dependencies():
                         "mkdir",
                     }
     assert {p.name for p in (ROOT / "configs").glob("*.json")} == {
+        "daily_descriptive.json",
         "experiment.json",
         "svm_grid.json",
         "portfolio.json",
@@ -79,11 +80,13 @@ def test_notebook_is_an_explicit_stage_client():
         "17_binance_daily_svm_experiment_walkthrough.ipynb",
         "18_binance_daily_svm_results_visual_report.ipynb",
         "19_binance_daily_portfolio_results_visual_report.ipynb",
+        "20_binance_daily_candle_descriptive_report.ipynb",
     ]
     for notebook_path in notebooks:
         if notebook_path.name in {
             "18_binance_daily_svm_results_visual_report.ipynb",
             "19_binance_daily_portfolio_results_visual_report.ipynb",
+            "20_binance_daily_candle_descriptive_report.ipynb",
         }:
             _check_metrics_notebook(notebook_path)
         else:
@@ -148,6 +151,14 @@ def _check_metrics_notebook(path):
         "tcc_crypto",
         "tcc_crypto.paths",
     }
+    descriptive = path.name.startswith("20_")
+    allowed_package_calls = {
+        "collection": "load_descriptive_candles",
+        "config": "load_descriptive_config",
+        "results": "publish_descriptive_analysis",
+    }
+    if descriptive:
+        imports.add("os")
     forbidden = {
         "collect",
         "prepare",
@@ -185,7 +196,10 @@ def _check_metrics_notebook(path):
             if isinstance(node, ast.ImportFrom):
                 assert node.module in imports
                 if node.module == "tcc_crypto":
-                    assert [alias.name for alias in node.names] == ["experiment"]
+                    expected = (
+                        list(allowed_package_calls) if descriptive else ["experiment"]
+                    )
+                    assert [alias.name for alias in node.names] == expected
             if isinstance(node, ast.Call):
                 name = getattr(node.func, "attr", getattr(node.func, "id", ""))
                 assert name not in forbidden
@@ -193,11 +207,19 @@ def _check_metrics_notebook(path):
                     node.func.value, ast.Name
                 ):
                     if node.func.value.id == "experiment":
+                        assert not descriptive
                         assert node.func.attr == (
                             "load_portfolio_report"
                             if path.name.startswith("19_")
                             else "load_report"
                         )
+                    if node.func.value.id in allowed_package_calls:
+                        assert descriptive
+                        assert (
+                            node.func.attr == allowed_package_calls[node.func.value.id]
+                        )
+                    if node.func.value.id == "fig" and descriptive:
+                        assert name != "savefig"
         if "report-chart" in cell.get("metadata", {}).get("tags", []):
             charts.append(cell)
             assert any(
@@ -206,4 +228,5 @@ def _check_metrics_notebook(path):
                 and node.func.attr == "subplots"
                 for node in ast.walk(tree)
             )
-    assert len(charts) == (3 if path.name.startswith("19_") else 18)
+    expected_charts = {"18": 18, "19": 3, "20": 12}
+    assert len(charts) == expected_charts[path.name[:2]]

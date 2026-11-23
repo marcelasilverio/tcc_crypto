@@ -10,7 +10,38 @@ import pandas as pd
 from sklearn.model_selection import ParameterGrid
 
 from tcc_crypto.dataset import ACTIVE_FEATURES
-from tcc_crypto.paths import CONFIG, ROOT, component
+from tcc_crypto.paths import CONFIG, DESCRIPTIVE_CONFIG, ROOT, component
+
+
+def load_descriptive_config(root: Path = ROOT) -> dict:
+    """Load and validate the independent descriptive analysis settings."""
+    settings = json.loads((root / DESCRIPTIVE_CONFIG).read_text())
+    expected = {
+        "analysis_id",
+        "start",
+        "end",
+        "tail_quantiles",
+        "rolling_returns",
+        "low_correlation_support",
+    }
+    if settings.keys() != expected:
+        raise ValueError(f"Descriptive configuration must contain {sorted(expected)}.")
+    component(settings["analysis_id"])
+    start, end = (pd.Timestamp(settings[key], tz="UTC") for key in ("start", "end"))
+    if (
+        pd.isna(start)
+        or pd.isna(end)
+        or start > end
+        or any(date != date.normalize() for date in (start, end))
+    ):
+        raise ValueError("Use ordered descriptive calendar dates at UTC midnight.")
+    lower, upper = settings["tail_quantiles"]
+    if not 0 < lower < 0.25 or not 0.75 < upper < 1:
+        raise ValueError("Tail quantiles must lie outside the interquartile range.")
+    for name in ("rolling_returns", "low_correlation_support"):
+        if type(settings[name]) is not int or settings[name] < 2:
+            raise ValueError(f"{name} must be an integer of at least two.")
+    return settings
 
 
 @dataclass(frozen=True)

@@ -51,8 +51,10 @@ def validate_calendar(index: pd.DatetimeIndex) -> None:
         raise ValueError("Calendar must have consecutive UTC days.")
 
 
-def prepare_symbol(raw: pd.DataFrame, symbol: str, study: dict) -> PreparedData:
-    """Reject ambiguous dates; invalid identifiable candles become missing days."""
+def inspect_candles(
+    raw: pd.DataFrame, symbol: str
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Return numeric candles and aligned diagnostics without filling or trimming."""
     frame = raw.reindex(columns=KLINE_COLUMNS).copy()
     if "open_time_ms" not in raw:
         raise ValueError(f"{symbol}: missing timestamp column; cannot assign dates.")
@@ -96,14 +98,6 @@ def prepare_symbol(raw: pd.DataFrame, symbol: str, study: dict) -> PreparedData:
         "invalid_duration",
     )
     valid = reasons.eq("")
-    calendar = pd.date_range(study["start"], study["end"], tz="UTC", name="date_utc")
-    availability = pd.DataFrame(
-        {
-            "date_utc": calendar,
-            "symbol": symbol,
-            "available": calendar.isin(index[valid]).astype(int),
-        }
-    )
     diagnostics = pd.DataFrame(
         {
             "date_utc": index,
@@ -111,9 +105,26 @@ def prepare_symbol(raw: pd.DataFrame, symbol: str, study: dict) -> PreparedData:
             "valid": valid.to_numpy(),
             "reason": reasons.str.rstrip("|").to_numpy(),
             "shortened_candle": ((duration > 0) & (duration < DAY_MS)).to_numpy(),
+        },
+        index=index,
+    )
+    return numeric, diagnostics
+
+
+def prepare_symbol(raw: pd.DataFrame, symbol: str, study: dict) -> PreparedData:
+    """Reject ambiguous dates; invalid identifiable candles become missing days."""
+    numeric, diagnostics = inspect_candles(raw, symbol)
+    good = numeric.loc[diagnostics.valid].copy()
+    calendar = pd.date_range(study["start"], study["end"], tz="UTC", name="date_utc")
+    availability = pd.DataFrame(
+        {
+            "date_utc": calendar,
+            "symbol": symbol,
+            "available": calendar.isin(good.index).astype(int),
         }
     )
-    good = numeric.loc[valid].copy()
+    reasons = diagnostics.reason
+    diagnostics = diagnostics.reset_index(drop=True)
     good = good.loc[study["warmup_start"] : study["end"]]
     if good.empty:
         return PreparedData(

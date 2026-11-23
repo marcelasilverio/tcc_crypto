@@ -10,6 +10,13 @@ PROCESSED = Path("data/processed")
 OUTPUTS = Path("outputs/experiments")
 PORTFOLIO_CONFIG = Path("configs/portfolio.json")
 PORTFOLIO_OUTPUTS = Path("outputs/portfolios")
+DESCRIPTIVE_CONFIG = Path("configs/daily_descriptive.json")
+EXPLORATORY_DATA = Path("data/exploration")
+EXPLORATORY_OUTPUTS = Path("outputs/exploration")
+DESCRIPTIVE_NOTEBOOK = Path(
+    "notebooks/20_binance_daily_candle_descriptive_report.ipynb"
+)
+DESCRIPTIVE_REPORT_BUILDER = Path("scripts/build_daily_candle_report.py")
 PORTFOLIO_TABLES = ("capital", "signals", "operations")
 MAIN_TABLES = (
     "availability",
@@ -111,3 +118,39 @@ def raw_paths(root: Path, symbol: str, collection: dict) -> dict[str, Path]:
         "partial": directory / f".{stem}.partial.csv",
         "checkpoint": directory / f".{stem}.checkpoint.json",
     }
+
+
+@dataclass(frozen=True)
+class DescriptivePaths:
+    root: Path
+    run_id: str
+
+    def __post_init__(self):
+        component(self.run_id)
+
+    @property
+    def data(self) -> Path:
+        return self.root / EXPLORATORY_DATA / self.run_id
+
+    @property
+    def output(self) -> Path:
+        return self.root / EXPLORATORY_OUTPUTS / self.run_id
+
+    @property
+    def manifest(self) -> Path:
+        return self.output / "manifest.json"
+
+    @property
+    def lock(self) -> Path:
+        return self.output.with_name(f".{self.run_id}.lock")
+
+    def table(self, name: str) -> Path:
+        return self.data / f"{component(name)}.csv"
+
+    def figure(self, name: str) -> Path:
+        return self.output / "figures" / f"{component(name)}.png"
+
+    def report(self, extension: str) -> Path:
+        if extension not in {"docx", "pdf"}:
+            raise ValueError(f"Unsupported report format: {extension}")
+        return self.output / f"daily_candle_report.{extension}"

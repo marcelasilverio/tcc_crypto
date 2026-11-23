@@ -19,8 +19,8 @@ from uuid import uuid4
 
 import pandas as pd
 
-from tcc_crypto.paths import raw_paths
-from tcc_crypto.preparation import KLINE_COLUMNS
+from tcc_crypto.paths import CONFIG, ROOT, raw_paths
+from tcc_crypto.preparation import KLINE_COLUMNS, inspect_candles
 from tcc_crypto.results import file_sha256, write_json
 
 
@@ -201,7 +201,7 @@ def collect_symbol(symbol: str, settings: dict, root: Path, *, requester=None) -
     return paths["raw"]
 
 
-def validate_raw(paths: dict[str, Path], symbol: str, settings: dict) -> None:
+def validate_raw(paths: dict[str, Path], symbol: str, settings: dict) -> dict:
     """Validate current or legacy raw provenance without rewriting either format."""
     if not paths["metadata"].exists():
         raise FileNotFoundError(
@@ -237,3 +237,86 @@ def validate_raw(paths: dict[str, Path], symbol: str, settings: dict) -> None:
         for k in ("start_time_utc", "end_time_utc")
     ):
         raise ValueError("Raw collection period differs from configuration.")
+    return meta
+
+
+def load_descriptive_candles(
+    root: Path = ROOT,
+) -> tuple[dict[str, pd.DataFrame], dict[str, pd.DataFrame], dict, dict]:
+    """Read the configured universe and validate each canonical raw file and sidecar."""
+    config_path = root / CONFIG
+    context = json.loads(config_path.read_text())
+    collection = context["collection"]
+    symbols = context["symbols"]
+    if (
+        len(symbols) != 40
+        or len(set(symbols)) != 40
+        or any(not symbol.endswith("USDT") for symbol in symbols)
+    ):
+        raise ValueError("Expected 40 unique configured Binance Spot USDT pairs.")
+    if collection["interval"] != "1d" or collection["time_zone"] != "0":
+        raise ValueError("Expected the UTC daily collection.")
+    lower, upper = (
+        pd.Timestamp(collection[key]) for key in ("start_time_utc", "end_time_utc")
+    )
+    candles, diagnostics, sources = {}, {}, {}
+    for symbol in symbols:
+        paths = raw_paths(root, symbol, collection)
+        try:
+            meta = validate_raw(paths, symbol, collection)
+            with gzip.open(paths["raw"], "rt", encoding="utf-8", newline="") as stream:
+                reader = csv.reader(stream, strict=True)
+                if next(reader, None) != KLINE_COLUMNS:
+                    raise ValueError("Unexpected canonical kline columns.")
+                rows = list(reader)
+            if any(len(row) != len(KLINE_COLUMNS) for row in rows):
+                raise ValueError("Unexpected canonical kline row width.")
+            legacy = meta.get("metadata")
+            count = meta["rows"] if legacy is None else legacy["Observed 1d klines"]
+            expected_endpoint = collection["base_url"] + collection["kline_path"]
+            if legacy is None:
+                recorded = meta["requested"]
+                endpoint = recorded["base_url"] + recorded["kline_path"]
+                collected_at = meta["collected_at_utc"]
+                checksum = meta["sha256"]
+            else:
+                if (
+                    legacy["Market"] != "Binance Spot"
+                    or legacy["Quote asset"] != "USDT"
+                ):
+                    raise ValueError("Unexpected market or quote asset.")
+                endpoint = legacy["Source endpoint"]
+                collected_at = legacy["Collection timestamp (UTC)"]
+                checksum = meta["raw_csv_sha256"]
+            if endpoint != expected_endpoint or len(rows) != int(count):
+                raise ValueError("Source endpoint or row count differs from metadata.")
+            numeric, quality = inspect_candles(
+                pd.DataFrame(rows, columns=KLINE_COLUMNS), symbol
+            )
+            if (
+                numeric.empty
+                or ((numeric.index < lower) | (numeric.index > upper)).any()
+            ):
+                raise ValueError(
+                    "No rows or opening dates outside the collection period."
+                )
+        except (OSError, KeyError, ValueError, csv.Error) as error:
+            raise ValueError(
+                f"{symbol}: cannot validate raw collection: {error}"
+            ) from error
+        candles[symbol], diagnostics[symbol] = numeric, quality
+        sources[symbol] = {
+            "raw": str(paths["raw"].relative_to(root)),
+            "sha256": checksum,
+            "metadata": str(paths["metadata"].relative_to(root)),
+            "metadata_sha256": file_sha256(paths["metadata"]),
+            "collected_at_utc": collected_at,
+            "rows": len(rows),
+        }
+    scope = {
+        "symbols": symbols,
+        "model_exclusions": context["excluded_symbols"],
+        "collection": collection,
+        "experiment_config_sha256": file_sha256(config_path),
+    }
+    return candles, diagnostics, scope, sources

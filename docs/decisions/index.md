@@ -26,6 +26,7 @@ sequence `pipeline_order` and the internal temporal validation settings
 - [Hourly price descriptive analysis](hourly-price-descriptive-analysis.md) - Approved parameters for descriptive analysis of hourly Binance price fields.
 - [Hourly market-activity descriptive analysis](hourly-market-activity-descriptive-analysis.md) - Approved parameters for descriptive analysis of hourly Binance market activity.
 - [Daily price and volume descriptive analysis](daily-price-volume-descriptive-analysis.md) - Approved parameters for descriptive analysis of daily Binance prices and USDT volume.
+- [Daily candle descriptive report for the monograph](daily-candle-monograph-description.md) - Approved extension of the descriptive analysis of the 40 Binance Spot USDT pairs.
 - [Daily Silva-derived feature set](daily-silva-feature-set.md) - Approved initial daily feature construction adapted from Silva 2026, with Parabolic SAR parameter verification pending.
 - [Daily rolling feature selection](daily-feature-selection.md) - Approved variance and correlation filters refitted within every daily rolling training window.
 - [Daily experiment period and internal-gap treatment](daily-sample-and-missing-data.md) - Approved experiment start, feature warm-up period, and forward-fill rule for internal daily gaps.

@@ -13,7 +13,13 @@ from uuid import uuid4
 
 import pandas as pd
 
-from tcc_crypto.paths import metadata_path
+from tcc_crypto.paths import (
+    DESCRIPTIVE_CONFIG,
+    DESCRIPTIVE_NOTEBOOK,
+    DESCRIPTIVE_REPORT_BUILDER,
+    DescriptivePaths,
+    metadata_path,
+)
 
 NULL_TOKEN = "__NULL__"
 
@@ -68,6 +74,101 @@ def ensure_writable(paths, *, overwrite: bool) -> None:
     existing = [str(p) for p in paths if p.exists()]
     if existing and not overwrite:
         raise FileExistsError(f"Outputs exist; use --overwrite: {existing}")
+
+
+def publish_descriptive_analysis(
+    paths: DescriptivePaths,
+    settings: dict,
+    scope: dict,
+    sources: dict,
+    tables: dict[str, pd.DataFrame],
+    figures: dict,
+) -> Path:
+    """Publish already calculated evidence once, with a checksum manifest."""
+    paths.output.parent.mkdir(parents=True, exist_ok=True)
+    paths.data.parent.mkdir(parents=True, exist_ok=True)
+    paths.lock.mkdir()
+    stage = DescriptivePaths(paths.root, f".{paths.run_id}.{uuid4().hex}")
+    data_published = False
+    try:
+        if paths.data.exists() or paths.output.exists():
+            raise FileExistsError("Use a new descriptive execution identifier.")
+        stage.data.mkdir()
+        stage.figure("placeholder").parent.mkdir(parents=True)
+        artifacts = {}
+        for name, frame in tables.items():
+            if frame.columns.has_duplicates or not isinstance(
+                frame.index, pd.RangeIndex
+            ):
+                raise ValueError(f"{name}: provide explicit, unique CSV columns.")
+            target = stage.table(name)
+            frame.to_csv(target, index=False, na_rep=NULL_TOKEN, lineterminator="\n")
+            artifacts[f"table:{name}"] = {
+                "path": str(paths.table(name).relative_to(paths.root)),
+                "sha256": file_sha256(target),
+                "rows": len(frame),
+                "schema": dict(zip(frame.columns, frame.dtypes.astype(str))),
+            }
+        for name, figure in figures.items():
+            target = stage.figure(name)
+            figure.savefig(target, dpi=200, facecolor="white", bbox_inches="tight")
+            artifacts[f"figure:{name}"] = {
+                "path": str(paths.figure(name).relative_to(paths.root)),
+                "sha256": file_sha256(target),
+            }
+        metadata = execution_metadata(paths.root)
+        metadata["package_versions"]["matplotlib"] = version("matplotlib")
+        metadata["package_versions"]["scipy"] = version("scipy")
+        notebook = json.loads((paths.root / DESCRIPTIVE_NOTEBOOK).read_text())
+        notebook_sources = [
+            (cell["cell_type"], "".join(cell["source"])) for cell in notebook["cells"]
+        ]
+        notebook_hash = hashlib.sha256(
+            json.dumps(notebook_sources, ensure_ascii=False).encode()
+        ).hexdigest()
+        write_json(
+            stage.manifest,
+            {
+                **metadata,
+                "run_id": paths.run_id,
+                "settings": settings,
+                "scope": scope,
+                "sources": sources,
+                "artifacts": artifacts,
+                "csv": {"encoding": "utf-8", "null_token": NULL_TOKEN},
+                "report_files": [
+                    str(paths.report(extension).relative_to(paths.root))
+                    for extension in ("docx", "pdf")
+                ],
+                "configuration_sha256": file_sha256(paths.root / DESCRIPTIVE_CONFIG),
+                "notebook_cells_sha256": notebook_hash,
+                "builder_sha256": file_sha256(paths.root / DESCRIPTIVE_REPORT_BUILDER),
+                "implementation_sha256": {
+                    file: file_sha256(Path(__file__).with_name(file))
+                    for file in (
+                        "collection.py",
+                        "preparation.py",
+                        "config.py",
+                        "results.py",
+                        "paths.py",
+                    )
+                },
+            },
+        )
+        stage.data.rename(paths.data)
+        data_published = True
+        stage.output.rename(paths.output)
+    except BaseException:
+        if data_published and not paths.manifest.exists():
+            shutil.rmtree(paths.data)
+        raise
+    finally:
+        if stage.data.exists():
+            shutil.rmtree(stage.data)
+        if stage.output.exists():
+            shutil.rmtree(stage.output)
+        paths.lock.rmdir()
+    return paths.manifest
 
 
 def write_table(
